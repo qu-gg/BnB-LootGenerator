@@ -1,0 +1,34 @@
+{
+    "1": {
+        "1": "10g",
+        "2": "30g",
+        "3": "Health Potion (3d8+10)",
+        "4": "Random Potion (2)",
+        "5": "Grenade Mod",
+        "6": "Grenade Mod"
+    },
+    "2": {
+        "1": "Health Potion (1d8)",
+        "2": "Health Potion (2d8+5)",
+        "3": "Shield Potion (3d8+10)",
+        "4": "Grenade Mod",
+        "5": "Shield Mod",
+        "6": "Uncommon Relic"
+    },
+    "3": {
+        "1": "Shield Potion (1d8)",
+        "2": "Shield Potion (1d8)",
+        "3": "Random Potion (1)",
+        "4": "Shield Mod",
+        "5": "Common Relic",
+        "6": "Random Gun"
+    },
+    "4": {
+        "1": "Grenades (1)",
+        "2": "Grenades (2)",
+        "3": "Grenades (3)",
+        "4": "Random Gun",
+        "5": "Random Gun",
+        "6": "Random Gun"
+    }
+}
