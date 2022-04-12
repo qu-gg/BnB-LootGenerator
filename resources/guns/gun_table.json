@@ -2,105 +2,105 @@
     "1": {
         "type": "pistol",
         "guild": {
-            "1": "Alas!",
-            "2": "Dahlia",
-            "3": "Hyperius",
-            "4": "Malefactor",
-            "5": "Feriore",
-            "6": "Stoker",
-            "7": "Torgue",
-            "8": "Blackpowder"
+            "1": "alas!",
+            "2": "dahlia",
+            "3": "hyperius",
+            "4": "malefactor",
+            "5": "feriore",
+            "6": "stoker",
+            "7": "torgue",
+            "8": "blackpowder"
         }
     },
     "2": {
         "type": "submachine_gun",
         "guild": {
-            "1": "Dahlia",
-            "2": "Hyperius",
-            "3": "Malefactor",
-            "4": "Feriore",
-            "5": "Torgue",
-            "6": "Dahlia",
-            "7": "Hyperius",
-            "8": "Malefactor"
+            "1": "dahlia",
+            "2": "hyperius",
+            "3": "malefactor",
+            "4": "feriore",
+            "5": "torgue",
+            "6": "dahlia",
+            "7": "hyperius",
+            "8": "malefactor"
         }
     },
     "3": {
         "type": "shotgun",
         "guild": {
-            "1": "Hyperius",
-            "2": "Malefactor",
-            "3": "Skuldugger",
-            "4": "Stoker",
+            "1": "hyperius",
+            "2": "malefactor",
+            "3": "skuldugger",
+            "4": "stoker",
             "5": "Alas!",
-            "6": "Dahlia",
-            "7": "Blackpowder",
-            "8": "Feriore"
+            "6": "dahlia",
+            "7": "blackpowder",
+            "8": "feriore"
         }
     },
     "4": {
         "type": "combat_rifle",
         "guild": {
-            "1": "Skuldugger",
-            "2": "Dahlia",
-            "3": "Blackpowder",
-            "4": "Torgue",
-            "5": "Stoker",
-            "6": "Skuldugger",
-            "7": "Dahlia",
-            "8": "Blackpowder"
+            "1": "skuldugger",
+            "2": "dahlia",
+            "3": "blackpowder",
+            "4": "torgue",
+            "5": "stoker",
+            "6": "skuldugger",
+            "7": "dahlia",
+            "8": "blackpowder"
         }
     },
     "5": {
         "type": "sniper_rifle",
         "guild": {
-            "1": "Dahlia",
-            "2": "Hyperius",
-            "3": "Blackpowder",
-            "4": "Malefactor",
-            "5": "Stoker",
-            "6": "Dahlia",
-            "7": "Hyperius",
-            "8": "Blackpowder"
+            "1": "dahlia",
+            "2": "hyperius",
+            "3": "blackpowder",
+            "4": "malefactor",
+            "5": "stoker",
+            "6": "dahlia",
+            "7": "hyperius",
+            "8": "blackpowder"
         }
     },
     "6": {
         "type": "rocket_launcher",
         "guild": {
-            "1": "Skuldugger",
-            "2": "Malefactor",
-            "3": "Feriore",
-            "4": "Torgue",
-            "5": "Stoker",
-            "6": "Skuldugger",
-            "7": "Malefactor",
-            "8": "Feriore"
+            "1": "skuldugger",
+            "2": "malefactor",
+            "3": "feriore",
+            "4": "torgue",
+            "5": "stoker",
+            "6": "skuldugger",
+            "7": "malefactor",
+            "8": "feriore"
         }
     },
     "7": {
         "type": "favored",
         "guild": {
-            "1": "Choice",
-            "2": "Choice",
-            "3": "Choice",
-            "4": "Choice",
-            "5": "Choice",
-            "6": "Choice",
-            "7": "Choice",
-            "8": "Choice"
+            "1": "choice",
+            "2": "choice",
+            "3": "choice",
+            "4": "choice",
+            "5": "choice",
+            "6": "choice",
+            "7": "choice",
+            "8": "choice"
         }
     },
     "8": {
         "type": "favored",
         "guild": {
-            "1": "Choice",
-            "2": "Choice",
-            "3": "Choice",
-            "4": "Choice",
-            "5": "Choice",
-            "6": "Choice",
-            "7": "Choice",
-            "8": "Choice"
+            "1": "choice",
+            "2": "choice",
+            "3": "choice",
+            "4": "choice",
+            "5": "choice",
+            "6": "choice",
+            "7": "choice",
+            "8": "choice"
         }
     }
 }
