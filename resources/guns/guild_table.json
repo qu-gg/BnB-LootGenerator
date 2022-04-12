@@ -1,0 +1,101 @@
+{
+    "alas!": {
+        "tiers": {
+            "common": "+1 DMG Mod.",
+            "uncommon": "+2 DMG Mod.",
+            "rare": "+3 DMG Mod.",
+            "epic": "+3 DMG Mod.",
+            "legendary": "+4 DMG Mod."
+        },
+        "gun_info": "Increased Damage.",
+        "element_roll": false
+    },
+    "skuldugger": {
+        "tiers": {
+            "common": "+2 DMG Mod, Overheat: 1d4.",
+            "uncommon": "+3 DMG Mod, Overheat: 1d6.",
+            "rare": "+4 DMG Mod, Overheat: 1d8.",
+            "epic": "+5 DMG Mod, Overheat: 1d10.",
+            "legendary": "+6 DMG Mod, Overheat: 1d12."
+        },
+        "gun_info": "Overheat: When taking a Reload Action, roll the dice value specified and take the result as Incendiary Damage. \\Increased Damage.",
+        "element_roll": true
+    },
+    "dahlia": {
+        "tiers": {
+            "common": "Burst: +1 Hit.",
+            "uncommon": "Burst: +1 Hit, +1 ACC Mod.",
+            "rare": "Burst: +1 Hit, +2 ACC Mod.",
+            "epic": "Burst: +1 Hit, +3 ACC Mod.",
+            "legendary": "Burst: +1 Hit, +4 ACC Mod."
+        },
+        "gun_info": "Burst: Adds an additional Hit to each Attack. \\Increased Accuracy.",
+        "element_roll": true
+    },
+    "blackpowder": {
+        "tiers": {
+            "common": "+2 ACC Mod, +2 Crit Damage.",
+            "uncommon": "+2 ACC Mod, +3 Crit Damage.",
+            "rare": "+2 ACC Mod, +4 Crit Damage.",
+            "epic": "+2 ACC Mod, +5 Crit Damage.",
+            "legendary": "+2 ACC Mod, +6 Crit Damage."
+        },
+        "gun_info": "Increased Accuracy. \\Highly increased Crit Damage.",
+        "element_roll": false
+    },
+    "malefactor": {
+        "tiers": {
+            "common": "Element Roll, -2 DMG Mod.",
+            "uncommon": "Element Roll, -1 DMG Mod.",
+            "rare": "+10% Element Roll.",
+            "epic": "+15% Element Roll.",
+            "legendary": "+20% Element Roll."
+        },
+        "gun_info": "Roll for Element Damage. \\Reduced overall Damage at lower Rarities.",
+        "element_roll": true
+    },
+    "hyperius": {
+        "tiers": {
+            "common": "+1 ACC Mod, -2 DMG Mod.",
+            "uncommon": "+2 ACC Mod, -2 DMG Mod.",
+            "rare": "+3 ACC Mod, -2 DMG Mod.",
+            "epic": "+4 ACC Mod, -2 DMG Mod.",
+            "legendary": "+5 ACC Mod, -2 DMG Mod."
+        },
+        "gun_info": "Increased Accuracy. \\Reduced overall Damage.",
+        "element_roll": true
+    },
+    "feriore": {
+        "tiers": {
+            "common": "Swap/Reload: 1d4 Grenade Damage, -3 ACC Mod.",
+            "uncommon": "Swap/Reload: 1d6 Grenade Damage, -3 ACC Mod.",
+            "rare": "Swap/Reload: 1d8 Grenade Damage, -2 ACC Mod.",
+            "epic": "Swap/Reload: 1d10 Grenade Damage, -2 ACC Mod.",
+            "legendary": "Swap/Reload: 1d12 Grenade Damage, -1 ACC Mod."
+        },
+        "gun_info": "Less Accuracy. \\Swap/Reload: When taking a Swap Gun or Reload action, the gun is Thrown and deals Damage like a grenade.",
+        "element_roll": true
+    },
+    "torgue": {
+        "tiers": {
+            "common": "Splash, -4 ACC Mod.",
+            "uncommon": "Splash, -3 ACC Mod.",
+            "rare": "Splash, -2 ACC Mod.",
+            "epic": "Splash, -1 ACC Mod.",
+            "legendary": "Splash."
+        },
+        "gun_info": "Less Accuracy. \\Splash, sploosh.",
+        "element_roll": true
+    },
+    "stoker": {
+        "tiers": {
+            "common": "Extra Attack, -3 ACC Mod.",
+            "uncommon": "Extra Attack, -2 ACC Mod.",
+            "rare": "Extra Attack, -1 ACC Mod.",
+            "epic": "Extra Attack.",
+            "legendary": "Extra Attack, Extra Movement."
+        },
+        "gun_info": "Less Accuracy. \\Gain an Extra Attack Action.",
+        "element_roll": true
+    }
+}
