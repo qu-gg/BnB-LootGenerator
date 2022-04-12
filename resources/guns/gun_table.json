@@ -1,0 +1,106 @@
+{
+    "1": {
+        "type": "pistol",
+        "guild": {
+            "1": "Alas!",
+            "2": "Dahlia",
+            "3": "Hyperius",
+            "4": "Malefactor",
+            "5": "Feriore",
+            "6": "Stoker",
+            "7": "Torgue",
+            "8": "Blackpowder"
+        }
+    },
+    "2": {
+        "type": "submachine_gun",
+        "guild": {
+            "1": "Dahlia",
+            "2": "Hyperius",
+            "3": "Malefactor",
+            "4": "Feriore",
+            "5": "Torgue",
+            "6": "Dahlia",
+            "7": "Hyperius",
+            "8": "Malefactor"
+        }
+    },
+    "3": {
+        "type": "shotgun",
+        "guild": {
+            "1": "Hyperius",
+            "2": "Malefactor",
+            "3": "Skuldugger",
+            "4": "Stoker",
+            "5": "Alas!",
+            "6": "Dahlia",
+            "7": "Blackpowder",
+            "8": "Feriore"
+        }
+    },
+    "4": {
+        "type": "combat_rifle",
+        "guild": {
+            "1": "Skuldugger",
+            "2": "Dahlia",
+            "3": "Blackpowder",
+            "4": "Torgue",
+            "5": "Stoker",
+            "6": "Skuldugger",
+            "7": "Dahlia",
+            "8": "Blackpowder"
+        }
+    },
+    "5": {
+        "type": "sniper_rifle",
+        "guild": {
+            "1": "Dahlia",
+            "2": "Hyperius",
+            "3": "Blackpowder",
+            "4": "Malefactor",
+            "5": "Stoker",
+            "6": "Dahlia",
+            "7": "Hyperius",
+            "8": "Blackpowder"
+        }
+    },
+    "6": {
+        "type": "rocket_launcher",
+        "guild": {
+            "1": "Skuldugger",
+            "2": "Malefactor",
+            "3": "Feriore",
+            "4": "Torgue",
+            "5": "Stoker",
+            "6": "Skuldugger",
+            "7": "Malefactor",
+            "8": "Feriore"
+        }
+    },
+    "7": {
+        "type": "favored",
+        "guild": {
+            "1": "Choice",
+            "2": "Choice",
+            "3": "Choice",
+            "4": "Choice",
+            "5": "Choice",
+            "6": "Choice",
+            "7": "Choice",
+            "8": "Choice"
+        }
+    },
+    "8": {
+        "type": "favored",
+        "guild": {
+            "1": "Choice",
+            "2": "Choice",
+            "3": "Choice",
+            "4": "Choice",
+            "5": "Choice",
+            "6": "Choice",
+            "7": "Choice",
+            "8": "Choice"
+        }
+    }
+}

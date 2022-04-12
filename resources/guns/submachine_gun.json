@@ -1,0 +1,92 @@
+{
+    "1-6": {
+        "accuracy": {
+            "2-7": {
+                "hits": 2,
+                "crits": 0
+            },
+            "8-15": {
+                "hits": 3,
+                "crits": 0
+            },
+            "16+": {
+                "hits": 5,
+                "crits": 0
+            }
+        },
+        "range": "5",
+        "damage": "1d4"
+    },
+    "7-12": {
+        "accuracy": {
+            "2-7": {
+                "hits": 2,
+                "crits": 0
+            },
+            "8-15": {
+                "hits": 4,
+                "crits": 0
+            },
+            "16+": {
+                "hits": 5,
+                "crits": 1
+            }
+        },
+        "range": "5",
+        "damage": "2d4"
+    },
+    "13-18": {
+        "accuracy": {
+            "2-7": {
+                "hits": 2,
+                "crits": 0
+            },
+            "8-15": {
+                "hits": 3,
+                "crits": 1
+            },
+            "16+": {
+                "hits": 5,
+                "crits": 1
+            }
+        },
+        "range": "5",
+        "damage": "1d6"
+    },
+    "19-24": {
+        "accuracy": {
+            "2-7": {
+                "hits": 2,
+                "crits": 0
+            },
+            "8-15": {
+                "hits": 3,
+                "crits": 1
+            },
+            "16+": {
+                "hits": 4,
+                "crits": 1
+            }
+        },
+        "range": "5",
+        "damage": "2d6"
+    },
+    "25-30": {
+        "accuracy": {
+            "2-7": {
+                "hits": 2,
+                "crits": 2
+            },
+            "8-15": {
+                "hits": 3,
+                "crits": 2
+            },
+            "16+": {
+                "hits": 5,
+                "crits": 2
+            }
+        },
+        "range": "5",
+        "damage": "1d10"
+    }
+}
