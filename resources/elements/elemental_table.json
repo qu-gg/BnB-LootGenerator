@@ -136,21 +136,21 @@
         "common": "explosive",
         "uncommon": "explosive (+1d6)",
         "rare": "explosive (+2d6)",
-        "epic": "radiation + incendiary",
-        "legendary": "radiation + incendiary"
+        "epic": ["radiation", "incendiary"],
+        "legendary": ["radiation", "incendiary"]
     },
     "97-98": {
         "common": "incendiary",
         "uncommon": "incendiary (+1d6)",
         "rare": "incendiary (+2d6)",
-        "epic": "shock + corrosive",
-        "legendary": "shock + corrosive"
+        "epic": ["shock", "corrosive"],
+        "legendary": ["shock", "corrosive"]
     },
     "99-100": {
         "common": "cryo",
         "uncommon": "cryo (+1d6)",
         "rare": "cryo (+2d6)",
-        "epic": "explosive + cryo",
-        "legendary": "explosive + cryo"
+        "epic": ["explosive", "cryo"],
+        "legendary": ["explosive", "cryo"]
     }
 }

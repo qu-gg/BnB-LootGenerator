@@ -12,7 +12,7 @@
         "2": ["common", "element"],
         "3": "uncommon",
         "4": ["uncommon", "element"],
-        "5": "rare (element)",
+        "5": ["rare", "element"],
         "6": "epic"
     },
     "3": {

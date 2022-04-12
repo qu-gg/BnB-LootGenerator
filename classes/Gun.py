@@ -11,9 +11,16 @@ from random import randint
 from json_reader import get_file_data
 
 
-# First assume no information is given
 class Gun:
-    def __init__(self, item_level, gun_type=None, gun_guild=None, gun_rarity=None):
+    def __init__(self, item_level=None, gun_type=None, gun_guild=None, gun_rarity=None):
+        """
+        Handles generating a gun completely from scratch with no user input
+        TODO: add user-input modifying the control patch
+        """
+        # If item level is to be generated
+        if item_level in ["random", None]:
+            item_level = self.get_random_ilevel()
+
         # Get relevant portion of the gun table based on the roll
         roll_type = str(randint(1, 6))
         roll_guild = str(randint(1, 6))
@@ -49,17 +56,71 @@ class Gun:
         self.guild_info = self.guild_table.get("gun_info")
 
         # Roll for element iff it has an appropriate guild and rarity
+        # TODO - make sure malefactor ALWAYS gets an element via rounded up to lowest
         self.element = None
-        if (self.guild_element_roll is True and self.rarity_element_roll is True) or self.guild == "malefactor":
+        if self.guild_element_roll is True and self.rarity_element_roll is True:
             roll_element = str(randint(1, 100))
             roll_element = self.check_element_boost(roll_element, self.guild, self.rarity)
 
             element_table = get_file_data("elements/elemental_table.json")
             self.element = element_table.get(self.get_element_tier(roll_element, element_table)).get(self.rarity)
 
+        # If the gun is Malefactor guild and it does not have an element yet, keep rolling until an element is picked
+        if self.guild == "malefactor" and self.element is None:
+            while self.element is None:
+                roll_element = str(randint(1, 100))
+                roll_element = self.check_element_boost(roll_element, self.guild, self.rarity)
+
+                element_table = get_file_data("elements/elemental_table.json")
+                self.element = element_table.get(self.get_element_tier(roll_element, element_table)).get(self.rarity)
+
+        # Get element info if it exists
+        self.element_info = None
+        if self.element is not None:
+            if type(self.element) == list:
+                self.element_info = [
+                    get_file_data("elements/elemental_type.json").get(self.element[0]),
+                    get_file_data("elements/elemental_type.json").get(self.element[1])
+                ]
+            else:
+                self.element_info = get_file_data("elements/elemental_type.json").get(self.element)
+
         # TODO: add rolling for prefixes and red text on weapons
         self.prefix = None
         self.red_text = None
+
+    def get_random_ilevel(self):
+        """ Handles rolling for a random item level and giving back the tier key for it """
+        roll_level = randint(1, 30)
+
+        tier = None
+        for key in get_file_data("guns/pistol.json").keys():
+            lower, upper = [int(i) for i in key.split('-')]
+            if lower <= roll_level <= upper:
+                tier = key
+
+        return tier
+
+    def check_element_boost(self, roll, guild, rarity):
+        """
+        Malefactor weapons get a boost to their element roll on the table.
+        Checks if the given rolled gun gets that treatment.
+        :param roll: given base element roll
+        :param guild: guild to check if its malefactor
+        :param rarity: rarity of the gun
+        :return: roll with modified cost if its malefactor and rare enough
+        """
+        roll = int(roll)
+
+        if rarity == "rare" and guild == "malefactor":
+            roll = roll + int(roll * 0.10)
+        elif rarity == "epic" and guild == "malefactor":
+            roll = roll + int(roll * 0.15)
+        elif rarity == "legendary" and guild == "malefactor":
+            roll = roll + int(roll * 0.20)
+
+        roll = min(roll, 100)
+        return str(roll)
 
     def get_element_tier(self, roll, element_table):
         """
@@ -79,30 +140,39 @@ class Gun:
 
         return tier
 
-    def check_element_boost(self, roll, guild, rarity):
-        """
-        Malefactor weapons get a boost to their element roll on the table.
-        Checks if the given rolled gun gets that treatment.
-        :param roll:
-        :param guild:
-        :param rarity:
-        :return:
-        """
-        roll = int(roll)
-
-        if rarity == "rare" and guild == "malefactor":
-            roll = roll + int(roll * 0.10)
-        elif rarity == "epic" and guild == "malefactor":
-            roll = roll + int(roll * 0.15)
-        elif rarity == "legendary" and guild == "malefactor":
-            roll = roll + int(roll * 0.20)
-
-        roll = min(roll, 100)
-        return str(roll)
-
 
 if __name__ == '__main__':
-    gun = Gun("7-12", None, None, None)
+
+    types = []
+    guilds = []
+    item_level = []
+    rarities = []
+
+    elements = []
+
+    for _ in range(20000):
+        gun = Gun(None, None, None, None)
+
+        if gun.guild == "malefactor" and gun.element is not None:
+            elements.append(1)
+        elif gun.guild == "malefactor" and gun.element is None:
+            elements.append(0)
+
+        types.append(gun.type)
+        guilds.append(gun.guild)
+        item_level.append(gun.item_level)
+        rarities.append(gun.rarity)
+
+    import numpy as np
+    print(np.unique(types, return_counts=True))
+    print(np.unique(guilds, return_counts=True))
+    print(np.unique(item_level, return_counts=True))
+    print(np.unique(rarities, return_counts=True))
+
+    print("-")
+    print(np.unique(elements, return_counts=True))
+    exit(0)
+
     print("Type:", gun.type)
     print("Guild:", gun.guild)
     print("Rarity:", gun.rarity)
@@ -118,3 +188,4 @@ if __name__ == '__main__':
     print("Element Guild Check:  ", gun.rarity_element_roll)
     print("Element Rarity Check: ", gun.guild_element_roll)
     print("Element type:         ", gun.element)
+    print("Element info:\n{}".format(gun.element_info))
