@@ -1,0 +1,8 @@
+{
+    "inceniary": "Deals double Damage to Flesh.",
+    "corrosive": "Deals double Damage to Armor and Metal.",
+    "shock": "Deals double Damage to Shields.",
+    "explosive": "Splashes, dealing half Damage to all adjacent squares. 30% chance to cause Knockback.",
+    "radiation": "Penetrates Shields, dealing Damage to Health instead. Targets killed by Radiation Damage explode, dealing 3d6 Splash Radiation Damage.",
+    "cryo": "Targets hit by Cyro Damage are Slowed and can only move one square for 1 turn and have -2 Travese Checks. On another hit, Target is Frozen. They can only move one square on their turn or make a Melee Attack."
+}
