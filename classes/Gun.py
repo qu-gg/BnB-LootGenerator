@@ -56,7 +56,6 @@ class Gun:
         self.guild_info = self.guild_table.get("gun_info")
 
         # Roll for element iff it has an appropriate guild and rarity
-        # TODO - make sure malefactor ALWAYS gets an element via rounded up to lowest
         self.element = None
         if self.guild_element_roll is True and self.rarity_element_roll is True:
             roll_element = str(randint(1, 100))
