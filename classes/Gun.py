@@ -112,6 +112,24 @@ class Gun:
             self.redtext_name = redtext_item['name']
             self.redtext_info = redtext_item['info']
 
+            # Check if Red Text adds an element and if that element is already applied
+            if "Element type." in self.redtext_info:
+                element = self.redtext_info.split(' ')[1].lower()
+
+                # If there is no element, just simply add the element
+                if self.element is None:
+                    self.element = element
+                    self.element_info = get_file_data("elements/elemental_type.json").get(element)
+
+                # Other check if element already is applied
+                elif self.redtext_info.split(' ')[1].lower() not in self.element:
+                    if type(self.element) == list:
+                        self.element.append(element)
+                        self.element_info.append(get_file_data("elements/elemental_type.json").get(element))
+                    else:
+                        self.element = self.element + ' + ' + element
+                        self.element_info = self.element_info + "\n" + get_file_data("elements/elemental_type.json").get(element)
+
     def get_random_ilevel(self):
         """ Handles rolling for a random item level and giving back the tier key for it """
         roll_level = randint(1, 30)
