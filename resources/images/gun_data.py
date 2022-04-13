@@ -1,22 +1,34 @@
+"""
+@file gun_data.py
+@author Chris Vantine
+
+Handles filtering the scrapped game source dataset for specific properties, i.e. Hyperion manufacturer
+"""
 import json
-
-
-FILELIST = ["resources/bl1_guns.json", "resources/bl2_guns.json", "resources/bl3_guns.json", "resources/bltps_guns.json"]
 
 
 class GunData:
     def __init__(self, filelist):
+        # List of individual JSONs
+        FILELIST = ["bl1_guns.json", "bl2_guns.json", "bl3_guns.json", "bltps_guns.json"]
+
+        # Concatenating all JSONs into one block
         self.guns_data = []
         for filename in filelist:
             with open(filename, "r") as f:
                 data = json.load(f)
                 self.guns_data.extend(data)
 
-
     def filter_guns_data(self, guns_data=None, gun_type=None, manufacturer=None, name=None):
-        if guns_data is None:
-            guns_data = self.guns_data
-
+        """
+        Handles filtering the Guns data based on speciifc criterion, i.e. type, manu, name, etc.
+        Recursive function that goes down the criterion on more and more filtered lists until reached
+        :param guns_data: current iteration of the gun data
+        :param gun_type: gun type to filter on
+        :param manufacturer: manu to filter on
+        :param name: name to search for
+        :return: recursive call for more filtering or successfully filtered set
+        """
         filtered_guns = []
         if name is not None:
             for item in guns_data:
@@ -38,12 +50,3 @@ class GunData:
             return filtered_guns
         
         return guns_data
-
-    def get_guns_data(self):
-        return self.guns_data
-
-
-if __name__ == "__main__":
-    gd = GunData(FILELIST)
-    data = gd.filter_guns_data(manufacturer='hyperion')
-    print(data)

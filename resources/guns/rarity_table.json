@@ -1,34 +1,34 @@
 {
     "1": {
-        "1": "Common",
-        "2": "Common (Element)",
-        "3": "Common (Element)",
-        "4": "Uncommon",
-        "5": "Uncommon (Element)",
-        "6": "Rare"
+        "1": "common",
+        "2": ["common", "element"],
+        "3": ["common", "element"],
+        "4": "uncommon",
+        "5": ["uncommon", "element"],
+        "6": "rare"
     },
     "2": {
-        "1": "Common",
-        "2": "Common (Element)",
-        "3": "Uncommon",
-        "4": "Uncommon (Element)",
-        "5": "Rare (Element)",
-        "6": "Epic"
+        "1": "common",
+        "2": ["common", "element"],
+        "3": "uncommon",
+        "4": ["uncommon", "element"],
+        "5": ["rare", "element"],
+        "6": "epic"
     },
     "3": {
-        "1": "Uncommon (Element)",
-        "2": "Rare",
-        "3": "Rare (Element)",
-        "4": "Epic",
-        "5": "Epic (Element)",
-        "6": "Legendary (Element)"
+        "1": ["uncommon", "element"],
+        "2": "rare",
+        "3": ["rare", "element"],
+        "4": "epic",
+        "5": ["epic", "element"],
+        "6": ["legendary", "element"]
     },
     "4": {
-        "1": "Rare (Element)",
-        "2": "Rare (Element)",
-        "3": "Epic (Element)",
-        "4": "Epic (Element)",
-        "5": "Legendary (Element)",
-        "6": "Legendary (Element)"
+        "1": ["rare", "element"],
+        "2": ["rare", "element"],
+        "3": ["epic", "element"],
+        "4": ["epic", "element"],
+        "5": ["legendary", "element"],
+        "6": ["legendary", "element"]
     }
 }
