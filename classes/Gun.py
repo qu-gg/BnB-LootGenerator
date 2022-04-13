@@ -12,7 +12,7 @@ from json_reader import get_file_data
 
 
 class Gun:
-    def __init__(self, item_level=None, gun_type=None, gun_guild=None, gun_rarity=None):
+    def __init__(self, name=None, item_level=None, gun_type=None, gun_guild=None, gun_rarity=None, prefix=True):
         """
         Handles generating a gun completely from scratch with no user input
         TODO: add user-input modifying the control patch
@@ -20,6 +20,14 @@ class Gun:
         # If item level is to be generated
         if item_level in ["random", None]:
             item_level = self.get_random_ilevel()
+
+        # Roll for a random name
+        if name in ['random', None]:
+            roll_name_len = randint(1, 2)
+            name_table = get_file_data('guns/lexicon.json')
+            number_names = len(name_table.keys())
+            names = [name_table.get(str(randint(1, number_names))) for _ in range(roll_name_len)]
+            self.name = ''.join(names)
 
         # Get relevant portion of the gun table based on the roll
         roll_type = str(randint(1, 6))
@@ -84,8 +92,14 @@ class Gun:
             else:
                 self.element_info = get_file_data("elements/elemental_type.json").get(self.element)
 
-        # TODO: add rolling for prefixes and red text on weapons
-        self.prefix = None
+        # If prefix addition is checked, roll for a prefix and append to the gun's name
+        if prefix is True:
+            prefix_roll = str(randint(1, 100))
+            prefix_table = get_file_data("guns/prefix.json").get(prefix_roll)
+            self.prefix_name = prefix_table['name']
+            self.prefix_info = prefix_table['info']
+            self.name = self.prefix_name + ' ' + self.name
+
         self.red_text = None
 
     def get_random_ilevel(self):
@@ -141,37 +155,10 @@ class Gun:
 
 
 if __name__ == '__main__':
+    testing = False
+    gun = Gun(None, None, None, None)
 
-    types = []
-    guilds = []
-    item_level = []
-    rarities = []
-
-    elements = []
-
-    for _ in range(20000):
-        gun = Gun(None, None, None, None)
-
-        if gun.guild == "malefactor" and gun.element is not None:
-            elements.append(1)
-        elif gun.guild == "malefactor" and gun.element is None:
-            elements.append(0)
-
-        types.append(gun.type)
-        guilds.append(gun.guild)
-        item_level.append(gun.item_level)
-        rarities.append(gun.rarity)
-
-    import numpy as np
-    print(np.unique(types, return_counts=True))
-    print(np.unique(guilds, return_counts=True))
-    print(np.unique(item_level, return_counts=True))
-    print(np.unique(rarities, return_counts=True))
-
-    print("-")
-    print(np.unique(elements, return_counts=True))
-    exit(0)
-
+    print("Name: ", gun.name)
     print("Type:", gun.type)
     print("Guild:", gun.guild)
     print("Rarity:", gun.rarity)
@@ -188,3 +175,38 @@ if __name__ == '__main__':
     print("Element Rarity Check: ", gun.guild_element_roll)
     print("Element type:         ", gun.element)
     print("Element info:\n{}".format(gun.element_info))
+    print("")
+    print("Prefix: ", gun.prefix_name)
+    print("Prefix Info: ", gun.prefix_info)
+
+    if testing:
+        types = []
+        guilds = []
+        item_level = []
+        rarities = []
+
+        elements = []
+
+        for _ in range(20000):
+            gun = Gun(None, None, None, None)
+
+            if gun.guild == "malefactor" and gun.element is not None:
+                elements.append(1)
+            elif gun.guild == "malefactor" and gun.element is None:
+                elements.append(0)
+
+            types.append(gun.type)
+            guilds.append(gun.guild)
+            item_level.append(gun.item_level)
+            rarities.append(gun.rarity)
+
+        import numpy as np
+
+        print(np.unique(types, return_counts=True))
+        print(np.unique(guilds, return_counts=True))
+        print(np.unique(item_level, return_counts=True))
+        print(np.unique(rarities, return_counts=True))
+
+        print("-")
+        print(np.unique(elements, return_counts=True))
+        exit(0)
