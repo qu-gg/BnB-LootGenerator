@@ -1,0 +1,202 @@
+{
+    "1-2": {
+        "name": "POP POP!",
+        "info": "Deals Crit Damage twice."
+    },
+    "3-4": {
+        "name": "I never freeze",
+        "info": "Adds Cryo Element type."
+    },
+    "5-6": {
+        "name": "Toasty!",
+        "info": "Adds Incendiary Element type."
+    },
+    "7-8": {
+        "name": "Was he slow?",
+        "info": "Fires backwards."
+    },
+    "9-10": {
+        "name": "We Hate You, Please Die.",
+        "info": "Taunts the farthest Enemy each turn."
+    },
+    "11-12": {
+        "name": "Tell them they're next",
+        "info": "Won't deal Damage to the final Enemy in an encounter."
+    },
+    "13-14": {
+        "name": "PAN SHOT!",
+        "info": "Always Hits the closest Enemy."
+    },
+    "15-16": {
+        "name": "Envision Wyverns",
+        "info": "Adds Radiation Element type."
+    },
+    "17-18": {
+        "name": "I'm melting!",
+        "info": "Adds Corrosive Element type."
+    },
+    "19-20": {
+        "name": "The same thing that happens to everything else.",
+        "info": "Adds Shock Element type."
+    },
+    "21-22": {
+        "name": "360 quickscope",
+        "info": "Adds a Crit to each Ranged Attack."
+    },
+    "23-24": {
+        "name": "Any Questions?",
+        "info": "Shoots pumpkin bombs that deal an extra 3d6 Explosive Damage."
+    },
+    "25-26": {
+        "name": "Blood and Thunder",
+        "info": "Take 1d6 Health Damage to deal +3d6 Shock Damage."
+    },
+    "27-28": {
+        "name": "SI VIS PACEM, PARA BELLUM",
+        "info": "Gain Extra Attack if Acting Before Enemies."
+    },
+    "29-30": {
+        "name": "You're breathtaking!",
+        "info": "Wielder cannot be targeted on the first turn of an encounter."
+    },
+    "31-32": {
+        "name": "Pass turn.",
+        "info": "Wielder may Throw a grenade during the End of Turn step."
+    },
+    "33-34": {
+        "name": "/am Vengeance!",
+        "info": "Deals 2x Damage to Enemies adjacent to allies."
+    },
+    "35-36": {
+        "name": "Roll the dice",
+        "info": "If Accuracy Roll is even, 2x Damage. If Accuracy Roll is odd, half Damage."
+    },
+    "37-38": {
+        "name": "One among the fence",
+        "info": "Add 21 Damage if you roll 13+ on your Accuracy Roll. (1/day)"
+    },
+    "39-40": {
+        "name": "Don't be sorry. Be better.",
+        "info": "Reroll the Badass Die once per day."
+    },
+    "41-42": {
+        "name": "THE PICKLES!",
+        "info": "Shoots flaming cheeseburgers that deal an extra 2d6 Incendiary Damage."
+    },
+    "43-44": {
+        "name": "Do a kickflip!",
+        "info": "+4 on Traverse Checks while equipped."
+    },
+    "45-46": {
+        "name": "Extinction is the Rule",
+        "info": "Teleport to any square up to 4 away when you kill an Enemy."
+    },
+    "47-48": {
+        "name": "Never Fight a Knight with a Perm",
+        "info": "DMG Mod +6 against non-human Enemies."
+    },
+    "49-50": {
+        "name": "Bye bye, little Butt Stallion!",
+        "info": "Shots explode into rainbows that deal an extra 1d8 Damage."
+    },
+    "51-52": {
+        "name": "Time 2 Hack",
+        "info": "+4 on Interact Checks and Melee Damage while equipped."
+    },
+    "53-54": {
+        "name": "HATE Magic. so much",
+        "info": "+3 DMG Mod. Take 2d6 Vomit Damage if Reloaded."
+    },
+    "55-56": {
+        "name": "OFF WITH THEIR HEADS!",
+        "info": "Roll %s. 95%+: the Enemy's head falls off."
+    },
+    "57-58": {
+        "name": "This is my BOOMSTICK!",
+        "info": "Deals 3x Damage to skeletons."
+    },
+    "59-60": {
+        "name": "Super easy, barely an inconvenience",
+        "info": "Automatically pass the first Check each day."
+    },
+    "61-62": {
+        "name": "Hold onto your butts.",
+        "info": "When fired, the wielder and targets Hit are Knocked Back 2 squares."
+    },
+    "63-64": {
+        "name": "The Wise Man's Fear",
+        "info": "Deals 3x Damage to all wizards."
+    },
+    "65-66": {
+        "name": "/ don't want this isolation.",
+        "info": "Won't fire unless adjacent to an ally or target."
+    },
+    "67-68": {
+        "name": "TUFF with two Fs",
+        "info": "Prevents the first 5 Health Damage each turn."
+    },
+    "69-70": {
+        "name": "Unlikely Maths",
+        "info": "Roll an extra die of each type rolled during an Attack and take the highest result(s)."
+    },
+    "71-72": {
+        "name": "Gravity's Rainbow",
+        "info": "First Attack against a Badass target always deals max Damage."
+    },
+    "73-74": {
+        "name": "Let's do this one last time",
+        "info": "Shoots webs that reduce target's Movement to 0 for 1 turn."
+    },
+    "75-76": {
+        "name": "BIP!",
+        "info": "Once per encounter, the wielder can run into squares with an Enemy, Knocking them Back 1 square."
+    },
+    "77-78": {
+        "name": "The Heaviest Matter of the Universe",
+        "info": "The wielder and targets Hit cannot take Movement Actions while equipped."
+    },
+    "79-80": {
+        "name": "GREEN FLAME",
+        "info": "Shoots burst of green flames while firing. dealing 2d6 Incendiary Damage to adjacent targets."
+    },
+    "81-82": {
+        "name": "More like Bore Ragnarok!",
+        "info": "Gain 1 Badass Token after a successful Talk Check while equipped."
+    },
+    "83-84": {
+        "name": "That's levitation, Holmes!",
+        "info": "Ignore difficult terrain while equipped."
+    },
+    "85-86": {
+        "name": "Let's boo-boo.",
+        "info": "Gain Extra Movement after drinking a potion while equipped."
+    },
+    "87-88": {
+        "name": "Mmm Whatcha Say.",
+        "info": "Gain a Ranged Attack if an Enemy is talking before an encounter."
+    },
+    "89-90": {
+        "name": "Here Comes the FunCooker",
+        "info": "When this gun scores a Crit, the Enemy suffers a miniature combustion, dealing 1d12 Explosive Damage to itself and all adjacent squares."
+    },
+    "91-92": {
+        "name": "Overwhelming strength is boring.",
+        "info": "-6 Initiative. The first non-Badass, non- boss Enemy that is Melee Attacked dies instantly (1/day)."
+    },
+    "93-94": {
+        "name": "Stop talking, / will win. It's what heroes do.",
+        "info": "Gun fires explosives that deal +3d6 Damage to all adjacent squares."
+    },
+    "95-96": {
+        "name": "Richer and cleverer than everyone else!",
+        "info": "Add 10 gold per Loot Pile when rolling for Enemy Drops."
+    },
+    "97-98": {
+        "name": "METAL WILL DESTROY ALL EVIL!",
+        "info": "Allies get +2 ACC Mod each turn you perform a Melee Attack."
+    },
+    "99-100": {
+        "name": "Life is a conundrum of esoterica.",
+        "info": "Gain 2 Badass Tokens the first time you roll for a Trauma each day."
+    }
+}

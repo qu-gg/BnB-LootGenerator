@@ -8,11 +8,11 @@ Takes in user-input on gun type, gun guild, and item level - if provided.
 Unless a gun type is input, then the gun table is only rolled through Gun Table 1-6 on Pg. 81.
 """
 from random import randint
-from json_reader import get_file_data
+from classes.json_reader import get_file_data
 
 
 class Gun:
-    def __init__(self, name=None, item_level=None, gun_type=None, gun_guild=None, gun_rarity=None, prefix=True):
+    def __init__(self, name=None, item_level=None, gun_type=None, gun_guild=None, gun_rarity=None, prefix=True, redtext=True):
         """
         Handles generating a gun completely from scratch with no user input
         TODO: add user-input modifying the control patch
@@ -25,7 +25,7 @@ class Gun:
         if name in ['random', None]:
             roll_name_len = randint(1, 2)
             name_table = get_file_data('guns/lexicon.json')
-            number_names = len(name_table.keys())
+            number_names = len(name_table.keys()) - 1
             names = [name_table.get(str(randint(1, number_names))) for _ in range(roll_name_len)]
             self.name = ''.join(names)
 
@@ -84,23 +84,33 @@ class Gun:
         # Get element info if it exists
         self.element_info = None
         if self.element is not None:
+            if type(self.element) == str:
+                element = self.element.split(' ')[0]   # make sure to remove bonuses when parsing
+                self.element_info = get_file_data("elements/elemental_type.json").get(element)
+
             if type(self.element) == list:
                 self.element_info = [
                     get_file_data("elements/elemental_type.json").get(self.element[0]),
                     get_file_data("elements/elemental_type.json").get(self.element[1])
                 ]
-            else:
-                self.element_info = get_file_data("elements/elemental_type.json").get(self.element)
 
         # If prefix addition is checked, roll for a prefix and append to the gun's name
         if prefix is True:
-            prefix_roll = str(randint(1, 100))
-            prefix_table = get_file_data("guns/prefix.json").get(prefix_roll)
+            roll_prefix = str(randint(1, 100))
+            prefix_table = get_file_data("guns/prefix.json").get(roll_prefix)
             self.prefix_name = prefix_table['name']
             self.prefix_info = prefix_table['info']
             self.name = self.prefix_name + ' ' + self.name
 
-        self.red_text = None
+        # If redtext checked and the gun is epic or legendary, roll for it
+        self.redtext_name = None
+        self.redtext_info = None
+        if redtext is True and self.rarity in ['epic', 'legendary']:
+            roll_redtext = str(randint(1, 100))
+            redtext_table = get_file_data('guns/redtext.json')
+            redtext_item = redtext_table.get(self.get_redtext_tier(roll_redtext, redtext_table))
+            self.redtext_name = redtext_item['name']
+            self.redtext_info = redtext_item['info']
 
     def get_random_ilevel(self):
         """ Handles rolling for a random item level and giving back the tier key for it """
@@ -153,60 +163,52 @@ class Gun:
 
         return tier
 
+    def get_redtext_tier(self, roll, redtext_table):
+        """
+        Handles getting the tier of redtext in which the given roll resides
+        The tiers are non-uniform and range-based in JSON, so this is an easy solution.
+        :param roll: 1-100 random roll
+        :param redtext_table: loaded in dictionary of redtext.json
+        :return: JSON key of the tier rolled
+        """
+        roll = int(roll)
 
-if __name__ == '__main__':
-    testing = False
-    gun = Gun(None, None, None, None)
+        tier = None
+        for key in redtext_table.keys():
+            lower, upper = [int(i) for i in key.split('-')]
+            if lower <= roll <= upper:
+                tier = key
 
-    print("Name: ", gun.name)
-    print("Type:", gun.type)
-    print("Guild:", gun.guild)
-    print("Rarity:", gun.rarity)
-    print("Item Level:", gun.item_level)
-    print("")
-    print("Damage:", gun.damage)
-    print("Range:", gun.range)
-    print("Accuracy:", gun.accuracy)
-    print("")
-    print("Guild Mod:", gun.guild_mod)
-    print("Guild Info:\n{}".format(gun.guild_info))
-    print("")
-    print("Element Guild Check:  ", gun.rarity_element_roll)
-    print("Element Rarity Check: ", gun.guild_element_roll)
-    print("Element type:         ", gun.element)
-    print("Element info:\n{}".format(gun.element_info))
-    print("")
-    print("Prefix: ", gun.prefix_name)
-    print("Prefix Info: ", gun.prefix_info)
+        return tier
 
-    if testing:
-        types = []
-        guilds = []
-        item_level = []
-        rarities = []
-
-        elements = []
-
-        for _ in range(20000):
-            gun = Gun(None, None, None, None)
-
-            if gun.guild == "malefactor" and gun.element is not None:
-                elements.append(1)
-            elif gun.guild == "malefactor" and gun.element is None:
-                elements.append(0)
-
-            types.append(gun.type)
-            guilds.append(gun.guild)
-            item_level.append(gun.item_level)
-            rarities.append(gun.rarity)
-
-        import numpy as np
-
-        print(np.unique(types, return_counts=True))
-        print(np.unique(guilds, return_counts=True))
-        print(np.unique(item_level, return_counts=True))
-        print(np.unique(rarities, return_counts=True))
-
-        print("-")
-        print(np.unique(elements, return_counts=True))
-        exit(0)
+    def __str__(self):
+        """ Outputs a formatted block of the Guns' stats and what checks where made for elemental rolls """
+        return  "Name: {}\n"\
+                "Type: {}\n"\
+                "Guild: {}\n" \
+                "Rarity: {}\n" \
+                "Item Level: {}\n"\
+                "---\n"\
+                "Damage: {}\n"\
+                "Range: {}\n"\
+                "Accuracy: {}\n"\
+                "---\n"\
+                "Guild Mod: {}\n"\
+                "Guild Info:\n{}\n"\
+                "---\n"\
+                "Element Guild Check: {}\n"\
+                "Element Rarity Check: {}\n"\
+                "Element: {}\n"\
+                "Element Info:\n{}\n"\
+                "---\n"\
+                "Prefix: {}\n"\
+                "Prefix Info: {}\n"\
+                "---\n"\
+                "RedText: {}\n"\
+                "RedText Info: {}\n".format(
+            self.name, self.type, self.guild, self.rarity, self.item_level,
+            self.damage, self.range, self.accuracy,
+            self.guild, self.guild_info,
+            self.guild_element_roll, self.rarity_element_roll, self.element, self.element_info,
+            self.prefix_name, self.prefix_info,
+            self.redtext_name, self.redtext_info)
