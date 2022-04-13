@@ -1,4 +1,5 @@
-# BnB-LootGenerator
+<h1> Bunkers & Badasses: LootGenerator </h1>
+  
 Web Application and Scripts to handle Gun and Lootsplosion generation in the Nerdvana TTRPG, <a href="https://nerdvanagames.myshopify.com/">Bunkers & Badasses</a>.
 
 ## Running:
