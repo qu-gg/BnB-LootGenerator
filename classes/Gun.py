@@ -12,46 +12,58 @@ from classes.json_reader import get_file_data
 
 
 class Gun:
-    def __init__(self, name=None, item_level=None, gun_type=None, gun_guild=None, gun_rarity=None, prefix=True, redtext=True):
-        """
-        Handles generating a gun completely from scratch with no user input
-        TODO: add user-input modifying the control patch
-        """
+    def __init__(self, name=None, item_level=None, gun_type=None, gun_guild=None, gun_rarity=None,
+                 rarity_element=False, prefix=True, redtext=True):
+        """ Handles generating a gun completely from scratch, modified to specifics by user info """
         # If item level is to be generated
+        self.item_level = item_level
         if item_level in ["random", None]:
-            item_level = self.get_random_ilevel()
+            self.item_level = self.get_random_ilevel()
 
         # Roll for a random name
+        self.name = name
         if name in ['random', None]:
             roll_name_len = randint(1, 2)
             name_table = get_file_data('guns/lexicon.json')
             number_names = len(name_table.keys()) - 1
-            names = [name_table.get(str(randint(1, number_names))) for _ in range(roll_name_len)]
+            names = [name_table.get(str(randint(1, number_names))) + ' ' for _ in range(roll_name_len)]
             self.name = ''.join(names)
 
         # Get relevant portion of the gun table based on the roll
-        roll_type = str(randint(1, 6))
-        roll_guild = str(randint(1, 6))
-        gun_table = get_file_data("guns/gun_table.json").get(roll_type)
+        if gun_type in ['random', None]:
+            roll_type = str(randint(1, 6))
+            gun_table = get_file_data("guns/gun_table.json").get(roll_type)
+        else:
+            gun_table = get_file_data("guns/gun_table.json").get(gun_type)
 
-        # Get gun type and gun guild
+        # Get gun type
         self.type = gun_table.get("type")
-        self.item_level = item_level
 
-        self.guild = gun_table.get("guild").get(roll_guild)
+        # Get guild information
+        if gun_guild in ['random', None]:
+            roll_guild = str(randint(1, 6))
+            self.guild = gun_table.get("guild").get(roll_guild)
+        else:
+            self.guild = gun_guild
+
         self.guild_table = get_file_data("guns/guild_table.json").get(self.guild)
         self.guild_element_roll = self.guild_table.get("element_roll")
 
         # Get gun stats table
-        self.stats = get_file_data("guns/" + self.type + ".json").get(item_level)
+        self.stats = get_file_data("guns/" + self.type + ".json").get(self.item_level)
         self.accuracy = self.stats['accuracy']
         self.range = self.stats['range']
         self.damage = self.stats['damage']
 
-        # Roll for gun rarity
-        roll_row = str(randint(1, 4))
-        roll_col = str(randint(1, 6))
-        self.rarity = get_file_data("guns/rarity_table.json").get(str(roll_row)).get(roll_col)
+        # Get gun rarity
+        if gun_rarity in ['random', None]:
+            roll_row = str(randint(1, 4))
+            roll_col = str(randint(1, 6))
+            self.rarity = get_file_data("guns/rarity_table.json").get(str(roll_row)).get(roll_col)
+        elif rarity_element is True:
+            self.rarity = [gun_rarity, "element"]
+        else:
+            self.rarity = gun_rarity
 
         # Check if it was an elemental roll and if it can have an element based on guild type
         self.rarity_element_roll = False
@@ -95,6 +107,8 @@ class Gun:
                 ]
 
         # If prefix addition is checked, roll for a prefix and append to the gun's name
+        self.prefix_name = None
+        self.prefix_info = None
         if prefix is True:
             roll_prefix = str(randint(1, 100))
             prefix_table = get_file_data("guns/prefix.json").get(roll_prefix)
@@ -226,7 +240,7 @@ class Gun:
                 "RedText Info: {}\n".format(
             self.name, self.type, self.guild, self.rarity, self.item_level,
             self.damage, self.range, self.accuracy,
-            self.guild, self.guild_info,
+            self.guild_mod, self.guild_info,
             self.guild_element_roll, self.rarity_element_roll, self.element, self.element_info,
             self.prefix_name, self.prefix_info,
             self.redtext_name, self.redtext_info)

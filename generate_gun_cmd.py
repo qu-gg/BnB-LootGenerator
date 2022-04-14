@@ -1,0 +1,198 @@
+"""
+@file generate_gun_cmd.py
+@author Ryan Missel
+
+Command line based script for users to generate guns and get a PDF of the BnB Card Design
+filled out by the gun attributes that are generated.
+
+Takes in user-input on specific gun features to choose
+"""
+import fitz
+import pdfrw
+import argparse
+
+from classes.Gun import Gun
+from pdfrw import PdfReader
+
+# KEY Names for PDF
+ANNOT_KEY = '/Annots'
+ANNOT_FIELD_KEY = '/T'
+ANNOT_VAL_KEY = '/V'
+ANNOT_RECT_KEY = '/Rect'
+SUBTYPE_KEY = '/Subtype'
+WIDGET_SUBTYPE_KEY = '/Widget'
+PARENT_KEY = '/Parent'
+
+# Get current form keys for the template
+template = PdfReader('resources/GunForm.pdf')
+for page in template.pages:
+    annotations = page[ANNOT_KEY]
+    for annotation in annotations:
+        if annotation[SUBTYPE_KEY] == WIDGET_SUBTYPE_KEY:
+            if annotation[PARENT_KEY][ANNOT_FIELD_KEY]:
+                key = annotation[PARENT_KEY][ANNOT_FIELD_KEY][1:-1]
+                # print(key)
+
+
+def fill_pdf(input_pdf_path, output_pdf_path, data_dict):
+    """
+    Handles filling in the form fields of a given gun card PDF template with information
+    from the generated gun
+    :param input_pdf_path: path to the template PDF
+    :param output_pdf_path: filename to save the PDF as
+    :param data_dict: given dictionary mapping form field names to input
+    """
+    template_pdf = pdfrw.PdfReader(input_pdf_path)
+    for page in template_pdf.pages:
+        annotations = page[ANNOT_KEY]
+        for annotation in annotations:
+            if annotation[SUBTYPE_KEY] == WIDGET_SUBTYPE_KEY:
+                if annotation[PARENT_KEY][ANNOT_FIELD_KEY]:
+                    key = annotation[PARENT_KEY][ANNOT_FIELD_KEY][1:-1]
+                    if key in data_dict.keys():
+                        if type(data_dict[key]) == bool:
+                            if data_dict[key] == True:
+                                annotation.update(pdfrw.PdfDict(
+                                    AS=pdfrw.PdfName('Yes')))
+                        else:
+                            if key == 'Damage':
+                                PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-Bold 20.00 Tf 0 g')
+                            elif key in ['Guild', 'Name', 'Rarity']:
+                                # Updating the font to be Courier
+                                PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-Bold 15.00 Tf 0 g')
+
+                            elif key in ['Element_1', 'Element_2', 'Element_3']:
+                                # Updating the font to be Courier
+                                PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-Bold 7.00 Tf 0 g')
+                            else:
+                                # Updating the font to be Courier
+                                PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-Bold 10.00 Tf 0 g')
+
+                            annotation[PARENT_KEY].update({'/DA': PDF_TEXT_APPEARANCE})
+
+                            # Adding in the value given
+                            annotation.update(
+                                pdfrw.PdfDict(V='{}'.format(data_dict[key]))
+                            )
+
+                            # Update the AP of this annotation to nothing
+                            annotation.update(pdfrw.PdfDict(AP=''))
+    template_pdf.Root.AcroForm.update(pdfrw.PdfDict(NeedAppearances=pdfrw.PdfObject('true')))  # NEW
+    pdfrw.PdfWriter().write(output_pdf_path, template_pdf)
+
+
+def generate_gun_pdf(output_name, args):
+    """
+    Handles generating a Gun Card PDF filled out with the information from the generated gun
+    :param output_name: name of the output PDF to save
+    """
+    # Generate a gun
+    gun = Gun(name=args.name, item_level=args.item_level,
+              gun_type=args.type, gun_guild=args.guild, gun_rarity=args.rarity,
+              rarity_element=args.rarity_element, prefix=args.prefix, redtext=args.redtext)
+    print(gun.__str__())
+
+    # Construct information string, including prefix info, redtext info, guild info
+    redtext_str = ''
+    if gun.redtext_info is not None:
+        redtext_str += "(Red Text) {}: {}\n\n".format(gun.redtext_name, gun.redtext_info)
+
+    prefix_str = ''
+    if gun.prefix_info is not None:
+        prefix_str += "(Prefix)   {}: {}\n\n".format(gun.prefix_name, gun.prefix_info)
+
+    guild_str = ''
+    if gun.guild_info is not None:
+        guild_str += "(Guild)    {}: {}\n\n".format(gun.guild.title(), gun.guild_mod)
+
+    # Construct element blocks
+    element_strings = ['', '', '']
+    if type(gun.element) == list:
+        for idx, e in enumerate(gun.element):
+            element_strings[idx] += e.title() + '\n'
+
+    if type(gun.element) == str:
+        element_strings[0] += gun.element.title()
+
+    # Build up data dictionary to fill in PDF
+    data_dict = {
+        'Name': gun.name,
+        "GunType": gun.type.title().replace('_', ' '),
+        "Guild": gun.guild.title(),
+        "Rarity": gun.rarity.title(),
+
+        'Range': str(gun.range),
+        'Damage': str(gun.damage),
+        "Hit_Low": gun.accuracy['2-7']['hits'],
+        "Hit_Medium": gun.accuracy['8-15']['hits'],
+        "Hit_High": gun.accuracy['16+']['hits'],
+        "Crit_Low": gun.accuracy['2-7']['crits'],
+        "Crit_Medium": gun.accuracy['8-15']['crits'],
+        "Crit_High": gun.accuracy['16+']['crits'],
+
+        "Element 1": element_strings[0],
+        "Element 2": element_strings[1],
+        "Element 3": element_strings[2],
+
+        "RedText": redtext_str,
+        "Prefix": prefix_str,
+        "GuildMod": guild_str,
+        "ItemLevel": "Item Level: {}".format(gun.item_level)
+    }
+
+    # Fill the PDF with the given information
+    fill_pdf('resources/GunFillable.pdf', 'output/' + output_name + '.pdf', data_dict)
+
+    # Convert the PDF to an Image
+    # TODO: get fix for form fill-ins not outputting
+    # doc = fitz.open('output/' + output_name + '.pdf')  # open document
+    # page = doc.load_page(0)  # number of page
+    # pix = page.get_pixmap()
+    # pix.save('output/' + output_name + '.png')
+
+
+if __name__ == '__main__':
+    # Parse arguments for generating a gun
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument('--output', type=str, default="output", help='Name of the output PDF to use.')
+
+    parser.add_argument('--name', type=str, default=None, help='Specify a given name for the gun')
+
+    parser.add_argument('--prefix', type=str, default='True', choices=['True', 'False'],
+                        help='Specify whether to roll for a prefix')
+
+    parser.add_argument('--redtext', type=str, default='True', choices=['True', 'False'],
+                        help='Specify whether to roll for a red text')
+
+    parser.add_argument('--rarity', type=str, default=None,
+                        choices=['random', 'common', 'uncommon', 'rare', 'epic', 'legendary'],
+                        help='Specify a specific rarity')
+
+    parser.add_argument('--rarity_element', type=str, default='False', choices=['True', 'False'],
+                        help='Specify whether the rarity roll is elemental')
+
+    parser.add_argument('--item_level', type=str, default=None,
+                        choices=['1-6', '7-12', '13-18', '19-24', '25-30'],
+                        help='Specify a specific item level')
+
+    gun_type_choices = ['pistol', 'submachine_gun', 'shotgun', 'combat_rifle', 'sniper_rifle', 'rocket_launcher']
+    parser.add_argument('--type', type=str, default=None, choices=gun_type_choices, help='Specify a specific item level')
+
+    parser.add_argument('--guild', type=str, default=None,
+                        choices=['random', 'alas!', 'skuldugger', 'dahlia', 'blackpowder', 'hyperius', 'feriore', 'torgue', 'stoker'],
+                        help='Specify a specific guild')
+
+    args = parser.parse_args()
+
+    # Convert type to digits
+    if args.type is not None:
+        args.type = str(gun_type_choices.index(args.type) + 1)
+
+    # Convert boolean params to boolean objects
+    args.prefix = True if args.prefix == "True" else False
+    args.redtext = True if args.redtext == "True" else False
+    args.rarity_element = True if args.rarity_element == "True" else False
+
+    # Output a Form-filled PDF with the Gun parameters
+    generate_gun_pdf(args.output, args)

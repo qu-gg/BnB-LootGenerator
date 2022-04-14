@@ -18,7 +18,7 @@
             "epic": "+5 DMG Mod, Overheat: 1d10.",
             "legendary": "+6 DMG Mod, Overheat: 1d12."
         },
-        "gun_info": "Overheat: When taking a Reload Action, roll the dice value specified and take the result as Incendiary Damage. \nIncreased Damage.",
+        "gun_info": "Overheat: When taking a Reload Action, roll the dice value specified and take the result as Incendiary Damage. Increased Damage.",
         "element_roll": true
     },
     "dahlia": {
@@ -29,7 +29,7 @@
             "epic": "Burst: +1 Hit, +3 ACC Mod.",
             "legendary": "Burst: +1 Hit, +4 ACC Mod."
         },
-        "gun_info": "Burst: Adds an additional Hit to each Attack. \nIncreased Accuracy.",
+        "gun_info": "Burst: Adds an additional Hit to each Attack. Increased Accuracy.",
         "element_roll": true
     },
     "blackpowder": {
@@ -40,7 +40,7 @@
             "epic": "+2 ACC Mod, +5 Crit Damage.",
             "legendary": "+2 ACC Mod, +6 Crit Damage."
         },
-        "gun_info": "Increased Accuracy. \nHighly increased Crit Damage.",
+        "gun_info": "Increased Accuracy. Highly increased Crit Damage.",
         "element_roll": false
     },
     "malefactor": {
@@ -51,7 +51,7 @@
             "epic": "+15% Element Roll.",
             "legendary": "+20% Element Roll."
         },
-        "gun_info": "Roll for Element Damage. \nReduced overall Damage at lower Rarities.",
+        "gun_info": "Roll for Element Damage. Reduced overall Damage at lower Rarities.",
         "element_roll": true
     },
     "hyperius": {
@@ -62,7 +62,7 @@
             "epic": "+4 ACC Mod, -2 DMG Mod.",
             "legendary": "+5 ACC Mod, -2 DMG Mod."
         },
-        "gun_info": "Increased Accuracy. \nReduced overall Damage.",
+        "gun_info": "Increased Accuracy. Reduced overall Damage.",
         "element_roll": true
     },
     "feriore": {
@@ -84,7 +84,7 @@
             "epic": "Splash, -1 ACC Mod.",
             "legendary": "Splash."
         },
-        "gun_info": "Less Accuracy. \nSplash, sploosh.",
+        "gun_info": "Less Accuracy. Splash, sploosh.",
         "element_roll": true
     },
     "stoker": {
@@ -95,7 +95,7 @@
             "epic": "Extra Attack.",
             "legendary": "Extra Attack, Extra Movement."
         },
-        "gun_info": "Less Accuracy. \nGain an Extra Attack Action.",
+        "gun_info": "Less Accuracy. Gain an Extra Attack Action.",
         "element_roll": true
     }
 }
