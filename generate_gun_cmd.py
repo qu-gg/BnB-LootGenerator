@@ -25,16 +25,6 @@ SUBTYPE_KEY = '/Subtype'
 WIDGET_SUBTYPE_KEY = '/Widget'
 PARENT_KEY = '/Parent'
 
-# Get current form keys for the template
-template = PdfReader('resources/GunFillable.pdf')
-for page in template.pages:
-    annotations = page[ANNOT_KEY]
-    for annotation in annotations:
-        if annotation[SUBTYPE_KEY] == WIDGET_SUBTYPE_KEY:
-            if annotation[PARENT_KEY][ANNOT_FIELD_KEY]:
-                key = annotation[PARENT_KEY][ANNOT_FIELD_KEY][1:-1]
-                # print(key)
-
 
 def fill_pdf(input_pdf_path, output_pdf_path, data_dict):
     """
@@ -114,17 +104,11 @@ def add_image_to_pdf(pdf_path, out_path, image, position):
     file_handle.save(out_path)
 
 
-def generate_gun_pdf(output_name, args, gun_images):
+def generate_gun_pdf(output_name, gun, gun_images):
     """
     Handles generating a Gun Card PDF filled out with the information from the generated gun
     :param output_name: name of the output PDF to save
     """
-    # Generate a gun
-    gun = Gun(name=args.name, item_level=args.item_level,
-              gun_type=args.type, gun_guild=args.guild, gun_rarity=args.rarity,
-              rarity_element=args.rarity_element, prefix=args.prefix, redtext=args.redtext)
-    print(gun.__str__())
-
     # Construct information string, including prefix info, redtext info, guild info
     # Essentially shifts up into higher boxes if the previous field is empty
     redtext_str = ''
@@ -242,5 +226,11 @@ if __name__ == '__main__':
     # Load in the gun images dataset
     gun_images = GunImage()
 
+    # Generate a gun
+    gun = Gun(name=args.name, item_level=args.item_level,
+              gun_type=args.type, gun_guild=args.guild, gun_rarity=args.rarity,
+              rarity_element=args.rarity_element, prefix=args.prefix, redtext=args.redtext)
+    print(gun.__str__())
+
     # Output a Form-filled PDF with the Gun parameters
-    generate_gun_pdf(args.output, args, gun_images)
+    generate_gun_pdf(args.output, gun, gun_images)

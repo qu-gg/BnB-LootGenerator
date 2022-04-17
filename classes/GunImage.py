@@ -114,8 +114,13 @@ class GunImage:
         for temp in temp_data:
             gun_data.extend(temp)
 
+        # In the event of no images, just output the same image
+        # TODO - update scrapping and get images for each guild and type
+        if len(gun_data) == 0:
+            url = "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd0cdd6736d4a1bbf5fbe_9-Volt%20(SMG-BL3).png"
         # Get a sample and its url link
-        url = random.sample(gun_data, 1)[0]['image_link']
+        else:
+            url = random.sample(gun_data, 1)[0]['image_link']
 
         # Get image and then save locally temporarily
         response = requests.get(url, stream=True)
