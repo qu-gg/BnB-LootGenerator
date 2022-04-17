@@ -7,12 +7,16 @@ filled out by the gun attributes that are generated.
 
 Takes in user-input on specific gun features to choose
 """
+import os
 import fitz
 import pdfrw
+import locale
 import argparse
+import subprocess
 
-from classes.Gun import Gun
 from pdfrw import PdfReader
+from classes.Gun import Gun
+from classes.GunImage import GunImage
 
 # KEY Names for PDF
 ANNOT_KEY = '/Annots'
@@ -24,7 +28,7 @@ WIDGET_SUBTYPE_KEY = '/Widget'
 PARENT_KEY = '/Parent'
 
 # Get current form keys for the template
-template = PdfReader('resources/GunForm.pdf')
+template = PdfReader('resources/GunFillable.pdf')
 for page in template.pages:
     annotations = page[ANNOT_KEY]
     for annotation in annotations:
@@ -55,18 +59,24 @@ def fill_pdf(input_pdf_path, output_pdf_path, data_dict):
                                 annotation.update(pdfrw.PdfDict(
                                     AS=pdfrw.PdfName('Yes')))
                         else:
-                            if key == 'Damage':
-                                PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-Bold 20.00 Tf 0 g')
-                            elif key in ['Guild', 'Name', 'Rarity']:
+                            if key in ['Damage', 'Name']:
+                                PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-BoldOblique 20.00 Tf 0 g')
+                                annotation[PARENT_KEY].update(pdfrw.PdfDict(Q=1))
+                            elif key in ['Guild', 'GunType', 'Rarity']:
                                 # Updating the font to be Courier
-                                PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-Bold 15.00 Tf 0 g')
-
+                                PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-Bold 17.50 Tf 0 g')
+                                annotation[PARENT_KEY].update(pdfrw.PdfDict(Q=1))
                             elif key in ['Element_1', 'Element_2', 'Element_3']:
                                 # Updating the font to be Courier
                                 PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-Bold 7.00 Tf 0 g')
+                                annotation[PARENT_KEY].update(pdfrw.PdfDict(Q=1))
+                            elif 'Hit' in key or 'Crit' in key:
+                                # Updating the font to be Courier
+                                PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-BoldOblique 15.00 Tf 0 g')
+                                # annotation[PARENT_KEY].update(pdfrw.PdfDict(Q=1))
                             else:
                                 # Updating the font to be Courier
-                                PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-Bold 10.00 Tf 0 g')
+                                PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-Bold 12.50 Tf 0 g')
 
                             annotation[PARENT_KEY].update({'/DA': PDF_TEXT_APPEARANCE})
 
@@ -75,13 +85,42 @@ def fill_pdf(input_pdf_path, output_pdf_path, data_dict):
                                 pdfrw.PdfDict(V='{}'.format(data_dict[key]))
                             )
 
+                            # Change from fillable to static text
+                            annotation[PARENT_KEY].update(pdfrw.PdfDict(Ff=1))
+
                             # Update the AP of this annotation to nothing
-                            annotation.update(pdfrw.PdfDict(AP=''))
+                            annotation[PARENT_KEY].update(pdfrw.PdfDict(AP=''))
+
+    for an in template_pdf.pages[0][ANNOT_KEY]:
+        print(an)
+
     template_pdf.Root.AcroForm.update(pdfrw.PdfDict(NeedAppearances=pdfrw.PdfObject('true')))  # NEW
     pdfrw.PdfWriter().write(output_pdf_path, template_pdf)
 
 
-def generate_gun_pdf(output_name, args):
+def add_image_to_pdf(pdf_path, out_path, image, position):
+    """
+    Handles adding an image to a Pdf through the library PyMuPDF. Essentially layers two pages (page and image as a page)
+    onto each other before compressing to one page
+    :param pdf_path: filled out template
+    :param out_path: output path for name
+    :param image: image path to use
+    :param position: where in the template to place the image
+    """
+    print('\nAdding images to Pdf...')
+    file_handle = fitz.open(pdf_path)
+
+    page = file_handle[int(position['page']) - 1]
+    page.insert_image(
+        fitz.Rect(position['x0'], position['y0'],
+        position['x1'], position['y1']),
+        filename=image
+    )
+    file_handle.save(out_path)
+    print('images added')
+
+
+def generate_gun_pdf(output_name, args, gun_images):
     """
     Handles generating a Gun Card PDF filled out with the information from the generated gun
     :param output_name: name of the output PDF to save
@@ -93,17 +132,24 @@ def generate_gun_pdf(output_name, args):
     print(gun.__str__())
 
     # Construct information string, including prefix info, redtext info, guild info
+    # Essentially shifts up into higher boxes if the previous field is empty
     redtext_str = ''
     if gun.redtext_info is not None:
-        redtext_str += "(Red Text) {}: {}\n\n".format(gun.redtext_name, gun.redtext_info)
+        redtext_str += "{:<12} {}: {}\n\n".format("(Red Text)", gun.redtext_name, gun.redtext_info)
 
     prefix_str = ''
-    if gun.prefix_info is not None:
-        prefix_str += "(Prefix)   {}: {}\n\n".format(gun.prefix_name, gun.prefix_info)
+    if gun.redtext_info is None and gun.prefix_info is not None:
+        redtext_str += "{:<15} {}: {}\n\n".format("(Prefix)", gun.prefix_name, gun.prefix_info)
+    elif gun.prefix_info is not None:
+        prefix_str += "{:<15} {}: {}\n\n".format("(Prefix)", gun.prefix_name, gun.prefix_info)
 
     guild_str = ''
-    if gun.guild_info is not None:
-        guild_str += "(Guild)    {}: {}\n\n".format(gun.guild.title(), gun.guild_mod)
+    if gun.redtext_info is None and gun.prefix_info is None and gun.guild_info is not None:
+        redtext_str += "{:<15} {}: {}\n\n".format("(Guild)", gun.guild.title(), gun.guild_mod)
+    elif gun.redtext_info is None and gun.prefix_info is not None and gun.guild_info is not None:
+        prefix_str += "{:<15} {}: {}\n\n".format("(Guild)", gun.guild.title(), gun.guild_mod)
+    elif gun.guild_info is not None:
+        guild_str += "{:<15} {}: {}\n\n".format("(Guild)", gun.guild.title(), gun.guild_mod)
 
     # Construct element blocks
     element_strings = ['', '', '']
@@ -123,12 +169,12 @@ def generate_gun_pdf(output_name, args):
 
         'Range': str(gun.range),
         'Damage': str(gun.damage),
-        "Hit_Low": gun.accuracy['2-7']['hits'],
-        "Hit_Medium": gun.accuracy['8-15']['hits'],
-        "Hit_High": gun.accuracy['16+']['hits'],
-        "Crit_Low": gun.accuracy['2-7']['crits'],
-        "Crit_Medium": gun.accuracy['8-15']['crits'],
-        "Crit_High": gun.accuracy['16+']['crits'],
+        "Hit_Low": '{}'.format(gun.accuracy['2-7']['hits']),
+        "Hit_Medium": '{}'.format(gun.accuracy['8-15']['hits']),
+        "Hit_High": '{}'.format(gun.accuracy['16+']['hits']),
+        "Crit_Low": '{}'.format(gun.accuracy['2-7']['crits']),
+        "Crit_Medium": '{}'.format(gun.accuracy['8-15']['crits']),
+        "Crit_High": '{}'.format(gun.accuracy['16+']['crits']),
 
         "Element 1": element_strings[0],
         "Element 2": element_strings[1],
@@ -141,14 +187,14 @@ def generate_gun_pdf(output_name, args):
     }
 
     # Fill the PDF with the given information
-    fill_pdf('resources/GunFillable.pdf', 'output/' + output_name + '.pdf', data_dict)
+    fill_pdf('resources/GunTempFinal.pdf', 'output/' + output_name + '_temp.pdf', data_dict)
 
-    # Convert the PDF to an Image
-    # TODO: get fix for form fill-ins not outputting
-    # doc = fitz.open('output/' + output_name + '.pdf')  # open document
-    # page = doc.load_page(0)  # number of page
-    # pix = page.get_pixmap()
-    # pix.save('output/' + output_name + '.png')
+    # Get a gun sample
+    gun_images.sample_gun_image(gun.type, gun.guild)
+
+    # Apply image to gun card
+    position = {'page': 1, 'x0': 400, 'y0': 200, 'x1': 700, 'y1': 400}
+    add_image_to_pdf('output/' + output_name + '_temp.pdf', 'output/' + output_name + '_image.pdf', 'temporary_gun_image.png', position)
 
 
 if __name__ == '__main__':
@@ -194,5 +240,8 @@ if __name__ == '__main__':
     args.redtext = True if args.redtext == "True" else False
     args.rarity_element = True if args.rarity_element == "True" else False
 
+    # Load in the gun images dataset
+    gun_images = GunImage()
+
     # Output a Form-filled PDF with the Gun parameters
-    generate_gun_pdf(args.output, args)
+    generate_gun_pdf(args.output, args, gun_images)
