@@ -64,9 +64,9 @@ def fill_pdf(input_pdf_path, output_pdf_path, data_dict):
                                 # Updating the font to be Courier
                                 PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-Bold 17.50 Tf 0 g')
                                 annotation[PARENT_KEY].update(pdfrw.PdfDict(Q=1))
-                            elif key in ['Element_1', 'Element_2', 'Element_3']:
+                            elif key in ['Element 1', 'Element 2', 'Element 3']:
                                 # Updating the font to be Courier
-                                PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-Bold 7.00 Tf 0 g')
+                                PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-Bold 8.50 Tf 0 g')
                                 annotation[PARENT_KEY].update(pdfrw.PdfDict(Q=1))
                             elif 'Hit' in key or 'Crit' in key:
                                 # Updating the font to be Courier
@@ -181,14 +181,14 @@ def generate_gun_pdf(output_name, args, gun_images):
     }
 
     # Fill the PDF with the given information
-    fill_pdf('resources/GunTempFinal.pdf', 'output/' + output_name + '_temp.pdf', data_dict)
+    fill_pdf('resources/GunTemplate.pdf', 'output/' + output_name + '_temp.pdf', data_dict)
 
     # Get a gun sample
     gun_images.sample_gun_image(gun.type, gun.guild)
 
     # Apply image to gun card
     position = {'page': 1, 'x0': 400, 'y0': 200, 'x1': 700, 'y1': 400}
-    add_image_to_pdf('output/' + output_name + '_temp.pdf', 'output/' + output_name + '_image.pdf',
+    add_image_to_pdf('output/' + output_name + '_temp.pdf', 'output/' + output_name + '.pdf',
                      'output/temporary_gun_image.png', position)
 
     # Clean up temporary files

@@ -1,37 +1,55 @@
+"""
+@file scrape_lemon.py
+@author Chris Vantine
+
+Handles web scraping Lootlemon's database for all of its Borderlands gun art and stats over the 4 games.
+"""
 import bs4
 import json
-# import requests
+import requests
+from tqdm import tqdm
 
 
-HTML = """
-Paste page HTML here. Reading from files is too jank.
-"""
+# Define the Borderlands version to scrap from
+BL_VERSION = "tps"
 
 
 def main():
-    # url = "https://www.lootlemon.com/db/borderlands-3/weapons"
-    # html = requests.get(url).text
-    soup = bs4.BeautifulSoup(HTML, 'html.parser')
+    # Get base weapon list for the given version
+    url = "https://www.lootlemon.com/db/borderlands-{}/weapons".format(BL_VERSION)
+    wep_url = "https://www.lootlemon.com/"
+    html = requests.get(url).text
+    soup = bs4.BeautifulSoup(html, 'html.parser')
 
+    # Define the array to hold all guns
     guns = []
-    for item in soup.find_all("div", "db_item"):
-        cells = item.find_all("div", "db_cell")
-        image_links = item.find_all("img")
-        image_link = ""
-        for img in image_links:
-            if 'png' in img['src']:
-                image_link = img['src']
 
+    # print(soup.find_all("a", "link-overlay"))
+    for link in tqdm(soup.find_all("div", "db_item")):
+        # Get gun stats
+        cells = link.find_all("div", "db_cell")
         new_gun = {}
         new_gun['name'] = cells[0].string
         new_gun['type'] = cells[1].string
         new_gun['manufacturer'] = cells[2].string
-        new_gun['image_link'] = image_link
 
+        # Get subURL for larger image
+        try:
+            weapon_url = link.find_all("a")[0]['href']
+            sub_html = requests.get(wep_url + weapon_url).text
+            sub_soup = bs4.BeautifulSoup(sub_html, 'html.parser')
+
+            # Get image
+            image_link = sub_soup.find_all("img", {"id": "page-image"})[0]['src']
+            new_gun['image_link'] = image_link
+        except:
+            print("Error in Weapon {} for URL {}".format(cells[0].string, weapon_url))
+
+        # Append to gun layout
         guns.append(new_gun)
-    
-    bl_version = "2"
-    with open(f"bl{bl_version}_guns.json", "w") as f:
+
+    # Dump to JSON file
+    with open(f"bl{BL_VERSION}_guns.json", "w") as f:
         f.writelines(json.dumps(guns))
 
 
