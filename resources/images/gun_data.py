@@ -2,16 +2,19 @@
 @file gun_data.py
 @author Chris Vantine
 
+
 Handles filtering the scrapped game source dataset for specific properties, i.e. Hyperion manufacturer
 """
 import json
+import random
+
+
+FILELIST = ["bl1_guns.json", "bl2_guns.json", "bl3_guns.json", "bltps_guns.json"]
 
 
 class GunData:
     def __init__(self, filelist):
         # List of individual JSONs
-        FILELIST = ["bl1_guns.json", "bl2_guns.json", "bl3_guns.json", "bltps_guns.json"]
-
         # Concatenating all JSONs into one block
         self.guns_data = []
         for filename in filelist:
@@ -50,3 +53,21 @@ class GunData:
             return filtered_guns
         
         return guns_data
+
+    def get_random_filtered_gun(self, gun_type=None, manufacturer=None, name=None):
+        gun_list = self.filter_guns_data(gun_type=gun_type, manufacturer=manufacturer, name=name)
+        if len(gun_list) == 0:
+            return [] 
+        gun_index = random.randrange(0, len(gun_list))
+        return gun_list[gun_index]
+
+    def get_guns_data(self):
+        return self.guns_data
+
+
+if __name__ == "__main__":
+    gd = GunData(FILELIST)
+    data = gd.filter_guns_data(manufacturer='hyperion')
+    print(data)
+    gun = gd.get_random_filtered_gun(manufacturer='torgue')
+    print(gun)
