@@ -8,7 +8,6 @@ Handles filtering the scrapped game source dataset for specific properties, i.e.
 import json
 import random
 
-
 FILELIST = ["bl1_guns.json", "bl2_guns.json", "bl3_guns.json", "bltps_guns.json"]
 
 
@@ -39,25 +38,26 @@ class GunData:
                     filtered_guns.append(item)
                     print(item)
             return self.filter_guns_data(guns_data=filtered_guns, gun_type=gun_type, manufacturer=manufacturer)
-        
+
         if manufacturer is not None:
             for item in guns_data:
                 if item.get("manufacturer").lower() == manufacturer.lower():
                     filtered_guns.append(item)
             return self.filter_guns_data(guns_data=filtered_guns, gun_type=gun_type)
-        
+
         if gun_type is not None:
             for item in guns_data:
                 if item.get("type").lower() == gun_type.lower():
                     filtered_guns.append(item)
             return filtered_guns
-        
+
         return guns_data
 
     def get_random_filtered_gun(self, gun_type=None, manufacturer=None, name=None):
         gun_list = self.filter_guns_data(gun_type=gun_type, manufacturer=manufacturer, name=name)
         if len(gun_list) == 0:
             return [] 
+
         gun_index = random.randrange(0, len(gun_list))
         return gun_list[gun_index]
 

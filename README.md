@@ -3,18 +3,21 @@
 Web Application and Scripts to handle Gun and Lootsplosion generation in the Nerdvana TTRPG, <a href="https://nerdvanagames.myshopify.com/">Bunkers & Badasses</a>.
 
 ## Running:
-There are two ways to use LootGenerator, either locally via cmd through cloning or by using the web application <a href=''>URL NAME</a>. 
-The local option is more for those interested in adding custom parts or modifiying generation flow.
+There are two ways to use LootGenerator, either locally via cmd through cloning the repo or by using the web application <a href=''>URL NAME</a>. 
+The local option will generate a form-filled PDF of a Gun Card when run that the user can tweak to their liking before saving as a PNG or printing.
 
-For <b>CMD</b> (in the classes/ folder): `python <ClassToGenerate>.py --<attribute_name> <value to preset>`
+For <b>CMD</b> (in the root folder): `python generate_gun_cmd.py --<attribute_name> <value to preset> ...`
+
+To see the available attributes to pre-define (like rarity, type, etc.), use: `python generate_gun_cmd.py -h`
 
 ## Folder Layout:
 ```
   BnB-LootGenerator/
   │
-  ├── app.py         - Main entrypoint for the web application
-  ├── Dockerfile     - Enables localized container starting
-  ├── requuirements  - Automatically installs needed pypi packages
+  ├── app.py            - Main entrypoint for the web application
+  ├── Dockerfile        - Enables localized container starting
+  ├── requirements      - Automatically installs needed pypi packages
+  ├── generate_gun_cmd  - Local generation of a Gun Card PDF via command line
   |
   ├── classes/
   │   ├── Gun.py     - Gun generation script
