@@ -10,9 +10,7 @@ Takes in user-input on specific gun features to choose
 import os
 import fitz
 import pdfrw
-import locale
 import argparse
-import subprocess
 
 from pdfrw import PdfReader
 from classes.Gun import Gun
@@ -91,9 +89,7 @@ def fill_pdf(input_pdf_path, output_pdf_path, data_dict):
                             # Update the AP of this annotation to nothing
                             annotation[PARENT_KEY].update(pdfrw.PdfDict(AP=''))
 
-    for an in template_pdf.pages[0][ANNOT_KEY]:
-        print(an)
-
+    # Force form appearance to show and output PDF
     template_pdf.Root.AcroForm.update(pdfrw.PdfDict(NeedAppearances=pdfrw.PdfObject('true')))  # NEW
     pdfrw.PdfWriter().write(output_pdf_path, template_pdf)
 
@@ -107,7 +103,6 @@ def add_image_to_pdf(pdf_path, out_path, image, position):
     :param image: image path to use
     :param position: where in the template to place the image
     """
-    print('\nAdding images to Pdf...')
     file_handle = fitz.open(pdf_path)
 
     page = file_handle[int(position['page']) - 1]
@@ -117,7 +112,6 @@ def add_image_to_pdf(pdf_path, out_path, image, position):
         filename=image
     )
     file_handle.save(out_path)
-    print('images added')
 
 
 def generate_gun_pdf(output_name, args, gun_images):
@@ -194,7 +188,12 @@ def generate_gun_pdf(output_name, args, gun_images):
 
     # Apply image to gun card
     position = {'page': 1, 'x0': 400, 'y0': 200, 'x1': 700, 'y1': 400}
-    add_image_to_pdf('output/' + output_name + '_temp.pdf', 'output/' + output_name + '_image.pdf', 'temporary_gun_image.png', position)
+    add_image_to_pdf('output/' + output_name + '_temp.pdf', 'output/' + output_name + '_image.pdf',
+                     'output/temporary_gun_image.png', position)
+
+    # Clean up temporary files
+    os.remove("output/" + output_name + '_temp.pdf')
+    os.remove("output/temporary_gun_image.png")
 
 
 if __name__ == '__main__':
