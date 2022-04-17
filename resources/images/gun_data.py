@@ -56,7 +56,8 @@ class GunData:
     def get_random_filtered_gun(self, gun_type=None, manufacturer=None, name=None):
         gun_list = self.filter_guns_data(gun_type=gun_type, manufacturer=manufacturer, name=name)
         if len(gun_list) == 0:
-            return []
+            return [] 
+
         gun_index = random.randrange(0, len(gun_list))
         return gun_list[gun_index]
 
