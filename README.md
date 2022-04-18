@@ -16,7 +16,8 @@ This will save a local PDF that can be printed off or sent to players.
 ```
   BnB-LootGenerator/
   │
-  ├── app.py            - Main entrypoint for the web application
+  ├── app.py            - Entrypoint for the web application
+  ├── local_app.py      - Entrypoint for the PyQT local application
   ├── Dockerfile        - Enables localized container starting
   ├── requirements      - Automatically installs needed pypi packages
   ├── generate_gun_cmd  - Local generation of a Gun Card PDF via command line
@@ -42,9 +43,10 @@ the JSON files on runtime, one just needs to add a new item to the relevant JSON
     <li>Elements (Type/Rolling Tiers)</li>
     <li>Guilds</li>
     <li>Gun Types</li>
+    <li>Gun Stats</li>
     <li>Gun Prefixes</li>
     <li>Gun Images</li>
-    <li>Red Text Mod</li>
+    <li>Red Text Mods</li>
 </ul>
 
 #### Instructions for adding:
