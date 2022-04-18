@@ -61,7 +61,9 @@ def fill_pdf(input_pdf_path, output_pdf_path, data_dict):
                             elif 'Hit' in key or 'Crit' in key:
                                 # Updating the font to be Courier
                                 PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-BoldOblique 15.00 Tf 255 g')
-                                # annotation[PARENT_KEY].update(pdfrw.PdfDict(Q=1))
+                            elif key == "Range":
+                                # Updating the font to be Courier
+                                PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-BoldOblique 15.00 Tf 0 g')
                             else:
                                 # Updating the font to be Courier
                                 PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-Bold 12.50 Tf 0 g')
@@ -125,7 +127,7 @@ def generate_gun_pdf(base_dir, output_name, gun, gun_images):
     guild_str = ''
     if gun.redtext_info is None and gun.prefix_info is None and gun.guild_info is not None:
         redtext_str += "{:<15} {}: {}\n\n".format("(Guild)", gun.guild.title(), gun.guild_mod)
-    elif gun.redtext_info is None and gun.prefix_info is not None and gun.guild_info is not None:
+    elif gun.redtext_info is not None and gun.prefix_info is None and gun.guild_info is not None:
         prefix_str += "{:<15} {}: {}\n\n".format("(Guild)", gun.guild.title(), gun.guild_mod)
     elif gun.guild_info is not None:
         guild_str += "{:<15} {}: {}\n\n".format("(Guild)", gun.guild.title(), gun.guild_mod)

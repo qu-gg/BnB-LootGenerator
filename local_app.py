@@ -166,10 +166,10 @@ class Window(QMainWindow):
         gun_card_layout.addWidget(self.WebBrowser, 0, 1, -1, 1)
 
         # Need to check if attempting to re-save when the PDF name is already taken
-        self.current_pdf = ""
+        self.current_pdf = "EXAMPLE.pdf"
 
         # Load in Gun Card Template
-        f = Path(os.path.abspath(self.basedir + "output/output_example.pdf")).as_uri()
+        f = Path(os.path.abspath(self.basedir + "output/EXAMPLE.pdf")).as_uri()
         self.WebBrowser.dynamicCall('Navigate(const QString&)', f)
 
         # Grid layout
