@@ -55,15 +55,20 @@ class Gun:
         self.range = self.stats['range']
         self.damage = self.stats['damage']
 
-        # Get gun rarity
+        # Roll gun rarity if random
         if gun_rarity in ['random', None]:
             roll_row = str(randint(1, 4))
             roll_col = str(randint(1, 6))
             self.rarity = get_file_data(base_dir + "resources/guns/rarity_table.json").get(str(roll_row)).get(roll_col)
-        elif rarity_element is True:
-            self.rarity = [gun_rarity, "element"]
+        # If a rarity is specified, then roll for including an element
         else:
             self.rarity = gun_rarity
+            if self.check_element_odds(base_dir, self.rarity):
+                self.rarity = [gun_rarity, "element"]
+
+        # If an element roll is forced, add if not already an element
+        if rarity_element is True and type(self.rarity) != list:
+            self.rarity = [self.rarity, "element"]
 
         # Check if it was an elemental roll and if it can have an element based on guild type
         self.rarity_element_roll = False
@@ -155,6 +160,29 @@ class Gun:
                 tier = key
 
         return tier
+
+    def check_element_odds(self, base_dir, rarity):
+        """
+        If a rarity is specified, check the odds that that rarity is an elemental roll and make the check
+        Only executed if the rarity is pre-specified, otherwise the full roll is rolled.
+        :param base_dir: system executable base directory
+        :param rarity: specified rarity
+        :return: True if an element roll
+        """
+        elements, total = 0, 0
+        for key in get_file_data(base_dir + "resources/guns/rarity_table.json").values():
+            for val in key.values():
+                # Check for non-element
+                if type(val) == str and val == rarity:
+                    total += 1
+                # Check for element
+                elif type(val) == list and val[0] == rarity:
+                    elements += 1
+                    total += 1
+
+        element_roll = randint(1, total)
+        if element_roll < elements:
+            return True
 
     def check_element_boost(self, roll, guild, rarity):
         """
