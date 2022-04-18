@@ -1,4 +1,6 @@
-<h1> Bunkers & Badasses: LootGenerator </h1>
+<p align="center"><img src="https://user-images.githubusercontent.com/32918812/163755438-a98ff76f-7ce8-4ff5-978d-a4a3ef8b138e.png" /></p>
+
+<hr>
 
 LootGenerator is a local- and (soon-to-be) web-based application to handle Gun and Lootsplosion generation in the Nerdvana TTRPG, <a href="https://nerdvanagames.myshopify.com/">Bunkers & Badasses</a>. Additionally, it includes transcribed roll tables from the source book for all item types in the game.
  
