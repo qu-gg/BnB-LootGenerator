@@ -12,7 +12,6 @@ import fitz
 import pdfrw
 import argparse
 
-from pdfrw import PdfReader
 from classes.Gun import Gun
 from classes.GunImage import GunImage
 
@@ -24,16 +23,6 @@ ANNOT_RECT_KEY = '/Rect'
 SUBTYPE_KEY = '/Subtype'
 WIDGET_SUBTYPE_KEY = '/Widget'
 PARENT_KEY = '/Parent'
-
-# Get current form keys for the template
-template = PdfReader('resources/GunFillable.pdf')
-for page in template.pages:
-    annotations = page[ANNOT_KEY]
-    for annotation in annotations:
-        if annotation[SUBTYPE_KEY] == WIDGET_SUBTYPE_KEY:
-            if annotation[PARENT_KEY][ANNOT_FIELD_KEY]:
-                key = annotation[PARENT_KEY][ANNOT_FIELD_KEY][1:-1]
-                # print(key)
 
 
 def fill_pdf(input_pdf_path, output_pdf_path, data_dict):
@@ -64,13 +53,13 @@ def fill_pdf(input_pdf_path, output_pdf_path, data_dict):
                                 # Updating the font to be Courier
                                 PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-Bold 17.50 Tf 0 g')
                                 annotation[PARENT_KEY].update(pdfrw.PdfDict(Q=1))
-                            elif key in ['Element_1', 'Element_2', 'Element_3']:
+                            elif key in ['Element 1', 'Element 2', 'Element 3']:
                                 # Updating the font to be Courier
-                                PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-Bold 7.00 Tf 0 g')
+                                PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-Bold 8.50 Tf 0 g')
                                 annotation[PARENT_KEY].update(pdfrw.PdfDict(Q=1))
                             elif 'Hit' in key or 'Crit' in key:
                                 # Updating the font to be Courier
-                                PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-BoldOblique 15.00 Tf 0 g')
+                                PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-BoldOblique 15.00 Tf 255 g')
                                 # annotation[PARENT_KEY].update(pdfrw.PdfDict(Q=1))
                             else:
                                 # Updating the font to be Courier
@@ -114,17 +103,11 @@ def add_image_to_pdf(pdf_path, out_path, image, position):
     file_handle.save(out_path)
 
 
-def generate_gun_pdf(output_name, args, gun_images):
+def generate_gun_pdf(base_dir, output_name, gun, gun_images):
     """
     Handles generating a Gun Card PDF filled out with the information from the generated gun
     :param output_name: name of the output PDF to save
     """
-    # Generate a gun
-    gun = Gun(name=args.name, item_level=args.item_level,
-              gun_type=args.type, gun_guild=args.guild, gun_rarity=args.rarity,
-              rarity_element=args.rarity_element, prefix=args.prefix, redtext=args.redtext)
-    print(gun.__str__())
-
     # Construct information string, including prefix info, redtext info, guild info
     # Essentially shifts up into higher boxes if the previous field is empty
     redtext_str = ''
@@ -181,19 +164,21 @@ def generate_gun_pdf(output_name, args, gun_images):
     }
 
     # Fill the PDF with the given information
-    fill_pdf('resources/GunTempFinal.pdf', 'output/' + output_name + '_temp.pdf', data_dict)
+    fill_pdf(base_dir + 'resources/GunTemplate.pdf', base_dir + 'output/' + output_name + '_temp.pdf', data_dict)
 
     # Get a gun sample
     gun_images.sample_gun_image(gun.type, gun.guild)
 
     # Apply image to gun card
     position = {'page': 1, 'x0': 400, 'y0': 200, 'x1': 700, 'y1': 400}
-    add_image_to_pdf('output/' + output_name + '_temp.pdf', 'output/' + output_name + '_image.pdf',
-                     'output/temporary_gun_image.png', position)
+    add_image_to_pdf(base_dir + 'output/' + output_name + '_temp.pdf',
+                     base_dir + 'output/' + output_name + '.pdf',
+                     base_dir + 'output/temporary_gun_image.png',
+                     position)
 
     # Clean up temporary files
-    os.remove("output/" + output_name + '_temp.pdf')
-    os.remove("output/temporary_gun_image.png")
+    os.remove(base_dir + "output/" + output_name + '_temp.pdf')
+    os.remove(base_dir + "output/temporary_gun_image.png")
 
 
 if __name__ == '__main__':
@@ -242,5 +227,11 @@ if __name__ == '__main__':
     # Load in the gun images dataset
     gun_images = GunImage()
 
+    # Generate a gun
+    gun = Gun(name=args.name, item_level=args.item_level,
+              gun_type=args.type, gun_guild=args.guild, gun_rarity=args.rarity,
+              rarity_element=args.rarity_element, prefix=args.prefix, redtext=args.redtext)
+    print(gun.__str__())
+
     # Output a Form-filled PDF with the Gun parameters
-    generate_gun_pdf(args.output, args, gun_images)
+    generate_gun_pdf(args.output, gun, gun_images)

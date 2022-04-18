@@ -1,14 +1,14 @@
 <h1> Bunkers & Badasses: LootGenerator </h1>
-  
-Web Application and Scripts to handle Gun and Lootsplosion generation in the Nerdvana TTRPG, <a href="https://nerdvanagames.myshopify.com/">Bunkers & Badasses</a>.
 
+LootGenerator is a local- and web-based application to handle Gun and Lootsplosion generation in the Nerdvana TTRPG, <a href="https://nerdvanagames.myshopify.com/">Bunkers & Badasses</a>. Additionally, it includes transcribed roll tables from the source book for all item types in the game.
+ 
 ## Running:
-There are two ways to use LootGenerator, either locally via cmd through cloning the repo or by using the web application <a href=''>URL NAME</a>. 
-The local option will generate a form-filled PDF of a Gun Card when run that the user can tweak to their liking before saving as a PNG or printing.
+There are two ways to use LootGenerator, either through the local application or by using the web application <a href=''>TBD URL NAME</a>. 
 
-For <b>CMD</b> (in the root folder): `python generate_gun_cmd.py --<attribute_name> <value to preset> ...`
+The local option is a PyQT GUI application in which the user can specify specific gun attributes to roll with. 
+This will save a local PDF that can be printed off or sent to players.
+![Screenshot 2022-04-17 184044](https://user-images.githubusercontent.com/32918812/163734919-97850aab-4466-44ee-be26-a2f4eaba70ba.png)
 
-To see the available attributes to pre-define (like rarity, type, etc.), use: `python generate_gun_cmd.py -h`
 
 ## Folder Layout:
 ```
