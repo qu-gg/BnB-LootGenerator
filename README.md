@@ -5,11 +5,17 @@
 LootGenerator is a local- and (soon-to-be) web-based application to handle Gun and Lootsplosion generation in the Nerdvana TTRPG, <a href="https://nerdvanagames.myshopify.com/">Bunkers & Badasses</a>. Additionally, it includes transcribed roll tables from the source book for all item types in the game.
  
 ## Running:
-There are two ways to use LootGenerator, either through the local application or by using the web application <a href=''>TBD URL NAME</a>. 
+There are three ways to use LootGenerator, command-line interface, the local application, or the web application <a href=''>TBD URL NAME</a>. 
 
+<b>CLI:</b>
+The CLI option is for those who are more tech-savvy and don't necessarily care for the gun card but rather just a formatted gun text output. 
+The command for this is: ```python generate_gun_cmd.py --<attribute> <value>``` with '-h' giving a list of options and values.
+
+<b>Local Application:</b>
 The local option is a PyQT GUI application in which the user can specify specific gun attributes to roll with. 
 This will save a local PDF that can be printed off or sent to players.
 ![Screenshot 2022-04-17 184044](https://user-images.githubusercontent.com/32918812/163734919-97850aab-4466-44ee-be26-a2f4eaba70ba.png)
+
 
 ## Note on PDF Viewers
 The local version of this application requires a PDFViewer capable of form/annotation rendering in order to view the generated text on the Gun Card. PDF Viewers are all over the place when it comes to support for this and it cannot be guaranteed LootGenerator will work with a given viewer. Alternative solutions were tried for rendering (e.g. pdf2image conversion, pdfjs, local chromium server), but no universal solution works. Without a full rewrite, this solution will have to suffice for now. We apologize for the inconvenience!
@@ -20,7 +26,7 @@ Here is a list of ones that work and don't work thus far from personal testing. 
 
 <b>Not Working:</b> Foxit PDF (under Safe Mode), Browser PDFs (Brave, Chromium, etc), MacOS
 
-<b>Untested</b>: Slim Reader, Nitro Reader, PDF Viewer Pro, Xodo PDF Reader
+<b>Untested</b>: Slim Reader, Nitro Reader, PDF Viewer Pro, Xodo PDF Reader, ...
 
 ## Folder Layout:
 ```
