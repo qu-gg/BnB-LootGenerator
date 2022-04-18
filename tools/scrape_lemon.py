@@ -24,7 +24,6 @@ def main():
     # Define the array to hold all guns
     guns = []
 
-    # print(soup.find_all("a", "link-overlay"))
     for link in tqdm(soup.find_all("div", "db_item")):
         # Get gun stats
         cells = link.find_all("div", "db_cell")

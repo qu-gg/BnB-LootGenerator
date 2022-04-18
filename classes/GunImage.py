@@ -125,8 +125,6 @@ class GunImage:
         # Get image and then save locally temporarily
         response = requests.get(url, stream=True)
         img = Image.open(response.raw)
-
-        print(img.size)
         img.save('output/temporary_gun_image.png')
 
     def manu_conversion(self, guild_name):

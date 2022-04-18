@@ -60,7 +60,7 @@ def fill_pdf(input_pdf_path, output_pdf_path, data_dict):
                                 annotation[PARENT_KEY].update(pdfrw.PdfDict(Q=1))
                             elif 'Hit' in key or 'Crit' in key:
                                 # Updating the font to be Courier
-                                PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-BoldOblique 15.00 Tf 0 g')
+                                PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-BoldOblique 15.00 Tf 255 g')
                                 # annotation[PARENT_KEY].update(pdfrw.PdfDict(Q=1))
                             else:
                                 # Updating the font to be Courier
