@@ -22,13 +22,14 @@ This will save a local PDF that can be printed off or sent to players.
   ├── generate_gun_cmd  - Local generation of a Gun Card PDF via command line
   |
   ├── classes/
-  │   ├── Gun.py     - Gun generation script
+  │   ├── Gun.py        - Gun generation script
+  │   ├── GunImage.py   - Image filtering script
   ├── resources/
-  │   ├── chests/    - Tables for chests, caches, etc
-  │   ├── elements/  - Tables for element rolling
-  │   ├── guilds/    - Tables for guild mod tables
-  │   ├── images/    - Tables that have URL PNG links to gun art from all Borderland games
-  │   ├── misc/      - Currently holds placeholder folders for planned features (grenades, moxxtails, etc)
+  │   ├── chests/       - Tables for chests, caches, etc
+  │   ├── elements/     - Tables for element rolling
+  │   ├── guilds/       - Tables for guild mod tables
+  │   ├── images/       - Tables that have URL PNG links to gun art from all Borderland games
+  │   ├── misc/         - Currently holds placeholder folders for planned features (grenades, moxxtails, etc)
   ├── tests/
 ```
   
@@ -79,6 +80,6 @@ Gun art images are used from the Borderlands <a href="https://www.lootlemon.com/
 
 All credit for source material and gun images belongs to Nerdvana and GearBox Software.
 
-The chest design in our icon comes from Victor Escorsin, available here: <a href="https://thenounproject.com/icon/chest-7173/"</a>.
+The chest design in our icon comes from Victor Escorsin, available <a href="https://thenounproject.com/icon/chest-7173/">here</a>. 
 
 This icon is available as a sample icon on Adobe Spark's Logo Maker under the CC License.
