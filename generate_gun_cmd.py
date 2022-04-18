@@ -12,7 +12,6 @@ import fitz
 import pdfrw
 import argparse
 
-from pdfrw import PdfReader
 from classes.Gun import Gun
 from classes.GunImage import GunImage
 
@@ -104,7 +103,7 @@ def add_image_to_pdf(pdf_path, out_path, image, position):
     file_handle.save(out_path)
 
 
-def generate_gun_pdf(output_name, gun, gun_images):
+def generate_gun_pdf(base_dir, output_name, gun, gun_images):
     """
     Handles generating a Gun Card PDF filled out with the information from the generated gun
     :param output_name: name of the output PDF to save
@@ -165,19 +164,21 @@ def generate_gun_pdf(output_name, gun, gun_images):
     }
 
     # Fill the PDF with the given information
-    fill_pdf('resources/GunTemplate.pdf', 'output/' + output_name + '_temp.pdf', data_dict)
+    fill_pdf(base_dir + 'resources/GunTemplate.pdf', base_dir + 'output/' + output_name + '_temp.pdf', data_dict)
 
     # Get a gun sample
     gun_images.sample_gun_image(gun.type, gun.guild)
 
     # Apply image to gun card
     position = {'page': 1, 'x0': 400, 'y0': 200, 'x1': 700, 'y1': 400}
-    add_image_to_pdf('output/' + output_name + '_temp.pdf', 'output/' + output_name + '.pdf',
-                     'output/temporary_gun_image.png', position)
+    add_image_to_pdf(base_dir + 'output/' + output_name + '_temp.pdf',
+                     base_dir + 'output/' + output_name + '.pdf',
+                     base_dir + 'output/temporary_gun_image.png',
+                     position)
 
     # Clean up temporary files
-    os.remove("output/" + output_name + '_temp.pdf')
-    os.remove("output/temporary_gun_image.png")
+    os.remove(base_dir + "output/" + output_name + '_temp.pdf')
+    os.remove(base_dir + "output/temporary_gun_image.png")
 
 
 if __name__ == '__main__':

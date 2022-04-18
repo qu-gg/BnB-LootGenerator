@@ -63,11 +63,3 @@ class GunData:
 
     def get_guns_data(self):
         return self.guns_data
-
-
-if __name__ == "__main__":
-    gd = GunData(FILELIST)
-    data = gd.filter_guns_data(manufacturer='hyperion')
-    print(data)
-    gun = gd.get_random_filtered_gun(manufacturer='torgue')
-    print(gun)

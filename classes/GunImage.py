@@ -6,15 +6,16 @@ Handles filtering the scrapped game source dataset for specific properties, i.e.
 """
 import json
 import random
-import numpy as np
 import requests
+import numpy as np
+
 from PIL import Image
 
 
 class GunImage:
-    def __init__(self):
+    def __init__(self, prefix):
         # List of individual JSONs
-        PREFIX = "resources/images/"
+        PREFIX = prefix + "resources/images/"
         FILELIST = [PREFIX + "bl1_guns.json", PREFIX + "bl2_guns.json",
                     PREFIX + "bl3_guns.json", PREFIX + "bltps_guns.json"]
 

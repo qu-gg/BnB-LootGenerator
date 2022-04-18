@@ -22,11 +22,12 @@ from PyQt5.QtWidgets import (QApplication, QComboBox, QGridLayout, QGroupBox, QL
 
 
 class Window(QMainWindow):
-    def __init__(self):
+    def __init__(self, basedir):
         super(Window, self).__init__()
 
         # Load classes
-        self.gun_images = GunImage()
+        self.basedir = basedir
+        self.gun_images = GunImage(self.basedir)
 
         # Window Title
         self.setWindowTitle("Bunkers and Badasses - LootGenerator")
@@ -63,7 +64,7 @@ class Window(QMainWindow):
         base_stats_layout.addWidget(QLabel("Item Level: "), 1, 0)
         self.item_level_box = QComboBox()
         self.item_level_box.addItem("Random")
-        for item in get_file_data("guns/combat_rifle.json").keys():
+        for item in get_file_data(basedir + "resources/guns/combat_rifle.json").keys():
             self.item_level_box.addItem(item)
         base_stats_layout.addWidget(self.item_level_box, 1, 1)
 
@@ -81,7 +82,7 @@ class Window(QMainWindow):
         base_stats_layout.addWidget(QLabel("Guild: "), 3, 0)
         self.guild_type_box = QComboBox()
         self.guild_type_box.addItem("Random")
-        for item in get_file_data("guns/guild_table.json").keys():
+        for item in get_file_data(basedir + "resources/guns/guild_table.json").keys():
             self.guild_type_box.addItem(item.capitalize())
         base_stats_layout.addWidget(self.guild_type_box, 3, 1)
 
@@ -126,8 +127,6 @@ class Window(QMainWindow):
 
         # PDF Output Name
         self.pdf_line_edit = add_stat_to_layout(generation_layout, "PDF Filename:", 0)
-        # self.pdf_label = QLabel(None)
-        # generation_layout.addWidget(self.pdf_label, 0, 1)
 
         # Generate button
         button = QPushButton("Generate Gun")
@@ -160,7 +159,7 @@ class Window(QMainWindow):
         self.current_pdf = ""
 
         # Load in Gun Card Template
-        f = Path(os.path.abspath("output/output_example.pdf")).as_uri()
+        f = Path(os.path.abspath(self.basedir + "output/output_example.pdf")).as_uri()
         self.WebBrowser.dynamicCall('Navigate(const QString&)', f)
 
         # Grid layout
@@ -207,7 +206,7 @@ class Window(QMainWindow):
         redtext = self.red_text.isChecked()
 
         # Generate the gun object
-        gun = Gun(name=name, item_level=item_level, gun_type=gun_type, gun_guild=guild, gun_rarity=rarity,
+        gun = Gun(self.basedir, name=name, item_level=item_level, gun_type=gun_type, gun_guild=guild, gun_rarity=rarity,
                   rarity_element=element_roll, prefix=prefix, redtext=redtext)
 
         # Generate the PDF output name
@@ -223,7 +222,7 @@ class Window(QMainWindow):
         self.current_pdf = output_name
 
         # Generate the local gun card PDF
-        generate_gun_pdf(output_name, gun, self.gun_images)
+        generate_gun_pdf(self.basedir, output_name, gun, self.gun_images)
 
         # Load in gun card PDF
         f = Path(os.path.abspath("output/{}.pdf".format(output_name))).as_uri()
@@ -231,9 +230,22 @@ class Window(QMainWindow):
 
 
 if __name__ == '__main__':
+    # Specify whether this is local development or applicatino compilation
+    basedir = ""
+    application = True
+
+    # If application compilation, get the folder from which the executable is being executed
+    if application:
+        basedir = sys.executable.replace('/', ' ').replace('\\', ' ')
+        last_dir = basedir.split(' ')
+        basedir = ''
+        for folder in last_dir[:-1]:
+            basedir += '{}/'.format(folder)
+        print(basedir)
+
     # Define the application
     app = QApplication(sys.argv)
-    window = Window()
+    window = Window(basedir)
 
     # Different checking needed depending on local build or executable run
     if os.path.exists("BnBLogo.png"):

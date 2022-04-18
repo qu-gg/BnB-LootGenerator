@@ -7,6 +7,7 @@ Handles web scraping Lootlemon's database for all of its Borderlands gun art and
 import bs4
 import json
 import requests
+
 from tqdm import tqdm
 
 

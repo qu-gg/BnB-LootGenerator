@@ -12,19 +12,19 @@ from classes.json_reader import get_file_data
 
 
 class Gun:
-    def __init__(self, name=None, item_level=None, gun_type=None, gun_guild=None, gun_rarity=None,
+    def __init__(self, base_dir, name=None, item_level=None, gun_type=None, gun_guild=None, gun_rarity=None,
                  rarity_element=False, prefix=True, redtext=True):
         """ Handles generating a gun completely from scratch, modified to specifics by user info """
         # If item level is to be generated
         self.item_level = item_level
         if item_level in ["random", None]:
-            self.item_level = self.get_random_ilevel()
+            self.item_level = self.get_random_ilevel(base_dir)
 
         # Roll for a random name
         self.name = name
         if name in ['random', None]:
             roll_name_len = randint(1, 2)
-            name_table = get_file_data('guns/lexicon.json')
+            name_table = get_file_data(base_dir + 'resources/guns/lexicon.json')
             number_names = len(name_table.keys()) - 1
             names = [name_table.get(str(randint(1, number_names))) + ' ' for _ in range(roll_name_len)]
             self.name = ''.join(names)
@@ -32,9 +32,9 @@ class Gun:
         # Get relevant portion of the gun table based on the roll
         if gun_type in ['random', None]:
             roll_type = str(randint(1, 6))
-            gun_table = get_file_data("guns/gun_table.json").get(roll_type)
+            gun_table = get_file_data(base_dir + "resources/guns/gun_table.json").get(roll_type)
         else:
-            gun_table = get_file_data("guns/gun_table.json").get(gun_type)
+            gun_table = get_file_data(base_dir + "resources/guns/gun_table.json").get(gun_type)
 
         # Get gun type
         self.type = gun_table.get("type")
@@ -46,11 +46,11 @@ class Gun:
         else:
             self.guild = gun_guild
 
-        self.guild_table = get_file_data("guns/guild_table.json").get(self.guild)
+        self.guild_table = get_file_data(base_dir + "resources/guns/guild_table.json").get(self.guild)
         self.guild_element_roll = self.guild_table.get("element_roll")
 
         # Get gun stats table
-        self.stats = get_file_data("guns/" + self.type + ".json").get(self.item_level)
+        self.stats = get_file_data(base_dir + "resources/guns/" + self.type + ".json").get(self.item_level)
         self.accuracy = self.stats['accuracy']
         self.range = self.stats['range']
         self.damage = self.stats['damage']
@@ -59,7 +59,7 @@ class Gun:
         if gun_rarity in ['random', None]:
             roll_row = str(randint(1, 4))
             roll_col = str(randint(1, 6))
-            self.rarity = get_file_data("guns/rarity_table.json").get(str(roll_row)).get(roll_col)
+            self.rarity = get_file_data(base_dir + "resources/guns/rarity_table.json").get(str(roll_row)).get(roll_col)
         elif rarity_element is True:
             self.rarity = [gun_rarity, "element"]
         else:
@@ -81,7 +81,7 @@ class Gun:
             roll_element = str(randint(1, 100))
             roll_element = self.check_element_boost(roll_element, self.guild, self.rarity)
 
-            element_table = get_file_data("elements/elemental_table.json")
+            element_table = get_file_data(base_dir + "resources/elements/elemental_table.json")
             self.element = element_table.get(self.get_element_tier(roll_element, element_table)).get(self.rarity)
 
         # If the gun is Malefactor guild and it does not have an element yet, keep rolling until an element is picked
@@ -90,7 +90,7 @@ class Gun:
                 roll_element = str(randint(1, 100))
                 roll_element = self.check_element_boost(roll_element, self.guild, self.rarity)
 
-                element_table = get_file_data("elements/elemental_table.json")
+                element_table = get_file_data(base_dir + "resources/elements/elemental_table.json")
                 self.element = element_table.get(self.get_element_tier(roll_element, element_table)).get(self.rarity)
 
         # Get element info if it exists
@@ -98,12 +98,12 @@ class Gun:
         if self.element is not None:
             if type(self.element) == str:
                 element = self.element.split(' ')[0]   # make sure to remove bonuses when parsing
-                self.element_info = get_file_data("elements/elemental_type.json").get(element)
+                self.element_info = get_file_data(base_dir + "resources/elements/elemental_type.json").get(element)
 
             if type(self.element) == list:
                 self.element_info = [
-                    get_file_data("elements/elemental_type.json").get(self.element[0]),
-                    get_file_data("elements/elemental_type.json").get(self.element[1])
+                    get_file_data(base_dir + "resources/elements/elemental_type.json").get(self.element[0]),
+                    get_file_data(base_dir + "resources/elements/elemental_type.json").get(self.element[1])
                 ]
 
         # If prefix addition is checked, roll for a prefix and append to the gun's name
@@ -111,7 +111,7 @@ class Gun:
         self.prefix_info = None
         if prefix is True:
             roll_prefix = str(randint(1, 100))
-            prefix_table = get_file_data("guns/prefix.json").get(roll_prefix)
+            prefix_table = get_file_data(base_dir + "resources/guns/prefix.json").get(roll_prefix)
             self.prefix_name = prefix_table['name']
             self.prefix_info = prefix_table['info']
             self.name = self.prefix_name + ' ' + self.name
@@ -121,7 +121,7 @@ class Gun:
         self.redtext_info = None
         if redtext is True and self.rarity in ['epic', 'legendary']:
             roll_redtext = str(randint(1, 100))
-            redtext_table = get_file_data('guns/redtext.json')
+            redtext_table = get_file_data(base_dir + "resources/guns/redtext.json")
             redtext_item = redtext_table.get(self.get_redtext_tier(roll_redtext, redtext_table))
             self.redtext_name = redtext_item['name']
             self.redtext_info = redtext_item['info']
@@ -133,23 +133,23 @@ class Gun:
                 # If there is no element, just simply add the element
                 if self.element is None:
                     self.element = element
-                    self.element_info = get_file_data("elements/elemental_type.json").get(element)
+                    self.element_info = get_file_data(base_dir + "resources/elements/elemental_type.json").get(element)
 
                 # Other check if element already is applied
                 elif self.redtext_info.split(' ')[1].lower() not in self.element:
                     if type(self.element) == list:
                         self.element.append(element)
-                        self.element_info.append(get_file_data("elements/elemental_type.json").get(element))
+                        self.element_info.append(get_file_data(base_dir + "resources/elements/elemental_type.json").get(element))
                     else:
                         self.element = self.element + ' + ' + element
-                        self.element_info = self.element_info + "\n" + get_file_data("elements/elemental_type.json").get(element)
+                        self.element_info = self.element_info + "\n" + get_file_data(base_dir + "resources/elements/elemental_type.json").get(element)
 
-    def get_random_ilevel(self):
+    def get_random_ilevel(self, base_dir):
         """ Handles rolling for a random item level and giving back the tier key for it """
         roll_level = randint(1, 30)
 
         tier = None
-        for key in get_file_data("guns/pistol.json").keys():
+        for key in get_file_data(base_dir + "resources/guns/pistol.json").keys():
             lower, upper = [int(i) for i in key.split('-')]
             if lower <= roll_level <= upper:
                 tier = key
