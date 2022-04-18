@@ -22,7 +22,7 @@ class GunImage:
         # Manu and Type maps for conversion
         self.manu_map = {
             "alas!": "Atlas",
-            "skuldugger": "Skullmasher",
+            "skuldugger": "Tediore",
             "dahlia": "DAHL",
             "blackpowder": "Jakobs",
             "malefactor": "Maliwan",
@@ -115,8 +115,7 @@ class GunImage:
         for temp in temp_data:
             gun_data.extend(temp)
 
-        # In the event of no images, just output the same image
-        # TODO - update scrapping and get images for each guild and type
+        # In the event of no images, just output the same image (even if it doesn't make sense)
         if len(gun_data) == 0:
             url = "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd0cdd6736d4a1bbf5fbe_9-Volt%20(SMG-BL3).png"
         # Get a sample and its url link

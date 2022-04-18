@@ -1,6 +1,8 @@
-<h1> Bunkers & Badasses: LootGenerator </h1>
+<p align="center"><img src="https://user-images.githubusercontent.com/32918812/163755438-a98ff76f-7ce8-4ff5-978d-a4a3ef8b138e.png" /></p>
 
-LootGenerator is a local- and web-based application to handle Gun and Lootsplosion generation in the Nerdvana TTRPG, <a href="https://nerdvanagames.myshopify.com/">Bunkers & Badasses</a>. Additionally, it includes transcribed roll tables from the source book for all item types in the game.
+<hr>
+
+LootGenerator is a local- and (soon-to-be) web-based application to handle Gun and Lootsplosion generation in the Nerdvana TTRPG, <a href="https://nerdvanagames.myshopify.com/">Bunkers & Badasses</a>. Additionally, it includes transcribed roll tables from the source book for all item types in the game.
  
 ## Running:
 There are two ways to use LootGenerator, either through the local application or by using the web application <a href=''>TBD URL NAME</a>. 
@@ -76,3 +78,7 @@ This tool is an unofficial automated tool for the Nerdvana TTRPG, <a href="https
 Gun art images are used from the Borderlands <a href="https://www.lootlemon.com/db/borderlands-3/weapons">Lootlemon</a> and images displayed are URL links to their hosted images.
 
 All credit for source material and gun images belongs to Nerdvana and GearBox Software.
+
+The chest design in our icon comes from Victor Escorsin, available here: <a href="https://thenounproject.com/icon/chest-7173/"</a>.
+
+This icon is available as a sample icon on Adobe Spark's Logo Maker under the CC License.

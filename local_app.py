@@ -248,9 +248,6 @@ if __name__ == '__main__':
     window = Window(basedir)
 
     # Different checking needed depending on local build or executable run
-    if os.path.exists("BnBLogo.png"):
-        window.setWindowIcon(QIcon('BnBLogo.jpg'))
-    else:
-        window.setWindowIcon(QIcon('resources/images/BnBLogo.jpg'))
+    window.setWindowIcon(QIcon('resources/images/LootGeneratorIconBlue.ico'))
     window.show()
     sys.exit(app.exec_())

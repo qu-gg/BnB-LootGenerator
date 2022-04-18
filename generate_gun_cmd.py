@@ -225,13 +225,13 @@ if __name__ == '__main__':
     args.rarity_element = True if args.rarity_element == "True" else False
 
     # Load in the gun images dataset
-    gun_images = GunImage()
+    gun_images = GunImage("")
 
     # Generate a gun
-    gun = Gun(name=args.name, item_level=args.item_level,
+    gun = Gun("", name=args.name, item_level=args.item_level,
               gun_type=args.type, gun_guild=args.guild, gun_rarity=args.rarity,
               rarity_element=args.rarity_element, prefix=args.prefix, redtext=args.redtext)
     print(gun.__str__())
 
     # Output a Form-filled PDF with the Gun parameters
-    generate_gun_pdf(args.output, gun, gun_images)
+    generate_gun_pdf("", args.output, gun, gun_images)
