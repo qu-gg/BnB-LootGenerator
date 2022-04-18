@@ -82,7 +82,7 @@ These are the components to be fleshed out yet (we're welcome to take contributi
 </ul>
 
 ## Note on Anti-Virus Catching
-It is a common occurance that anti-viruses mistakenly flag Python executable programs that were compiled with PyInstaller as malicious software. We have applied for detection reviews for a number of these companies in order to get whitelisted.
+It is a common occurance that anti-viruses mistakenly flag Python executable programs that were compiled with PyInstaller as malicious software. We have applied for detection reviews for a number of these companies in order to get whitelisted. More information on this can be found <a href="https://github.com/hankhank10/false-positive-malware-reporting">here</a>.
 
 ## Issues and Contributions
 Please feel free to put up any issues that are found or enhancements that would improve this work. As well, please feel welcome to put up PRs for any improvements that you can do!
