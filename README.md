@@ -78,3 +78,7 @@ This tool is an unofficial automated tool for the Nerdvana TTRPG, <a href="https
 Gun art images are used from the Borderlands <a href="https://www.lootlemon.com/db/borderlands-3/weapons">Lootlemon</a> and images displayed are URL links to their hosted images.
 
 All credit for source material and gun images belongs to Nerdvana and GearBox Software.
+
+The chest design in our icon comes from Victor Escorsin, available here: <a href="https://thenounproject.com/icon/chest-7173/"</a>.
+
+This icon is available as a sample icon on Adobe Spark's Logo Maker under the CC License.
