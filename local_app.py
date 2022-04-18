@@ -244,7 +244,7 @@ class Window(QMainWindow):
 if __name__ == '__main__':
     # Specify whether this is local development or applicatino compilation
     basedir = ""
-    application = False
+    application = True
 
     # If application compilation, get the folder from which the executable is being executed
     if application:

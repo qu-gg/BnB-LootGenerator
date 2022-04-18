@@ -181,7 +181,7 @@ class Gun:
                     total += 1
 
         element_roll = randint(1, total)
-        if element_roll < elements:
+        if element_roll <= elements:
             return True
 
     def check_element_boost(self, roll, guild, rarity):
