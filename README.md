@@ -11,6 +11,16 @@ The local option is a PyQT GUI application in which the user can specify specifi
 This will save a local PDF that can be printed off or sent to players.
 ![Screenshot 2022-04-17 184044](https://user-images.githubusercontent.com/32918812/163734919-97850aab-4466-44ee-be26-a2f4eaba70ba.png)
 
+## Note on PDF Viewers
+The local version of this application requires a PDFViewer capable of form/annotation rendering in order to view the generated text on the Gun Card. PDF Viewers are all over the place when it comes to support for this and it cannot be guaranteed LootGenerator will work with a given viewer. Alternative solutions were tried for rendering (e.g. pdf2image conversion, pdfjs, local chromium server), but no universal solution works. Without a full rewrite, this solution will have to suffice for now. We apologize for the inconvenience!
+
+Here is a list of ones that work and don't work thus far from personal testing. Please put up an issue if you use one of the untested versions!
+
+<b>Working:</b> Acrobat Reader DC, 
+
+<b>Not Working:</b> Foxit PDF (under Safe Mode), Browser PDFs (Brave, Chromium, etc), MacOS
+
+<b>Untested</b>: Slim Reader, Nitro Reader, PDF Viewer Pro, Xodo PDF Reader
 
 ## Folder Layout:
 ```
@@ -71,6 +81,8 @@ These are the components to be fleshed out yet (we're welcome to take contributi
       <li><b> Containers</b>: Roll tables for cache, cache size, dice chests, and unassuming chests need to be input. As well, a class that handles rolling and providing function calls to relevant classes is needed.</li>
 </ul>
 
+## Note on Anti-Virus Catching
+It is a common occurance that anti-viruses mistakenly flag Python executable programs that were compiled with PyInstaller as malicious software. We have applied for detection reviews for a number of these companies in order to get whitelisted.
 
 ## Issues and Contributions
 Please feel free to put up any issues that are found or enhancements that would improve this work. As well, please feel welcome to put up PRs for any improvements that you can do!
