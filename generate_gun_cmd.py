@@ -9,6 +9,7 @@ Takes in user-input on specific gun features to choose
 """
 import os
 import fitz
+import pdf2image
 import pdfrw
 import argparse
 
@@ -74,6 +75,7 @@ def fill_pdf(input_pdf_path, output_pdf_path, data_dict):
 
                             # Change from fillable to static text
                             annotation[PARENT_KEY].update(pdfrw.PdfDict(Ff=1))
+                            annotation.update(pdfrw.PdfDict(Ff=1))
 
                             # Update the AP of this annotation to nothing
                             annotation[PARENT_KEY].update(pdfrw.PdfDict(AP=''))

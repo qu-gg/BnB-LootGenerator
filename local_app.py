@@ -6,7 +6,6 @@ Handles all of the UI interaction and display for the PyQT frontend
 """
 import os
 import sys
-import random
 from pathlib import Path
 
 from classes.Gun import Gun
@@ -71,7 +70,7 @@ class Window(QMainWindow):
         # Gun Type
         self.gun_type_choices = ['pistol', 'submachine_gun', 'shotgun', 'combat_rifle', 'sniper_rifle', 'rocket_launcher']
 
-        base_stats_layout.addWidget(QLabel("Type: "), 2, 0)
+        base_stats_layout.addWidget(QLabel("Gun Type: "), 2, 0)
         self.gun_type_box = QComboBox()
         self.gun_type_box.addItem("Random")
         for item in self.gun_type_choices:
@@ -95,22 +94,29 @@ class Window(QMainWindow):
             self.rarity_type_box.addItem(item)
         base_stats_layout.addWidget(self.rarity_type_box, 4, 1)
 
-        base_stats_layout.addWidget(QLabel(""), 5, 0)
+        # base_stats_layout.addWidget(QLabel(""), 5, 0)
 
         # Roll for Rarity
-        base_stats_layout.addWidget(QLabel("Force Element Roll? "), 6, 0)
+        element_roll_text_label = QLabel("Force an Element Roll: ")
+        element_roll_text_label.setToolTip("Choose whether to always add an element roll regardless of the rarity rolled. "
+                                           "This does NOT guarantee an element, just rolling on the table.")
+        base_stats_layout.addWidget(element_roll_text_label, 5, 0)
         self.element_roll = QCheckBox()
-        base_stats_layout.addWidget(self.element_roll, 6, 1)
+        base_stats_layout.addWidget(self.element_roll, 5, 1)
 
         # Whether to use a gun prefix
-        base_stats_layout.addWidget(QLabel("Gun Prefix? "), 7, 0)
+        prefix_text_label = QLabel("Include a Prefix: ")
+        prefix_text_label.setToolTip("Choose whether to roll a Prefix modifier to the gun, as per Page 99.")
+        base_stats_layout.addWidget(prefix_text_label, 6, 0)
         self.gun_prefix = QCheckBox()
-        base_stats_layout.addWidget(self.gun_prefix, 7, 1)
+        base_stats_layout.addWidget(self.gun_prefix, 6, 1)
 
         # Whether to roll for Red Text on epic or legendary
-        base_stats_layout.addWidget(QLabel("Red Text? "), 8, 0)
+        red_text_label = QLabel("Include Red Text: ")
+        red_text_label.setToolTip("Choose whether to roll for a Red Text modifier on guns of rarity Epic or Legendary, as per Page 100.")
+        base_stats_layout.addWidget(red_text_label, 7, 0)
         self.red_text = QCheckBox()
-        base_stats_layout.addWidget(self.red_text, 8, 1)
+        base_stats_layout.addWidget(self.red_text, 7, 1)
 
         # Grid layout
         base_stats_group.setLayout(base_stats_layout)
@@ -127,9 +133,11 @@ class Window(QMainWindow):
 
         # PDF Output Name
         self.pdf_line_edit = add_stat_to_layout(generation_layout, "PDF Filename:", 0)
+        self.pdf_line_edit.setToolTip("Specify the filename that Generate Gun saves the next gun under.")
 
         # Generate button
         button = QPushButton("Generate Gun")
+        button.setToolTip("Handles generating the gun and locally saving the PDF in \"outputs/\".")
         button.clicked.connect(lambda: self.generate_gun())
         generation_layout.addWidget(button, 1, 0, 1, -1)
 
@@ -153,6 +161,8 @@ class Window(QMainWindow):
         self.WebBrowser = QAxContainer.QAxWidget(self)
         self.WebBrowser.setFixedHeight(800)
         self.WebBrowser.setControl("{8856F961-340A-11D0-A96B-00C04FD705A2}")
+        self.WebBrowser.setToolTip("If nothing is displaying or the text is not displaying, then either "
+                                   "1.) you do not have a local PDF Viewer or 2.) the OS you are on doesn't support annotation rendering.")
         gun_card_layout.addWidget(self.WebBrowser, 0, 1, -1, 1)
 
         # Need to check if attempting to re-save when the PDF name is already taken
@@ -170,11 +180,13 @@ class Window(QMainWindow):
 
         # Setting appropriate column widths
         base_stats_group.setFixedWidth(250)
+        generation_group.setFixedWidth(250)
         gun_card_group.setFixedWidth(1000)
 
         # Setting appropriate layout heights
         base_stats_group.setFixedHeight(300)
         generation_group.setFixedHeight(500)
+        gun_card_group.setFixedHeight(800)
 
         # Overall layout grid
         layout = QGridLayout()
@@ -209,8 +221,8 @@ class Window(QMainWindow):
         gun = Gun(self.basedir, name=name, item_level=item_level, gun_type=gun_type, gun_guild=guild, gun_rarity=rarity,
                   rarity_element=element_roll, prefix=prefix, redtext=redtext)
 
-        # Generate the PDF output name
-        output_name = "output{}".format(random.randint(0, 100000)) if self.pdf_line_edit.text() == "" \
+        # Generate the PDF output name as the gun name
+        output_name = "{}".format(gun.name).replace(' ', '') if self.pdf_line_edit.text() == "" \
             else self.pdf_line_edit.text()
 
         # Check if it is already in use
@@ -232,7 +244,7 @@ class Window(QMainWindow):
 if __name__ == '__main__':
     # Specify whether this is local development or applicatino compilation
     basedir = ""
-    application = True
+    application = False
 
     # If application compilation, get the folder from which the executable is being executed
     if application:
