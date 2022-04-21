@@ -34,8 +34,8 @@ class GunImage:
         }
 
         self.type_map = {
-            "combat_rifle": ['Assault Rifle', 'Repeater'],
-            "pistol": ['Pistol', 'Revolver'],
+            "combat_rifle": ['Assault Rifle'],
+            "pistol": ['Pistol', 'Revolver', 'Repeater'],
             "shotgun": ['Shotgun'],
             "submachine_gun": ['SMG'],
             "sniper_rifle": ['Sniper'],
