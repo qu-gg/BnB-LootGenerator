@@ -44,7 +44,7 @@ class GunImage:
 
         # Rarity color mapping
         self.rarity_colors = {
-            "common": [255, 255, 255, 255],
+            "common": [255, 255, 255, 0],
             "uncommon": [61, 210, 11, 255],
             "rare": [47, 120, 255, 255],
             "epic": [145, 50, 200, 255],
@@ -143,7 +143,7 @@ class GunImage:
         if rarity is not None:
             # Have to save/reload due to PIL loading dimension issues
             img_alpha = cv.imread(self.prefix + "output/temporary_gun_image.png", cv.IMREAD_UNCHANGED)
-            img_alpha = np.pad(img_alpha, pad_width=((25, 25), (30, 30), (0, 0)), constant_values=0)
+            img_alpha = np.pad(img_alpha, pad_width=((35, 35), (50, 50), (0, 0)), constant_values=0)
 
             # First get the mask of the given color
             mask = img_alpha.copy()
