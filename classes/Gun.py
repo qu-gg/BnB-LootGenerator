@@ -13,7 +13,7 @@ from classes.json_reader import get_file_data
 
 class Gun:
     def __init__(self, base_dir, name=None, item_level=None, gun_type=None, gun_guild=None, gun_rarity=None,
-                 rarity_element=False, prefix=True, redtext=True):
+                 damage_balance=False, rarity_element=False, prefix=True, redtext=True):
         """ Handles generating a gun completely from scratch, modified to specifics by user info """
         # If item level is to be generated
         self.item_level = item_level
@@ -50,7 +50,10 @@ class Gun:
         self.guild_element_roll = self.guild_table.get("element_roll")
 
         # Get gun stats table
-        self.stats = get_file_data(base_dir + "resources/guns/" + self.type + ".json").get(self.item_level)
+        if damage_balance is True:
+            self.stats = get_file_data(base_dir + "resources/guns/gun_types_robmwj.json").get(self.type).get(self.item_level)
+        else:
+            self.stats = get_file_data(base_dir + "resources/guns/gun_types.json").get(self.type).get(self.item_level)
         self.accuracy = self.stats['accuracy']
         self.range = self.stats['range']
         self.damage = self.stats['damage']
@@ -154,7 +157,7 @@ class Gun:
         roll_level = randint(1, 30)
 
         tier = None
-        for key in get_file_data(base_dir + "resources/guns/pistol.json").keys():
+        for key in get_file_data(base_dir + "resources/guns/gun_types.json").get("pistol").keys():
             lower, upper = [int(i) for i in key.split('-')]
             if lower <= roll_level <= upper:
                 tier = key
