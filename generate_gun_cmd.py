@@ -34,6 +34,24 @@ def fill_pdf(input_pdf_path, output_pdf_path, data_dict):
     :param output_pdf_path: filename to save the PDF as
     :param data_dict: given dictionary mapping form field names to input
     """
+    appearances = {
+        "Damage": ('/Helvetica-BoldOblique 20.00 Tf 0 g', 1),
+        "Name": ('/Helvetica-BoldOblique 20.00 Tf 0 g', 1),
+
+        "Guild": ('/Helvetica-Bold 17.50 Tf 0 g', 1),
+        "GunType": ('/Helvetica-Bold 17.50 Tf 0 g', 1),
+        "Rarity": ('/Helvetica-Bold 17.50 Tf 0 g', 1),
+
+        "Element 1": ('/Helvetica-Bold 8.50 Tf 0 g', 1),
+        "Element 2": ('/Helvetica-Bold 8.50 Tf 0 g', 1),
+        "Element 3": ('/Helvetica-Bold 8.50 Tf 0 g', 1),
+
+        "Hit": ('/Helvetica-BoldOblique 15.00 Tf 255 g', 0),
+        "Crit": ('/Helvetica-BoldOblique 15.00 Tf 255 g', 0),
+
+        "Range": ('/Helvetica-BoldOblique 15.00 Tf 0 g', 0)
+    }
+
     template_pdf = pdfrw.PdfReader(input_pdf_path)
     for page in template_pdf.pages:
         annotations = page[ANNOT_KEY]
@@ -47,28 +65,19 @@ def fill_pdf(input_pdf_path, output_pdf_path, data_dict):
                                 annotation.update(pdfrw.PdfDict(
                                     AS=pdfrw.PdfName('Yes')))
                         else:
-                            if key in ['Damage', 'Name']:
-                                PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-BoldOblique 20.00 Tf 0 g')
-                                annotation[PARENT_KEY].update(pdfrw.PdfDict(Q=1))
-                            elif key in ['Guild', 'GunType', 'Rarity']:
-                                # Updating the font to be Courier
-                                PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-Bold 17.50 Tf 0 g')
-                                annotation[PARENT_KEY].update(pdfrw.PdfDict(Q=1))
-                            elif key in ['Element 1', 'Element 2', 'Element 3']:
-                                # Updating the font to be Courier
-                                PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-Bold 8.50 Tf 0 g')
-                                annotation[PARENT_KEY].update(pdfrw.PdfDict(Q=1))
-                            elif 'Hit' in key or 'Crit' in key:
-                                # Updating the font to be Courier
-                                PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-BoldOblique 15.00 Tf 255 g')
-                            elif key == "Range":
-                                # Updating the font to be Courier
-                                PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-BoldOblique 15.00 Tf 0 g')
+                            # Get the appearance string
+                            if 'Hit' in key or 'Crit' in key:
+                                display_string, q_value = appearances.get(key.split('_')[0])
                             else:
-                                # Updating the font to be Courier
-                                PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode('/Helvetica-Bold 12.50 Tf 0 g')
+                                display_string, q_value = appearances.get(key, ('/Helvetica-Bold 12.50 Tf 0 g', 0))
 
+                            # Encode and update DisplayAppearance
+                            PDF_TEXT_APPEARANCE = pdfrw.objects.pdfstring.PdfString.encode(display_string)
                             annotation[PARENT_KEY].update({'/DA': PDF_TEXT_APPEARANCE})
+
+                            # Center text if given
+                            if q_value == 1:
+                                annotation[PARENT_KEY].update(pdfrw.PdfDict(Q=q_value))
 
                             # Adding in the value given
                             annotation.update(
@@ -107,7 +116,7 @@ def add_image_to_pdf(pdf_path, out_path, image, position):
     file_handle.save(out_path)
 
 
-def generate_gun_pdf(base_dir, output_name, gun, gun_images):
+def generate_gun_pdf(base_dir, output_name, gun, gun_images, rarity_border):
     """
     Handles generating a Gun Card PDF filled out with the information from the generated gun
     :param output_name: name of the output PDF to save
@@ -170,11 +179,14 @@ def generate_gun_pdf(base_dir, output_name, gun, gun_images):
     # Fill the PDF with the given information
     fill_pdf(base_dir + 'resources/GunTemplate.pdf', base_dir + 'output/' + output_name + '_temp.pdf', data_dict)
 
-    # Get a gun sample
-    gun_images.sample_gun_image(gun.type, gun.guild)
+    # Get a gun sample and apply a colored border depending
+    if rarity_border is True:
+        gun_images.sample_gun_image(gun.type, gun.guild, rarity=gun.rarity)
+    else:
+        gun_images.sample_gun_image(gun.type, gun.guild, None)
 
     # Apply image to gun card
-    position = {'page': 1, 'x0': 400, 'y0': 200, 'x1': 700, 'y1': 400}
+    position = {'page': 1, 'x0': 350, 'y0': 150, 'x1': 750, 'y1': 450}
     add_image_to_pdf(base_dir + 'output/' + output_name + '_temp.pdf',
                      base_dir + 'output/' + output_name + '.pdf',
                      base_dir + 'output/temporary_gun_image.png',

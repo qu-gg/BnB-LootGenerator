@@ -63,7 +63,7 @@ class Window(QMainWindow):
         base_stats_layout.addWidget(QLabel("Item Level: "), 1, 0)
         self.item_level_box = QComboBox()
         self.item_level_box.addItem("Random")
-        for item in get_file_data(basedir + "resources/guns/combat_rifle.json").keys():
+        for item in get_file_data(basedir + "resources/guns/gun_types.json").get("pistol").keys():
             self.item_level_box.addItem(item)
         base_stats_layout.addWidget(self.item_level_box, 1, 1)
 
@@ -94,14 +94,14 @@ class Window(QMainWindow):
             self.rarity_type_box.addItem(item)
         base_stats_layout.addWidget(self.rarity_type_box, 4, 1)
 
-        # base_stats_layout.addWidget(QLabel(""), 5, 0)
-
         # Roll for Rarity
         element_roll_text_label = QLabel("Force an Element Roll: ")
         element_roll_text_label.setToolTip("Choose whether to always add an element roll regardless of the rarity rolled. "
                                            "This does NOT guarantee an element, just rolling on the table.")
         base_stats_layout.addWidget(element_roll_text_label, 5, 0)
         self.element_roll = QCheckBox()
+        self.element_roll.setToolTip("Choose whether to always add an element roll regardless of the rarity rolled. "
+                                           "This does NOT guarantee an element, just rolling on the table.")
         base_stats_layout.addWidget(self.element_roll, 5, 1)
 
         # Whether to use a gun prefix
@@ -109,6 +109,7 @@ class Window(QMainWindow):
         prefix_text_label.setToolTip("Choose whether to roll a Prefix modifier to the gun, as per Page 99.")
         base_stats_layout.addWidget(prefix_text_label, 6, 0)
         self.gun_prefix = QCheckBox()
+        self.gun_prefix.setToolTip("Choose whether to roll a Prefix modifier to the gun, as per Page 99.")
         base_stats_layout.addWidget(self.gun_prefix, 6, 1)
 
         # Whether to roll for Red Text on epic or legendary
@@ -116,7 +117,26 @@ class Window(QMainWindow):
         red_text_label.setToolTip("Choose whether to roll for a Red Text modifier on guns of rarity Epic or Legendary, as per Page 100.")
         base_stats_layout.addWidget(red_text_label, 7, 0)
         self.red_text = QCheckBox()
+        self.red_text.setToolTip("Choose whether to roll for a Red Text modifier on guns of rarity Epic or Legendary, as per Page 100.")
         base_stats_layout.addWidget(self.red_text, 7, 1)
+
+        base_stats_layout.addWidget(QLabel(""), 8, 0)
+
+        # Whether to roll for Red Text on epic or legendary
+        damage_balance_label = QLabel("Use RobMWJ's Damage Balance: ")
+        damage_balance_label.setToolTip("Choose whether to use alternative damage tables, written by user/robmwj on Reddit.")
+        base_stats_layout.addWidget(damage_balance_label, 9, 0)
+        self.damage_balance_check = QCheckBox()
+        self.damage_balance_check.setToolTip("Choose whether to use alternative damage tables, written by user/robmwj on Reddit.")
+        base_stats_layout.addWidget(self.damage_balance_check, 9, 1)
+
+        # Whether to roll for Red Text on epic or legendary
+        rarity_border_label = QLabel("Use Gun Rarity Borders: ")
+        rarity_border_label.setToolTip("EXPERIMENTAL: Choose whether to outline the gun art in a colored-outline based on rarity. Doesn't work for all guns currently.")
+        base_stats_layout.addWidget(rarity_border_label, 10, 0)
+        self.rarity_border_check = QCheckBox()
+        self.rarity_border_check.setToolTip("EXPERIMENTAL: Choose whether to outline the gun art in a colored-outline based on rarity. Doesn't work for all guns currently.")
+        base_stats_layout.addWidget(self.rarity_border_check, 10, 1)
 
         # Grid layout
         base_stats_group.setLayout(base_stats_layout)
@@ -179,8 +199,8 @@ class Window(QMainWindow):
         ###################################
 
         # Setting appropriate column widths
-        base_stats_group.setFixedWidth(250)
-        generation_group.setFixedWidth(250)
+        base_stats_group.setFixedWidth(300)
+        generation_group.setFixedWidth(300)
         gun_card_group.setFixedWidth(1000)
 
         # Setting appropriate layout heights
@@ -205,8 +225,7 @@ class Window(QMainWindow):
         name = None if self.name_line_edit.text() == "" else self.name_line_edit.text()
         item_level = self.item_level_box.currentText().lower()
 
-        # Convert gun type to digit
-        gun_type = self.gun_type_box.currentText().lower().replace(' ', '_')
+        gun_type = self.gun_type_box.currentText().lower().replace(' ', '_')    # Convert gun type to digit
         if gun_type != "random":
             gun_type = str(self.gun_type_choices.index(gun_type) + 1)
 
@@ -217,24 +236,28 @@ class Window(QMainWindow):
         prefix = self.gun_prefix.isChecked()
         redtext = self.red_text.isChecked()
 
+        damage_balance = self.damage_balance_check.isChecked()
+        rarity_check = self.rarity_border_check.isChecked()
+
         # Generate the gun object
         gun = Gun(self.basedir, name=name, item_level=item_level, gun_type=gun_type, gun_guild=guild, gun_rarity=rarity,
-                  rarity_element=element_roll, prefix=prefix, redtext=redtext)
+                  damage_balance=damage_balance, rarity_element=element_roll, prefix=prefix, redtext=redtext)
 
         # Generate the PDF output name as the gun name
-        output_name = "{}".format(gun.name).replace(' ', '') if self.pdf_line_edit.text() == "" \
-            else self.pdf_line_edit.text()
+        output_name = "{}_{}_{}_{}".format(
+            gun.type.title().replace('_', ' '), gun.guild.title(), gun.rarity.title(), gun.name).replace(' ', '') \
+            if self.pdf_line_edit.text() == "" else self.pdf_line_edit.text()
 
         # Check if it is already in use
         if output_name == self.current_pdf:
             self.output_pdf_label.setText("PDF Name already in use!".format(output_name))
             return
 
-        self.output_pdf_label.setText("PDF saved to outputs/{}.pdf!".format(output_name))
+        self.output_pdf_label.setText("Saved to outputs/{}.pdf!".format(output_name))
         self.current_pdf = output_name
 
         # Generate the local gun card PDF
-        generate_gun_pdf(self.basedir, output_name, gun, self.gun_images)
+        generate_gun_pdf(self.basedir, output_name, gun, self.gun_images, rarity_check)
 
         # Load in gun card PDF
         f = Path(os.path.abspath("output/{}.pdf".format(output_name))).as_uri()
@@ -244,7 +267,7 @@ class Window(QMainWindow):
 if __name__ == '__main__':
     # Specify whether this is local development or applicatino compilation
     basedir = ""
-    application = True
+    application = False
 
     # If application compilation, get the folder from which the executable is being executed
     if application:

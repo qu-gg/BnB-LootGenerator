@@ -7,6 +7,7 @@ Handles filtering the scrapped game source dataset for specific properties, i.e.
 import json
 import random
 import requests
+import cv2 as cv
 import numpy as np
 
 from PIL import Image
@@ -14,6 +15,8 @@ from PIL import Image
 
 class GunImage:
     def __init__(self, prefix):
+        self.prefix = prefix
+
         # List of individual JSONs
         PREFIX = prefix + "resources/images/"
         FILELIST = [PREFIX + "bl1_guns.json", PREFIX + "bl2_guns.json",
@@ -31,12 +34,21 @@ class GunImage:
         }
 
         self.type_map = {
-            "combat_rifle": ['Assault Rifle', 'Repeater'],
-            "pistol": ['Pistol', 'Revolver'],
+            "combat_rifle": ['Assault Rifle'],
+            "pistol": ['Pistol', 'Revolver', 'Repeater'],
             "shotgun": ['Shotgun'],
             "submachine_gun": ['SMG'],
             "sniper_rifle": ['Sniper'],
             "rocket_launcher": ['Launcher']
+        }
+
+        # Rarity color mapping
+        self.rarity_colors = {
+            "common": [255, 255, 255, 0],
+            "uncommon": [61, 210, 11, 255],
+            "rare": [47, 120, 255, 255],
+            "epic": [145, 50, 200, 255],
+            "legendary": [255, 180, 0, 255]
         }
 
         # Concatenating all JSONs into one block
@@ -88,7 +100,7 @@ class GunImage:
         
         return guns_data
 
-    def sample_gun_image(self, gun_type=None, manufacturer=None):
+    def sample_gun_image(self, gun_type=None, manufacturer=None, rarity=None):
         """
         Handles sampling and downloading a relevant gun image from the games for gun card display use
         :param gun_type: type to filter on
@@ -125,7 +137,44 @@ class GunImage:
         # Get image and then save locally temporarily
         response = requests.get(url, stream=True)
         img = Image.open(response.raw)
-        img.save('output/temporary_gun_image.png')
+        img.save(self.prefix + 'output/temporary_gun_image.png')
+
+        # Apply a colored outline based on the rarity
+        if rarity is not None:
+            # Have to save/reload due to PIL loading dimension issues
+            img_alpha = cv.imread(self.prefix + "output/temporary_gun_image.png", cv.IMREAD_UNCHANGED)
+            img_alpha = np.pad(img_alpha, pad_width=((35, 35), (50, 50), (0, 0)), constant_values=0)
+
+            # First get the mask of the given color
+            mask = img_alpha.copy()
+            mask[np.where(mask[:, :, -1] >= 2)] = self.rarity_colors.get(rarity)
+
+            # Enlarge the mask by 5%
+            scale_percent = 105
+            width = int(img_alpha.shape[1] * scale_percent / 100)
+            height = int(img_alpha.shape[0] * scale_percent / 100)
+            dim = (width, height)
+            mask = cv.resize(mask, dim)
+
+            # Cut off resize padding to maintain shape
+            width_diff = width - img_alpha.shape[1]
+            height_diff = height - img_alpha.shape[0]
+            mask = mask[height_diff // 2:-height_diff // 2, width_diff // 2: -width_diff // 2, :]
+
+            # Perform the Gaussian blur
+            mask = cv.blur(mask, (45, 45))
+
+            # Compose images together
+            final_image = np.zeros_like(img_alpha)
+            for x in range(img_alpha.shape[0]):
+                for y in range(img_alpha.shape[1]):
+                    if img_alpha[x, y, -1] > 0:
+                        final_image[x, y] = img_alpha[x, y]
+                    else:
+                        final_image[x, y] = mask[x, y]
+
+            # Save output
+            Image.fromarray(final_image).save(self.prefix + 'output/temporary_gun_image.png')
 
     def manu_conversion(self, guild_name):
         """ Conversion table from game manu names to BnB guild names """
