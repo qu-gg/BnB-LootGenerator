@@ -14,7 +14,7 @@ The command for this is: ```python generate_gun_cmd.py --<attribute> <value>``` 
 <b>Local Application:</b>
 The local option is a PyQT GUI application in which the user can specify specific gun attributes to roll with. 
 This will save a local PDF that can be printed off or sent to players.
-![Screenshot 2022-04-17 184044](https://user-images.githubusercontent.com/32918812/163734919-97850aab-4466-44ee-be26-a2f4eaba70ba.png)
+![example_program](https://user-images.githubusercontent.com/32918812/164554599-cd56b591-6e89-4204-ab6c-8507934ca064.png)
 
 
 ## Note on PDF Viewers
