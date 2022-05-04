@@ -152,8 +152,8 @@
         "info": "Once per encounter, the wielder can run into squares with an Enemy, Knocking them Back 1 square."
     },
     "77-78": {
-        "name": "The Heaviest Matter of the Universe",
-        "info": "The wielder and targets Hit cannot take Movement Actions while equipped."
+        "name": "Heaviest Matter of the Universe",
+        "info": "The wielder and targets Hit cannot take Movement Actions."
     },
     "79-80": {
         "name": "GREEN FLAME",
@@ -177,15 +177,15 @@
     },
     "89-90": {
         "name": "Here Comes the FunCooker",
-        "info": "When this gun scores a Crit, the Enemy suffers a miniature combustion, dealing 1d12 Explosive Damage to itself and all adjacent squares."
+        "info": "On a Crit, the Enemy suffers a miniature combustion, dealing 1d12 Explosive Full Splash Damage."
     },
     "91-92": {
         "name": "Overwhelming strength is boring.",
         "info": "-6 Initiative. The first non-Badass, non- boss Enemy that is Melee Attacked dies instantly (1/day)."
     },
     "93-94": {
-        "name": "Stop talking, / will win. It's what heroes do.",
-        "info": "Gun fires explosives that deal +3d6 Damage to all adjacent squares."
+        "name": "Stop talking, I will win. It's what heroes do.",
+        "info": "Gun fires explosives that deal +3d6 Damage to adjacent squares."
     },
     "95-96": {
         "name": "Richer and cleverer than everyone else!",

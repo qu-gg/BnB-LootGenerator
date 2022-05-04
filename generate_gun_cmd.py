@@ -36,20 +36,21 @@ def fill_pdf(input_pdf_path, output_pdf_path, data_dict):
     """
     appearances = {
         "Damage": ('/Helvetica-BoldOblique 20.00 Tf 0 g', 1),
-        "Name": ('/Helvetica-BoldOblique 20.00 Tf 0 g', 1),
+        "Name": ('/Helvetica-BoldOblique 25.00 Tf 0 g', 1),
 
         "Guild": ('/Helvetica-Bold 17.50 Tf 0 g', 1),
         "GunType": ('/Helvetica-Bold 17.50 Tf 0 g', 1),
-        "Rarity": ('/Helvetica-Bold 17.50 Tf 0 g', 1),
+        "Rarity": ('/Helvetica-Bold 15.00 Tf 0 g', 1),
 
-        "Element 1": ('/Helvetica-Bold 8.50 Tf 0 g', 1),
-        "Element 2": ('/Helvetica-Bold 8.50 Tf 0 g', 1),
-        "Element 3": ('/Helvetica-Bold 8.50 Tf 0 g', 1),
+        "ElementBonus": ('/Helvetica-Bold 13.00 Tf 0 g', 1),
 
-        "Hit": ('/Helvetica-BoldOblique 15.00 Tf 255 g', 0),
-        "Crit": ('/Helvetica-BoldOblique 15.00 Tf 255 g', 0),
+        "Hit": ('/Helvetica-Bold 15.00 Tf 255 g', 0),
+        "Crit": ('/Helvetica-Bold 15.00 Tf 255 g', 0),
+        "Range": ('/Helvetica-Bold 25.00 Tf 0 g', 0),
 
-        "Range": ('/Helvetica-BoldOblique 15.00 Tf 0 g', 0)
+        "RedText": ('/Helvetica-Bold 13.00 Tf 0 g', 0),
+        "Prefix": ('/Helvetica-Bold 13.00 Tf 0 g', 0),
+        "GuildMod": ('/Helvetica-Bold 13.00 Tf 0 g', 0),
     }
 
     template_pdf = pdfrw.PdfReader(input_pdf_path)
@@ -136,29 +137,38 @@ def generate_gun_pdf(base_dir, output_name, gun, gun_images, rarity_border):
     guild_str = ''
     if gun.redtext_info is None and gun.prefix_info is None and gun.guild_info is not None:
         redtext_str += "{:<15} {}: {}\n\n".format("(Guild)", gun.guild.title(), gun.guild_mod)
+    elif gun.redtext_info is None and gun.prefix_info is not None and gun.guild_info is not None:
+        prefix_str += "{:<15} {}: {}\n\n".format("(Guild)", gun.guild.title(), gun.guild_mod)
     elif gun.redtext_info is not None and gun.prefix_info is None and gun.guild_info is not None:
         prefix_str += "{:<15} {}: {}\n\n".format("(Guild)", gun.guild.title(), gun.guild_mod)
     elif gun.guild_info is not None:
         guild_str += "{:<15} {}: {}\n\n".format("(Guild)", gun.guild.title(), gun.guild_mod)
 
-    # Construct element blocks
-    element_strings = ['', '', '']
-    if type(gun.element) == list:
-        for idx, e in enumerate(gun.element):
-            element_strings[idx] += e.title() + '\n'
+    # Construct element bonus string
+    if type(gun.element) == str and len(gun.element.split(' ')) > 1:
+        element_bonus_str = gun.element.split(' ')[-1]
+    else:
+        element_bonus_str = ""
 
-    if type(gun.element) == str:
-        element_strings[0] += gun.element.title()
+    # Construct damage die string
+    die_num, die_type = gun.damage.split('d')
+    if int(die_num) > 1:
+        die_string = "x{}".format(die_num)
+    else:
+        die_string = ""
 
     # Build up data dictionary to fill in PDF
     data_dict = {
         'Name': gun.name,
-        "GunType": gun.type.title().replace('_', ' '),
         "Guild": gun.guild.title(),
         "Rarity": gun.rarity.title(),
 
+        "GunType": gun.rarity.title(),
+        "DieNumber": die_string,
+
         'Range': str(gun.range),
         'Damage': str(gun.damage),
+
         "Hit_Low": '{}'.format(gun.accuracy['2-7']['hits']),
         "Hit_Medium": '{}'.format(gun.accuracy['8-15']['hits']),
         "Hit_High": '{}'.format(gun.accuracy['16+']['hits']),
@@ -166,9 +176,7 @@ def generate_gun_pdf(base_dir, output_name, gun, gun_images, rarity_border):
         "Crit_Medium": '{}'.format(gun.accuracy['8-15']['crits']),
         "Crit_High": '{}'.format(gun.accuracy['16+']['crits']),
 
-        "Element 1": element_strings[0],
-        "Element 2": element_strings[1],
-        "Element 3": element_strings[2],
+        "ElementBonus": element_bonus_str,
 
         "RedText": redtext_str,
         "Prefix": prefix_str,
@@ -177,7 +185,7 @@ def generate_gun_pdf(base_dir, output_name, gun, gun_images, rarity_border):
     }
 
     # Fill the PDF with the given information
-    fill_pdf(base_dir + 'resources/GunTemplate.pdf', base_dir + 'output/' + output_name + '_temp.pdf', data_dict)
+    fill_pdf(base_dir + 'resources/GunWhiteTemplate.pdf', base_dir + 'output/' + output_name + '_temp.pdf', data_dict)
 
     # Get a gun sample and apply a colored border depending
     if rarity_border is True:
@@ -185,15 +193,137 @@ def generate_gun_pdf(base_dir, output_name, gun, gun_images, rarity_border):
     else:
         gun_images.sample_gun_image(gun.type, gun.guild, None)
 
-    # Apply image to gun card
-    position = {'page': 1, 'x0': 350, 'y0': 150, 'x1': 750, 'y1': 450}
+    # Apply gun art to gun card
+    position = {'page': 1, 'x0': 350, 'y0': 150, 'x1': 750, 'y1': 400}
     add_image_to_pdf(base_dir + 'output/' + output_name + '_temp.pdf',
-                     base_dir + 'output/' + output_name + '.pdf',
+                     base_dir + 'output/' + output_name + '_temp2.pdf',
                      base_dir + 'output/temporary_gun_image.png',
                      position)
 
+    # Apply gun icon to gun card
+    gun_icon_paths = {
+        "combat_rifle": "Combat rifle.png",
+        "sniper_rifle": "Sniper rifle.png",
+        "pistol": "Pistol.png",
+        "shotgun": "Shotgun.png",
+        "rocket_launcher": "Rocket launcher.png",
+        "submachine_gun": "SMG.png"
+    }
+
+    position = {'page': 1, 'x0': 615, 'y0': 45, 'x1': 815, 'y1': 75}
+    add_image_to_pdf(base_dir + 'output/' + output_name + '_temp2.pdf',
+                     base_dir + 'output/' + output_name + '_temp3.pdf',
+                     base_dir + 'resources/images/gun_icons/{}'.format(gun_icon_paths.get(gun.type)),
+                     position)
+
+    # Apply guild icon to gun card
+    guild_icon_paths = {
+        "alas!": "ALAS.png",
+        "skuldugger": "SKULDUGGER.png",
+        "dahlia": "DAHLIA.png",
+        "blackpowder": "BLACKPOWDER.png",
+        "malefactor": "MALEFACTOR.png",
+        "hyperius": "HYPERIUS.png",
+        "feriore": "FERIORE.png",
+        "torgue": "TORGUE.png",
+        "stoker": "STOKER.png",
+    }
+
+    position = {'page': 1, 'x0': 20, 'y0': 45, 'x1': 200, 'y1': 75}
+    add_image_to_pdf(base_dir + 'output/' + output_name + '_temp3.pdf',
+                     base_dir + 'output/' + output_name + '_temp4.pdf',
+                     base_dir + 'resources/images/guild_icons/{}'.format(guild_icon_paths.get(gun.guild)),
+                     position)
+
+    # Apply damage die icon to gun card
+    die_icon_paths = {
+        "4": "1d4.png",
+        "6": "1d6.png",
+        "8": "1d8.png",
+        "10": "1d10.png",
+        "12": "1d12.png",
+        "20": "1d20.png",
+    }
+
+    position = {'page': 1, 'x0': 75, 'y0': 280, 'x1': 115, 'y1': 330}
+    add_image_to_pdf(base_dir + 'output/' + output_name + '_temp4.pdf',
+                     base_dir + 'output/' + output_name + '_temp5.pdf',
+                     base_dir + 'resources/images/die_icons/{}'.format(die_icon_paths.get(die_type)),
+                     position)
+
+    # Apply element icon to gun card
+    element_icon_paths = {
+        "cryo": "Cryo.png",
+        "corrosive": "Corrosion.png",
+        "corroshock": "CorroShock.png",
+        "explosivcryo": "ExplosivCryo.png",
+        "explosive": "Explosive.png",
+        "incendiaradiation": "IncendiaRadiation.png",
+        "incendiary": "Incendiary.png",
+        "radiation": "Radiation.png",
+        "shock": "Shock.png"
+    }
+
+    def convert_element(elements):
+        """ Handles converting a given element of various types into the parseable element icon path """
+        if elements is None:
+            return None
+
+        # If the element is a string, it is a single element. Check for added damage
+        if type(elements) == str:
+            return [elements.split(' ')[0]]
+
+        # If input is a list, it has multiple elements. Check for combo elements.
+        if type(elements) == list:
+            returns = []
+
+            if "corrosive" in elements and "shock" in elements:
+                returns.append("corroshock")
+            elif "explosive" in elements and "cryo" in elements:
+                returns.append("explosivcryo")
+            elif "incendiary" in elements and "radiation" in elements:
+                returns.append("incendiaradiation")
+
+            # In the incredibly rare case there are 3 elements (high ele roll + prefix), add the third element
+            if len(elements) > 2:
+                returns.append(elements[-1])
+
+            return returns
+
+    # Get the element converted to path
+    element = convert_element(gun.element)
+
+    # If there is no element, just rename the path
+    if element is None:
+        os.rename(base_dir + 'output/' + output_name + '_temp5.pdf', base_dir + 'output/' + output_name + '.pdf')
+
+    # Otherwise add the element icon
+    else:
+        position = {'page': 1, 'x0': 60, 'y0': 440, 'x1': 110, 'y1': 470}
+        add_image_to_pdf(base_dir + 'output/' + output_name + '_temp5.pdf',
+                         base_dir + 'output/' + output_name + '_temp6.pdf',
+                         base_dir + 'resources/images/element_icons/{}'.format(element_icon_paths.get(element[0])),
+                         position)
+        os.remove(base_dir + "output/" + output_name + '_temp5.pdf')
+
+        # In the event that there are 3 elements, add the third element as a separate icon below
+        if len(element) == 2:
+            position = {'page': 1, 'x0': 60, 'y0': 480, 'x1': 110, 'y1': 510}
+            add_image_to_pdf(base_dir + 'output/' + output_name + '_temp6.pdf',
+                             base_dir + 'output/' + output_name + '.pdf',
+                             base_dir + 'resources/images/element_icons/{}'.format(element_icon_paths.get(element[1])),
+                             position)
+            os.remove(base_dir + "output/" + output_name + '_temp6.pdf')
+
+        # Otherwise just rename to the final PDF
+        else:
+            os.rename(base_dir + 'output/' + output_name + '_temp6.pdf', base_dir + 'output/' + output_name + '.pdf')
+
     # Clean up temporary files
     os.remove(base_dir + "output/" + output_name + '_temp.pdf')
+    os.remove(base_dir + "output/" + output_name + '_temp2.pdf')
+    os.remove(base_dir + "output/" + output_name + '_temp3.pdf')
+    os.remove(base_dir + "output/" + output_name + '_temp4.pdf')
     os.remove(base_dir + "output/temporary_gun_image.png")
 
 
