@@ -14,7 +14,7 @@ from generate_gun_cmd import generate_gun_pdf
 from classes.json_reader import get_file_data
 
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import QIcon, QIntValidator
 from PyQt5 import QAxContainer
 from PyQt5.QtWidgets import (QApplication, QComboBox, QGridLayout, QGroupBox, QLabel,
                              QLineEdit, QWidget, QPushButton, QCheckBox,QMainWindow)
@@ -39,18 +39,19 @@ class Window(QMainWindow):
         base_stats_layout.setAlignment(Qt.AlignTop)
 
         # Add stat function
-        def add_stat_to_layout(layout, label, row):
+        def add_stat_to_layout(layout, label, row, force_int=False):
             """
             Adds all the necessary widgets to a grid layout for a single stat
             :param label: The label to display
             :param row: The row number to add on
-            :param signal_function: An additional function to connect on edit
             :param force_int: Force input to be an integer value
-            :param read_only: Make text field read only
             :returns: The QLineEdit object
             """
             new_label = QLabel(label)
             new_line_edit = QLineEdit()
+
+            if force_int:
+                new_line_edit.setValidator(QIntValidator(new_line_edit))
 
             layout.addWidget(new_label, row, 0)
             layout.addWidget(new_line_edit, row, 1)
@@ -147,7 +148,7 @@ class Window(QMainWindow):
         ###################################
         ###  START: Generation          ###
         ###################################
-        generation_group = QGroupBox("Generation")
+        generation_group = QGroupBox("Single-Gun Generation")
         generation_layout = QGridLayout()
         generation_layout.setAlignment(Qt.AlignTop)
 
@@ -169,6 +170,33 @@ class Window(QMainWindow):
         generation_group.setLayout(generation_layout)
         ###################################
         ###  END: Generation            ###
+        ###################################
+
+        ###################################
+        ###  START: Multi Generation    ###
+        ###################################
+        multi_group = QGroupBox("Multi-Gun Generation")
+        multi_layout = QGridLayout()
+        multi_layout.setAlignment(Qt.AlignTop)
+
+        # PDF Output Name
+        self.numgun_line_edit = add_stat_to_layout(multi_layout, "# Guns to Generate:", 0, force_int=True)
+        self.numgun_line_edit.setToolTip("Choose how many guns to automatically generate and save.")
+
+        # Generate button
+        button = QPushButton("Generate Multiple Guns")
+        button.setToolTip("Handles generating the guns and locally saving their PDFs in \"outputs/\".")
+        button.clicked.connect(lambda: self.generate_multiple_guns())
+        multi_layout.addWidget(button, 1, 0, 1, -1)
+
+        # Label for savefile output
+        self.multi_output_label = QLabel()
+        multi_layout.addWidget(self.multi_output_label, 2, 0, 1, -1)
+
+        # Grid layout
+        multi_group.setLayout(multi_layout)
+        ###################################
+        ###  END: Multi Generation      ###
         ###################################
 
         ###################################
@@ -201,17 +229,20 @@ class Window(QMainWindow):
         # Setting appropriate column widths
         base_stats_group.setFixedWidth(300)
         generation_group.setFixedWidth(300)
+        multi_group.setFixedWidth(300)
         gun_card_group.setFixedWidth(1000)
 
         # Setting appropriate layout heights
         base_stats_group.setFixedHeight(300)
-        generation_group.setFixedHeight(500)
+        generation_group.setFixedHeight(150)
+        multi_group.setFixedHeight(350)
         gun_card_group.setFixedHeight(800)
 
         # Overall layout grid
         layout = QGridLayout()
         layout.addWidget(base_stats_group, 0, 0)
         layout.addWidget(generation_group, 1, 0)
+        layout.addWidget(multi_group, 2, 0)
         layout.addWidget(gun_card_group, 0, 1, -1, 1)
 
         # Setting layout to be the central widget of main window
@@ -260,6 +291,46 @@ class Window(QMainWindow):
         generate_gun_pdf(self.basedir, output_name, gun, self.gun_images, rarity_check)
 
         # Load in gun card PDF
+        f = Path(os.path.abspath("output/{}.pdf".format(output_name))).as_uri()
+        self.WebBrowser.dynamicCall('Navigate(const QString&)', f)
+
+    def generate_multiple_guns(self):
+        """ Handles performing the call to automatically generate multiple guns and save them to outputs  """
+        # Error check for no number specified
+        if self.numgun_line_edit.text() == "":
+            self.multi_output_label.setText("No number set! Enter a number and resubmit!")
+            return
+
+        # Check for specifics needed like what damage set and borders
+        damage_balance = self.damage_balance_check.isChecked()
+        rarity_check = self.rarity_border_check.isChecked()
+
+        # Get a base output name to display and the number to generate
+        output_name = "EXAMPLE"
+        number_gen = int(self.numgun_line_edit.text())
+
+        # Generate N guns
+        for _ in range(number_gen):
+            # Generate the gun object
+            gun = Gun(self.basedir, damage_balance=damage_balance)
+
+            # Generate the PDF output name as the gun name
+            output_name = "{}_{}_{}_{}".format(
+                gun.type.title().replace('_', ' '), gun.guild.title(), gun.rarity.title(), gun.name).replace(' ', '')
+
+            # Check if it is already in use
+            if output_name == self.current_pdf:
+                self.multi_output_label.setText("PDF Name already in use!".format(output_name))
+                continue
+
+            # Generate the local gun card PDF
+            generate_gun_pdf(self.basedir, output_name, gun, self.gun_images, rarity_check)
+
+        # Set text and current PDF name
+        self.multi_output_label.setText("Saved {} guns to 'outputs/'!".format(number_gen))
+        self.current_pdf = output_name
+
+        # Load in last generated gun card PDF
         f = Path(os.path.abspath("output/{}.pdf".format(output_name))).as_uri()
         self.WebBrowser.dynamicCall('Navigate(const QString&)', f)
 

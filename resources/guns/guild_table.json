@@ -23,11 +23,11 @@
     },
     "dahlia": {
         "tiers": {
-            "common": "Burst: +1 Hit.",
-            "uncommon": "Burst: +1 Hit, +1 ACC Mod.",
-            "rare": "Burst: +1 Hit, +2 ACC Mod.",
-            "epic": "Burst: +1 Hit, +3 ACC Mod.",
-            "legendary": "Burst: +1 Hit, +4 ACC Mod."
+            "common": "+1 Hit.",
+            "uncommon": "+1 Hit, +1 ACC Mod.",
+            "rare": "+1 Hit, +2 ACC Mod.",
+            "epic": "+1 Hit, +3 ACC Mod.",
+            "legendary": "+1 Hit, +4 ACC Mod."
         },
         "gun_info": "Burst: Adds an additional Hit to each Attack. Increased Accuracy.",
         "element_roll": true
@@ -67,11 +67,11 @@
     },
     "feriore": {
         "tiers": {
-            "common": "Swap/Reload: 1d4 Grenade Damage, -3 ACC Mod.",
-            "uncommon": "Swap/Reload: 1d6 Grenade Damage, -3 ACC Mod.",
-            "rare": "Swap/Reload: 1d8 Grenade Damage, -2 ACC Mod.",
-            "epic": "Swap/Reload: 1d10 Grenade Damage, -2 ACC Mod.",
-            "legendary": "Swap/Reload: 1d12 Grenade Damage, -1 ACC Mod."
+            "common": "1d4 Grenade Damage on Swap/Reload, -3 ACC Mod.",
+            "uncommon": "1d6 Grenade Damage on Swap/Reload, -3 ACC Mod.",
+            "rare": "1d8 Grenade Damage on Swap/Reload, -2 ACC Mod.",
+            "epic": "1d10 Grenade Damage on Swap/Reload, -2 ACC Mod.",
+            "legendary": "1d12 Grenade Damage on Swap/Reload, -1 ACC Mod."
         },
         "gun_info": "Less Accuracy. \nSwap/Reload: When taking a Swap Gun or Reload action, the gun is Thrown and deals Damage like a grenade.",
         "element_roll": true

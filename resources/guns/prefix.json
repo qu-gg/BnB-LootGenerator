@@ -13,7 +13,7 @@
     },
     "4": {
         "name": "Gaudy",
-        "info": "Highly reflective, which can be used to temporarily blind Enemies. giving them -3 on Attack Rolls."
+        "info": "Highly reflective, which can be used to temporarily blind Enemies, giving them -3 on Attack Rolls."
     },
     "5": {
         "name": "Cheerful",
@@ -128,12 +128,12 @@
         "info": "First Attack of an encounter deals 2x Damage."
     },
     "33": {
-        "name": "- Zesty",
+        "name": "Zesty",
         "info": "Enemies killed by this gun grant the wielder 1 Badass Token."
     },
     "34": {
         "name": "Utter",
-        "info": "There is a secret password that activates 3x Damage for the next 2 turns. Wielder can guess once per encounter."
+        "info": "Has a secret password that activates 3x Damage for 2 turns. Wielder can guess once per encounter."
     },
     "35": {
         "name": "Far-Flung",
@@ -217,7 +217,7 @@
     },
     "55": {
         "name": "Mixed",
-        "info": "For each Hit/Crit, gather the next die for Damage. d6, d8, d10,d12,d20."
+        "info": "For each Hit/Crit, gather the next die for Damage - d6,d8,d10,d12,d20."
     },
     "56": {
         "name": "Aback",
@@ -353,7 +353,7 @@
     },
     "89": {
         "name": "Obnoxious",
-        "info": "Guaranteed Insight Check once per day at the cost of having to listen to the gun drone on and on and on."
+        "info": "Guaranteed Insight Check once per day but you have to listen to the gun drone on and on and on."
     },
     "90": {
         "name": "Holistic",
@@ -401,6 +401,6 @@
     },
     "100": {
         "name": "Imminent",
-        "info": "Enemies Hit take increasing Damage each turn. Damage starts at 1 and increases by 1 with each Hit/turn."
+        "info": "Enemies Hit take increasing Damage each turn, starting at 1 and adding 1 with each Hit/turn."
     }
 }
