@@ -14,8 +14,7 @@ The command for this is: ```python generate_gun_cmd.py --<attribute> <value>``` 
 <b>Local Application:</b>
 The local option is a PyQT GUI application in which the user can specify specific gun attributes to roll with. 
 This will save a local PDF that can be printed off or sent to players.
-![example_program](https://user-images.githubusercontent.com/32918812/164554599-cd56b591-6e89-4204-ab6c-8507934ca064.png)
-
+![Screenshot 2022-05-04 120938](https://user-images.githubusercontent.com/32918812/166724144-34812b0f-94bd-42e8-ba8b-8578b499487d.png)
 
 ## Note on PDF Viewers
 The local version of this application requires a PDFViewer capable of form/annotation rendering in order to view the generated text on the Gun Card. PDF Viewers are all over the place when it comes to support for this and it cannot be guaranteed LootGenerator will work with a given viewer. Alternative solutions were tried for rendering (e.g. pdf2image conversion, pdfjs, local chromium server), but no universal solution works. Without a full rewrite, this solution will have to suffice for now. We apologize for the inconvenience!
