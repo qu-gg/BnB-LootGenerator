@@ -10,6 +10,7 @@ from pathlib import Path
 
 from classes.Gun import Gun
 from classes.GunImage import GunImage
+from classes.GunPDF import GunPDF
 from generate_gun_cmd import generate_gun_pdf
 from classes.json_reader import get_file_data
 
@@ -17,7 +18,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon, QIntValidator
 from PyQt5 import QAxContainer
 from PyQt5.QtWidgets import (QApplication, QComboBox, QGridLayout, QGroupBox, QLabel,
-                             QLineEdit, QWidget, QPushButton, QCheckBox,QMainWindow)
+                             QLineEdit, QWidget, QPushButton, QCheckBox, QMainWindow, QMenuBar, QTabWidget)
 
 
 class Window(QMainWindow):
@@ -27,16 +28,10 @@ class Window(QMainWindow):
         # Load classes
         self.basedir = basedir
         self.gun_images = GunImage(self.basedir)
+        self.gun_pdf = GunPDF(self.basedir)
 
         # Window Title
         self.setWindowTitle("Bunkers and Badasses - LootGenerator")
-
-        ###################################
-        ###  BEGIN: Base Stats Grid     ###
-        ###################################
-        base_stats_group = QGroupBox("Configuration")
-        base_stats_layout = QGridLayout()
-        base_stats_layout.setAlignment(Qt.AlignTop)
 
         # Add stat function
         def add_stat_to_layout(layout, label, row, force_int=False):
@@ -56,6 +51,15 @@ class Window(QMainWindow):
             layout.addWidget(new_label, row, 0)
             layout.addWidget(new_line_edit, row, 1)
             return new_line_edit
+
+        ######################################### START GUNS ##############################################
+
+        ###################################
+        ###  BEGIN: Base Stats Grid     ###
+        ###################################
+        base_stats_group = QGroupBox("Configuration")
+        base_stats_layout = QGridLayout()
+        base_stats_layout.setAlignment(Qt.AlignTop)
 
         # Gun Name
         self.name_line_edit = add_stat_to_layout(base_stats_layout, "Gun Name:", 0)
@@ -223,7 +227,7 @@ class Window(QMainWindow):
         # Grid layout
         gun_card_group.setLayout(gun_card_layout)
         ###################################
-        ###  START: Gun Display         ###
+        ###  END: Gun Display           ###
         ###################################
 
         # Setting appropriate column widths
@@ -238,17 +242,164 @@ class Window(QMainWindow):
         multi_group.setFixedHeight(350)
         gun_card_group.setFixedHeight(800)
 
-        # Overall layout grid
-        layout = QGridLayout()
-        layout.addWidget(base_stats_group, 0, 0)
-        layout.addWidget(generation_group, 1, 0)
-        layout.addWidget(multi_group, 2, 0)
-        layout.addWidget(gun_card_group, 0, 1, -1, 1)
+        # Gun Generation Layout
+        self.gun_generation_layout = QGridLayout()
+        self.gun_generation_layout.addWidget(base_stats_group, 0, 0)
+        self.gun_generation_layout.addWidget(generation_group, 1, 0)
+        self.gun_generation_layout.addWidget(multi_group, 2, 0)
+        self.gun_generation_layout.addWidget(gun_card_group, 0, 1, -1, 1)
+
+        self.gun_tab = QWidget()
+        self.gun_tab.setLayout(self.gun_generation_layout)
+
+        ######################################### END GUNS      ##############################################
+
+        ######################################### START POTIONS ##############################################
+
+        ###################################
+        ###  BEGIN: Potion Stats Grid   ###
+        ###################################
+        potion_stats_group = QGroupBox("Configuration")
+        potion_stats_layout = QGridLayout()
+        potion_stats_layout.setAlignment(Qt.AlignTop)
+
+        # Gun Name
+        potion_stats_layout.addWidget(QLabel("Potion ID: "), 0, 0)
+        self.potion_id_box = QComboBox()
+        self.potion_id_box.addItem("Random")
+        for item in get_file_data(basedir + "resources/misc/potions/potion.json").keys():
+            self.potion_id_box.addItem(item)
+        potion_stats_layout.addWidget(self.potion_id_box, 0, 1)
+
+        # Roll for Rarity
+        potion_cost_text_label = QLabel("Display Potion Cost: ")
+        potion_cost_text_label.setToolTip("Choose whether to put the potion cost on the gun card or not.")
+        potion_stats_layout.addWidget(potion_cost_text_label, 1, 0)
+        self.potion_cost = QCheckBox()
+        self.potion_cost.setToolTip("Choose whether to put the potion cost on the gun card or not.")
+        potion_stats_layout.addWidget(self.potion_cost, 1, 1)
+
+        # Grid layout
+        potion_stats_group.setLayout(potion_stats_layout)
+        ###################################
+        ###  END: Potion Stats Grid     ###
+        ###################################
+
+        ###################################
+        ###  START: Potion Generation   ###
+        ###################################
+        potion_generation_group = QGroupBox("Single-Gun Generation")
+        potion_generation_layout = QGridLayout()
+        potion_generation_layout.setAlignment(Qt.AlignTop)
+
+        # PDF Output Name
+        self.potion_pdf_line_edit = add_stat_to_layout(potion_generation_layout, "PDF Filename:", 0)
+        self.potion_pdf_line_edit.setToolTip("Specify the filename that Generate Gun saves the next gun under.")
+
+        # Generate button
+        button = QPushButton("Generate Potion")
+        button.setToolTip("Handles generating the potion card and locally saving the PDF in \"outputs/\".")
+        button.clicked.connect(lambda: self.generate_potion())
+        potion_generation_layout.addWidget(button, 1, 0, 1, -1)
+
+        # Label for savefile output
+        self.output_potion_pdf_label = QLabel()
+        potion_generation_layout.addWidget(self.output_potion_pdf_label, 2, 0, 1, -1)
+
+        # Grid layout
+        potion_generation_group.setLayout(potion_generation_layout)
+        ###################################
+        ###  END: Potion Generation     ###
+        ###################################
+
+        ###################################
+        ###  START: Multi Generation    ###
+        ###################################
+        potion_multi_group = QGroupBox("Multi-Potion Generation")
+        potion_multi_layout = QGridLayout()
+        potion_multi_layout.setAlignment(Qt.AlignTop)
+
+        # PDF Output Name
+        self.numpotion_line_edit = add_stat_to_layout(potion_multi_layout, "# Potions to Generate:", 0, force_int=True)
+        self.numpotion_line_edit.setToolTip("Choose how many potions to automatically generate and save.")
+
+        # Generate button
+        button = QPushButton("Generate Multiple Potions")
+        button.setToolTip("Handles generating the potions and locally saving their PDFs in \"outputs/\".")
+        button.clicked.connect(lambda: self.generate_multiple_potions())
+        potion_multi_layout.addWidget(button, 1, 0, 1, -1)
+
+        # Label for savefile output
+        self.potion_multi_output_label = QLabel()
+        potion_multi_layout.addWidget(self.potion_multi_output_label, 2, 0, 1, -1)
+
+        # Grid layout
+        potion_multi_group.setLayout(potion_multi_layout)
+        ###################################
+        ###  END: Multi Generation      ###
+        ###################################
+
+        ###################################
+        ###  START: Potion Display      ###
+        ###################################
+        potion_card_group = QGroupBox("Potion Card")
+        potion_card_layout = QGridLayout()
+        potion_card_layout.setAlignment(Qt.AlignVCenter)
+
+        self.PotionWebBrowser = QAxContainer.QAxWidget(self)
+        self.PotionWebBrowser.setFixedHeight(800)
+        self.PotionWebBrowser.setControl("{8856F961-340A-11D0-A96B-00C04FD705A2}")
+        self.PotionWebBrowser.setToolTip("If nothing is displaying or the text is not displaying, then either "
+                                   "1.) you do not have a local PDF Viewer or 2.) the OS you are on doesn't support annotation rendering.")
+        potion_card_layout.addWidget(self.PotionWebBrowser, 0, 1, -1, 1)
+
+        # Need to check if attempting to re-save when the PDF name is already taken
+        self.current_pdf = "EXAMPLE_POTION.pdf"
+
+        # Load in Gun Card Template
+        f = Path(os.path.abspath(self.basedir + "resources/PotionTemplate.pdf")).as_uri()
+        self.PotionWebBrowser.dynamicCall('Navigate(const QString&)', f)
+
+        # Grid layout
+        potion_card_group.setLayout(potion_card_layout)
+        ###################################
+        ###  END: Potion Display        ###
+        ###################################
+
+        # Setting appropriate column widths
+        potion_stats_group.setFixedWidth(300)
+        potion_generation_group.setFixedWidth(300)
+        potion_multi_group.setFixedWidth(300)
+        potion_card_group.setFixedWidth(1000)
+
+        # Setting appropriate layout heights
+        potion_stats_group.setFixedHeight(300)
+        potion_generation_group.setFixedHeight(150)
+        potion_multi_group.setFixedHeight(350)
+        potion_card_group.setFixedHeight(800)
+
+        # Potion Generation Layout
+        self.potion_generation_layout = QGridLayout()
+        self.potion_generation_layout.addWidget(potion_stats_group, 0, 0)
+        self.potion_generation_layout.addWidget(potion_generation_group, 1, 0)
+        self.potion_generation_layout.addWidget(potion_multi_group, 2, 0)
+        self.potion_generation_layout.addWidget(potion_card_group, 0, 1, -1, 1)
+
+        self.potion_tab = QWidget()
+        self.potion_tab.setLayout(self.potion_generation_layout)
+
+        ######################################### END POTIONS ##############################################
+
+        # TabWidget for the different generation menus
+        self.tabMenu = QTabWidget()
+        self.tabMenu.addTab(self.gun_tab, "Gun")
+        self.tabMenu.setTabText(0, "Guns")
+
+        self.tabMenu.addTab(self.potion_tab, "Potion")
+        self.tabMenu.setTabText(1, "Potions")
 
         # Setting layout to be the central widget of main window
-        wid = QWidget()
-        wid.setLayout(layout)
-        self.setCentralWidget(wid)
+        self.setCentralWidget(self.tabMenu)
 
     def generate_gun(self):
         """ Handles performing the call to generate a gun given the parameters and updating the Gun Card image """
@@ -288,7 +439,7 @@ class Window(QMainWindow):
         self.current_pdf = output_name
 
         # Generate the local gun card PDF
-        generate_gun_pdf(self.basedir, output_name, gun, self.gun_images, rarity_check)
+        self.gun_pdf.generate_gun_pdf(output_name, gun, self.gun_images, rarity_check)
 
         # Load in gun card PDF
         f = Path(os.path.abspath("output/{}.pdf".format(output_name))).as_uri()
@@ -324,7 +475,7 @@ class Window(QMainWindow):
                 continue
 
             # Generate the local gun card PDF
-            generate_gun_pdf(self.basedir, output_name, gun, self.gun_images, rarity_check)
+            self.gun_pdf.generate_gun_pdf(output_name, gun, self.gun_images, rarity_check)
 
         # Set text and current PDF name
         self.multi_output_label.setText("Saved {} guns to 'outputs/'!".format(number_gen))
