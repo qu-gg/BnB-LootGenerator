@@ -1,0 +1,82 @@
+{
+  "1": {
+    "name": "Tina Potion (Common)",
+    "info": null
+  },
+  "2": {
+    "name": "Health Potion (Common)",
+    "info": "Regains 1d8 Health."
+    },
+  "3": {
+    "name": "Shield Potion (Common)",
+    "info": "Recharges 1d8 Shield."
+  },
+  "4": {
+    "name": "Check Potion",
+    "info": "+5 to x Check for 1 hour."
+  },
+  "5": {
+    "name": "Element Potion",
+    "info": "Protection from x Element for 2 turns."
+  },
+  "6": {
+    "name": "Tina Potion (Rare)",
+    "info": null
+  },
+  "7": {
+    "name": "Health Potion (Rare)",
+    "info": "Regens 2d8 + 5 Health."
+  },
+  "8": {
+    "name": "Shield Potion (Rare)",
+    "info": "Recharges 2d8 + 5 Shield."
+  },
+  "9": {
+    "name": "Stat Potion",
+    "info": "3 to x Stat Mod for 1 hour."
+  },
+  "10":{
+    "name": "Twofer Potion",
+    "info": "Gain 1d8 +3 Health and Shields."
+  },
+  "11":{
+    "name": "Tina Potion (Epic)",
+    "info": null
+  },
+  "12":{
+    "name": "Health Potion (Epic)",
+    "info": "Regen 3d8 + 10 Health."
+    },
+  "13":{
+    "name": "Shield Potion (Epic)",
+    "info": "Recharges 3d8 + 10 Shield."
+  },
+  "14":{
+    "name": "Lucky Potion",
+    "info": "Re-roll 1 die per Attack for 2 turns."
+  },
+  "15":{
+    "name": "Invisibility Potion",
+    "info": "Become Cloaked for 3 turns."
+  },
+  "16":{
+    "name": "Tina Potion (Legendary)",
+    "info": null
+  },
+  "17":{
+    "name": "Health Potion (Legendary)",
+    "info": "Regens 4d8 + 20 Health."
+  },
+  "18":{
+    "name": "Shield Potion (Legendary)",
+    "info": "Recharges 4d8 + 20 Shields."
+  },
+  "19":{
+    "name": "Fumble Potion",
+    "info": "All 1's become 20's for 2 hours."
+  },
+  "20":{
+    "name": "Gold Farmer Potion",
+    "info": "+2d6 is all Cache Rolls for 2 hour"
+  }
+}

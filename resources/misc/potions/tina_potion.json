@@ -1,0 +1,122 @@
+{
+  "1":  {
+    "name": "Golden Gulp",
+    "info": "Shhh it's just pee, don't tell anyone."
+  },
+  "2":  {
+    "name": "Deadly Horrible Potion of Death",
+    "info": "Kills you dead in exactly 1 hour. Can only be cured bu doing a hundo push-ups."
+  },
+  "3":  {
+    "name": "One Liner Juice",
+    "info": "After drinking this, everything you do for the next hour has to be followed with a cool punny one liner, or else you spasm, taking 5 damage."
+  },
+  "4":  {
+    "name": "Best Drink Ever",
+    "info": "The single best thing you have or ever will taste. Even if you get another one of these potions it'll never taste as good as the first, so you're sorta bummed forever that nothing tastes as good."
+  },
+  "5":  {
+    "name": "What if We Were Girlfriends?",
+    "info": "The next two people to drink this juice see what their life would be like if they moved their beds together."
+  },
+  "6":  {
+    "name": "Gotta Sing",
+    "info": "You have to sing everything you say for the next hour or until the BM gets bored"
+  },
+  "7":  {
+    "name": "Friday Freak",
+    "info": "The next two people to drink this swap bodies for the rest of the session"
+  },
+  "8":  {
+    "name": "Love Potion Number 69 (nice)",
+    "info": "When you drink this potion, the next person you smooch will love for you exactly sixty-nine real seconds. Once the 69 seconds are up, they'll hate you with the exact same ferocity with which they just loved you."
+  },
+  "9":  {
+    "name": "Truth Serum",
+    "info": "You can only tell the truth for the rest of the session."
+  },
+  "10": {
+    "name": "No Curses Plz",
+    "info": "If the drinker curses anytime for the rest of the session, they take 5 Damage."
+  },
+  "11": {
+    "name": "Gotta Dance",
+    "info": "You can't stop dancing for 10 minutes. When taking movement actions, specifically describe what sick steps you put down."
+  },
+  "12": {
+    "name": "Big Booty Potion",
+    "info": "Makes the booty grow 300%. Too Juicy. I die."
+  },
+  "13": {
+    "name": "Vommodrink" ,
+    "info": "Makes you vomit real bad for 30 seconds [Create a Corrosive puddle in all adjacent squares every turn for however long the BM hates you]."
+  },
+  "14": {
+    "name": "Stank Drank",
+    "info": "Anyone who drinks this smells so bad that people gotta get as far away from them as possible for a half hour [Allies cannot move through squares within a Range of 2 around you]."
+  },
+  "15": {
+    "name": "Do U Feel Lucky",
+    "info": "Has a fifty-fifty change to give the drinker 20 HP or deal 20 Health Damage."
+  },
+  "16": {
+    "name": "Bullet Burp",
+    "info": "For twenty minutes, you burn uncontrollably, causing bullets to come out and do 1d4 damage each to anyone adjacent. DO NOT KISS ANYONE AFTER DRINKING THIS."
+  },
+  "17": {
+    "name": "Baddie Juice",
+    "info": "You immediately take the form of the one person you hate the most. Wears off after an hour."
+  },
+  "18": {
+    "name": "Do You Like Me Y/N",
+    "info": "Anyone drinking this has to tell their true feelings about the BM."
+  },
+  "19": {
+    "name": "Roshambo",
+    "info": "Exactly once, instead of doing a proper combat against an Enemy, you can play rock-paper-scissors with the BM. If you lose, your character is DEAD FOREVER or at least gets like 3 trauma"
+  },
+  "20": {
+    "name": "Punch Drunk",
+    "info": "You have to Melee Attack someone every hour or your heart stops, but your Melee Attacks deal a bonus 1d12 Damage."
+  },
+  "21": {
+    "name": "Butt Farts",
+    "info": "Once, during the remainder of the session, you have the ability to do a fart so big it deals 2d8 Damage to everyone in 2 squares Range"
+  },
+  "22": {
+    "name": "Haterate",
+    "info": "Anyone who drinks this makes everyone around 'em so mad that they gotta beat the puss out of them for at least a half hour [All enemies make their next Attack against you, probably]."
+  },
+  "23": {
+    "name": "Fancy Feats",
+    "info": "Gives you a fancy voice for an hour [+10 to Impersonation check]."
+  },
+  "24": {
+    "name": "2 Sexy",
+    "info": "Makes you reeeeeeally alluring to one type of creature of the BM's choice [Gain +5 Talk and Interact checks for that enemy type]."
+  },
+  "25": {
+    "name": "Parent Trap",
+    "info": "Whoever drinks this will instantly create a baby with the next person they smooch. They baby will just pop into existence outta thin air."
+  },
+  "26": {
+    "name": "Scrappy",
+    "info": "Drinkin this give you a little sidekick who looks like a smaller version of you. They're really irritating but they give you an extra Action every turn and they love you, but they have 1 HP. You or the BM control them, and do their voice, whoever wants it first."
+  },
+  "27": {
+    "name": "Not Today",
+    "info": "The next time you would die...you don't. Ignore the would-kill-you damage and get your life together."
+  },
+  "28": {
+    "name": "Liquid Confidence",
+    "info": "Adjacent allies gain +2 to all checks."
+  },
+  "29": {
+    "name": "Good Touch",
+    "info": "Your Melee Attacks heal targets."
+  },
+  "30": {
+    "name": "Tina Tincture",
+    "info": "Makes you sound like Tiny Tina, your main man [Control one non-boss Enemy during the next encounter]"
+  }
+}
