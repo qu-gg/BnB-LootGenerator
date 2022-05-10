@@ -16,7 +16,7 @@
   },
   "16-20": {
     "name": "Check Potion",
-    "info": "+5 to x Check for 1 hour.",
+    "info": "+5 to x Checks for 1 hour.",
     "cost": 20
   },
   "21-25": {
@@ -24,19 +24,19 @@
     "info": "Protection from x Element for 2 turns.",
     "cost": 15
   },
-  "25-30": {
+  "26-30": {
     "name": "Tina Potion (Rare)",
     "info": null,
     "cost": 25
   },
   "31-35": {
     "name": "Health Potion (Rare)",
-    "info": "Regens 2d8 + 5 Health.",
+    "info": "Regens 2d8+5 Health.",
     "cost": 40
   },
   "36-40": {
     "name": "Shield Potion (Rare)",
-    "info": "Recharges 2d8 + 5 Shield.",
+    "info": "Recharges 2d8+5 Shield.",
     "cost": 30
   },
   "41-45": {
@@ -56,12 +56,12 @@
   },
   "56-60":{
     "name": "Health Potion (Epic)",
-    "info": "Regen 3d8 + 10 Health.",
+    "info": "Regen 3d8+10 Health.",
     "cost": 100
     },
   "61-65":{
     "name": "Shield Potion (Epic)",
-    "info": "Recharges 3d8 + 10 Shield.",
+    "info": "Recharges 3d8+10 Shield.",
     "cost": 80
   },
   "66-70":{
@@ -81,12 +81,12 @@
   },
   "81-85":{
     "name": "Health Potion (Legendary)",
-    "info": "Regens 4d8 + 20 Health.",
+    "info": "Regens 4d8+20 Health.",
     "cost": 250
   },
   "86-90":{
     "name": "Shield Potion (Legendary)",
-    "info": "Recharges 4d8 + 20 Shields.",
+    "info": "Recharges 4d8+20 Shields.",
     "cost": 230
   },
   "91-95":{
@@ -96,7 +96,7 @@
   },
   "96-100":{
     "name": "Gold Farmer Potion",
-    "info": "+2d6 is all Cache Rolls for 2 hours.",
+    "info": "+2d6 to all Cache Rolls for 2 hours.",
     "cost": 270
   }
 }

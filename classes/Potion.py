@@ -24,6 +24,31 @@ class Potion:
             "76-80": 10
         }
 
+        self.checks = {
+            1: "Interact",
+            2: "Talk",
+            3: "Insight",
+            4: "Sneak",
+            5: "Search",
+            6: "Traverse"
+        }
+
+        self.elements = {
+            1: 'Radiation',
+            2: 'Corrosive',
+            3: 'Shock',
+            4: 'Explosive',
+            5: 'Incendiary',
+            6: 'Cyro'
+        }
+
+        self.stats = {
+            1: 'ACC',
+            2: 'DMG',
+            3: 'SPD',
+            4: 'MST'
+        }
+
         # Grab a random potion id if none specified
         if potion_id == "Random":
             key = choice(list(potion_data.keys()))
@@ -47,6 +72,14 @@ class Potion:
             self.name = tina_dict['name']
             self.effect = tina_dict['info']
             self.tina_potion = True
+
+        # Check for Check Potion
+        if self.name == "Check Potion":
+            self.effect = self.effect.replace("x", self.checks.get(randint(1, 6)))
+        if self.name == "Element Potion":
+            self.effect = self.effect.replace("x", self.elements.get(randint(1, 6)))
+        if self.name == "Stat Potion":
+            self.effect = self.effect.replace("x", self.stats.get(randint(1, 4)))
 
     def check_tina_range(self, potion_id):
         """

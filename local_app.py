@@ -9,11 +9,12 @@ import sys
 from pathlib import Path
 
 from classes.Gun import Gun
-from classes.GunImage import GunImage
 from classes.GunPDF import GunPDF
+from classes.GunImage import GunImage
 
 from classes.Potion import Potion
 from classes.PotionPDF import PotionPDF
+from classes.PotionImage import PotionImage
 
 from classes.json_reader import get_file_data
 
@@ -30,10 +31,13 @@ class Window(QMainWindow):
 
         # Load classes
         self.basedir = basedir
-        self.gun_images = GunImage(self.basedir)
+
+        # PDF and Image Classes
         self.gun_pdf = GunPDF(self.basedir)
+        self.gun_images = GunImage(self.basedir)
 
         self.potion_pdf = PotionPDF(self.basedir)
+        self.potion_images = PotionImage(self.basedir)
 
         # Window Title
         self.setWindowTitle("Bunkers and Badasses - LootGenerator")
@@ -509,15 +513,16 @@ class Window(QMainWindow):
         # Generate a potion
         potion = Potion(self.basedir, potion_id)
 
-        # Generate a PDF
+        # Generate output name and check if it is already in use
         output_name = potion.name.replace(" ", "")
-        self.potion_pdf.generate_potion_pdf(output_name, potion, None, include_cost, include_tina_effect)
-
-        # Check if it is already in use
         if output_name == self.current_potion_pdf:
             self.output_potion_pdf_label.setText("PDF Name already in use!".format(output_name))
             return
 
+        # Generate the PDF
+        self.potion_pdf.generate_potion_pdf(output_name, potion, self.potion_images, include_cost, include_tina_effect)
+
+        # Update the label and pdf name
         self.output_potion_pdf_label.setText("Saved to output_potions/{}.pdf!".format(output_name))
         self.current_potion_pdf = output_name
 

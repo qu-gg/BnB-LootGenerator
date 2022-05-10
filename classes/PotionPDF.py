@@ -26,7 +26,7 @@ class PotionPDF:
         # PDF Appearance for the Forms
         self.appearances = {
             "Name": ('/Helvetica-BoldOblique 0 Tf 0 g', 0),
-            "Cost": ('/Helvetica-Bold 25.00 Tf 0 g', 0),
+            "Cost": ('/Helvetica-Bold 25.00 Tf 0 g', 1),
             "Effect": ('/Helvetica-Bold 0 Tf 0 g', 1),
         }
 
@@ -125,6 +125,20 @@ class PotionPDF:
         }
 
         # Fill the PDF with the given information
-        self.fill_pdf(self.base_dir + 'resources/PotionTemplate.pdf', self.base_dir + 'output_potions/' + output_name + '.pdf', data_dict)
+        self.fill_pdf(self.base_dir + 'resources/PotionTemplate.pdf',
+                      self.base_dir + 'output_potions/' + output_name + '_temp.pdf', data_dict)
 
-        # TODO - Add potion image pasting here
+        # Get a potion image sample
+        potion_images.sample_potion_image()
+
+        # Apply gun art to gun card
+        position = {'page': 1, 'x0': 90, 'y0': 150, 'x1': 346, 'y1': 406}
+        self.add_image_to_pdf(
+            self.base_dir + 'output_potions/' + output_name + '_temp.pdf',
+            self.base_dir + 'output_potions/' + output_name + '.pdf',
+            self.base_dir + 'output_potions/temporary_potion_image.png',
+            position
+        )
+
+        # Remove old files
+        os.remove(self.base_dir + "output_potions/" + output_name + '_temp.pdf')

@@ -18,7 +18,7 @@ class GunImage:
         self.prefix = prefix
 
         # List of individual JSONs
-        PREFIX = prefix + "resources/images/"
+        PREFIX = prefix + "resources/images/gun_images/"
         FILELIST = [PREFIX + "bl1_guns.json", PREFIX + "bl2_guns.json",
                     PREFIX + "bl3_guns.json", PREFIX + "bltps_guns.json"]
 

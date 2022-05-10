@@ -17,7 +17,10 @@ BL_VERSION = "tps"
 
 def main():
     # Get base weapon list for the given version
-    url = "https://www.lootlemon.com/db/borderlands-{}/weapons".format(BL_VERSION)
+    # url = "https://www.lootlemon.com/db/borderlands-{}/weapons".format(BL_VERSION)
+
+    url = "https://www.lootlemon.com/db/borderlands-tps/oz-kits"
+
     wep_url = "https://www.lootlemon.com/"
     html = requests.get(url).text
     soup = bs4.BeautifulSoup(html, 'html.parser')
@@ -30,8 +33,8 @@ def main():
         cells = link.find_all("div", "db_cell")
         new_gun = {}
         new_gun['name'] = cells[0].string
-        new_gun['type'] = cells[1].string
-        new_gun['manufacturer'] = cells[2].string
+        # new_gun['type'] = cells[1].string
+        # new_gun['manufacturer'] = cells[2].string
 
         # Get subURL for larger image
         try:
