@@ -26,11 +26,11 @@ class GunPDF:
         # PDF Appearance for the Forms
         self.appearances = {
             "Damage": ('/Helvetica-BoldOblique 20.00 Tf 0 g', 1),
-            "Name": ('/Helvetica-BoldOblique 25.00 Tf 0 g', 1),
+            "Name": ('/Helvetica-BoldOblique 0 Tf 0 g', 1),
 
             "Guild": ('/Helvetica-Bold 17.50 Tf 0 g', 1),
             "GunType": ('/Helvetica-Bold 17.50 Tf 0 g', 1),
-            "Rarity": ('/Helvetica-Bold 15.00 Tf 0 g', 1),
+            "Rarity": ('/Helvetica-Bold 0 Tf 0 g', 1),
 
             "ElementBonus": ('/Helvetica-Bold 13.00 Tf 0 g', 1),
 

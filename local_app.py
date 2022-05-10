@@ -11,7 +11,10 @@ from pathlib import Path
 from classes.Gun import Gun
 from classes.GunImage import GunImage
 from classes.GunPDF import GunPDF
-from generate_gun_cmd import generate_gun_pdf
+
+from classes.Potion import Potion
+from classes.PotionPDF import PotionPDF
+
 from classes.json_reader import get_file_data
 
 from PyQt5.QtCore import Qt
@@ -29,6 +32,8 @@ class Window(QMainWindow):
         self.basedir = basedir
         self.gun_images = GunImage(self.basedir)
         self.gun_pdf = GunPDF(self.basedir)
+
+        self.potion_pdf = PotionPDF(self.basedir)
 
         # Window Title
         self.setWindowTitle("Bunkers and Badasses - LootGenerator")
@@ -263,7 +268,7 @@ class Window(QMainWindow):
         potion_stats_layout = QGridLayout()
         potion_stats_layout.setAlignment(Qt.AlignTop)
 
-        # Gun Name
+        # Potion ID Selection
         potion_stats_layout.addWidget(QLabel("Potion ID: "), 0, 0)
         self.potion_id_box = QComboBox()
         self.potion_id_box.addItem("Random")
@@ -271,13 +276,22 @@ class Window(QMainWindow):
             self.potion_id_box.addItem(item)
         potion_stats_layout.addWidget(self.potion_id_box, 0, 1)
 
-        # Roll for Rarity
+        # Whether to display the potion cost on the card or hide it
         potion_cost_text_label = QLabel("Display Potion Cost: ")
         potion_cost_text_label.setToolTip("Choose whether to put the potion cost on the gun card or not.")
         potion_stats_layout.addWidget(potion_cost_text_label, 1, 0)
         self.potion_cost = QCheckBox()
         self.potion_cost.setToolTip("Choose whether to put the potion cost on the gun card or not.")
+        self.potion_cost.setChecked(True)
         potion_stats_layout.addWidget(self.potion_cost, 1, 1)
+
+        # Whether to display the potion cost on the card or hide it
+        potion_tina_text_label = QLabel("Display Tina Effect: ")
+        potion_tina_text_label.setToolTip("Choose whether to show the tina potion's effect for the player or have it read as 'SECRET EFFECT'")
+        potion_stats_layout.addWidget(potion_tina_text_label, 2, 0)
+        self.potion_tina_show = QCheckBox()
+        self.potion_tina_show.setToolTip("Choose whether to show the tina potion's effect for the player or have it read as 'SECRET EFFECT'")
+        potion_stats_layout.addWidget(self.potion_tina_show, 2, 1)
 
         # Grid layout
         potion_stats_group.setLayout(potion_stats_layout)
@@ -354,7 +368,7 @@ class Window(QMainWindow):
         potion_card_layout.addWidget(self.PotionWebBrowser, 0, 1, -1, 1)
 
         # Need to check if attempting to re-save when the PDF name is already taken
-        self.current_pdf = "EXAMPLE_POTION.pdf"
+        self.current_potion_pdf = "EXAMPLE_POTION.pdf"
 
         # Load in Gun Card Template
         f = Path(os.path.abspath(self.basedir + "resources/PotionTemplate.pdf")).as_uri()
@@ -435,7 +449,7 @@ class Window(QMainWindow):
             self.output_pdf_label.setText("PDF Name already in use!".format(output_name))
             return
 
-        self.output_pdf_label.setText("Saved to outputs/{}.pdf!".format(output_name))
+        self.output_pdf_label.setText("Saved to output/{}.pdf!".format(output_name))
         self.current_pdf = output_name
 
         # Generate the local gun card PDF
@@ -478,12 +492,38 @@ class Window(QMainWindow):
             self.gun_pdf.generate_gun_pdf(output_name, gun, self.gun_images, rarity_check)
 
         # Set text and current PDF name
-        self.multi_output_label.setText("Saved {} guns to 'outputs/'!".format(number_gen))
+        self.multi_output_label.setText("Saved {} guns to 'output/'!".format(number_gen))
         self.current_pdf = output_name
 
         # Load in last generated gun card PDF
         f = Path(os.path.abspath("output/{}.pdf".format(output_name))).as_uri()
         self.WebBrowser.dynamicCall('Navigate(const QString&)', f)
+
+    def generate_potion(self):
+        """ Handles performing the call to generate a potion given the parameters and updating the Potion Card image """
+        # Load in properties that are currently set in the program
+        potion_id = self.potion_id_box.currentText()
+        include_cost = self.potion_cost.isChecked()
+        include_tina_effect = self.potion_tina_show.isChecked()
+
+        # Generate a potion
+        potion = Potion(self.basedir, potion_id)
+
+        # Generate a PDF
+        output_name = potion.name.replace(" ", "")
+        self.potion_pdf.generate_potion_pdf(output_name, potion, None, include_cost, include_tina_effect)
+
+        # Check if it is already in use
+        if output_name == self.current_potion_pdf:
+            self.output_potion_pdf_label.setText("PDF Name already in use!".format(output_name))
+            return
+
+        self.output_potion_pdf_label.setText("Saved to output_potions/{}.pdf!".format(output_name))
+        self.current_potion_pdf = output_name
+
+        # Load in gun card PDF
+        f = Path(os.path.abspath("output_potions/{}.pdf".format(output_name))).as_uri()
+        self.PotionWebBrowser.dynamicCall('Navigate(const QString&)', f)
 
 
 if __name__ == '__main__':
