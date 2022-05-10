@@ -181,7 +181,7 @@ class GunPDF:
         }
 
         # Fill the PDF with the given information
-        self.fill_pdf(self.base_dir + 'resources/GunWhiteTemplate.pdf', self.base_dir + 'output/' + output_name + '_temp.pdf', data_dict)
+        self.fill_pdf(self.base_dir + 'resources/GunTemplate.pdf', self.base_dir + 'output/' + output_name + '_temp.pdf', data_dict)
 
         # Get a gun sample and apply a colored border depending
         if rarity_border is True:

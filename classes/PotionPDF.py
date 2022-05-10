@@ -125,6 +125,6 @@ class PotionPDF:
         }
 
         # Fill the PDF with the given information
-        self.fill_pdf(self.base_dir + 'resources/PotionTemplateForms.pdf', self.base_dir + 'output_potions/' + output_name + '.pdf', data_dict)
+        self.fill_pdf(self.base_dir + 'resources/PotionTemplate.pdf', self.base_dir + 'output_potions/' + output_name + '.pdf', data_dict)
 
         # TODO - Add potion image pasting here
