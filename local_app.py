@@ -1046,7 +1046,7 @@ class Window(QMainWindow):
             output_name = potion.name.replace(" ", "")
             if output_name == self.current_potion_pdf:
                 self.potion_multi_output_label.setText("PDF Name already in use!".format(output_name))
-                return
+                continue
 
             # Generate the PDF
             self.potion_pdf.generate_potion_pdf(output_name, potion, self.potion_images, include_cost, include_tina_effect)
@@ -1110,7 +1110,7 @@ class Window(QMainWindow):
             output_name = "{}_{}".format(relic.class_id, relic.name.replace(" ", ""))
             if output_name == self.current_relic_pdf:
                 self.relic_multi_output_label.setText("PDF Name already in use!".format(output_name))
-                return
+                continue
 
             # Generate the PDF
             self.relic_pdf.generate_relic_pdf(output_name, relic, self.relic_images)
@@ -1181,7 +1181,7 @@ class Window(QMainWindow):
             output_name = "{}_Tier{}_{}".format(shield.guild, shield.tier, shield.name.replace(" ", ""))
             if output_name == self.current_shield_pdf:
                 self.shield_multi_output_label.setText("PDF Name already in use!".format(output_name))
-                return
+                continue
 
             # Generate the PDF
             self.shield_pdf.generate_shield_pdf(output_name, shield, self.shield_images)
