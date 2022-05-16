@@ -3,216 +3,216 @@
     "1": {
       "capacity": 30,
       "recharge": 15,
-      "info": "Fast Recharge Rate."
+      "effect": "Fast Recharge Rate."
     },
     "2": {
       "capacity": 55,
       "recharge": 20,
-      "info": "Fast Recharge Rate."
+      "effect": "Fast Recharge Rate."
     },
     "3": {
       "capacity": 70,
       "recharge": 25,
-      "info": "Fast Recharge Rate."
+      "effect": "Fast Recharge Rate."
     },
     "4": {
       "capacity": 70,
       "recharge": 15,
-      "info": "Gain +30 Max Health and +3 Melee Damage while equipped."
+      "effect": "Gain +30 Max Health and +3 Melee Damage while equipped."
     },
     "5": {
       "capacity": 60,
       "recharge": 10,
-      "info": "Gain +30 Max Health and +10 Health Regen while equipped."
+      "effect": "Gain +30 Max Health and +10 Health Regen while equipped."
     }
   },
   "Alas!":{
     "1": {
       "capacity":  30,
       "recharge":  10,
-      "info": "1d4 Shock Resistance."
+      "effect": "1d4 Shock Resistance."
     },
     "2": {
       "capacity":  55,
       "recharge":  20,
-      "info": "1d6 Shock Resistance."
+      "effect": "1d6 Shock Resistance."
     },
     "3": {
       "capacity":  70,
       "recharge":  20,
-      "info": "1d10 Shock Resistance."
+      "effect": "1d10 Shock Resistance."
     },
     "4": {
       "capacity":  60,
       "recharge":  10,
-      "info": "Roll d100 for each incoming Attack. On a 60+, take Half Damage."
+      "effect": "Roll d100 for each incoming Attack. On a 60+, take Half Damage."
     },
     "5": {
       "capacity":  0,
       "recharge":  0,
-      "info": " Roll d100 for each incoming Attack. On a 70+, take No Damage."
+      "effect": " Roll d100 for each incoming Attack. On a 70+, take No Damage."
     }
   },
   "Dahlia": {
     "1": {
       "capacity":  30,
       "recharge":  10,
-      "info": "1d4 Corrosive Resistance."
+      "effect": "1d4 Corrosive Resistance."
     },
     "2": {
       "capacity":  55,
       "recharge":  15,
-      "info": "1d6 Corrosive Resistance."
+      "effect": "1d6 Corrosive Resistance."
     },
     "3": {
       "capacity":  75,
       "recharge":  20,
-      "info": "1d10 Corrosive Resistance."
+      "effect": "1d10 Corrosive Resistance."
     },
     "4": {
       "capacity":  80,
       "recharge":  10,
-      "info": "When depleted during an encounter, drops 20 gold."
+      "effect": "When depleted during an encounter, drops 20 gold."
     },
     "5": {
       "capacity":  80,
       "recharge":  15,
-      "info": "When depleted, spawns 3 grenades into adjacent squares that each deal 3d6 Shock Damage."
+      "effect": "When depleted, spawns 3 grenades into adjacent squares that each deal 3d6 Shock Damage."
     }
   },
   "Feriore":{
     "1": {
       "capacity":  30,
       "recharge":  10,
-      "info": "1d4 Health Regen per Recharge."
+      "effect": "1d4 Health Regen per Recharge."
     },
     "2": {
       "capacity":  50,
       "recharge":  15,
-      "info": "1d6 Health Regen per Recharge."
+      "effect": "1d6 Health Regen per Recharge."
     },
     "3": {
       "capacity":  70,
       "recharge":  20,
-      "info": "1d8 Health Regen per Recharge."
+      "effect": "1d8 Health Regen per Recharge."
     },
     "4": {
       "capacity":  70,
       "recharge":  20,
-      "info": "Recharge 5 Shield at the start of each turn."
+      "effect": "Recharge 5 Shield at the start of each turn."
     },
     "5": {
       "capacity":  60,
       "recharge":  20,
-      "info": "When depleted, toss like a grenade, dealing 3d8 damage then returning."
+      "effect": "When depleted, toss like a grenade, dealing 3d8 damage then returning."
     }
   },
   "Malefactor": {
     "1": {
       "capacity":  30,
       "recharge":  10,
-      "info": "When depleted, 1d6 Shock damage to adjacent targets."
+      "effect": "When depleted, 1d6 Shock damage to adjacent targets."
     },
     "2": {
       "capacity":  50,
       "recharge":  15,
-      "info": "When depleted, 2d6 Shock damage to adjacent targets."
+      "effect": "When depleted, 2d6 Shock damage to adjacent targets."
     },
     "3": {
       "capacity":  70,
       "recharge":  20,
-      "info": "When depleted, 3d6 Shock damage to adjacent targets."
+      "effect": "When depleted, 3d6 Shock damage to adjacent targets."
     },
     "4": {
       "capacity":  70,
       "recharge":  15,
-      "info": "When depleted, pulls targets up to 3 squares away into an adjacent square then deals 4d6 damage to adjacent targets."
+      "effect": "When depleted, pulls targets up to 3 squares away into an adjacent square then deals 4d6 damage to adjacent targets."
     },
     "5": {
       "capacity":  80,
       "recharge":  15,
-      "info": "Deals 2d6 Incendiary Damage to adjacent squares each turn while depleted."
+      "effect": "Deals 2d6 Incendiary Damage to adjacent squares each turn while depleted."
     }
   },
   "Pangoblin":{
     "1": {
       "capacity":  40,
       "recharge":  5,
-      "info": "High Capacity."
+      "effect": "High Capacity."
     },
     "2": {
       "capacity":  60,
       "recharge":  10,
-      "info": "High Capacity."
+      "effect": "High Capacity."
     },
     "3": {
       "capacity":  80,
       "recharge":  20,
-      "info": "High Capacity."
+      "effect": "High Capacity."
     },
     "4": {
       "capacity":  100,
       "recharge":  20,
-      "info": "Reduces Movement to 2 squares unless depleted."
+      "effect": "Reduces Movement to 2 squares unless depleted."
     },
     "5": {
       "capacity":  60,
       "recharge":  10,
-      "info": "Gain +4 DMG Mod to Ranged Attacks while not depleted."
+      "effect": "Gain +4 DMG Mod to Ranged Attacks while not depleted."
     }
   },
   "Stoker": {
     "1": {
       "capacity":  30,
       "recharge":  10,
-      "info": "When depleted, 1d6 Incendiary damage to adjacent targets."
+      "effect": "When depleted, 1d6 Incendiary damage to adjacent targets."
     },
     "2": {
       "capacity":  50,
       "recharge":  15,
-      "info": "When depleted, 2d6 Incendiary damage to adjacent targets."
+      "effect": "When depleted, 2d6 Incendiary damage to adjacent targets."
     },
     "3": {
       "capacity":  70,
       "recharge":  20,
-      "info": "When depleted, 3d6 Incendiary damage to adjacent targets."
+      "effect": "When depleted, 3d6 Incendiary damage to adjacent targets."
     },
     "4": {
       "capacity":  70,
       "recharge":  15,
-      "info": "Shock Damage Recharges the Shield instead of Damaging it."
+      "effect": "Shock Damage Recharges the Shield instead of Damaging it."
     },
     "5": {
       "capacity":  80,
       "recharge":  15,
-      "info": "Launches 3 Corrosive spikes at the target if you take 10 or more damage from an Attack. Each spike deals 1d6 Corrosive damage."
+      "effect": "Launches 3 Corrosive spikes at the target if you take 10 or more damage from an Attack. Each spike deals 1d6 Corrosive damage."
     }
   },
   "Torgue": {
     "1": {
       "capacity":  30,
       "recharge":  10,
-      "info": "Gain 10 Max Health."
+      "effect": "Gain 10 Max Health."
     },
     "2": {
       "capacity":  50,
       "recharge":  15,
-      "info": "Gain 20 Max Health."
+      "effect": "Gain 20 Max Health."
     },
     "3": {
       "capacity":  70,
       "recharge":  20,
-      "info": "Gain 30 Max Health."
+      "effect": "Gain 30 Max Health."
     },
     "4": {
       "capacity":  75,
       "recharge":  15,
-      "info": "Insults an Enemy as Mr. torgue each turn, dealing 1d4 damage and Taunting the Enemy."
+      "effect": "Insults an Enemy as Mr. torgue each turn, dealing 1d4 damage and Taunting the Enemy."
     },
     "5": {
       "capacity":  80,
       "recharge":  15,
-      "info": "When depleted, creates a 3x3 square area blast dealing 3d6 Explosive damage and causing Knockback."
+      "effect": "When depleted, creates a 3x3 square area blast dealing 3d6 Explosive damage and causing Knockback."
     }
   }
 }

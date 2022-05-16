@@ -12,14 +12,14 @@ from tqdm import tqdm
 
 
 # Define the Borderlands version to scrap from
-BL_VERSION = "tps"
+BL_VERSION = "wl"
 
 
 def main():
     # Get base weapon list for the given version
-    # url = "https://www.lootlemon.com/db/borderlands-{}/weapons".format(BL_VERSION)
+    # url = "https://www.lootlemon.com/db/borderlands-{}/shields".format(BL_VERSION)
 
-    url = "https://www.lootlemon.com/db/wonderlands/rings-amulets"
+    url = "https://www.lootlemon.com/db/wonderlands/wards"
 
     wep_url = "https://www.lootlemon.com/"
     html = requests.get(url).text
@@ -53,7 +53,7 @@ def main():
         guns.append(new_gun)
 
     # Dump to JSON file
-    with open(f"bl{BL_VERSION}_guns.json", "w") as f:
+    with open(f"bl{BL_VERSION}_shields.json", "w") as f:
         f.writelines(json.dumps(guns))
 
 
