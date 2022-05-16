@@ -137,7 +137,7 @@
   "Pangoblin":{
     "1": {
       "type": "Rubberized",
-      "effect": "Bounce off surfaces. Detonates onn contact with any Target.",
+      "effect": "Bounce off surfaces. Detonates on contact with any Target.",
       "damage": "1d8"
     },
     "2": {
@@ -147,7 +147,7 @@
     },
     "3": {
       "type": "Rubberized",
-      "effect": "Bounce off surfaces. Detonates onn contact with any Target.",
+      "effect": "Bounce off surfaces. Detonates on contact with any Target.",
       "damage": "3d8"
     },
     "4": {
@@ -157,7 +157,7 @@
     },
     "5": {
       "type": "Rubberized",
-      "effect": "Bounce off surfaces. Detonates onn contact with any Target.",
+      "effect": "Bounce off surfaces. Detonates on contact with any Target.",
       "damage": "5d8"
     }
   },

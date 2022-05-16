@@ -48,3 +48,8 @@ class Grenade:
 
         # Effect
         self.effect = effect if effect != "" else grenade_dict.get("effect")
+
+        # For Malefactor grenades that have the default effect, replace the damage type to a random element
+        if self.guild == "Malefactor" and effect == "":
+            elements = list(get_file_data('resources/elements/elemental_type.json').keys())
+            self.effect = self.effect.replace("xx", choice(elements).title())
