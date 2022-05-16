@@ -18,7 +18,7 @@ class GunImage:
         self.prefix = prefix
 
         # List of individual JSONs
-        PREFIX = prefix + "resources/images/"
+        PREFIX = prefix + "resources/images/gun_images/"
         FILELIST = [PREFIX + "bl1_guns.json", PREFIX + "bl2_guns.json",
                     PREFIX + "bl3_guns.json", PREFIX + "bltps_guns.json"]
 
@@ -137,12 +137,12 @@ class GunImage:
         # Get image and then save locally temporarily
         response = requests.get(url, stream=True)
         img = Image.open(response.raw)
-        img.save(self.prefix + 'output/temporary_gun_image.png')
+        img.save(self.prefix + 'output/guns/temporary_gun_image.png')
 
         # Apply a colored outline based on the rarity
         if rarity is not None:
             # Have to save/reload due to PIL loading dimension issues
-            img_alpha = cv.imread(self.prefix + "output/temporary_gun_image.png", cv.IMREAD_UNCHANGED)
+            img_alpha = cv.imread(self.prefix + "output/guns/temporary_gun_image.png", cv.IMREAD_UNCHANGED)
             img_alpha = np.pad(img_alpha, pad_width=((35, 35), (50, 50), (0, 0)), constant_values=0)
 
             # First get the mask of the given color
@@ -174,7 +174,7 @@ class GunImage:
                         final_image[x, y] = mask[x, y]
 
             # Save output
-            Image.fromarray(final_image).save(self.prefix + 'output/temporary_gun_image.png')
+            Image.fromarray(final_image).save(self.prefix + 'output/guns/temporary_gun_image.png')
 
     def manu_conversion(self, guild_name):
         """ Conversion table from game manu names to BnB guild names """

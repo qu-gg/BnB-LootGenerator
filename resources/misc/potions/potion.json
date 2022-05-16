@@ -1,0 +1,102 @@
+{
+  "01-05": {
+    "name": "Tina Potion (Common)",
+    "info": null,
+    "cost": 15
+  },
+  "06-10": {
+    "name": "Health Potion (Common)",
+    "info": "Regens 1d8 Health.",
+    "cost": 20
+    },
+  "11-15": {
+    "name": "Shield Potion (Common)",
+    "info": "Recharges 1d8 Shield.",
+    "cost": 15
+  },
+  "16-20": {
+    "name": "Check Potion",
+    "info": "+5 to x Checks for 1 hour.",
+    "cost": 20
+  },
+  "21-25": {
+    "name": "Element Potion",
+    "info": "Protection from x Element for 2 turns.",
+    "cost": 15
+  },
+  "26-30": {
+    "name": "Tina Potion (Rare)",
+    "info": null,
+    "cost": 25
+  },
+  "31-35": {
+    "name": "Health Potion (Rare)",
+    "info": "Regens 2d8+5 Health.",
+    "cost": 40
+  },
+  "36-40": {
+    "name": "Shield Potion (Rare)",
+    "info": "Recharges 2d8+5 Shield.",
+    "cost": 30
+  },
+  "41-45": {
+    "name": "Stat Potion",
+    "info": "3 to x Stat Mod for 1 hour.",
+    "cost": 40
+  },
+  "46-50":{
+    "name": "Twofer Potion",
+    "info": "Gain 1d8 +3 Health and Shields.",
+    "cost": 70
+  },
+  "51-55":{
+    "name": "Tina Potion (Epic)",
+    "info": null,
+    "cost": 80
+  },
+  "56-60":{
+    "name": "Health Potion (Epic)",
+    "info": "Regen 3d8+10 Health.",
+    "cost": 100
+    },
+  "61-65":{
+    "name": "Shield Potion (Epic)",
+    "info": "Recharges 3d8+10 Shield.",
+    "cost": 80
+  },
+  "66-70":{
+    "name": "Lucky Potion",
+    "info": "Re-roll 1 die per Attack for 2 turns.",
+    "cost": 100
+  },
+  "71-75":{
+    "name": "Invisibility Potion",
+    "info": "Become Cloaked for 3 turns.",
+    "cost": 120
+  },
+  "76-80":{
+    "name": "Tina Potion (Legendary)",
+    "info": null,
+    "cost": 200
+  },
+  "81-85":{
+    "name": "Health Potion (Legendary)",
+    "info": "Regens 4d8+20 Health.",
+    "cost": 250
+  },
+  "86-90":{
+    "name": "Shield Potion (Legendary)",
+    "info": "Recharges 4d8+20 Shields.",
+    "cost": 230
+  },
+  "91-95":{
+    "name": "Fumble Potion",
+    "info": "All 1's become 20's for 2 hours.",
+    "cost": 250
+  },
+  "96-100":{
+    "name": "Gold Farmer Potion",
+    "info": "+2d6 to all Cache Rolls for 2 hours.",
+    "cost": 270
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "01-05": {
+      "type": "Vitality",
+      "effect": "+20 Max Health.",
+      "class_effect": "+5 Health from Potions.",
+      "rarity": "Common"
+  },
+  "06-10": {
+      "type": "Stockpile",
+      "effect": "+2 Max Grenades.",
+      "class_effect": "+1 Grenade from Loot Piles.",
+      "rarity": "Common"
+  },
+  "11-15": {
+      "type": "Protection",
+      "effect": "+15 Max Shields.",
+      "class_effect": "+10 Recharge Rate.",
+      "rarity": "Common"
+  },
+  "16-20": {
+      "type": "Aggression",
+      "effect": "+3 Damage for Favored Gun.",
+      "class_effect": "+1 Damage to all Guns.",
+      "rarity": "Common"
+  },
+  "21-25": {
+      "type": "Resistance",
+      "effect": "+1d4 Elemental Resistance.",
+      "class_effect": "+1d4 Damage Resistance.",
+      "rarity": "Common"
+  },
+  "26-30": {
+      "type": "Tenacity",
+      "effect": "+1 Initiative Mod.",
+      "class_effect": "+10 Health.",
+      "rarity": "Common"
+  },
+  "31-35": {
+      "type": "Elemental",
+      "effect": "+2 Elemental Damage.",
+      "class_effect": "+20% on Elemental Rolls.",
+      "rarity": "Common"
+  },
+  "36-40": {
+      "type": "Strength",
+      "effect": "+3 Melee Damage.",
+      "class_effect": "+1 Melee Attack/turn.",
+      "rarity": "Common"
+  },
+  "41-45": {
+      "type": "Vitality",
+      "effect": "+30 Max Health.",
+      "class_effect": "+10 Health from Potions.",
+      "rarity": "Uncommon"
+  },
+  "46-50": {
+      "type": "Stockpile",
+      "effect": "+2 Max Grenades.",
+      "class_effect": "+2 Grenade from Loot Piles.",
+      "rarity": "Uncommon"
+  },
+  "51-55": {
+      "type": "Protection",
+      "effect": "+20 Max Shields.",
+      "class_effect": "+15 Recharge Rate.",
+      "rarity": "Uncommon"
+  },
+  "56-60": {
+      "type": "Aggression",
+      "effect": "+4 Damage for Favored Gun.",
+      "class_effect": "+2 Damage to all Guns.",
+      "rarity": "Uncommon"
+  },
+  "61-65": {
+      "type": "Resistance",
+      "effect": "+1d6 Elemental Resistance.",
+      "class_effect": "+1d6 Damage Resistance.",
+      "rarity": "Uncommon"
+  },
+  "66-70": {
+      "type": "Tenacity",
+      "effect": "+2 Initiative Mod.",
+      "class_effect": "+15 Health.",
+      "rarity": "Uncommon"
+  },
+  "71-75": {
+      "type": "Elemental",
+      "effect": "+3 Elemental Damage.",
+      "class_effect": "+30% on Elemental Rolls.",
+      "rarity": "Uncommon"
+  },
+  "76-80": {
+      "type": "Strength",
+      "effect": "+4 Melee Damage.",
+      "class_effect": "+2 Melee Attack/turn.",
+      "rarity": "Uncommon"
+  },
+  "81-85": {
+      "type": "Vitality",
+      "effect": "+40 Max Health.",
+      "class_effect": "+15 Health from Potions.",
+      "rarity": "Rare"
+  },
+  "86-90": {
+      "type": "Stockpile",
+      "effect": "+4 Max Grenades.",
+      "class_effect": "+3 Grenade from Loot Piles.",
+      "rarity": "Rare"
+  },
+  "91-95": {
+      "type": "Protection",
+      "effect": "+25 Max Shields.",
+      "class_effect": "+20 Recharge Rate.",
+      "rarity": "Rare"
+  },
+  "96":    {
+      "type": "Aggression",
+      "effect": "+5 Damage for Favored Gun.",
+      "class_effect": "+3 Damage to all Guns.",
+      "rarity": "Rare"
+  },
+  "97":    {
+      "type": "Resistance",
+      "effect": "+1d8 Elemental Resistance.",
+      "class_effect": "+1d8 Damage Resistance.",
+      "rarity": "Rare"
+  },
+  "98":    {
+      "type": "Tenacity",
+      "effect": "+3 Initiative Mod.",
+      "class_effect": "+20 Health.",
+      "rarity": "Rare"
+  },
+  "99":    {
+      "type": "Elemental",
+      "effect": "+4 Elemental Damage.",
+      "class_effect": "+40% on Elemental Rolls.",
+      "rarity": "Rare"
+  },
+  "100":   {
+      "type": "Strength",
+      "effect": "+5 Melee Damage.",
+      "class_effect": "+3 Melee Attack/turn.",
+      "rarity": "Rare"
+  }
+}

@@ -12,12 +12,15 @@ from tqdm import tqdm
 
 
 # Define the Borderlands version to scrap from
-BL_VERSION = "tps"
+BL_VERSION = "3"
 
 
 def main():
     # Get base weapon list for the given version
-    url = "https://www.lootlemon.com/db/borderlands-{}/weapons".format(BL_VERSION)
+    url = "https://www.lootlemon.com/db/borderlands-{}/grenade-mods".format(BL_VERSION)
+
+    # url = "https://www.lootlemon.com/db/wonderlands/wards"
+
     wep_url = "https://www.lootlemon.com/"
     html = requests.get(url).text
     soup = bs4.BeautifulSoup(html, 'html.parser')
@@ -30,8 +33,8 @@ def main():
         cells = link.find_all("div", "db_cell")
         new_gun = {}
         new_gun['name'] = cells[0].string
-        new_gun['type'] = cells[1].string
-        new_gun['manufacturer'] = cells[2].string
+        # new_gun['type'] = cells[1].string
+        # new_gun['manufacturer'] = cells[2].string
 
         # Get subURL for larger image
         try:
@@ -44,12 +47,13 @@ def main():
             new_gun['image_link'] = image_link
         except:
             print("Error in Weapon {} for URL {}".format(cells[0].string, weapon_url))
+            continue
 
         # Append to gun layout
         guns.append(new_gun)
 
     # Dump to JSON file
-    with open(f"bl{BL_VERSION}_guns.json", "w") as f:
+    with open(f"bl{BL_VERSION}_grenades.json", "w") as f:
         f.writelines(json.dumps(guns))
 
 

@@ -9,15 +9,32 @@ import sys
 from pathlib import Path
 
 from classes.Gun import Gun
+from classes.GunPDF import GunPDF
 from classes.GunImage import GunImage
-from generate_gun_cmd import generate_gun_pdf
+
+from classes.Potion import Potion
+from classes.PotionPDF import PotionPDF
+from classes.PotionImage import PotionImage
+
+from classes.Relic import Relic
+from classes.RelicPDF import RelicPDF
+from classes.RelicImage import RelicImage
+
+from classes.Shield import Shield
+from classes.ShieldPDF import ShieldPDF
+from classes.ShieldImage import ShieldImage
+
+from classes.Grenade import Grenade
+from classes.GrenadePDF import GrenadePDF
+from classes.GrenadeImage import GrenadeImage
+
 from classes.json_reader import get_file_data
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon, QIntValidator
 from PyQt5 import QAxContainer
 from PyQt5.QtWidgets import (QApplication, QComboBox, QGridLayout, QGroupBox, QLabel,
-                             QLineEdit, QWidget, QPushButton, QCheckBox,QMainWindow)
+                             QLineEdit, QWidget, QPushButton, QCheckBox, QMainWindow, QTabWidget)
 
 
 class Window(QMainWindow):
@@ -26,20 +43,28 @@ class Window(QMainWindow):
 
         # Load classes
         self.basedir = basedir
+
+        # PDF and Image Classes
+        self.gun_pdf = GunPDF(self.basedir)
         self.gun_images = GunImage(self.basedir)
+
+        self.potion_pdf = PotionPDF(self.basedir)
+        self.potion_images = PotionImage(self.basedir)
+
+        self.relic_pdf = RelicPDF(self.basedir)
+        self.relic_images = RelicImage(self.basedir)
+
+        self.shield_pdf = ShieldPDF(self.basedir)
+        self.shield_images = ShieldImage(self.basedir)
+
+        self.grenade_pdf = GrenadePDF(self.basedir)
+        self.grenade_images = GrenadeImage(self.basedir)
 
         # Window Title
         self.setWindowTitle("Bunkers and Badasses - LootGenerator")
 
-        ###################################
-        ###  BEGIN: Base Stats Grid     ###
-        ###################################
-        base_stats_group = QGroupBox("Configuration")
-        base_stats_layout = QGridLayout()
-        base_stats_layout.setAlignment(Qt.AlignTop)
-
         # Add stat function
-        def add_stat_to_layout(layout, label, row, force_int=False):
+        def add_stat_to_layout(layout, label, row, force_int=False, placeholder=None):
             """
             Adds all the necessary widgets to a grid layout for a single stat
             :param label: The label to display
@@ -52,10 +77,21 @@ class Window(QMainWindow):
 
             if force_int:
                 new_line_edit.setValidator(QIntValidator(new_line_edit))
+            if placeholder is not None:
+                new_line_edit.setPlaceholderText(placeholder)
 
             layout.addWidget(new_label, row, 0)
             layout.addWidget(new_line_edit, row, 1)
             return new_line_edit
+
+        ######################################### START GUNS ##############################################
+
+        ###################################
+        ###  BEGIN: Base Stats Grid     ###
+        ###################################
+        base_stats_group = QGroupBox("Configuration")
+        base_stats_layout = QGridLayout()
+        base_stats_layout.setAlignment(Qt.AlignTop)
 
         # Gun Name
         self.name_line_edit = add_stat_to_layout(base_stats_layout, "Gun Name:", 0)
@@ -214,16 +250,16 @@ class Window(QMainWindow):
         gun_card_layout.addWidget(self.WebBrowser, 0, 1, -1, 1)
 
         # Need to check if attempting to re-save when the PDF name is already taken
-        self.current_pdf = "EXAMPLE.pdf"
+        self.current_pdf = "EXAMPLE_GUN.pdf"
 
         # Load in Gun Card Template
-        f = Path(os.path.abspath(self.basedir + "output/EXAMPLE.pdf")).as_uri()
+        f = Path(os.path.abspath(self.basedir + "output/guns/EXAMPLE_GUN.pdf")).as_uri()
         self.WebBrowser.dynamicCall('Navigate(const QString&)', f)
 
         # Grid layout
         gun_card_group.setLayout(gun_card_layout)
         ###################################
-        ###  START: Gun Display         ###
+        ###  END: Gun Display           ###
         ###################################
 
         # Setting appropriate column widths
@@ -238,17 +274,644 @@ class Window(QMainWindow):
         multi_group.setFixedHeight(350)
         gun_card_group.setFixedHeight(800)
 
-        # Overall layout grid
-        layout = QGridLayout()
-        layout.addWidget(base_stats_group, 0, 0)
-        layout.addWidget(generation_group, 1, 0)
-        layout.addWidget(multi_group, 2, 0)
-        layout.addWidget(gun_card_group, 0, 1, -1, 1)
+        # Gun Generation Layout
+        self.gun_generation_layout = QGridLayout()
+        self.gun_generation_layout.addWidget(base_stats_group, 0, 0)
+        self.gun_generation_layout.addWidget(generation_group, 1, 0)
+        self.gun_generation_layout.addWidget(multi_group, 2, 0)
+        self.gun_generation_layout.addWidget(gun_card_group, 0, 1, -1, 1)
+
+        self.gun_tab = QWidget()
+        self.gun_tab.setLayout(self.gun_generation_layout)
+
+        ######################################### END GUNS      ##############################################
+
+        ######################################### START POTIONS ##############################################
+
+        ###################################
+        ###  BEGIN: Potion Stats Grid   ###
+        ###################################
+        potion_stats_group = QGroupBox("Configuration")
+        potion_stats_layout = QGridLayout()
+        potion_stats_layout.setAlignment(Qt.AlignTop)
+
+        # Potion ID Selection
+        potion_stats_layout.addWidget(QLabel("Potion %: "), 0, 0)
+        self.potion_id_box = QComboBox()
+        self.potion_id_box.addItem("Random")
+        for item in get_file_data(basedir + "resources/misc/potions/potion.json").keys():
+            self.potion_id_box.addItem(item)
+        potion_stats_layout.addWidget(self.potion_id_box, 0, 1)
+
+        # Whether to display the potion cost on the card or hide it
+        potion_cost_text_label = QLabel("Display Potion Cost: ")
+        potion_cost_text_label.setToolTip("Choose whether to put the potion cost on the gun card or not.")
+        potion_stats_layout.addWidget(potion_cost_text_label, 1, 0)
+        self.potion_cost = QCheckBox()
+        self.potion_cost.setToolTip("Choose whether to put the potion cost on the gun card or not.")
+        self.potion_cost.setChecked(True)
+        potion_stats_layout.addWidget(self.potion_cost, 1, 1)
+
+        # Whether to display the potion cost on the card or hide it
+        potion_tina_text_label = QLabel("Display Tina Effect: ")
+        potion_tina_text_label.setToolTip("Choose whether to show the tina potion's effect for the player or have it read as 'SECRET EFFECT'")
+        potion_stats_layout.addWidget(potion_tina_text_label, 2, 0)
+        self.potion_tina_show = QCheckBox()
+        self.potion_tina_show.setToolTip("Choose whether to show the tina potion's effect for the player or have it read as 'SECRET EFFECT'")
+        potion_stats_layout.addWidget(self.potion_tina_show, 2, 1)
+
+        # Grid layout
+        potion_stats_group.setLayout(potion_stats_layout)
+        ###################################
+        ###  END: Potion Stats Grid     ###
+        ###################################
+
+        ###################################
+        ###  START: Potion Generation   ###
+        ###################################
+        potion_generation_group = QGroupBox("Single-Potion Generation")
+        potion_generation_layout = QGridLayout()
+        potion_generation_layout.setAlignment(Qt.AlignTop)
+
+        # PDF Output Name
+        self.potion_pdf_line_edit = add_stat_to_layout(potion_generation_layout, "PDF Filename:", 0)
+        self.potion_pdf_line_edit.setToolTip("Specify the filename that Generate Gun saves the next gun under.")
+
+        # Generate button
+        button = QPushButton("Generate Potion")
+        button.setToolTip("Handles generating the potion card and locally saving the PDF in \"outputs/\".")
+        button.clicked.connect(lambda: self.generate_potion())
+        potion_generation_layout.addWidget(button, 1, 0, 1, -1)
+
+        # Label for savefile output
+        self.output_potion_pdf_label = QLabel()
+        potion_generation_layout.addWidget(self.output_potion_pdf_label, 2, 0, 1, -1)
+
+        # Grid layout
+        potion_generation_group.setLayout(potion_generation_layout)
+        ###################################
+        ###  END: Potion Generation     ###
+        ###################################
+
+        ###################################
+        ###  START: Multi Generation    ###
+        ###################################
+        potion_multi_group = QGroupBox("Multi-Potion Generation")
+        potion_multi_layout = QGridLayout()
+        potion_multi_layout.setAlignment(Qt.AlignTop)
+
+        # PDF Output Name
+        self.numpotion_line_edit = add_stat_to_layout(potion_multi_layout, "# Potions to Generate:", 0, force_int=True)
+        self.numpotion_line_edit.setToolTip("Choose how many potions to automatically generate and save.")
+
+        # Generate button
+        button = QPushButton("Generate Multiple Potions")
+        button.setToolTip("Handles generating the potions and locally saving their PDFs in \"outputs/potions/\".")
+        button.clicked.connect(lambda: self.generate_multiple_potions())
+        potion_multi_layout.addWidget(button, 1, 0, 1, -1)
+
+        # Label for savefile output
+        self.potion_multi_output_label = QLabel()
+        potion_multi_layout.addWidget(self.potion_multi_output_label, 2, 0, 1, -1)
+
+        # Grid layout
+        potion_multi_group.setLayout(potion_multi_layout)
+        ###################################
+        ###  END: Multi Generation      ###
+        ###################################
+
+        ###################################
+        ###  START: Potion Display      ###
+        ###################################
+        potion_card_group = QGroupBox("Potion Card")
+        potion_card_layout = QGridLayout()
+        potion_card_layout.setAlignment(Qt.AlignVCenter)
+
+        self.PotionWebBrowser = QAxContainer.QAxWidget(self)
+        self.PotionWebBrowser.setFixedHeight(800)
+        self.PotionWebBrowser.setControl("{8856F961-340A-11D0-A96B-00C04FD705A2}")
+        self.PotionWebBrowser.setToolTip("If nothing is displaying or the text is not displaying, then either "
+                                   "1.) you do not have a local PDF Viewer or 2.) the OS you are on doesn't support annotation rendering.")
+        potion_card_layout.addWidget(self.PotionWebBrowser, 0, 1, -1, 1)
+
+        # Need to check if attempting to re-save when the PDF name is already taken
+        self.current_potion_pdf = "EXAMPLE_POTION.pdf"
+
+        # Load in Gun Card Template
+        f = Path(os.path.abspath(self.basedir + "output/potions/EXAMPLE_POTION.pdf")).as_uri()
+        self.PotionWebBrowser.dynamicCall('Navigate(const QString&)', f)
+
+        # Grid layout
+        potion_card_group.setLayout(potion_card_layout)
+        ###################################
+        ###  END: Potion Display        ###
+        ###################################
+
+        # Setting appropriate column widths
+        potion_stats_group.setFixedWidth(300)
+        potion_generation_group.setFixedWidth(300)
+        potion_multi_group.setFixedWidth(300)
+        potion_card_group.setFixedWidth(1000)
+
+        # Setting appropriate layout heights
+        potion_stats_group.setFixedHeight(300)
+        potion_generation_group.setFixedHeight(150)
+        potion_multi_group.setFixedHeight(350)
+        potion_card_group.setFixedHeight(800)
+
+        # Potion Generation Layout
+        self.potion_generation_layout = QGridLayout()
+        self.potion_generation_layout.addWidget(potion_stats_group, 0, 0)
+        self.potion_generation_layout.addWidget(potion_generation_group, 1, 0)
+        self.potion_generation_layout.addWidget(potion_multi_group, 2, 0)
+        self.potion_generation_layout.addWidget(potion_card_group, 0, 1, -1, 1)
+
+        self.potion_tab = QWidget()
+        self.potion_tab.setLayout(self.potion_generation_layout)
+
+        ######################################### END POTIONS ##############################################
+
+        ######################################### START RELIC ##############################################
+
+        ###################################
+        ###  BEGIN: Relic Stats Grid    ###
+        ###################################
+        relic_stats_group = QGroupBox("Configuration")
+        relic_stats_layout = QGridLayout()
+        relic_stats_layout.setAlignment(Qt.AlignTop)
+
+        # Relic Name
+        self.relic_line_edit = add_stat_to_layout(relic_stats_layout, "Relic Name:", 0, placeholder="Random")
+
+        # Relic % Selection
+        relic_stats_layout.addWidget(QLabel("{:<15} ".format("Relic %:")), 1, 0)
+        self.relic_id_box = QComboBox()
+        self.relic_id_box.addItem("Random")
+        for item in get_file_data(basedir + "resources/misc/relics/relic.json").keys():
+            self.relic_id_box.addItem(item)
+        relic_stats_layout.addWidget(self.relic_id_box, 1, 1)
+
+        # Relic Type
+        self.relic_type_edit = add_stat_to_layout(relic_stats_layout, "Relic Type:", 2, placeholder="Random")
+        self.relic_type_edit.setToolTip("Either manually enter a relic type or let it be rolled.")
+
+        # Relic Rarity
+        rarities = ["Random", "Common", "Uncommon", "Rare", "Epic", "Legendary"]
+        relic_stats_layout.addWidget(QLabel("Rarity: "), 3, 0)
+        self.rarity_relic_type_box = QComboBox()
+        for item in rarities:
+            self.rarity_relic_type_box.addItem(item)
+        relic_stats_layout.addWidget(self.rarity_relic_type_box, 3, 1)
+
+        # Relic Class
+        rarities = ["Random", "Assassin", "Berserker", "Commando", "Gunzerker", "Hunter", "Mecromancer",
+                    "Psycho", "Siren", "Soldier", "Any"]
+        relic_stats_layout.addWidget(QLabel("Class: "), 4, 0)
+        self.rarity_class_type_box = QComboBox()
+        for item in rarities:
+            self.rarity_class_type_box.addItem(item)
+        relic_stats_layout.addWidget(self.rarity_class_type_box, 4, 1)
+
+        # Relic Effect
+        self.relic_effect_edit = add_stat_to_layout(relic_stats_layout, "Effect:", 5, placeholder="Random")
+        self.relic_effect_edit.setToolTip("Either manually enter a relic effect or let it be rolled.")
+
+        # Relic Class Effect
+        self.relic_class_effect_edit = add_stat_to_layout(relic_stats_layout, "Class Effect:", 6, placeholder="Random")
+        self.relic_class_effect_edit.setToolTip("Either manually enter a relic class effect or let it be rolled.")
+
+        # Grid layout
+        relic_stats_group.setLayout(relic_stats_layout)
+        ###################################
+        ###  END: Relic Stats Grid      ###
+        ###################################
+
+        ###################################
+        ###  START: Relic Generation    ###
+        ###################################
+        relic_generation_group = QGroupBox("Single-Relic Generation")
+        relic_generation_layout = QGridLayout()
+        relic_generation_layout.setAlignment(Qt.AlignTop)
+
+        # PDF Output Name
+        self.relic_pdf_line_edit = add_stat_to_layout(relic_generation_layout, "PDF Filename:", 0)
+        self.relic_pdf_line_edit.setToolTip("Specify the filename that Generate Relic saves the next gun under.")
+
+        # Generate button
+        button = QPushButton("Generate Relic")
+        button.setToolTip("Handles generating the relic card and locally saving the PDF in \"outputs/relics/\".")
+        button.clicked.connect(lambda: self.generate_relic())
+        relic_generation_layout.addWidget(button, 1, 0, 1, -1)
+
+        # Label for save file output
+        self.output_relic_pdf_label = QLabel()
+        relic_generation_layout.addWidget(self.output_relic_pdf_label, 2, 0, 1, -1)
+
+        # Grid layout
+        relic_generation_group.setLayout(relic_generation_layout)
+        ###################################
+        ###  END: Relic Generation      ###
+        ###################################
+
+        ###################################
+        ###  START: Multi Generation    ###
+        ###################################
+        relic_multi_group = QGroupBox("Multi-Relic Generation")
+        relic_multi_layout = QGridLayout()
+        relic_multi_layout.setAlignment(Qt.AlignTop)
+
+        # PDF Output Name
+        self.numrelic_line_edit = add_stat_to_layout(relic_multi_layout, "# Relics to Generate:", 0, force_int=True)
+        self.numrelic_line_edit.setToolTip("Choose how many relics to automatically generate and save.")
+
+        # Generate button
+        button = QPushButton("Generate Multiple Relics")
+        button.setToolTip("Handles generating the relics and locally saving their PDFs in \"outputs/relics/\".")
+        button.clicked.connect(lambda: self.generate_multiple_relics())
+        relic_multi_layout.addWidget(button, 1, 0, 1, -1)
+
+        # Label for savefile output
+        self.relic_multi_output_label = QLabel()
+        relic_multi_layout.addWidget(self.relic_multi_output_label, 2, 0, 1, -1)
+
+        # Grid layout
+        relic_multi_group.setLayout(relic_multi_layout)
+        ###################################
+        ###  END: Multi Generation      ###
+        ###################################
+
+        ###################################
+        ###  START: Relic Display       ###
+        ###################################
+        relic_card_group = QGroupBox("Relic Card")
+        relic_card_layout = QGridLayout()
+        relic_card_layout.setAlignment(Qt.AlignVCenter)
+
+        self.RelicWebBrowser = QAxContainer.QAxWidget(self)
+        self.RelicWebBrowser.setFixedHeight(800)
+        self.RelicWebBrowser.setControl("{8856F961-340A-11D0-A96B-00C04FD705A2}")
+        self.RelicWebBrowser.setToolTip("If nothing is displaying or the text is not displaying, then either "
+                                   "1.) you do not have a local PDF Viewer or 2.) the OS you are on doesn't support annotation rendering.")
+        relic_card_layout.addWidget(self.RelicWebBrowser, 0, 1, -1, 1)
+
+        # Need to check if attempting to re-save when the PDF name is already taken
+        self.current_relic_pdf = "EXAMPLE_RELIC.pdf"
+
+        # Load in Gun Card Template
+        f = Path(os.path.abspath(self.basedir + "output/relics/EXAMPLE_RELIC.pdf")).as_uri()
+        self.RelicWebBrowser.dynamicCall('Navigate(const QString&)', f)
+
+        # Grid layout
+        relic_card_group.setLayout(relic_card_layout)
+        ###################################
+        ###  END: Potion Display        ###
+        ###################################
+
+        # Setting appropriate column widths
+        relic_stats_group.setFixedWidth(300)
+        relic_generation_group.setFixedWidth(300)
+        relic_multi_group.setFixedWidth(300)
+        relic_card_group.setFixedWidth(1000)
+
+        # Setting appropriate layout heights
+        relic_stats_group.setFixedHeight(300)
+        relic_generation_group.setFixedHeight(150)
+        relic_multi_group.setFixedHeight(350)
+        relic_card_group.setFixedHeight(800)
+
+        # Potion Generation Layout
+        self.relic_generation_layout = QGridLayout()
+        self.relic_generation_layout.addWidget(relic_stats_group, 0, 0)
+        self.relic_generation_layout.addWidget(relic_generation_group, 1, 0)
+        self.relic_generation_layout.addWidget(relic_multi_group, 2, 0)
+        self.relic_generation_layout.addWidget(relic_card_group, 0, 1, -1, 1)
+
+        self.relic_tab = QWidget()
+        self.relic_tab.setLayout(self.relic_generation_layout)
+
+        ######################################### END RELICS ##############################################
+
+        ######################################### START SHIELDS ##############################################
+
+        ###################################
+        ###  BEGIN: Shield Stats Grid    ###
+        ###################################
+        shield_stats_group = QGroupBox("Configuration")
+        shield_stats_layout = QGridLayout()
+        shield_stats_layout.setAlignment(Qt.AlignTop)
+
+        # Shield Name
+        self.shield_line_edit = add_stat_to_layout(shield_stats_layout, "Shield Name:", 0, placeholder="Random")
+
+        # Shield Guild
+        shield_stats_layout.addWidget(QLabel("Guild: "), 1, 0)
+        self.guild_shield_type_box = QComboBox()
+        self.guild_shield_type_box.addItem("Random")
+        for item in get_file_data(basedir + "resources/misc/shields/shield.json").keys():
+            self.guild_shield_type_box.addItem(item)
+        shield_stats_layout.addWidget(self.guild_shield_type_box, 1, 1)
+
+        # Shield Tier
+        shield_stats_layout.addWidget(QLabel("Tier: "), 2, 0)
+        self.tier_shield_type_box = QComboBox()
+        self.tier_shield_type_box.addItem("Random")
+        for item in get_file_data(basedir + "resources/misc/shields/shield.json")["Ashen"].keys():
+            self.tier_shield_type_box.addItem(item)
+        shield_stats_layout.addWidget(self.tier_shield_type_box, 2, 1)
+
+        # Shield Capacity
+        self.shield_capacity_edit = add_stat_to_layout(shield_stats_layout, "Capacity:", 3, force_int=True)
+        self.shield_capacity_edit.setToolTip("Either manually enter a shield capacity or let it be rolled.")
+
+        # Shield Recharge
+        self.shield_recharge_edit = add_stat_to_layout(shield_stats_layout, "Recharge Rate:", 4, force_int=True)
+        self.shield_recharge_edit.setToolTip("Either manually enter a shield recharge rate or let it be rolled.")
+
+        # Shield Effect
+        self.shield_effect_edit = add_stat_to_layout(shield_stats_layout, "Effect:", 5, placeholder="Random")
+        self.shield_effect_edit.setToolTip("Either manually enter a shield effect or let it be rolled.")
+
+        # Grid layout
+        shield_stats_group.setLayout(shield_stats_layout)
+        ###################################
+        ###  END: shield Stats Grid      ###
+        ###################################
+
+        ###################################
+        ###  START: shield Generation    ###
+        ###################################
+        shield_generation_group = QGroupBox("Single-Shield Generation")
+        shield_generation_layout = QGridLayout()
+        shield_generation_layout.setAlignment(Qt.AlignTop)
+
+        # PDF Output Name
+        self.shield_pdf_line_edit = add_stat_to_layout(shield_generation_layout, "PDF Filename:", 0)
+        self.shield_pdf_line_edit.setToolTip("Specify the filename that Generate shield saves the next gun under.")
+
+        # Generate button
+        button = QPushButton("Generate Shield")
+        button.setToolTip("Handles generating the shield card and locally saving the PDF in \"outputs/shields/\".")
+        button.clicked.connect(lambda: self.generate_shield())
+        shield_generation_layout.addWidget(button, 1, 0, 1, -1)
+
+        # Label for save file output
+        self.output_shield_pdf_label = QLabel()
+        shield_generation_layout.addWidget(self.output_shield_pdf_label, 2, 0, 1, -1)
+
+        # Grid layout
+        shield_generation_group.setLayout(shield_generation_layout)
+        ###################################
+        ###  END: shield Generation      ###
+        ###################################
+
+        ###################################
+        ###  START: Multi Generation    ###
+        ###################################
+        shield_multi_group = QGroupBox("Multi-Shield Generation")
+        shield_multi_layout = QGridLayout()
+        shield_multi_layout.setAlignment(Qt.AlignTop)
+
+        # PDF Output Name
+        self.numshield_line_edit = add_stat_to_layout(shield_multi_layout, "# Shields to Generate:", 0, force_int=True)
+        self.numshield_line_edit.setToolTip("Choose how many shields to automatically generate and save.")
+
+        # Generate button
+        button = QPushButton("Generate Multiple Shields")
+        button.setToolTip("Handles generating the shields and locally saving their PDFs in \"outputs/shields/\".")
+        button.clicked.connect(lambda: self.generate_multiple_shields())
+        shield_multi_layout.addWidget(button, 1, 0, 1, -1)
+
+        # Label for savefile output
+        self.shield_multi_output_label = QLabel()
+        shield_multi_layout.addWidget(self.shield_multi_output_label, 2, 0, 1, -1)
+
+        # Grid layout
+        shield_multi_group.setLayout(shield_multi_layout)
+        ###################################
+        ###  END: Multi Generation      ###
+        ###################################
+
+        ###################################
+        ###  START: Shield Display       ###
+        ###################################
+        shield_card_group = QGroupBox("Shield Card")
+        shield_card_layout = QGridLayout()
+        shield_card_layout.setAlignment(Qt.AlignVCenter)
+
+        self.shieldWebBrowser = QAxContainer.QAxWidget(self)
+        self.shieldWebBrowser.setFixedHeight(800)
+        self.shieldWebBrowser.setControl("{8856F961-340A-11D0-A96B-00C04FD705A2}")
+        self.shieldWebBrowser.setToolTip("If nothing is displaying or the text is not displaying, then either "
+                                        "1.) you do not have a local PDF Viewer or 2.) the OS you are on doesn't support annotation rendering.")
+        shield_card_layout.addWidget(self.shieldWebBrowser, 0, 1, -1, 1)
+
+        # Need to check if attempting to re-save when the PDF name is already taken
+        self.current_shield_pdf = "EXAMPLE_SHIELD.pdf"
+
+        # Load in Gun Card Template
+        f = Path(os.path.abspath(self.basedir + "output/shields/EXAMPLE_SHIELD.pdf")).as_uri()
+        self.shieldWebBrowser.dynamicCall('Navigate(const QString&)', f)
+
+        # Grid layout
+        shield_card_group.setLayout(shield_card_layout)
+        ###################################
+        ###  END: Potion Display        ###
+        ###################################
+
+        # Setting appropriate column widths
+        shield_stats_group.setFixedWidth(300)
+        shield_generation_group.setFixedWidth(300)
+        shield_multi_group.setFixedWidth(300)
+        shield_card_group.setFixedWidth(1000)
+
+        # Setting appropriate layout heights
+        shield_stats_group.setFixedHeight(300)
+        shield_generation_group.setFixedHeight(150)
+        shield_multi_group.setFixedHeight(350)
+        shield_card_group.setFixedHeight(800)
+
+        # Potion Generation Layout
+        self.shield_generation_layout = QGridLayout()
+        self.shield_generation_layout.addWidget(shield_stats_group, 0, 0)
+        self.shield_generation_layout.addWidget(shield_generation_group, 1, 0)
+        self.shield_generation_layout.addWidget(shield_multi_group, 2, 0)
+        self.shield_generation_layout.addWidget(shield_card_group, 0, 1, -1, 1)
+
+        self.shield_tab = QWidget()
+        self.shield_tab.setLayout(self.shield_generation_layout)
+
+        ######################################### END SHIELDS ##############################################
+
+        ######################################### START GRENADES ##############################################
+
+        ###################################
+        ###  BEGIN: grenade Stats Grid    ###
+        ###################################
+        grenade_stats_group = QGroupBox("Configuration")
+        grenade_stats_layout = QGridLayout()
+        grenade_stats_layout.setAlignment(Qt.AlignTop)
+
+        # grenade Name
+        self.grenade_line_edit = add_stat_to_layout(grenade_stats_layout, "Grenade Name:", 0, placeholder="Random")
+
+        # grenade Guild
+        grenade_stats_layout.addWidget(QLabel("Guild: "), 1, 0)
+        self.guild_grenade_type_box = QComboBox()
+        self.guild_grenade_type_box.addItem("Random")
+        for item in get_file_data(basedir + "resources/misc/grenades/grenade.json").keys():
+            self.guild_grenade_type_box.addItem(item)
+        grenade_stats_layout.addWidget(self.guild_grenade_type_box, 1, 1)
+
+        # grenade Tier
+        grenade_stats_layout.addWidget(QLabel("Tier: "), 2, 0)
+        self.tier_grenade_type_box = QComboBox()
+        self.tier_grenade_type_box.addItem("Random")
+        for item in get_file_data(basedir + "resources/misc/grenades/grenade.json")["Ashen"].keys():
+            self.tier_grenade_type_box.addItem(item)
+        grenade_stats_layout.addWidget(self.tier_grenade_type_box, 2, 1)
+
+        # Grenade Type
+        self.grenade_type_edit = add_stat_to_layout(grenade_stats_layout, "Type:", 3, placeholder="Random")
+        self.grenade_type_edit.setToolTip("Either manually enter a grenade type or let it be rolled.")
+
+        # Grenade Damage
+        self.grenade_damage_edit = add_stat_to_layout(grenade_stats_layout, "Damage:", 4, placeholder="NdX")
+        self.grenade_damage_edit.setToolTip("Either manually enter a grenade damage stat or let it be rolled.")
+
+        # Grenade Effect
+        self.grenade_effect_edit = add_stat_to_layout(grenade_stats_layout, "Effect:", 5, placeholder="Random")
+        self.grenade_effect_edit.setToolTip("Either manually enter a grenade effect or let it be rolled.")
+
+        # Grid layout
+        grenade_stats_group.setLayout(grenade_stats_layout)
+        ###################################
+        ###  END: grenade Stats Grid      ###
+        ###################################
+
+        ###################################
+        ###  START: grenade Generation    ###
+        ###################################
+        grenade_generation_group = QGroupBox("Single-Grenade Generation")
+        grenade_generation_layout = QGridLayout()
+        grenade_generation_layout.setAlignment(Qt.AlignTop)
+
+        # PDF Output Name
+        self.grenade_pdf_line_edit = add_stat_to_layout(grenade_generation_layout, "PDF Filename:", 0)
+        self.grenade_pdf_line_edit.setToolTip("Specify the filename that Generate grenade saves the next gun under.")
+
+        # Generate button
+        button = QPushButton("Generate Grenade")
+        button.setToolTip("Handles generating the grenade card and locally saving the PDF in \"outputs/grenades/\".")
+        button.clicked.connect(lambda: self.generate_grenade())
+        grenade_generation_layout.addWidget(button, 1, 0, 1, -1)
+
+        # Label for save file output
+        self.output_grenade_pdf_label = QLabel()
+        grenade_generation_layout.addWidget(self.output_grenade_pdf_label, 2, 0, 1, -1)
+
+        # Grid layout
+        grenade_generation_group.setLayout(grenade_generation_layout)
+        ###################################
+        ###  END: Grenade Generation      ###
+        ###################################
+
+        ###################################
+        ###  START: Multi Generation    ###
+        ###################################
+        grenade_multi_group = QGroupBox("Multi-Grenade Generation")
+        grenade_multi_layout = QGridLayout()
+        grenade_multi_layout.setAlignment(Qt.AlignTop)
+
+        # PDF Output Name
+        self.numgrenade_line_edit = add_stat_to_layout(grenade_multi_layout, "# grenades to Generate:", 0, force_int=True)
+        self.numgrenade_line_edit.setToolTip("Choose how many grenades to automatically generate and save.")
+
+        # Generate button
+        button = QPushButton("Generate Multiple Grenades")
+        button.setToolTip("Handles generating the grenades and locally saving their PDFs in \"outputs/grenades/\".")
+        button.clicked.connect(lambda: self.generate_multiple_grenades())
+        grenade_multi_layout.addWidget(button, 1, 0, 1, -1)
+
+        # Label for savefile output
+        self.grenade_multi_output_label = QLabel()
+        grenade_multi_layout.addWidget(self.grenade_multi_output_label, 2, 0, 1, -1)
+
+        # Grid layout
+        grenade_multi_group.setLayout(grenade_multi_layout)
+        ###################################
+        ###  END: Multi Generation      ###
+        ###################################
+
+        ###################################
+        ###  START: Grenade Display       ###
+        ###################################
+        grenade_card_group = QGroupBox("Grenade Card")
+        grenade_card_layout = QGridLayout()
+        grenade_card_layout.setAlignment(Qt.AlignVCenter)
+
+        self.grenadeWebBrowser = QAxContainer.QAxWidget(self)
+        self.grenadeWebBrowser.setFixedHeight(800)
+        self.grenadeWebBrowser.setControl("{8856F961-340A-11D0-A96B-00C04FD705A2}")
+        self.grenadeWebBrowser.setToolTip("If nothing is displaying or the text is not displaying, then either "
+                                         "1.) you do not have a local PDF Viewer or 2.) the OS you are on doesn't support annotation rendering.")
+        grenade_card_layout.addWidget(self.grenadeWebBrowser, 0, 1, -1, 1)
+
+        # Need to check if attempting to re-save when the PDF name is already taken
+        self.current_grenade_pdf = "EXAMPLE_GRENADE.pdf"
+
+        # Load in Gun Card Template
+        f = Path(os.path.abspath(self.basedir + "output/grenades/EXAMPLE_GRENADE.pdf")).as_uri()
+        self.grenadeWebBrowser.dynamicCall('Navigate(const QString&)', f)
+
+        # Grid layout
+        grenade_card_group.setLayout(grenade_card_layout)
+        ###################################
+        ###  END: Grenade Display       ###
+        ###################################
+
+        # Setting appropriate column widths
+        grenade_stats_group.setFixedWidth(300)
+        grenade_generation_group.setFixedWidth(300)
+        grenade_multi_group.setFixedWidth(300)
+        grenade_card_group.setFixedWidth(1000)
+
+        # Setting appropriate layout heights
+        grenade_stats_group.setFixedHeight(300)
+        grenade_generation_group.setFixedHeight(150)
+        grenade_multi_group.setFixedHeight(350)
+        grenade_card_group.setFixedHeight(800)
+
+        # Potion Generation Layout
+        self.grenade_generation_layout = QGridLayout()
+        self.grenade_generation_layout.addWidget(grenade_stats_group, 0, 0)
+        self.grenade_generation_layout.addWidget(grenade_generation_group, 1, 0)
+        self.grenade_generation_layout.addWidget(grenade_multi_group, 2, 0)
+        self.grenade_generation_layout.addWidget(grenade_card_group, 0, 1, -1, 1)
+
+        self.grenade_tab = QWidget()
+        self.grenade_tab.setLayout(self.grenade_generation_layout)
+
+        ######################################### END GRENADES ##############################################
+
+        # TabWidget for the different generation menus
+        self.tabMenu = QTabWidget()
+        self.tabMenu.addTab(self.gun_tab, "Gun")
+        self.tabMenu.setTabText(0, "Guns")
+
+        self.tabMenu.addTab(self.shield_tab, "Shield")
+        self.tabMenu.setTabText(2, "Shields")
+
+        self.tabMenu.addTab(self.relic_tab, "Relic")
+        self.tabMenu.setTabText(2, "Relics")
+
+        self.tabMenu.addTab(self.potion_tab, "Potion")
+        self.tabMenu.setTabText(3, "Potions")
+
+        self.tabMenu.addTab(self.grenade_tab, "Grenade")
+        self.tabMenu.setTabText(4, "Grenades")
 
         # Setting layout to be the central widget of main window
-        wid = QWidget()
-        wid.setLayout(layout)
-        self.setCentralWidget(wid)
+        self.setCentralWidget(self.tabMenu)
 
     def generate_gun(self):
         """ Handles performing the call to generate a gun given the parameters and updating the Gun Card image """
@@ -284,14 +947,14 @@ class Window(QMainWindow):
             self.output_pdf_label.setText("PDF Name already in use!".format(output_name))
             return
 
-        self.output_pdf_label.setText("Saved to outputs/{}.pdf!".format(output_name))
+        self.output_pdf_label.setText("Saved to output/guns/{}.pdf!".format(output_name))
         self.current_pdf = output_name
 
         # Generate the local gun card PDF
-        generate_gun_pdf(self.basedir, output_name, gun, self.gun_images, rarity_check)
+        self.gun_pdf.generate_gun_pdf(output_name, gun, self.gun_images, rarity_check)
 
         # Load in gun card PDF
-        f = Path(os.path.abspath("output/{}.pdf".format(output_name))).as_uri()
+        f = Path(os.path.abspath("output/guns/{}.pdf".format(output_name))).as_uri()
         self.WebBrowser.dynamicCall('Navigate(const QString&)', f)
 
     def generate_multiple_guns(self):
@@ -324,15 +987,283 @@ class Window(QMainWindow):
                 continue
 
             # Generate the local gun card PDF
-            generate_gun_pdf(self.basedir, output_name, gun, self.gun_images, rarity_check)
+            self.gun_pdf.generate_gun_pdf(output_name, gun, self.gun_images, rarity_check)
 
         # Set text and current PDF name
-        self.multi_output_label.setText("Saved {} guns to 'outputs/'!".format(number_gen))
+        self.multi_output_label.setText("Saved {} guns to 'output/guns/'!".format(number_gen))
         self.current_pdf = output_name
 
         # Load in last generated gun card PDF
-        f = Path(os.path.abspath("output/{}.pdf".format(output_name))).as_uri()
+        f = Path(os.path.abspath("output/guns/{}.pdf".format(output_name))).as_uri()
         self.WebBrowser.dynamicCall('Navigate(const QString&)', f)
+
+    def generate_potion(self):
+        """ Handles performing the call to generate a potion given the parameters and updating the Potion Card image """
+        # Load in properties that are currently set in the program
+        potion_id = self.potion_id_box.currentText()
+        include_cost = self.potion_cost.isChecked()
+        include_tina_effect = self.potion_tina_show.isChecked()
+
+        # Generate a potion
+        potion = Potion(self.basedir, potion_id)
+
+        # Generate output name and check if it is already in use
+        output_name = potion.name.replace(" ", "") if self.potion_pdf_line_edit.text() == "" else self.potion_pdf_line_edit.text()
+        if output_name == self.current_potion_pdf:
+            self.output_potion_pdf_label.setText("PDF Name already in use!".format(output_name))
+            return
+
+        # Generate the PDF
+        self.potion_pdf.generate_potion_pdf(output_name, potion, self.potion_images, include_cost, include_tina_effect)
+
+        # Update the label and pdf name
+        self.output_potion_pdf_label.setText("Saved to output/potions/{}.pdf!".format(output_name))
+        self.current_potion_pdf = output_name
+
+        # Load in gun card PDF
+        f = Path(os.path.abspath("output/potions/{}.pdf".format(output_name))).as_uri()
+        self.PotionWebBrowser.dynamicCall('Navigate(const QString&)', f)
+
+    def generate_multiple_potions(self):
+        """ Handles generating multiple potions at once and saving them to outputs/potions/ """
+        # Error check for no number specified
+        if self.numpotion_line_edit.text() == "":
+            self.potion_multi_output_label.setText("No number set! Enter a number and resubmit!")
+            return
+
+        # Load in properties that are currently set in the program
+        include_cost = self.potion_cost.isChecked()
+        include_tina_effect = self.potion_tina_show.isChecked()
+
+        # Get a base output name to display and the number to generate
+        output_name = self.current_potion_pdf
+        number_gen = int(self.numpotion_line_edit.text())
+        for _ in range(number_gen):
+            # Generate a potion
+            potion = Potion(self.basedir, "Random")
+
+            # Generate output name and check if it is already in use
+            output_name = potion.name.replace(" ", "")
+            if output_name == self.current_potion_pdf:
+                self.potion_multi_output_label.setText("PDF Name already in use!".format(output_name))
+                continue
+
+            # Generate the PDF
+            self.potion_pdf.generate_potion_pdf(output_name, potion, self.potion_images, include_cost, include_tina_effect)
+
+        # Update the label and pdf name
+        self.potion_multi_output_label.setText("Saved {} potions to 'output/potions/'!".format(number_gen))
+        self.current_potion_pdf = output_name
+
+        # Load in gun card PDF
+        f = Path(os.path.abspath("output/potions/{}.pdf".format(output_name))).as_uri()
+        self.PotionWebBrowser.dynamicCall('Navigate(const QString&)', f)
+
+    def generate_relic(self):
+        """ Handles performing the call to generate a relic given the parameters and updating the Potion Card image """
+        # Load in properties that are currently set in the program
+        relic_id = self.relic_id_box.currentText()
+        relic_name = self.relic_line_edit.text()
+        relic_type = self.relic_type_edit.text()
+        relic_rarity = self.rarity_relic_type_box.currentText()
+        relic_effect = self.relic_effect_edit.text()
+        relic_class_id = self.rarity_class_type_box.currentText()
+        relic_class_effect = self.relic_class_effect_edit.text()
+
+        # Generate a relic
+        relic = Relic(self.basedir, relic_name, relic_id, relic_type, relic_rarity,
+                      relic_effect, relic_class_id, relic_class_effect)
+
+        # Generate output name and check if it is already in use
+        output_name = "{}_{}".format(relic.class_id, relic.name.replace(" ", "")) \
+            if self.relic_pdf_line_edit.text() == "" else self.relic_pdf_line_edit.text()
+        if output_name == self.current_relic_pdf:
+            self.output_relic_pdf_label.setText("PDF Name already in use!".format(output_name))
+            return
+
+        # Generate the PDF
+        self.relic_pdf.generate_relic_pdf(output_name, relic, self.relic_images)
+
+        # Update the label and pdf name
+        self.output_relic_pdf_label.setText("Saved to output/relics/{}.pdf!".format(output_name))
+        self.current_relic_pdf = output_name
+
+        # Load in gun card PDF
+        f = Path(os.path.abspath("output/relics/{}.pdf".format(output_name))).as_uri()
+        self.RelicWebBrowser.dynamicCall('Navigate(const QString&)', f)
+
+    def generate_multiple_relics(self):
+        """ Handles generating multiple relics and saving them to outputs/relics/ """
+        # Error check for no number specified
+        if self.numrelic_line_edit.text() == "":
+            self.relic_multi_output_label.setText("No number set! Enter a number and resubmit!")
+            return
+
+        # Get a base output name to display and the number to generate
+        output_name = self.current_relic_pdf
+        number_gen = int(self.numrelic_line_edit.text())
+        for _ in range(number_gen):
+            # Generate a relic
+            relic = Relic(self.basedir)
+
+            # Generate output name and check if it is already in use
+            output_name = "{}_{}".format(relic.class_id, relic.name.replace(" ", ""))
+            if output_name == self.current_relic_pdf:
+                self.relic_multi_output_label.setText("PDF Name already in use!".format(output_name))
+                continue
+
+            # Generate the PDF
+            self.relic_pdf.generate_relic_pdf(output_name, relic, self.relic_images)
+
+        # Update the label and pdf name
+        self.relic_multi_output_label.setText("Saved {} potions to 'output/relics/'!".format(number_gen))
+        self.current_relic_pdf = output_name
+
+        # Load in gun card PDF
+        f = Path(os.path.abspath("output/relics/{}.pdf".format(output_name))).as_uri()
+        self.RelicWebBrowser.dynamicCall('Navigate(const QString&)', f)
+
+    def generate_shield(self):
+        """ Handles performing the call to generate a shield given the parameters and updating the Shield Card image """
+        # Load in properties that are currently set in the program
+        shield_name = self.shield_line_edit.text()
+        shield_guild = self.guild_shield_type_box.currentText()
+        shield_tier = self.tier_shield_type_box.currentText()
+        shield_capacity = str(self.shield_capacity_edit.text())
+        shield_recharge = str(self.shield_recharge_edit.text())
+        shield_effect = self.shield_effect_edit.text()
+
+        # Generate a shield
+        shield = Shield(self.basedir, name=shield_name, guild=shield_guild, tier=shield_tier,
+                        capacity=shield_capacity, recharge=shield_recharge, effect=shield_effect)
+
+        # Generate output name and check if it is already in use
+        output_name = "{}_Tier{}_{}".format(shield.guild, shield.tier, shield.name.replace(" ", "")) \
+            if self.shield_pdf_line_edit.text() == "" else self.shield_pdf_line_edit.text()
+        if output_name == self.current_shield_pdf:
+            self.output_shield_pdf_label.setText("PDF Name already in use!".format(output_name))
+            return
+
+        # Generate the PDF
+        self.shield_pdf.generate_shield_pdf(output_name, shield, self.shield_images)
+
+        # Update the label and pdf name
+        self.output_shield_pdf_label.setText("Saved to output/shields/{}.pdf!".format(output_name))
+        self.current_shield_pdf = output_name
+
+        # Load in gun card PDF
+        f = Path(os.path.abspath("output/shields/{}.pdf".format(output_name))).as_uri()
+        self.shieldWebBrowser.dynamicCall('Navigate(const QString&)', f)
+
+    def generate_multiple_shields(self):
+        """ Handles generating and saving multiple shield cards at once """
+        # Error check for no number specified
+        if self.numshield_line_edit.text() == "":
+            self.shield_multi_output_label.setText("No number set! Enter a number and resubmit!")
+            return
+
+        # Load in properties that are currently set in the program
+        shield_guild = self.guild_shield_type_box.currentText()
+        shield_tier = self.tier_shield_type_box.currentText()
+        shield_capacity = str(self.shield_capacity_edit.text())
+        shield_recharge = str(self.shield_recharge_edit.text())
+        shield_effect = self.shield_effect_edit.text()
+
+        # Get a base output name to display and the number to generate
+        output_name = self.current_shield_pdf
+        number_gen = int(self.numshield_line_edit.text())
+        for _ in range(number_gen):
+            # Generate a shield
+            shield = Shield(self.basedir, guild=shield_guild, tier=shield_tier, capacity=shield_capacity,
+                            recharge=shield_recharge, effect=shield_effect)
+
+            # Generate output name and check if it is already in use
+            output_name = "{}_Tier{}_{}".format(shield.guild, shield.tier, shield.name.replace(" ", ""))
+            if output_name == self.current_shield_pdf:
+                self.shield_multi_output_label.setText("PDF Name already in use!".format(output_name))
+                continue
+
+            # Generate the PDF
+            self.shield_pdf.generate_shield_pdf(output_name, shield, self.shield_images)
+
+        # Update the label and pdf name
+        self.shield_multi_output_label.setText("Saved {} potions to 'output/shields/'!".format(number_gen))
+        self.current_shield_pdf = output_name
+
+        # Load in gun card PDF
+        f = Path(os.path.abspath("output/shields/{}.pdf".format(output_name))).as_uri()
+        self.shieldWebBrowser.dynamicCall('Navigate(const QString&)', f)
+
+    def generate_grenade(self):
+        """ Handles performing the call to generate a grenade given the parameters and updating the Grenade Card image """
+        # Load in properties that are currently set in the program
+        grenade_name = self.grenade_line_edit.text()
+        grenade_guild = self.guild_grenade_type_box.currentText()
+        grenade_tier = self.tier_grenade_type_box.currentText()
+        grenade_type = self.grenade_type_edit.text()
+        grenade_damage = self.grenade_damage_edit.text()
+        grenade_effect = self.grenade_effect_edit.text()
+
+        # Generate a grenade
+        grenade = Grenade(self.basedir, name=grenade_name, guild=grenade_guild, grenade_type=grenade_type,
+                          tier=grenade_tier, damage=grenade_damage, effect=grenade_effect)
+
+        # Generate output name and check if it is already in use
+        output_name = "{}_Tier{}_{}".format(grenade.guild, grenade.tier, grenade.name.replace(" ", "")) \
+            if self.grenade_pdf_line_edit.text() == "" else self.grenade_pdf_line_edit.text()
+        if output_name == self.current_grenade_pdf:
+            self.output_grenade_pdf_label.setText("PDF Name already in use!".format(output_name))
+            return
+
+        # Generate the PDF
+        self.grenade_pdf.generate_grenade_pdf(output_name, grenade, self.grenade_images)
+
+        # Update the label and pdf name
+        self.output_grenade_pdf_label.setText("Saved to output/grenades/{}.pdf!".format(output_name))
+        self.current_grenade_pdf = output_name
+
+        # Load in gun card PDF
+        f = Path(os.path.abspath("output/grenades/{}.pdf".format(output_name))).as_uri()
+        self.grenadeWebBrowser.dynamicCall('Navigate(const QString&)', f)
+
+    def generate_multiple_grenades(self):
+        """ Handles generating and saving multiple grenade cards at once """
+        # Error check for no number specified
+        if self.numgrenade_line_edit.text() == "":
+            self.grenade_multi_output_label.setText("No number set! Enter a number and resubmit!")
+            return
+
+        # Load in properties that are currently set in the program
+        grenade_guild = self.guild_grenade_type_box.currentText()
+        grenade_tier = self.tier_grenade_type_box.currentText()
+        grenade_type = self.grenade_type_edit.text()
+        grenade_damage = self.grenade_damage_edit.text()
+        grenade_effect = self.grenade_effect_edit.text()
+
+        # Get a base output name to display and the number to generate
+        output_name = self.current_grenade_pdf
+        number_gen = int(self.numgrenade_line_edit.text())
+        for _ in range(number_gen):
+            # Generate a grenade
+            grenade = Grenade(self.basedir, guild=grenade_guild, grenade_type=grenade_type,
+                              tier=grenade_tier, damage=grenade_damage, effect=grenade_effect)
+
+            # Generate output name and check if it is already in use
+            output_name = "{}_Tier{}_{}".format(grenade.guild, grenade.tier, grenade.name.replace(" ", ""))
+            if output_name == self.current_grenade_pdf:
+                self.grenade_multi_output_label.setText("PDF Name already in use!".format(output_name))
+                return
+
+            # Generate the PDF
+            self.grenade_pdf.generate_grenade_pdf(output_name, grenade, self.grenade_images)
+
+        # Update the label and pdf name
+        self.grenade_multi_output_label.setText("Saved {} potions to 'output/grenades/'!".format(number_gen))
+        self.current_grenade_pdf = output_name
+
+        # Load in gun card PDF
+        f = Path(os.path.abspath("output/grenades/{}.pdf".format(output_name))).as_uri()
+        self.grenadeWebBrowser.dynamicCall('Navigate(const QString&)', f)
 
 
 if __name__ == '__main__':
