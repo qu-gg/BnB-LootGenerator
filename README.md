@@ -25,21 +25,20 @@ Here is a list of ones that work and don't work thus far from personal testing. 
 ```
   BnB-LootGenerator/
   │
-  ├── app.py            - Entrypoint for the web application
   ├── local_app.py      - Entrypoint for the PyQT local application
-  ├── Dockerfile        - Enables localized container starting
   ├── requirements      - Automatically installs needed pypi packages
-  ├── generate_gun_cmd  - Local generation of a Gun Card PDF via command line
   |
   ├── classes/
   │   ├── Gun.py        - Gun generation script
   │   ├── GunImage.py   - Image filtering script
+  │   ├── GunPDF.py     - PDF generation script
+  │   ├── ...           - Other items follow the same scheme
   ├── resources/
   │   ├── chests/       - Tables for chests, caches, etc
   │   ├── elements/     - Tables for element rolling
-  │   ├── guilds/       - Tables for guild mod tables
+  │   ├── guns/         - Tables dedicated to gun generation
   │   ├── images/       - Tables that have URL PNG links to gun art from all Borderland games
-  │   ├── misc/         - Currently holds placeholder folders for planned features (grenades, moxxtails, etc)
+  │   ├── misc/         - Holds the tables for misc objects (shields, grenades, etc)
   ├── tests/
 ```
   
