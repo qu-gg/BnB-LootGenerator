@@ -142,3 +142,4 @@ class PotionPDF:
 
         # Remove old files
         os.remove(self.base_dir + "output/potions/" + output_name + '_temp.pdf')
+        os.remove(self.base_dir + "output/potions/temporary_potion_image.png")

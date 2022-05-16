@@ -141,3 +141,4 @@ class RelicPDF:
 
         # Remove old files
         os.remove(self.base_dir + "output/relics/" + output_name + '_temp.pdf')
+        os.remove(self.base_dir + "output/relics/temporary_relic_image.png")

@@ -160,3 +160,4 @@ class ShieldPDF:
         # Remove old files
         os.remove(self.base_dir + "output/shields/" + output_name + '_temp.pdf')
         os.remove(self.base_dir + "output/shields/" + output_name + '_temp2.pdf')
+        os.remove(self.base_dir + "output/shields/temporary_shield_image.png")

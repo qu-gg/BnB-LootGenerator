@@ -158,3 +158,4 @@ class GrenadePDF:
         # Remove old files
         os.remove(self.base_dir + "output/grenades/" + output_name + '_temp.pdf')
         os.remove(self.base_dir + "output/grenades/" + output_name + '_temp2.pdf')
+        os.remove(self.base_dir + "output/grenades/temporary_grenade_image.png")

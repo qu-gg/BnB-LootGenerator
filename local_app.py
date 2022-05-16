@@ -1226,6 +1226,45 @@ class Window(QMainWindow):
         f = Path(os.path.abspath("output/grenades/{}.pdf".format(output_name))).as_uri()
         self.grenadeWebBrowser.dynamicCall('Navigate(const QString&)', f)
 
+    def generate_multiple_grenades(self):
+        """ Handles generating and saving multiple grenade cards at once """
+        # Error check for no number specified
+        if self.numgrenade_line_edit.text() == "":
+            self.grenade_multi_output_label.setText("No number set! Enter a number and resubmit!")
+            return
+
+        # Load in properties that are currently set in the program
+        grenade_guild = self.guild_grenade_type_box.currentText()
+        grenade_tier = self.tier_grenade_type_box.currentText()
+        grenade_type = self.grenade_type_edit.text()
+        grenade_damage = self.grenade_damage_edit.text()
+        grenade_effect = self.grenade_effect_edit.text()
+
+        # Get a base output name to display and the number to generate
+        output_name = self.current_grenade_pdf
+        number_gen = int(self.numgrenade_line_edit.text())
+        for _ in range(number_gen):
+            # Generate a grenade
+            grenade = Grenade(self.basedir, guild=grenade_guild, grenade_type=grenade_type,
+                              tier=grenade_tier, damage=grenade_damage, effect=grenade_effect)
+
+            # Generate output name and check if it is already in use
+            output_name = "{}_Tier{}_{}".format(grenade.guild, grenade.tier, grenade.name.replace(" ", ""))
+            if output_name == self.current_grenade_pdf:
+                self.grenade_multi_output_label.setText("PDF Name already in use!".format(output_name))
+                return
+
+            # Generate the PDF
+            self.grenade_pdf.generate_grenade_pdf(output_name, grenade, self.grenade_images)
+
+        # Update the label and pdf name
+        self.grenade_multi_output_label.setText("Saved {} potions to 'output/grenades/'!".format(number_gen))
+        self.current_grenade_pdf = output_name
+
+        # Load in gun card PDF
+        f = Path(os.path.abspath("output/grenades/{}.pdf".format(output_name))).as_uri()
+        self.grenadeWebBrowser.dynamicCall('Navigate(const QString&)', f)
+
 
 if __name__ == '__main__':
     # Specify whether this is local development or applicatino compilation
