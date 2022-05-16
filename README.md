@@ -5,16 +5,10 @@
 LootGenerator is a local- and (soon-to-be) web-based application to handle Gun and Lootsplosion generation in the Nerdvana TTRPG, <a href="https://nerdvanagames.myshopify.com/">Bunkers & Badasses</a>. Additionally, it includes transcribed roll tables from the source book for all item types in the game.
  
 ## Running:
-There are three ways to use LootGenerator, command-line interface, the local application, or the web application <a href=''>TBD URL NAME</a>. 
+Currently this program is a PyQT GUI application in which the user can specify specific gun attributes to roll with. 
 
-<b>CLI:</b>
-The CLI option is for those who are more tech-savvy and don't necessarily care for the gun card but rather just a formatted gun text output. 
-The command for this is: ```python generate_gun_cmd.py --<attribute> <value>``` with '-h' giving a list of options and values.
-
-<b>Local Application:</b>
-The local option is a PyQT GUI application in which the user can specify specific gun attributes to roll with. 
 This will save a local PDF that can be printed off or sent to players.
-![Screenshot 2022-05-04 120938](https://user-images.githubusercontent.com/32918812/166724144-34812b0f-94bd-42e8-ba8b-8578b499487d.png)
+![Screenshot 2022-05-16 013155](https://user-images.githubusercontent.com/32918812/168525681-b73cec7f-c90d-48fb-9bca-ecc3bc9bc6d0.png)
 
 ## Note on PDF Viewers
 The local version of this application requires a PDFViewer capable of form/annotation rendering in order to view the generated text on the Gun Card. PDF Viewers are all over the place when it comes to support for this and it cannot be guaranteed LootGenerator will work with a given viewer. Alternative solutions were tried for rendering (e.g. pdf2image conversion, pdfjs, local chromium server), but no universal solution works. Without a full rewrite, this solution will have to suffice for now. We apologize for the inconvenience!
@@ -53,7 +47,7 @@ Here is a list of ones that work and don't work thus far from personal testing. 
 LootGenerator allows for easily adding customized rules/mods to expand the generation options. As the generation script dynamically parses
 the JSON files on runtime, one just needs to add a new item to the relevant JSON file in the resources/ folder.
 
-#### Available custom parts include:
+#### Examples of custom parts include:
 <ul>
     <li>Elements (Type/Rolling Tiers)</li>
     <li>Guilds</li>
@@ -78,11 +72,6 @@ for encounters given a Badass Rank or type of Container (cache, disk chest, etc)
 
 These are the components to be fleshed out yet (we're welcome to take contributions for these!):
 <ul>
-      <li><b> Grenades</b>: Roll tables for grenades and grenade effects and class.</li>
-      <li><b> Potions</b>: Roll tables for regular n' Tina potions and class needed.</li>
-      <li><b> Moxx-Tails</b>: Roll tables and class needed.</li>
-      <li><b> Relic</b>: Roll tables for guild n' effects and class needed.</li>
-      <li><b> Shield</b>: Roll tables for guild n' effects and class needed.</li>
       <li><b> Containers</b>: Roll tables for cache, cache size, dice chests, and unassuming chests need to be input. As well, a class that handles rolling and providing function calls to relevant classes is needed.</li>
 </ul>
 
