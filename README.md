@@ -2,7 +2,7 @@
 
 <hr>
 
-LootGenerator is a local- and (soon-to-be) web-based application to handle Gun and Lootsplosion generation in the Nerdvana TTRPG, <a href="https://nerdvanagames.myshopify.com/">Bunkers & Badasses</a>. Additionally, it includes transcribed roll tables from the source book for all item types in the game.
+LootGenerator is a local application to handle Gun and Lootsplosion generation in the Nerdvana TTRPG, <a href="https://nerdvanagames.myshopify.com/">Bunkers & Badasses</a>. Additionally, it includes transcribed roll tables from the source book for all item types in the game.
  
 ## Running:
 Currently this program is a PyQT GUI application in which the user can specify specific gun attributes to roll with. 
