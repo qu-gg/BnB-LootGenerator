@@ -1,0 +1,218 @@
+{
+  "Ashen": {
+    "1": {
+      "type": "Transfusion",
+      "effect": "Gain Health equal to Damage dealt.",
+      "damage": "1d8"
+    },
+    "2": {
+      "type": "Homing",
+      "effect": "Automatically hits closest target.",
+      "damage": "2d8"
+    },
+    "3": {
+      "type": "Transfusion",
+      "effect": "Gain Health equal to Damage dealt.",
+      "damage": "3d8"
+    },
+    "4": {
+      "type": "Homing",
+      "effect": "Automatically hits closest target.",
+      "damage": "4d8"
+    },
+    "5": {
+      "type": "Transfusion",
+      "effect": "Gain Health equal to Damage dealt.",
+      "damage": "5d8"
+    }
+  },
+  "Dahlia":{
+    "1": {
+      "type": "Generator",
+      "effect": "Recharges Shields equal to Damage dealt.",
+      "damage": "1d8"
+    },
+    "2": {
+      "type": "Bouncing Betty",
+      "effect": "Detonates in target square for 2 turns.",
+      "damage": "2d8"
+    },
+    "3": {
+      "type": "Generator",
+      "effect": "Recharges Shields equal to Damage dealt.",
+      "damage": "3d8"
+    },
+    "4": {
+      "type": "Bouncing Betty",
+      "effect": "Detonates in target square for 2 turns.",
+      "damage": "4d8"
+    },
+    "5": {
+      "type": "Generator",
+      "effect": "Recharges Shields equal to Damage dealt.",
+      "damage": "5d8"
+    }
+  },
+  "Feriore": {
+    "1": {
+      "type": "Jumping",
+      "effect": "Detonates, then jumps 2 squares and detonates again.",
+      "damage": "1d8"
+    },
+    "2": {
+      "type": "Sticky",
+      "effect": "Sticks to surfaces. Detonates after 1 turn.",
+      "damage": "2d8"
+    },
+    "3": {
+      "type": "Jumping",
+      "effect": "Detonates, then jumps 2 squares and detonates again.",
+      "damage": "3d8"
+    },
+    "4": {
+      "type": "Sticky",
+      "effect": "Sticks to surfaces. Detonates after 1 turn.",
+      "damage": "4d8"
+    },
+    "5": {
+      "type": "Jumping",
+      "effect": "Detonates, then jumps 2 squares and detonates again.",
+      "damage": "5d8"
+    }
+  },
+  "Hyperius":{
+    "1": {
+      "type": "Longbow",
+      "effect": "Teleports to Target. Ignores Cover.",
+      "damage": "1d8"
+    },
+    "2": {
+      "type": "Roider",
+      "effect": "Increased Damage.",
+      "damage": "2d10"
+    },
+    "3": {
+      "type": "Longbow",
+      "effect": "Teleports to Target. Ignores Cover.",
+      "damage": "3d8"
+    },
+    "4": {
+      "type": "Roider",
+      "effect": "Increased Damage.",
+      "damage": "4d10"
+    },
+    "5": {
+      "type": "Longbow",
+      "effect": "Teleports to Target. Ignores Cover.",
+      "damage": "5d8"
+    }
+  },
+  "Malefactor": {
+    "1": {
+      "type": "Elemental",
+      "effect": "Gains xx Type.",
+      "damage": "1d8"
+    },
+    "2": {
+      "type": "Contact",
+      "effect": "Detonates on contact with target.",
+      "damage": "2d8"
+    },
+    "3": {
+      "type": "Elemental",
+      "effect": "Gains xx Type.",
+      "damage": "3d8"
+    },
+    "4": {
+      "type": "Contact",
+      "effect": "Detonates on contact with target.",
+      "damage": "4d8"
+    },
+    "5": {
+      "type": "Elemental",
+      "effect": "Gains xx Type.",
+      "damage": "5d8"
+    }
+  },
+  "Pangoblin":{
+    "1": {
+      "type": "Rubberized",
+      "effect": "Bounce off surfaces. Detonates onn contact with any Target.",
+      "damage": "1d8"
+    },
+    "2": {
+      "type": "Force",
+      "effect": "Targets Hit are Knocked Back 1 square.",
+      "damage": "2d8"
+    },
+    "3": {
+      "type": "Rubberized",
+      "effect": "Bounce off surfaces. Detonates onn contact with any Target.",
+      "damage": "3d8"
+    },
+    "4": {
+      "type": "Force",
+      "effect": "Targets Hit are Knocked Back 1 square.",
+      "damage": "4d8"
+    },
+    "5": {
+      "type": "Rubberized",
+      "effect": "Bounce off surfaces. Detonates onn contact with any Target.",
+      "damage": "5d8"
+    }
+  },
+  "Stoker": {
+    "1": {
+      "type": "Proximity Mine",
+      "effect": "Wont detonate until target is adjacent.",
+      "damage": "1d8"
+    },
+    "2": {
+      "type": "Rain",
+      "effect": "Launches up and deals Damage downward in a 2x2 square area.",
+      "damage": "2d8"
+    },
+    "3": {
+      "type": "Proximity Mine",
+      "effect": "Wont detonate until target is adjacent.",
+      "damage": "3d8"
+    },
+    "4": {
+      "type": "Rain",
+      "effect": "Launches up and deals Damage downward in a 2x2 square area.",
+      "damage": "4d8"
+    },
+    "5": {
+      "type": "Proximity Mine",
+      "effect": "",
+      "damage": "5d8"
+    }
+  },
+  "Torgue":{
+    "1": {
+      "type": "Splash",
+      "effect": "Deals full Splash Damage.",
+      "damage": "1d8"
+    },
+    "2": {
+      "type": "MIRV",
+      "effect": "Splits into 3 grenades.",
+      "damage": "2d8"
+    },
+    "3": {
+      "type": "Splash",
+      "effect": "Deals full Splash Damage.",
+      "damage": "3d8"
+    },
+    "4": {
+      "type": "MIRV",
+      "effect": "Splits into 3 grenades.",
+      "damage": "4d8"
+    },
+    "5": {
+      "type": "Splash",
+      "effect": "Deals full Splash Damage.",
+      "damage": "5d8"
+    }
+  }
+}
