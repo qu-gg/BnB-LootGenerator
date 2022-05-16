@@ -35,4 +35,4 @@ class PotionImage:
         # Get image and then save locally temporarily
         response = requests.get(url, stream=True)
         img = Image.open(response.raw)
-        img.save(self.basedir + 'output_potions/temporary_potion_image.png')
+        img.save(self.basedir + 'output/potions/temporary_potion_image.png')

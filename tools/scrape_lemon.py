@@ -19,7 +19,7 @@ def main():
     # Get base weapon list for the given version
     # url = "https://www.lootlemon.com/db/borderlands-{}/weapons".format(BL_VERSION)
 
-    url = "https://www.lootlemon.com/db/borderlands-tps/oz-kits"
+    url = "https://www.lootlemon.com/db/wonderlands/rings-amulets"
 
     wep_url = "https://www.lootlemon.com/"
     html = requests.get(url).text
@@ -47,6 +47,7 @@ def main():
             new_gun['image_link'] = image_link
         except:
             print("Error in Weapon {} for URL {}".format(cells[0].string, weapon_url))
+            continue
 
         # Append to gun layout
         guns.append(new_gun)

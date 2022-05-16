@@ -181,7 +181,7 @@ class GunPDF:
         }
 
         # Fill the PDF with the given information
-        self.fill_pdf(self.base_dir + 'resources/GunTemplate.pdf', self.base_dir + 'output/' + output_name + '_temp.pdf', data_dict)
+        self.fill_pdf(self.base_dir + 'resources/GunTemplate.pdf', self.base_dir + 'output/guns/' + output_name + '_temp.pdf', data_dict)
 
         # Get a gun sample and apply a colored border depending
         if rarity_border is True:
@@ -191,9 +191,9 @@ class GunPDF:
 
         # Apply gun art to gun card
         position = {'page': 1, 'x0': 350, 'y0': 150, 'x1': 750, 'y1': 400}
-        self.add_image_to_pdf(self.base_dir + 'output/' + output_name + '_temp.pdf',
-                         self.base_dir + 'output/' + output_name + '_temp2.pdf',
-                         self.base_dir + 'output/temporary_gun_image.png',
+        self.add_image_to_pdf(self.base_dir + 'output/guns/' + output_name + '_temp.pdf',
+                         self.base_dir + 'output/guns/' + output_name + '_temp2.pdf',
+                         self.base_dir + 'output/guns/temporary_gun_image.png',
                          position)
 
         # Apply gun icon to gun card
@@ -207,8 +207,8 @@ class GunPDF:
         }
 
         position = {'page': 1, 'x0': 615, 'y0': 45, 'x1': 815, 'y1': 75}
-        self.add_image_to_pdf(self.base_dir + 'output/' + output_name + '_temp2.pdf',
-                         self.base_dir + 'output/' + output_name + '_temp3.pdf',
+        self.add_image_to_pdf(self.base_dir + 'output/guns/' + output_name + '_temp2.pdf',
+                         self.base_dir + 'output/guns/' + output_name + '_temp3.pdf',
                          self.base_dir + 'resources/images/gun_icons/{}'.format(gun_icon_paths.get(gun.type)),
                          position)
 
@@ -226,8 +226,8 @@ class GunPDF:
         }
 
         position = {'page': 1, 'x0': 20, 'y0': 45, 'x1': 200, 'y1': 75}
-        self.add_image_to_pdf(self.base_dir + 'output/' + output_name + '_temp3.pdf',
-                         self.base_dir + 'output/' + output_name + '_temp4.pdf',
+        self.add_image_to_pdf(self.base_dir + 'output/guns/' + output_name + '_temp3.pdf',
+                         self.base_dir + 'output/guns/' + output_name + '_temp4.pdf',
                          self.base_dir + 'resources/images/guild_icons/{}'.format(guild_icon_paths.get(gun.guild)),
                          position)
 
@@ -242,8 +242,8 @@ class GunPDF:
         }
 
         position = {'page': 1, 'x0': 75, 'y0': 280, 'x1': 115, 'y1': 330}
-        self.add_image_to_pdf(self.base_dir + 'output/' + output_name + '_temp4.pdf',
-                         self.base_dir + 'output/' + output_name + '_temp5.pdf',
+        self.add_image_to_pdf(self.base_dir + 'output/guns/' + output_name + '_temp4.pdf',
+                         self.base_dir + 'output/guns/' + output_name + '_temp5.pdf',
                          self.base_dir + 'resources/images/die_icons/{}'.format(die_icon_paths.get(die_type)),
                          position)
 
@@ -291,33 +291,33 @@ class GunPDF:
 
         # If there is no element, just rename the path
         if element is None:
-            os.rename(self.base_dir + 'output/' + output_name + '_temp5.pdf', self.base_dir + 'output/' + output_name + '.pdf')
+            os.rename(self.base_dir + 'output/guns/' + output_name + '_temp5.pdf', self.base_dir + 'output/guns/' + output_name + '.pdf')
 
         # Otherwise add the element icon
         else:
             position = {'page': 1, 'x0': 60, 'y0': 440, 'x1': 110, 'y1': 470}
-            self.add_image_to_pdf(self.base_dir + 'output/' + output_name + '_temp5.pdf',
-                             self.base_dir + 'output/' + output_name + '_temp6.pdf',
+            self.add_image_to_pdf(self.base_dir + 'output/guns/' + output_name + '_temp5.pdf',
+                             self.base_dir + 'output/guns/' + output_name + '_temp6.pdf',
                              self.base_dir + 'resources/images/element_icons/{}'.format(element_icon_paths.get(element[0])),
                              position)
-            os.remove(self.base_dir + "output/" + output_name + '_temp5.pdf')
+            os.remove(self.base_dir + "output/guns/" + output_name + '_temp5.pdf')
 
             # In the event that there are 3 elements, add the third element as a separate icon below
             if len(element) == 2:
                 position = {'page': 1, 'x0': 60, 'y0': 480, 'x1': 110, 'y1': 510}
-                self.add_image_to_pdf(self.base_dir + 'output/' + output_name + '_temp6.pdf',
-                                 self.base_dir + 'output/' + output_name + '.pdf',
+                self.add_image_to_pdf(self.base_dir + 'output/guns/' + output_name + '_temp6.pdf',
+                                 self.base_dir + 'output/guns/' + output_name + '.pdf',
                                  self.base_dir + 'resources/images/element_icons/{}'.format(element_icon_paths.get(element[1])),
                                  position)
-                os.remove(self.base_dir + "output/" + output_name + '_temp6.pdf')
+                os.remove(self.base_dir + "output/guns/" + output_name + '_temp6.pdf')
 
             # Otherwise just rename to the final PDF
             else:
-                os.rename(self.base_dir + 'output/' + output_name + '_temp6.pdf', self.base_dir + 'output/' + output_name + '.pdf')
+                os.rename(self.base_dir + 'output/guns/' + output_name + '_temp6.pdf', self.base_dir + 'output/guns/' + output_name + '.pdf')
 
         # Clean up temporary files
-        os.remove(self.base_dir + "output/" + output_name + '_temp.pdf')
-        os.remove(self.base_dir + "output/" + output_name + '_temp2.pdf')
-        os.remove(self.base_dir + "output/" + output_name + '_temp3.pdf')
-        os.remove(self.base_dir + "output/" + output_name + '_temp4.pdf')
-        os.remove(self.base_dir + "output/temporary_gun_image.png")
+        os.remove(self.base_dir + "output/guns/" + output_name + '_temp.pdf')
+        os.remove(self.base_dir + "output/guns/" + output_name + '_temp2.pdf')
+        os.remove(self.base_dir + "output/guns/" + output_name + '_temp3.pdf')
+        os.remove(self.base_dir + "output/guns/" + output_name + '_temp4.pdf')
+        os.remove(self.base_dir + "output/guns/temporary_gun_image.png")

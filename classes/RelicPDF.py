@@ -1,15 +1,15 @@
 """
-@file PotionPDF.py
+@file RelicPDF.py
 @author Ryan Missel
 
-Class to generate the PDF of the BnB Card Design for a given Potion.
+Class to generate the PDF of the BnB Card Design for a given relic.
 """
 import os
 import fitz
 import pdfrw
 
 
-class PotionPDF:
+class RelicPDF:
     def __init__(self, base_dir):
         # Base executable directory
         self.base_dir = base_dir
@@ -23,11 +23,21 @@ class PotionPDF:
         self.WIDGET_SUBTYPE_KEY = '/Widget'
         self.PARENT_KEY = '/Parent'
 
+        # Rarity color mapping
+        self.rarity_colors = {
+            "common": "0 0 0",
+            "uncommon": "0.24 0.82 0.04",
+            "rare": "0.23 0.47 1.0",
+            "epic": "0.57 0.25 0.78",
+            "legendary": "1.0 0.71 0.0"
+        }
+
         # PDF Appearance for the Forms
         self.appearances = {
             "Name": ('/Helvetica-BoldOblique 0 Tf 0 g', 0),
-            "Cost": ('/Helvetica-Bold 25.00 Tf 0 g', 1),
-            "Effect": ('/Helvetica-Bold 0 Tf 0 g', 1),
+            "Rarity": ('/Helvetica-Bold 0 Tf 0 g', 1),
+            "Effect": ('/Helvetica-Bold 16 Tf 0 g', 0),
+            "ClassEffect": ('/Helvetica-Bold 16 Tf 0 g', 0),
         }
 
     def fill_pdf(self, input_pdf_path, output_pdf_path, data_dict):
@@ -97,48 +107,37 @@ class PotionPDF:
         )
         file_handle.save(out_path)
 
-    def generate_potion_pdf(self, output_name, potion, potion_images, include_cost, include_tina_effect):
+    def generate_relic_pdf(self, output_name, relic, relic_images):
         """
         Handles generating a Gun Card PDF filled out with the information from the generated gun
         :param output_name: name of the output PDF to save
         """
-        # Build cost string
-        cost_str = "{}g".format(potion.cost) if include_cost is True else "???g"
-
-        # Build effect string, hiding Tina effects if desired
-        if potion.tina_potion and not include_tina_effect:
-            effect_str = "SECRET EFFECT!"
-        # For effects that are very long, automatically partition them into 10-segment lines for display
-        else:
-            effect_str = ""
-            for idx, word in enumerate(potion.effect.split(" ")):
-                if idx % 10 == 0 and idx != 0:
-                    effect_str += '\n'
-
-                effect_str += word + " "
-
         # Build up data dictionary to fill in PDF
         data_dict = {
-            'Name': potion.name,
-            "Cost": cost_str,
-            "Effect": effect_str,
+            'Name': relic.name,
+            "Rarity": relic.type,
+            "Effect": "(Effect) {}".format(relic.effect),
+            "ClassEffect": "({}) {}".format(relic.class_id, relic.class_effect),
+            # "Type": relic.type
         }
 
-        # Fill the PDF with the given information
-        self.fill_pdf(self.base_dir + 'resources/PotionTemplate.pdf',
-                      self.base_dir + 'output/potions/' + output_name + '_temp.pdf', data_dict)
+        self.appearances["Rarity"] = ('/Helvetica-Bold 0 Tf 1 Tr {} rg'.format(self.rarity_colors[relic.rarity.lower()]), 1)
 
-        # Get a potion image sample
-        potion_images.sample_potion_image()
+        # Fill the PDF with the given information
+        self.fill_pdf(self.base_dir + 'resources/RelicTemplate.pdf',
+                      self.base_dir + 'output/relics/' + output_name + '_temp.pdf', data_dict)
+
+        # Get a relic image sample
+        relic_images.sample_relic_image()
 
         # Apply gun art to gun card
         position = {'page': 1, 'x0': 90, 'y0': 150, 'x1': 346, 'y1': 406}
         self.add_image_to_pdf(
-            self.base_dir + 'output/potions/' + output_name + '_temp.pdf',
-            self.base_dir + 'output/potions/' + output_name + '.pdf',
-            self.base_dir + 'output/potions/temporary_potion_image.png',
+            self.base_dir + 'output/relics/' + output_name + '_temp.pdf',
+            self.base_dir + 'output/relics/' + output_name + '.pdf',
+            self.base_dir + 'output/relics/temporary_relic_image.png',
             position
         )
 
         # Remove old files
-        os.remove(self.base_dir + "output/potions/" + output_name + '_temp.pdf')
+        os.remove(self.base_dir + "output/relics/" + output_name + '_temp.pdf')
