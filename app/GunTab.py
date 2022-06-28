@@ -75,46 +75,50 @@ class GunTab(QWidget):
             self.rarity_type_box.addItem(item)
         base_stats_layout.addWidget(self.rarity_type_box, 4, 1)
 
+        # Gun Balance Table
+        self.gun_balance_dict = {
+            "Source Book": 'gun_types',
+            "McCoby\'s": "gun_types_mccoby",
+            "RobMWJ\'s": "gun_types_robmwj"
+        }
+        balance_label = QLabel("Damage Balance Sheet: ")
+        balance_label.setToolTip("Choose which Gun Damage Balance system to use - either the source book\'s or homebrew alternatives.")
+        base_stats_layout.addWidget(balance_label, 5, 0)
+        self.gun_balance_box = QComboBox()
+        for item in self.gun_balance_dict.keys():
+            self.gun_balance_box.addItem(item)
+        base_stats_layout.addWidget(self.gun_balance_box, 5, 1)
+
         # Roll for Rarity
         element_roll_text_label = QLabel("Force an Element Roll: ")
         element_roll_text_label.setToolTip(
             "Choose whether to always add an element roll regardless of the rarity rolled. "
             "This does NOT guarantee an element, just rolling on the table.")
-        base_stats_layout.addWidget(element_roll_text_label, 5, 0)
+        base_stats_layout.addWidget(element_roll_text_label, 6, 0)
         self.element_roll = QCheckBox()
         self.element_roll.setToolTip("Choose whether to always add an element roll regardless of the rarity rolled. "
                                      "This does NOT guarantee an element, just rolling on the table.")
-        base_stats_layout.addWidget(self.element_roll, 5, 1)
+        base_stats_layout.addWidget(self.element_roll, 6, 1)
 
         # Whether to use a gun prefix
         prefix_text_label = QLabel("Include a Prefix: ")
         prefix_text_label.setToolTip("Choose whether to roll a Prefix modifier to the gun, as per Page 99.")
-        base_stats_layout.addWidget(prefix_text_label, 6, 0)
+        base_stats_layout.addWidget(prefix_text_label, 7, 0)
         self.gun_prefix = QCheckBox()
         self.gun_prefix.setToolTip("Choose whether to roll a Prefix modifier to the gun, as per Page 99.")
-        base_stats_layout.addWidget(self.gun_prefix, 6, 1)
+        base_stats_layout.addWidget(self.gun_prefix, 7, 1)
 
         # Whether to roll for Red Text on epic or legendary
         red_text_label = QLabel("Include Red Text: ")
         red_text_label.setToolTip(
             "Choose whether to roll for a Red Text modifier on guns of rarity Epic or Legendary, as per Page 100.")
-        base_stats_layout.addWidget(red_text_label, 7, 0)
+        base_stats_layout.addWidget(red_text_label, 8, 0)
         self.red_text = QCheckBox()
         self.red_text.setToolTip(
             "Choose whether to roll for a Red Text modifier on guns of rarity Epic or Legendary, as per Page 100.")
-        base_stats_layout.addWidget(self.red_text, 7, 1)
+        base_stats_layout.addWidget(self.red_text, 8, 1)
 
-        base_stats_layout.addWidget(QLabel(""), 8, 0)
-
-        # Whether to roll for Red Text on epic or legendary
-        damage_balance_label = QLabel("Use RobMWJ's Damage Balance: ")
-        damage_balance_label.setToolTip(
-            "Choose whether to use alternative damage tables, written by user/robmwj on Reddit.")
-        base_stats_layout.addWidget(damage_balance_label, 9, 0)
-        self.damage_balance_check = QCheckBox()
-        self.damage_balance_check.setToolTip(
-            "Choose whether to use alternative damage tables, written by user/robmwj on Reddit.")
-        base_stats_layout.addWidget(self.damage_balance_check, 9, 1)
+        base_stats_layout.addWidget(QLabel(""), 9, 0)
 
         # Whether to roll for Red Text on epic or legendary
         rarity_border_label = QLabel("Use Gun Rarity Borders: ")
@@ -255,12 +259,14 @@ class GunTab(QWidget):
         prefix = self.gun_prefix.isChecked()
         redtext = self.red_text.isChecked()
 
-        damage_balance = self.damage_balance_check.isChecked()
         rarity_check = self.rarity_border_check.isChecked()
+
+        # Get the gun balance type
+        damage_balance_json = self.gun_balance_dict[self.gun_balance_box.currentText()]
 
         # Generate the gun object
         gun = Gun(self.basedir, name=name, item_level=item_level, gun_type=gun_type, gun_guild=guild, gun_rarity=rarity,
-                  damage_balance=damage_balance, rarity_element=element_roll, prefix=prefix, redtext=redtext)
+                  damage_balance=damage_balance_json, rarity_element=element_roll, prefix=prefix, redtext=redtext)
 
         # Generate the PDF output name as the gun name
         output_name = "{}_{}_{}_{}".format(
@@ -290,8 +296,10 @@ class GunTab(QWidget):
             return
 
         # Check for specifics needed like what damage set and borders
-        damage_balance = self.damage_balance_check.isChecked()
         rarity_check = self.rarity_border_check.isChecked()
+
+        # Get the gun balance type
+        damage_balance_json = self.gun_balance_dict[self.gun_balance_box.currentText()]
 
         # Get a base output name to display and the number to generate
         output_name = "EXAMPLE"
@@ -300,7 +308,7 @@ class GunTab(QWidget):
         # Generate N guns
         for _ in range(number_gen):
             # Generate the gun object
-            gun = Gun(self.basedir, damage_balance=damage_balance)
+            gun = Gun(self.basedir, damage_balance=damage_balance_json)
 
             # Generate the PDF output name as the gun name
             output_name = "{}_{}_{}_{}".format(

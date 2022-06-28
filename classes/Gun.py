@@ -50,10 +50,7 @@ class Gun:
         self.guild_element_roll = self.guild_table.get("element_roll")
 
         # Get gun stats table
-        if damage_balance is True:
-            self.stats = get_file_data(base_dir + "resources/guns/gun_types_robmwj.json").get(self.type).get(self.item_level)
-        else:
-            self.stats = get_file_data(base_dir + "resources/guns/gun_types.json").get(self.type).get(self.item_level)
+        self.stats = get_file_data(base_dir + f"resources/guns/{damage_balance}.json").get(self.type).get(self.item_level)
         self.accuracy = self.stats['accuracy']
         self.range = self.stats['range']
         self.damage = self.stats['damage']
