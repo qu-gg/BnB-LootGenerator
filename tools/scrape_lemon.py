@@ -12,12 +12,12 @@ from tqdm import tqdm
 
 
 # Define the Borderlands version to scrap from
-BL_VERSION = "3"
+BL_VERSION = "1"
 
 
 def main():
     # Get base weapon list for the given version
-    url = "https://www.lootlemon.com/db/borderlands-{}/grenade-mods".format(BL_VERSION)
+    url = "https://www.lootlemon.com/db/borderlands-{}/guns".format(BL_VERSION)
 
     # url = "https://www.lootlemon.com/db/wonderlands/wards"
 
