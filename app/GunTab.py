@@ -75,6 +75,30 @@ class GunTab(QWidget):
             self.rarity_type_box.addItem(item)
         base_stats_layout.addWidget(self.rarity_type_box, 4, 1)
 
+        # Prefix: [None, Random, Selection]
+        base_stats_layout.addWidget(QLabel("Prefix: "), 5, 0)
+        self.prefix_box = QComboBox()
+        self.prefix_box.addItem("None")
+        self.prefix_box.addItem("Random")
+        for pidx, (key, item) in enumerate(get_file_data(basedir + "resources/guns/prefix.json").items()):
+            self.prefix_box.addItem(f"[{pidx + 1}] {item['name']}")
+        self.prefix_box.setToolTip("Choose whether to add a random Prefix or a specific one")
+        base_stats_layout.addWidget(self.prefix_box, 5, 1)
+
+        # RedText: [None, Random, Selection]
+        base_stats_layout.addWidget(QLabel("Red Text: "), 6, 0)
+        self.redtext_box = QComboBox()
+        self.redtext_box.addItem("None")
+        self.redtext_box.addItem("Random (All Rarities)")
+        self.redtext_box.addItem("Random (Epics+)")
+        self.redtext_box.addItem("Random (Legendaries)")
+        for key, item in get_file_data(basedir + "resources/guns/redtext.json").items():
+            self.redtext_box.addItem(f"[{key}] {item['name']}")
+
+        self.redtext_box.setCurrentIndex(3)
+        self.redtext_box.setToolTip("Choose whether to add a random RedText for Epics/Legendaries or a specific one regardless of rarity")
+        base_stats_layout.addWidget(self.redtext_box, 6, 1)
+
         # Gun Balance Table
         self.gun_balance_dict = {
             "Source Book": 'gun_types',
@@ -83,51 +107,38 @@ class GunTab(QWidget):
         }
         balance_label = QLabel("Damage Balance Sheet: ")
         balance_label.setToolTip("Choose which Gun Damage Balance system to use - either the source book\'s or homebrew alternatives.")
-        base_stats_layout.addWidget(balance_label, 5, 0)
+        base_stats_layout.addWidget(balance_label, 7, 0)
         self.gun_balance_box = QComboBox()
         for item in self.gun_balance_dict.keys():
             self.gun_balance_box.addItem(item)
-        base_stats_layout.addWidget(self.gun_balance_box, 5, 1)
+        base_stats_layout.addWidget(self.gun_balance_box, 7, 1)
 
-        # Roll for Rarity
+        # Whether to hide Red Text Effects
+        hide_redtext_label = QLabel("Hide Red Text Effect: ")
+        hide_redtext_label.setToolTip("Whether to show the text but high the effect for Red Texts")
+        base_stats_layout.addWidget(hide_redtext_label, 8, 0)
+        self.hide_redtext_check = QCheckBox()
+        self.hide_redtext_check.setToolTip("Whether to show the text but high the effect for Red Texts")
+        base_stats_layout.addWidget(self.hide_redtext_check, 8, 1)
+
+        # Whether to force an element roll on the table
         element_roll_text_label = QLabel("Force an Element Roll: ")
         element_roll_text_label.setToolTip(
             "Choose whether to always add an element roll regardless of the rarity rolled. "
             "This does NOT guarantee an element, just rolling on the table.")
-        base_stats_layout.addWidget(element_roll_text_label, 6, 0)
+        base_stats_layout.addWidget(element_roll_text_label, 9, 0)
         self.element_roll = QCheckBox()
         self.element_roll.setToolTip("Choose whether to always add an element roll regardless of the rarity rolled. "
                                      "This does NOT guarantee an element, just rolling on the table.")
-        base_stats_layout.addWidget(self.element_roll, 6, 1)
-
-        # Whether to use a gun prefix
-        prefix_text_label = QLabel("Include a Prefix: ")
-        prefix_text_label.setToolTip("Choose whether to roll a Prefix modifier to the gun, as per Page 99.")
-        base_stats_layout.addWidget(prefix_text_label, 7, 0)
-        self.gun_prefix = QCheckBox()
-        self.gun_prefix.setToolTip("Choose whether to roll a Prefix modifier to the gun, as per Page 99.")
-        base_stats_layout.addWidget(self.gun_prefix, 7, 1)
+        base_stats_layout.addWidget(self.element_roll, 9, 1)
 
         # Whether to roll for Red Text on epic or legendary
-        red_text_label = QLabel("Include Red Text: ")
-        red_text_label.setToolTip(
-            "Choose whether to roll for a Red Text modifier on guns of rarity Epic or Legendary, as per Page 100.")
-        base_stats_layout.addWidget(red_text_label, 8, 0)
-        self.red_text = QCheckBox()
-        self.red_text.setToolTip(
-            "Choose whether to roll for a Red Text modifier on guns of rarity Epic or Legendary, as per Page 100.")
-        base_stats_layout.addWidget(self.red_text, 8, 1)
-
-        base_stats_layout.addWidget(QLabel(""), 9, 0)
-
-        # Whether to roll for Red Text on epic or legendary
-        rarity_border_label = QLabel("Use Gun Rarity Borders: ")
-        rarity_border_label.setToolTip(
-            "EXPERIMENTAL: Choose whether to outline the gun art in a colored-outline based on rarity. Doesn't work for all guns currently.")
+        rarity_border_label = QLabel("Use Gun Color Splashes: ")
+        rarity_border_label.setToolTip("Choose whether to outline the gun art in a colored-outline based on rarity.")
         base_stats_layout.addWidget(rarity_border_label, 10, 0)
         self.rarity_border_check = QCheckBox()
-        self.rarity_border_check.setToolTip(
-            "EXPERIMENTAL: Choose whether to outline the gun art in a colored-outline based on rarity. Doesn't work for all guns currently.")
+        self.rarity_border_check.setToolTip("Choose whether to outline the gun art in a colored-outline based on rarity.")
+        self.rarity_border_check.setChecked(True)
         base_stats_layout.addWidget(self.rarity_border_check, 10, 1)
 
         # Grid layout
@@ -143,19 +154,27 @@ class GunTab(QWidget):
         generation_layout = QGridLayout()
         generation_layout.setAlignment(Qt.AlignTop)
 
+        # Whether to save the PDF as form-fillable still
+        form_fill_label = QLabel("Keep PDF Form-Fillable:")
+        form_fill_label.setToolTip("Choose whether to keep the PDF unflattened so filled forms can be modified in a PDF editor.")
+        generation_layout.addWidget(form_fill_label, 0, 0)
+        self.form_fill_check = QCheckBox()
+        self.form_fill_check.setToolTip("Choose whether to keep the PDF unflattened so filled forms can be modified in a PDF editor.")
+        generation_layout.addWidget(self.form_fill_check, 0, 1)
+
         # PDF Output Name
-        self.pdf_line_edit = add_stat_to_layout(generation_layout, "PDF Filename:", 0)
+        self.pdf_line_edit = add_stat_to_layout(generation_layout, "PDF Filename:", 1)
         self.pdf_line_edit.setToolTip("Specify the filename that Generate Gun saves the next gun under.")
 
         # Generate button
         button = QPushButton("Generate Gun")
         button.setToolTip("Handles generating the gun and locally saving the PDF in \"outputs/\".")
         button.clicked.connect(lambda: self.generate_gun())
-        generation_layout.addWidget(button, 1, 0, 1, -1)
+        generation_layout.addWidget(button, 2, 0, 1, -1)
 
         # Label for savefile output
         self.output_pdf_label = QLabel()
-        generation_layout.addWidget(self.output_pdf_label, 2, 0, 1, -1)
+        generation_layout.addWidget(self.output_pdf_label, 3, 0, 1, -1)
 
         # Grid layout
         generation_group.setLayout(generation_layout)
@@ -170,19 +189,27 @@ class GunTab(QWidget):
         multi_layout = QGridLayout()
         multi_layout.setAlignment(Qt.AlignTop)
 
+        # Whether to save the PDF as form-fillable still
+        multi_fill_label = QLabel("Keep PDF Form-Fillable:")
+        multi_fill_label.setToolTip("Choose whether to keep the PDF unflattened so filled forms can be modified in a PDF editor.")
+        multi_layout.addWidget(multi_fill_label, 0, 0)
+        self.multi_fill_check = QCheckBox()
+        self.multi_fill_check.setToolTip("Choose whether to keep the PDF unflattened so filled forms can be modified in a PDF editor.")
+        multi_layout.addWidget(self.multi_fill_check, 0, 1)
+
         # PDF Output Name
-        self.numgun_line_edit = add_stat_to_layout(multi_layout, "# Guns to Generate:", 0, force_int=True)
+        self.numgun_line_edit = add_stat_to_layout(multi_layout, "# Guns to Generate:", 1, force_int=True)
         self.numgun_line_edit.setToolTip("Choose how many guns to automatically generate and save.")
 
         # Generate button
         button = QPushButton("Generate Multiple Guns")
         button.setToolTip("Handles generating the guns and locally saving their PDFs in \"outputs/\".")
         button.clicked.connect(lambda: self.generate_multiple_guns())
-        multi_layout.addWidget(button, 1, 0, 1, -1)
+        multi_layout.addWidget(button, 2, 0, 1, -1)
 
         # Label for savefile output
         self.multi_output_label = QLabel()
-        multi_layout.addWidget(self.multi_output_label, 2, 0, 1, -1)
+        multi_layout.addWidget(self.multi_output_label, 3, 0, 1, -1)
 
         # Grid layout
         multi_group.setLayout(multi_layout)
@@ -256,10 +283,17 @@ class GunTab(QWidget):
         rarity = self.rarity_type_box.currentText().lower()
 
         element_roll = self.element_roll.isChecked()
-        prefix = self.gun_prefix.isChecked()
-        redtext = self.red_text.isChecked()
+        prefix = self.prefix_box.currentText()
+        if ']' in prefix:
+            prefix = prefix[1:prefix.index("]")]
 
-        rarity_check = self.rarity_border_check.isChecked()
+        redtext = self.redtext_box.currentText()
+        if ']' in redtext:
+            redtext = redtext[1:redtext.index("]")].split('-')[0]
+
+        redtext_check = self.hide_redtext_check.isChecked()
+        color_check = self.rarity_border_check.isChecked()
+        form_check = self.form_fill_check.isChecked()
 
         # Get the gun balance type
         damage_balance_json = self.gun_balance_dict[self.gun_balance_box.currentText()]
@@ -269,8 +303,7 @@ class GunTab(QWidget):
                   damage_balance=damage_balance_json, rarity_element=element_roll, prefix=prefix, redtext=redtext)
 
         # Generate the PDF output name as the gun name
-        output_name = "{}_{}_{}_{}".format(
-            gun.type.title().replace('_', ' '), gun.guild.title(), gun.rarity.title(), gun.name).replace(' ', '') \
+        output_name = f"{gun.type.title().replace('_', ' ')}_{gun.rarity.title()}_{gun.guild.title()}_{gun.name}".replace(' ', '') \
             if self.pdf_line_edit.text() == "" else self.pdf_line_edit.text()
 
         # Check if it is already in use
@@ -282,7 +315,8 @@ class GunTab(QWidget):
         self.current_pdf = output_name
 
         # Generate the local gun card PDF
-        self.gun_pdf.generate_gun_pdf(output_name, gun, self.gun_images, rarity_check)
+        # self.gun_pdf.generate_gun_pdf(output_name, gun, self.gun_images, color_check, form_check)
+        self.gun_pdf.generate_split_gun_pdf(output_name, gun, self.gun_images, color_check, form_check, redtext_check)
 
         # Load in gun card PDF
         f = Path(os.path.abspath("output/guns/{}.pdf".format(output_name))).as_uri()
@@ -295,8 +329,18 @@ class GunTab(QWidget):
             self.multi_output_label.setText("No number set! Enter a number and resubmit!")
             return
 
-        # Check for specifics needed like what damage set and borders
-        rarity_check = self.rarity_border_check.isChecked()
+        # Check for rarity and prefix checks
+        prefix = self.prefix_box.currentText()
+        if ']' in prefix:
+            prefix = prefix[1:prefix.index("]")]
+
+        redtext = self.redtext_box.currentText()
+        if ']' in redtext:
+            redtext = redtext[1:redtext.index("]")].split('-')[0]
+
+        redtext_check = self.hide_redtext_check.isChecked()
+        color_check = self.rarity_border_check.isChecked()
+        form_check = self.form_fill_check.isChecked()
 
         # Get the gun balance type
         damage_balance_json = self.gun_balance_dict[self.gun_balance_box.currentText()]
@@ -308,11 +352,10 @@ class GunTab(QWidget):
         # Generate N guns
         for _ in range(number_gen):
             # Generate the gun object
-            gun = Gun(self.basedir, damage_balance=damage_balance_json)
+            gun = Gun(self.basedir, damage_balance=damage_balance_json, redtext=redtext, prefix=prefix)
 
             # Generate the PDF output name as the gun name
-            output_name = "{}_{}_{}_{}".format(
-                gun.type.title().replace('_', ' '), gun.guild.title(), gun.rarity.title(), gun.name).replace(' ', '')
+            output_name = f"{gun.type.title().replace('_', ' ')}_{gun.rarity.title()}_{gun.guild.title()}_{gun.name}".replace(' ', '')
 
             # Check if it is already in use
             if output_name == self.current_pdf:
@@ -320,7 +363,7 @@ class GunTab(QWidget):
                 continue
 
             # Generate the local gun card PDF
-            self.gun_pdf.generate_gun_pdf(output_name, gun, self.gun_images, rarity_check)
+            self.gun_pdf.generate_split_gun_pdf(output_name, gun, self.gun_images, color_check, form_check, redtext_check)
 
         # Set text and current PDF name
         self.multi_output_label.setText("Saved {} guns to 'output/guns/'!".format(number_gen))
