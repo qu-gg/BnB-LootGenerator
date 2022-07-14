@@ -343,7 +343,7 @@ class GunPDF:
 
             # In the event that there are 3 elements, add the third element as a separate icon below
             if len(element) == 2:
-                position = {'page': 1, 'x0': 60, 'y0': 480, 'x1': 110, 'y1': 510}
+                position = {'page': 1, 'x0': 60, 'y0': 500, 'x1': 110, 'y1': 530}
                 self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(element[1])}', position)
 
     def generate_split_gun_pdf(self, output_name, gun, gun_images, rarity_border, form_check, redtext_check):

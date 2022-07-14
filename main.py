@@ -32,7 +32,6 @@ class Window(QMainWindow):
 
         # Gun Tab
         self.gun_tab = GunTab(basedir)
-        self.gun_tab.triggered.connect()
         self.tabMenu.addTab(self.gun_tab.get_tab(), "Gun")
         self.tabMenu.setTabText(0, "Guns")
 
@@ -63,7 +62,7 @@ class Window(QMainWindow):
 if __name__ == '__main__':
     # Specify whether this is local development or application compilation
     basedir = ""
-    application = True
+    application = False
 
     # If application compilation, get the folder from which the executable is being executed
     if application:
