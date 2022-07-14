@@ -172,7 +172,7 @@
         "info": "Will deliver cryptic information on a topic up to 3x a day."
     },
     "44": {
-        "name": "Tense.",
+        "name": "Tense",
         "info": "30% chance to taze the Enemy, dealing 1d6 Shock Damage."
     },
     "45": {
@@ -363,13 +363,9 @@
         "name": "Few",
         "info": "Max 1 Hit. Deal an additional 3 Damage for each unused Hit."
     },
-    "": {
-        "name": "",
-        "info": "Enemies Hit are considered to be under a legally binding"
-    },
     "92": {
         "name": "Legal",
-        "info": "contract to drop 1 extra Loot Pile when they die."
+        "info": "Enemies Hit are considered to be under a legally binding contract to drop 1 extra Loot Pile when they die."
     },
     "93": {
         "name": "Abiding",

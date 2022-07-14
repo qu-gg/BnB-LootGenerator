@@ -50,10 +50,7 @@ class Gun:
         self.guild_element_roll = self.guild_table.get("element_roll")
 
         # Get gun stats table
-        if damage_balance is True:
-            self.stats = get_file_data(base_dir + "resources/guns/gun_types_robmwj.json").get(self.type).get(self.item_level)
-        else:
-            self.stats = get_file_data(base_dir + "resources/guns/gun_types.json").get(self.type).get(self.item_level)
+        self.stats = get_file_data(base_dir + f"resources/guns/{damage_balance}.json").get(self.type).get(self.item_level)
         self.accuracy = self.stats['accuracy']
         self.range = self.stats['range']
         self.damage = self.stats['damage']
@@ -114,21 +111,40 @@ class Gun:
                     get_file_data(base_dir + "resources/elements/elemental_type.json").get(self.element[1])
                 ]
 
-        # If prefix addition is checked, roll for a prefix and append to the gun's name
+        # Prefix parsing, either Random or Selected
         self.prefix_name = None
         self.prefix_info = None
-        if prefix is True:
+        if prefix == "Random":
             roll_prefix = str(randint(1, 100))
+        else:
+            roll_prefix = prefix
+
+        if prefix != "None":
             prefix_table = get_file_data(base_dir + "resources/guns/prefix.json").get(roll_prefix)
             self.prefix_name = prefix_table['name']
             self.prefix_info = prefix_table['info']
             self.name = self.prefix_name + ' ' + self.name
 
-        # If redtext checked and the gun is epic or legendary, roll for it
+        # Red Text parsing, depending on the desired tier of randomness
         self.redtext_name = None
         self.redtext_info = None
-        if redtext is True and self.rarity in ['epic', 'legendary']:
+        if redtext != "None":
+            roll_redtext = redtext
+
+        if redtext == "Random (All Rarities)":
             roll_redtext = str(randint(1, 100))
+
+        if redtext == "Random (Epics+)" and self.rarity in ['epic', 'legendary']:
+            roll_redtext = str(randint(1, 100))
+        elif redtext == "Random (Epics+)":
+            redtext = "None"
+
+        if redtext == "Random (Legendaries)" and self.rarity == 'legendary':
+            roll_redtext = str(randint(1, 100))
+        elif redtext == "Random (Legendaries)":
+            redtext = "None"
+
+        if redtext != "None":
             redtext_table = get_file_data(base_dir + "resources/guns/redtext.json")
             redtext_item = redtext_table.get(self.get_redtext_tier(roll_redtext, redtext_table))
             self.redtext_name = redtext_item['name']
@@ -149,7 +165,7 @@ class Gun:
                         self.element.append(element)
                         self.element_info.append(get_file_data(base_dir + "resources/elements/elemental_type.json").get(element))
                     else:
-                        self.element = self.element + ' + ' + element
+                        self.element = [self.element, element]
                         self.element_info = self.element_info + "\n" + get_file_data(base_dir + "resources/elements/elemental_type.json").get(element)
 
     def get_random_ilevel(self, base_dir):

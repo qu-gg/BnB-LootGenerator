@@ -2,79 +2,79 @@
     "1": {
         "type": "pistol",
         "guild": {
-            "1": "alas!",
-            "2": "dahlia",
-            "3": "hyperius",
-            "4": "malefactor",
-            "5": "feriore",
-            "6": "stoker",
-            "7": "torgue",
-            "8": "blackpowder"
+            "1": "skuldugger",
+            "2": "feriore",
+            "3": "dahlia",
+            "4": "blackpowder",
+            "5": "alas!",
+            "6": "malefactor",
+            "7": "stoker",
+            "8": "hyperius"
         }
     },
     "2": {
         "type": "submachine_gun",
         "guild": {
-            "1": "dahlia",
-            "2": "hyperius",
-            "3": "malefactor",
+            "1": "malefactor",
+            "2": "skuldugger",
+            "3": "hyperius",
             "4": "feriore",
             "5": "torgue",
             "6": "dahlia",
-            "7": "hyperius",
-            "8": "malefactor"
+            "7": "skuldugger",
+            "8": "feriore"
         }
     },
     "3": {
         "type": "shotgun",
         "guild": {
             "1": "hyperius",
-            "2": "malefactor",
+            "2": "blackpowder",
             "3": "skuldugger",
-            "4": "stoker",
-            "5": "alas!",
-            "6": "dahlia",
-            "7": "blackpowder",
-            "8": "feriore"
+            "4": "feriore",
+            "5": "torgue",
+            "6": "stoker",
+            "7": "alas!",
+            "8": "malefactor"
         }
     },
     "4": {
         "type": "combat_rifle",
         "guild": {
-            "1": "skuldugger",
+            "1": "feriore",
             "2": "dahlia",
-            "3": "blackpowder",
-            "4": "torgue",
-            "5": "stoker",
-            "6": "skuldugger",
+            "3": "torgue",
+            "4": "stoker",
+            "5": "hyperius",
+            "6": "alas!",
             "7": "dahlia",
-            "8": "blackpowder"
+            "8": "alas!"
         }
     },
     "5": {
         "type": "sniper_rifle",
         "guild": {
-            "1": "dahlia",
-            "2": "hyperius",
+            "1": "skuldugger",
+            "2": "alas!",
             "3": "blackpowder",
             "4": "malefactor",
-            "5": "stoker",
-            "6": "dahlia",
-            "7": "hyperius",
-            "8": "blackpowder"
+            "5": "dahlia",
+            "6": "hyperius",
+            "7": "stoker",
+            "8": "torgue"
         }
     },
     "6": {
         "type": "rocket_launcher",
         "guild": {
-            "1": "skuldugger",
-            "2": "malefactor",
-            "3": "feriore",
-            "4": "torgue",
+            "1": "stoker",
+            "2": "torgue",
+            "3": "malefactor",
+            "4": "hyperius",
             "5": "stoker",
-            "6": "skuldugger",
+            "6": "torgue",
             "7": "malefactor",
-            "8": "feriore"
+            "8": "hyperius"
         }
     },
     "7": {

@@ -60,7 +60,7 @@ class Window(QMainWindow):
 
 
 if __name__ == '__main__':
-    # Specify whether this is local development or applicatino compilation
+    # Specify whether this is local development or application compilation
     basedir = ""
     application = False
 

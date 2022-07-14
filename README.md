@@ -25,21 +25,27 @@ Here is a list of ones that work and don't work thus far from personal testing. 
 ```
   BnB-LootGenerator/
   │
-  ├── local_app.py      - Entrypoint for the PyQT local application
+  ├── main.py           - Entrypoint for the PyQT local application
   ├── requirements      - Automatically installs needed pypi packages
   |
+  ├── app/
+  │   ├── GunTab.py     - PyQt tab dedicated to Gun display
+  │   └── ...           - Tabs for relics, shields, etc.
   ├── classes/
   │   ├── Gun.py        - Gun generation script
   │   ├── GunImage.py   - Image filtering script
   │   ├── GunPDF.py     - PDF generation script
-  │   ├── ...           - Other items follow the same scheme
+  │   └── ...           - Other items follow the same scheme
+  ├── output/
+  │   ├── grenades/     - Folder to hold generated grenades
+  │   └── ...           - Other folders for other items
   ├── resources/
   │   ├── chests/       - Tables for chests, caches, etc
   │   ├── elements/     - Tables for element rolling
   │   ├── guns/         - Tables dedicated to gun generation
   │   ├── images/       - Tables that have URL PNG links to gun art from all Borderland games
-  │   ├── misc/         - Holds the tables for misc objects (shields, grenades, etc)
-  ├── tests/
+  │   └── misc/         - Holds the tables for misc objects (shields, grenades, etc)
+  └── tests/
 ```
   
 ## Custom Additions:
@@ -81,6 +87,16 @@ It is a common occurance that anti-viruses mistakenly flag Python executable pro
 Please feel free to put up any issues that are found or enhancements that would improve this work. As well, please feel welcome to put up PRs for any improvements that you can do!
 
 ## Credit
+
+### Damage Balance Tables
+The alternative damage balancing sheets are homebrew systems provided with permission by other community members.
+
+Here are the direct links to their works:
+
+- <a href="https://docs.google.com/file/d/14eFUSu1MnjKoJIaddZCy6NOh8euosf3V/edit?filetype=msexcel">McCoby's</a>
+- <a href="https://docs.google.com/spreadsheets/d/1rw7bS7kXxMOezy2Dy_7JQaDRbiJE0CFSKmYyoEcbg5E/edit#gid=0">RobMWJ's</a>
+
+### Materials
 This tool is an unofficial automated tool for the Nerdvana TTRPG, <a href="https://nerdvanagames.myshopify.com/">Bunkers & Badasses</a>.
 
 Gun art images are used from the Borderlands <a href="https://www.lootlemon.com/db/borderlands-3/weapons">Lootlemon</a> and images displayed are URL links to their hosted images.
