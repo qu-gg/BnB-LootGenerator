@@ -52,6 +52,61 @@ class GunPDF:
             "EffectBox": ('/Helvetica-Bold 13.00 Tf 0 g', 1)
         }
 
+        # File paths for the gun color backgrounds
+        self.gun_colors_paths = {
+            "legendary": "legendary_background.png",
+            "epic": "epic_background.png",
+            "rare": "rare_background.png",
+            "uncommon": "uncommon_background.png",
+            "common": "common_background.png"
+        }
+
+        # File paths for the gun icon images
+        self.gun_icon_paths = {
+            "combat_rifle": "Combat rifle.png",
+            "sniper_rifle": "Sniper rifle.png",
+            "pistol": "Pistol.png",
+            "shotgun": "Shotgun.png",
+            "rocket_launcher": "Rocket launcher.png",
+            "submachine_gun": "SMG.png"
+        }
+
+        # File paths for the guild icon images
+        self.guild_icon_paths = {
+            "alas!": "ALAS.png",
+            "skuldugger": "SKULDUGGER.png",
+            "dahlia": "DAHLIA.png",
+            "blackpowder": "BLACKPOWDER.png",
+            "malefactor": "MALEFACTOR.png",
+            "hyperius": "HYPERIUS.png",
+            "feriore": "FERIORE.png",
+            "torgue": "TORGUE.png",
+            "stoker": "STOKER.png",
+        }
+
+        # File paths for the die icon images
+        self.die_icon_paths = {
+            "4": "1d4.png",
+            "6": "1d6.png",
+            "8": "1d8.png",
+            "10": "1d10.png",
+            "12": "1d12.png",
+            "20": "1d20.png",
+        }
+
+        # File paths for the element icon image
+        self.element_icon_paths = {
+            "cryo": "Cryo.png",
+            "corrosive": "Corrosion.png",
+            "corroshock": "CorroShock.png",
+            "explosivcryo": "ExplosivCryo.png",
+            "explosive": "Explosive.png",
+            "incendiaradiation": "IncendiaRadiation.png",
+            "incendiary": "Incendiary.png",
+            "radiation": "Radiation.png",
+            "shock": "Shock.png"
+        }
+
     def convert_element(self, elements):
         """ Handles converting a given element of various types into the parseable element icon path """
         if elements is None:
@@ -162,36 +217,58 @@ class GunPDF:
         os.remove(pdf_path)
         os.rename(temp_path, pdf_path)
 
-    def generate_gun_pdf(self, output_name, gun, gun_images, rarity_border, form_check):
+    def generate_gun_pdf(self, output_name, gun, gun_images, rarity_border, form_check, redtext_check):
         """
         Handles generating a Gun Card PDF filled out with the information from the generated gun
         :param output_name: name of the output PDF to save
         """
-        # Construct information string, including prefix info, redtext info, guild info
-        # Essentially shifts up into higher boxes if the previous field is empty
-        redtext_str = ''
-        if gun.redtext_info is not None:
-            redtext_str += "{:<12} {}: {}\n\n".format("(Red Text)", gun.redtext_name, gun.redtext_info)
+        # Output of the generated PDF
+        output_path = f'{self.base_dir}output/guns/{output_name}.pdf'
 
-        prefix_str = ''
-        if gun.redtext_info is None and gun.prefix_info is not None:
-            redtext_str += "{:<15} {}: {}\n\n".format("(Prefix)", gun.prefix_name, gun.prefix_info)
-        elif gun.prefix_info is not None:
-            prefix_str += "{:<15} {}: {}\n\n".format("(Prefix)", gun.prefix_name, gun.prefix_info)
+        # Construct the effect box in the order of RedText, Prefix, Guild
+        effect_str = ""
+        if gun.redtext_info is not None and redtext_check is False:
+            effect_str += f"[{gun.redtext_name}]\n"
 
-        guild_str = ''
-        if gun.redtext_info is None and gun.prefix_info is None and gun.guild_info is not None:
-            redtext_str += "{:<15} {}: {}\n\n".format("(Guild)", gun.guild.title(), gun.guild_mod)
-        elif gun.redtext_info is None and gun.prefix_info is not None and gun.guild_info is not None:
-            prefix_str += "{:<15} {}: {}\n\n".format("(Guild)", gun.guild.title(), gun.guild_mod)
-        elif gun.redtext_info is not None and gun.prefix_info is None and gun.guild_info is not None:
-            prefix_str += "{:<15} {}: {}\n\n".format("(Guild)", gun.guild.title(), gun.guild_mod)
-        elif gun.guild_info is not None:
-            guild_str += "{:<15} {}: {}\n\n".format("(Guild)", gun.guild.title(), gun.guild_mod)
+            cur_chars = 0
+            for idx, word in enumerate(gun.redtext_info.split(" ")):
+                cur_chars += len(word)
+                if cur_chars > 100:
+                    effect_str += "\n"
+                    cur_chars = 0
 
-        # Construct element bonus string
-        if type(gun.element) == str and len(gun.element.split(' ')) > 1:
+                effect_str += f" {word}"
+
+            effect_str += "\n\n"
+
+        if gun.prefix_info is not None:
+            effect_str += f"[{gun.prefix_name}]\n"
+
+            cur_chars = 0
+            for idx, word in enumerate(gun.prefix_info.split(" ")):
+                cur_chars += len(word)
+                if cur_chars > 100:
+                    effect_str += "\n"
+                    cur_chars = 0
+
+                effect_str += f" {word}"
+
+            effect_str += "\n\n"
+
+        if gun.guild_info is not None:
+            effect_str += f"[{gun.guild.title()}]\n{gun.guild_mod}"
+
+        # If the element list is a string, check all entries for a bonus die
+        if type(gun.element) == list:
+            element_bonus_str = ""
+            for ele in gun.element:
+                if '(' in ele or ')' in ele:
+                    element_bonus_str = ele[ele.index('(') + 1:ele.index(')')]
+                    gun.element[0] = ele.split(' ')[0]
+        # If its just a string, its one element. Check it for bonus die
+        elif type(gun.element) == str and len(gun.element.split(' ')) > 1:
             element_bonus_str = gun.element.split(' ')[-1]
+        # Otherwise there is no element
         else:
             element_bonus_str = ""
 
@@ -201,6 +278,9 @@ class GunPDF:
             die_string = "x{}".format(die_num)
         else:
             die_string = ""
+
+        # Define if red text should be shown on front screen
+        redtext_name_str = gun.redtext_name if gun.redtext_name is not None else ""
 
         # Build up data dictionary to fill in PDF
         data_dict = {
@@ -221,150 +301,50 @@ class GunPDF:
             "Crit_Medium": '{}'.format(gun.accuracy['8-15']['crits']),
             "Crit_High": '{}'.format(gun.accuracy['16+']['crits']),
 
+            "RedTextName": redtext_name_str,
             "ElementBonus": element_bonus_str,
-
-            "RedText": redtext_str,
-            "Prefix": prefix_str,
-            "GuildMod": guild_str,
-            "ItemLevel": "Item Level: {}".format(gun.item_level)
+            "EffectBox": effect_str
         }
 
         # Fill the PDF with the given information
-        self.fill_pdf(self.base_dir + 'resources/GunTemplate.pdf',
-                      self.base_dir + 'output/guns/' + output_name + '_temp.pdf',
-                      data_dict, form_check)
+        self.fill_pdf(self.base_dir + 'resources/GunTemplate.pdf', output_path, data_dict, form_check)
 
         # Get a gun sample
         gun_images.sample_gun_image(gun.type, gun.guild, None)
 
         # Add gun rarity color splash background
-        gun_colors_paths = {
-            "legendary": "legendary_background.png",
-            "epic": "epic_background.png",
-            "rare": "rare_background.png",
-            "uncommon": "uncommon_background.png",
-            "common": "common_background.png"
-        }
-
         if rarity_border:
-            position = {'page': 1, 'x0': 350, 'y0': 150, 'x1': 750, 'y1': 400}
-            self.add_image_to_pdf(self.base_dir + 'output/guns/' + output_name + '_temp.pdf',
-                                  self.base_dir + 'output/guns/' + output_name + '_temp_color.pdf',
-                                  self.base_dir + 'resources/images/rarity_images/{}'.format(gun_colors_paths.get(gun.rarity)),
-                                  position)
-            next_import = self.base_dir + 'output/guns/' + output_name + '_temp_color.pdf'
-        else:
-            next_import = self.base_dir + 'output/guns/' + output_name + '_temp.pdf'
+            position = {'page': 1, 'x0': 350, 'y0': 140, 'x1': 750, 'y1': 390}
+            self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/rarity_images/{self.gun_colors_paths.get(gun.rarity)}", position)
 
         # Apply gun art to gun card
-        position = {'page': 1, 'x0': 350, 'y0': 150, 'x1': 750, 'y1': 400}
-        self.add_image_to_pdf(next_import,
-                              self.base_dir + 'output/guns/' + output_name + '_temp2.pdf',
-                              self.base_dir + 'output/guns/temporary_gun_image.png',
-                              position)
+        position = {'page': 1, 'x0': 350, 'y0': 140, 'x1': 750, 'y1': 390}
+        self.add_image_to_pdf(output_path, self.base_dir + 'output/guns/temporary_gun_image.png', position)
 
         # Apply gun icon to gun card
-        gun_icon_paths = {
-            "combat_rifle": "Combat rifle.png",
-            "sniper_rifle": "Sniper rifle.png",
-            "pistol": "Pistol.png",
-            "shotgun": "Shotgun.png",
-            "rocket_launcher": "Rocket launcher.png",
-            "submachine_gun": "SMG.png"
-        }
-
         position = {'page': 1, 'x0': 615, 'y0': 45, 'x1': 815, 'y1': 75}
-        self.add_image_to_pdf(self.base_dir + 'output/guns/' + output_name + '_temp2.pdf',
-                              self.base_dir + 'output/guns/' + output_name + '_temp3.pdf',
-                              self.base_dir + 'resources/images/gun_icons/{}'.format(gun_icon_paths.get(gun.type)),
-                              position)
+        self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/gun_icons/{self.gun_icon_paths.get(gun.type)}", position)
 
         # Apply guild icon to gun card
-        guild_icon_paths = {
-            "alas!": "ALAS.png",
-            "skuldugger": "SKULDUGGER.png",
-            "dahlia": "DAHLIA.png",
-            "blackpowder": "BLACKPOWDER.png",
-            "malefactor": "MALEFACTOR.png",
-            "hyperius": "HYPERIUS.png",
-            "feriore": "FERIORE.png",
-            "torgue": "TORGUE.png",
-            "stoker": "STOKER.png",
-        }
-
         position = {'page': 1, 'x0': 20, 'y0': 45, 'x1': 200, 'y1': 75}
-        self.add_image_to_pdf(self.base_dir + 'output/guns/' + output_name + '_temp3.pdf',
-                              self.base_dir + 'output/guns/' + output_name + '_temp4.pdf',
-                              self.base_dir + 'resources/images/guild_icons/{}'.format(guild_icon_paths.get(gun.guild)),
-                              position)
+        self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/guild_icons/{self.guild_icon_paths.get(gun.guild)}', position)
 
         # Apply damage die icon to gun card
-        die_icon_paths = {
-            "4": "1d4.png",
-            "6": "1d6.png",
-            "8": "1d8.png",
-            "10": "1d10.png",
-            "12": "1d12.png",
-            "20": "1d20.png",
-        }
-
         position = {'page': 1, 'x0': 75, 'y0': 280, 'x1': 115, 'y1': 330}
-        self.add_image_to_pdf(self.base_dir + 'output/guns/' + output_name + '_temp4.pdf',
-                              self.base_dir + 'output/guns/' + output_name + '_temp5.pdf',
-                              self.base_dir + 'resources/images/die_icons/{}'.format(die_icon_paths.get(die_type)),
-                              position)
-
-        # Apply element icon to gun card
-        element_icon_paths = {
-            "cryo": "Cryo.png",
-            "corrosive": "Corrosion.png",
-            "corroshock": "CorroShock.png",
-            "explosivcryo": "ExplosivCryo.png",
-            "explosive": "Explosive.png",
-            "incendiaradiation": "IncendiaRadiation.png",
-            "incendiary": "Incendiary.png",
-            "radiation": "Radiation.png",
-            "shock": "Shock.png"
-        }
+        self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/die_icons/{self.die_icon_paths.get(die_type)}', position)
 
         # Get the element converted to path
         element = self.convert_element(gun.element)
 
-        # If there is no element, just rename the path
-        if element is None:
-            os.rename(self.base_dir + 'output/guns/' + output_name + '_temp5.pdf', self.base_dir + 'output/guns/' + output_name + '.pdf')
-
-        # Otherwise add the element icon
-        else:
+        # Apply element icon to gun card
+        if element is not None:
             position = {'page': 1, 'x0': 60, 'y0': 440, 'x1': 110, 'y1': 470}
-            self.add_image_to_pdf(self.base_dir + 'output/guns/' + output_name + '_temp5.pdf',
-                             self.base_dir + 'output/guns/' + output_name + '_temp6.pdf',
-                             self.base_dir + 'resources/images/element_icons/{}'.format(element_icon_paths.get(element[0])),
-                             position)
-            os.remove(self.base_dir + "output/guns/" + output_name + '_temp5.pdf')
+            self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(element[0])}', position)
 
             # In the event that there are 3 elements, add the third element as a separate icon below
             if len(element) == 2:
                 position = {'page': 1, 'x0': 60, 'y0': 480, 'x1': 110, 'y1': 510}
-                self.add_image_to_pdf(self.base_dir + 'output/guns/' + output_name + '_temp6.pdf',
-                                 self.base_dir + 'output/guns/' + output_name + '.pdf',
-                                 self.base_dir + 'resources/images/element_icons/{}'.format(element_icon_paths.get(element[1])),
-                                 position)
-                os.remove(self.base_dir + "output/guns/" + output_name + '_temp6.pdf')
-
-            # Otherwise just rename to the final PDF
-            else:
-                os.rename(self.base_dir + 'output/guns/' + output_name + '_temp6.pdf', self.base_dir + 'output/guns/' + output_name + '.pdf')
-
-        # Clean up temporary files
-        os.remove(self.base_dir + "output/guns/" + output_name + '_temp.pdf')
-        os.remove(self.base_dir + "output/guns/" + output_name + '_temp2.pdf')
-        os.remove(self.base_dir + "output/guns/" + output_name + '_temp3.pdf')
-        os.remove(self.base_dir + "output/guns/" + output_name + '_temp4.pdf')
-        os.remove(self.base_dir + "output/guns/temporary_gun_image.png")
-
-        if rarity_border:
-            os.remove(self.base_dir + "output/guns/" + output_name + '_temp_color.pdf')
+                self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(element[1])}', position)
 
     def generate_split_gun_pdf(self, output_name, gun, gun_images, rarity_border, form_check, redtext_check):
         """
@@ -382,8 +362,8 @@ class GunPDF:
 
             cur_chars = 0
             for idx, word in enumerate(gun.redtext_info.split(" ")):
-                cur_chars += len(word)
-                if cur_chars > 27:
+                cur_chars += len(word) + 1
+                if cur_chars > 28:
                     effect_str += "\n"
                     cur_chars = 0
 
@@ -396,8 +376,8 @@ class GunPDF:
 
             cur_chars = 0
             for idx, word in enumerate(gun.prefix_info.split(" ")):
-                cur_chars += len(word)
-                if cur_chars > 27:
+                cur_chars += len(word) + 1
+                if cur_chars > 28:
                     effect_str += "\n"
                     cur_chars = 0
 
@@ -408,7 +388,7 @@ class GunPDF:
         if gun.guild_info is not None:
             effect_str += f"[{gun.guild.title()}]\n{gun.guild_mod}"
 
-        # Define if red text should be shown
+        # Define if red text should be shown on front screen
         redtext_name_str = gun.redtext_name if gun.redtext_name is not None else ""
 
         # If the element list is a string, check all entries for a bonus die
@@ -453,7 +433,6 @@ class GunPDF:
             "ElementBonus": element_bonus_str,
             "RedTextName": redtext_name_str,
             "EffectBox": effect_str,
-            "GunMod": ""
         }
 
         # Fill the PDF with the given information
@@ -463,108 +442,41 @@ class GunPDF:
         gun_images.sample_gun_image(gun.type, gun.guild, None)
 
         # Add gun rarity color splash background
-        gun_colors_paths = {
-            "legendary": "legendary_background.png",
-            "epic": "epic_background.png",
-            "rare": "rare_background.png",
-            "uncommon": "uncommon_background.png",
-            "common": "common_background.png"
-        }
-
         if rarity_border:
             position = {'page': 2, 'x0': 100, 'y0': 125, 'x1': 500, 'y1': 375}
-            self.add_image_to_pdf(output_path,
-                                  f"{self.base_dir}resources/images/rarity_images/{gun_colors_paths.get(gun.rarity)}",
-                                  position)
+            self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/rarity_images/{self.gun_colors_paths.get(gun.rarity)}", position)
 
         # Apply gun art to gun card
         position = {'page': 2, 'x0': 100, 'y0': 125, 'x1': 500, 'y1': 375}
         self.add_image_to_pdf(output_path, self.base_dir + 'output/guns/temporary_gun_image.png', position)
 
         # Apply gun icon to gun card
-        gun_icon_paths = {
-            "combat_rifle": "Combat rifle.png",
-            "sniper_rifle": "Sniper rifle.png",
-            "pistol": "Pistol.png",
-            "shotgun": "Shotgun.png",
-            "rocket_launcher": "Rocket launcher.png",
-            "submachine_gun": "SMG.png"
-        }
-
         position = {'page': 1, 'x0': 480, 'y0': 25, 'x1': 580, 'y1': 55}
-        self.add_image_to_pdf(output_path,
-                              f"{self.base_dir}resources/images/gun_icons/{gun_icon_paths.get(gun.type)}",
-                              position)
+        self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/gun_icons/{self.gun_icon_paths.get(gun.type)}", position)
 
         position = {'page': 2, 'x0': 480, 'y0': 25, 'x1': 580, 'y1': 55}
-        self.add_image_to_pdf(output_path,
-                              f"{self.base_dir}resources/images/gun_icons/{gun_icon_paths.get(gun.type)}",
-                              position)
+        self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/gun_icons/{self.gun_icon_paths.get(gun.type)}", position)
 
         # Apply guild icon to gun card
-        guild_icon_paths = {
-            "alas!": "ALAS.png",
-            "skuldugger": "SKULDUGGER.png",
-            "dahlia": "DAHLIA.png",
-            "blackpowder": "BLACKPOWDER.png",
-            "malefactor": "MALEFACTOR.png",
-            "hyperius": "HYPERIUS.png",
-            "feriore": "FERIORE.png",
-            "torgue": "TORGUE.png",
-            "stoker": "STOKER.png",
-        }
-
         position = {'page': 1, 'x0': 25, 'y0': 25, 'x1': 125, 'y1': 55}
-        self.add_image_to_pdf(output_path,
-                              f'{self.base_dir}resources/images/guild_icons/{guild_icon_paths.get(gun.guild)}',
-                              position)
+        self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/guild_icons/{self.guild_icon_paths.get(gun.guild)}', position)
 
         position = {'page': 2, 'x0': 25, 'y0': 25, 'x1': 125, 'y1': 55}
-        self.add_image_to_pdf(output_path,
-                              f'{self.base_dir}resources/images/guild_icons/{guild_icon_paths.get(gun.guild)}',
-                              position)
+        self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/guild_icons/{self.guild_icon_paths.get(gun.guild)}', position)
 
         # Apply damage die icon to gun card
-        die_icon_paths = {
-            "4": "1d4.png",
-            "6": "1d6.png",
-            "8": "1d8.png",
-            "10": "1d10.png",
-            "12": "1d12.png",
-            "20": "1d20.png",
-        }
-
         position = {'page': 1, 'x0': 55, 'y0': 270, 'x1': 95, 'y1': 320}
-        self.add_image_to_pdf(output_path,
-                              f'{self.base_dir}resources/images/die_icons/{die_icon_paths.get(die_type)}',
-                              position)
-
-        # Apply element icon to gun card
-        element_icon_paths = {
-            "cryo": "Cryo.png",
-            "corrosive": "Corrosion.png",
-            "corroshock": "CorroShock.png",
-            "explosivcryo": "ExplosivCryo.png",
-            "explosive": "Explosive.png",
-            "incendiaradiation": "IncendiaRadiation.png",
-            "incendiary": "Incendiary.png",
-            "radiation": "Radiation.png",
-            "shock": "Shock.png"
-        }
+        self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/die_icons/{self.die_icon_paths.get(die_type)}', position)
 
         # Get the element converted to path
         element = self.convert_element(gun.element)
 
-        # Add element if it exists
+        # Apply element icon to gun card
         if element is not None:
             position = {'page': 1, 'x0': 375, 'y0': 360, 'x1': 425, 'y1': 390}
-            self.add_image_to_pdf(output_path,
-                                  f'{self.base_dir}resources/images/element_icons/{element_icon_paths.get(element[0])}',
-                                  position)
+            self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(element[0])}', position)
 
             # In the event that there are 3 elements, add the third element as a separate icon below
             if len(element) == 2:
-                position = {'page': 1, 'x0': 450, 'y0': 360, 'x1': 500, 'y1': 390}
-                self.add_image_to_pdf(output_path,
-                                      f'{self.base_dir}resources/images/element_icons/{element_icon_paths.get(element[1])}',
-                                      position)
+                position = {'page': 1, 'x0': 410, 'y0': 360, 'x1': 460, 'y1': 390}
+                self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(element[1])}', position)

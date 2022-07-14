@@ -157,7 +157,7 @@
     },
     "79-80": {
         "name": "GREEN FLAME",
-        "info": "Shoots burst of green flames while firing. dealing 2d6 Incendiary Damage to adjacent targets."
+        "info": "Shoots burst of green flames while firing, dealing 2d6 Incendiary Damage to adjacent targets."
     },
     "81-82": {
         "name": "More like Bore Ragnarok!",
@@ -181,7 +181,7 @@
     },
     "91-92": {
         "name": "Overwhelming strength is boring.",
-        "info": "-6 Initiative. The first non-Badass, non- boss Enemy that is Melee Attacked dies instantly (1/day)."
+        "info": "-6 Initiative. The first non-Badass, non-boss Enemy that is Melee Attacked dies instantly (1/day)."
     },
     "93-94": {
         "name": "Stop talking, I will win. It's what heroes do.",
