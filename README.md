@@ -7,8 +7,14 @@ LootGenerator is a local application to handle Gun and Lootsplosion generation i
 ## Running:
 Currently this program is a PyQT GUI application in which the user can specify specific gun attributes to roll with. 
 
-This will save a local PDF that can be printed off or sent to players.
-![Screenshot 2022-05-16 013155](https://user-images.githubusercontent.com/32918812/168525681-b73cec7f-c90d-48fb-9bca-ecc3bc9bc6d0.png)
+<p align='center'><img src="https://user-images.githubusercontent.com/32918812/183751130-36cefcfa-cbc9-4dcb-93d7-d6fcecf42062.png" alt="gunBack" /></p>
+<p align='center'>Fig 1. Front view of the 2-Sided Gun Card.</p>
+
+<p align='center'><img src="https://user-images.githubusercontent.com/32918812/183751114-8c745ffb-b0a1-40e0-b41e-b291bf43be62.png" alt="gunBack" /></p>
+<p align='center'>Fig 2. Back/Details view of the 2-Sided Gun Card.</p>
+
+<p align='center'><img src="https://user-images.githubusercontent.com/32918812/183753821-ea56de4d-95e8-4f12-91a8-72dd2814b4f2.png" alt="gunBack" /></p>
+<p align='center'>Fig 3. Front/Back of a printed card.</p>
 
 ## Note on PDF Viewers
 The local version of this application requires a PDFViewer capable of form/annotation rendering in order to view the generated text on the Gun Card. PDF Viewers are all over the place when it comes to support for this and it cannot be guaranteed LootGenerator will work with a given viewer. Alternative solutions were tried for rendering (e.g. pdf2image conversion, pdfjs, local chromium server), but no universal solution works. Without a full rewrite, this solution will have to suffice for now. We apologize for the inconvenience!
