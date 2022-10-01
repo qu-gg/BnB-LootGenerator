@@ -342,6 +342,18 @@ class GunTab(QWidget):
 
     def generate_multiple_guns(self):
         """ Handles performing the call to automatically generate multiple guns and save them to outputs  """
+        # Check for set constants
+        item_level = self.item_level_box.currentText().lower()
+
+        gun_type = self.gun_type_box.currentText().lower().replace(' ', '_')    # Convert gun type to digit
+        if gun_type != "random":
+            gun_type = str(self.gun_type_choices.index(gun_type) + 1)
+
+        guild = self.guild_type_box.currentText().lower()
+        rarity = self.rarity_type_box.currentText().lower()
+
+        element_roll = self.element_roll.isChecked()
+
         # Error check for no number specified
         if self.numgun_line_edit.text() == "":
             self.multi_output_label.setText("No number set! Enter a number and resubmit!")
@@ -370,7 +382,8 @@ class GunTab(QWidget):
         # Generate N guns
         for _ in range(number_gen):
             # Generate the gun object
-            gun = Gun(self.basedir, damage_balance=damage_balance_json, redtext=redtext, prefix=prefix)
+            gun = Gun(self.basedir, item_level=item_level, gun_type=gun_type, gun_guild=guild, gun_rarity=rarity,
+                      damage_balance=damage_balance_json, rarity_element=element_roll, prefix=prefix, redtext=redtext)
 
             # Generate the PDF output name as the gun name
             output_name = f"{gun.type.title().replace('_', ' ')}_{gun.rarity.title()}_{gun.guild.title()}_{gun.name}".replace(' ', '')

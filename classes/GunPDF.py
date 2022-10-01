@@ -480,3 +480,6 @@ class GunPDF:
             if len(element) == 2:
                 position = {'page': 1, 'x0': 410, 'y0': 360, 'x1': 460, 'y1': 390}
                 self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(element[1])}', position)
+
+        # Remove temporary gun image
+        os.remove(f'{self.base_dir}output/guns/temporary_gun_image.png')

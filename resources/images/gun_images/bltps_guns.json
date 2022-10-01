@@ -1,1 +1,620 @@
-[{"name": "%Cu+ie^_^killer", "type": "SMG", "manufacturer": "Scav", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7cedb4ae4851bc6add1_60cf6ff3707f44a578fc08d2_%2525Cu%252Bie%255E_%255Ekiller%2520(SMG-TPS).png"}, {"name": "/He4rtf;ull Spl0Dge..r", "type": "Laser", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb79fd0238c1e8a41e0fc_60cf70297a99882c72d0aa03_He4rtf%253Bull%2520Spl0Dge..r%2520(Laser-TPS).png"}, {"name": "88 Fragnum", "type": "Pistol", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7b3dee7a616dbea10cf_60cf7015db4ae44416c576eb_88%2520Fragnum%2520(Pistol-TPS).png"}, {"name": "Absolute Zero", "type": "Laser", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7a2347c39b5431b4d2a_60cf7024d1bfb1e994fc56be_Absolute%2520Zero%2520(Laser-TPS).png"}, {"name": "Bad Touch", "type": "SMG", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7d7e3936474e9063320_60cf6ff3dee7a62b3de91bd5_Bad%2520Touch%2520(SMG-TPS).png"}, {"name": "Badaboom", "type": "Launcher", "manufacturer": "Scav", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7a7fc9b05e97bac76d1_60cf701f32cf132104257cca_Badaboom%2520(Launcher-TPS).png"}, {"name": "Berrigan", "type": "Launcher", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7a6a776ab5cc516e01e_60cf701fe3936400c904f4f8_Berrigan%2520(Launcher-TPS).png"}, {"name": "Black Snake", "type": "SMG", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7d207fddba7473adb4b_60cf6ff2347c39fc7619ffca_Black%2520Snake%2520(SMG-TPS).png"}, {"name": "Blowfly", "type": "Pistol", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7b755b051162d397099_60cf70155b505d37ff0e161e_Blowfly%2520(Pistol-TPS).png"}, {"name": "Boganella", "type": "Shotgun", "manufacturer": "Scav", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7bc577c34723920b6ba_60cf7006195f0eca5b74c0c0_Boganella%2520(Shotgun-TPS).png"}, {"name": "Boomacorn", "type": "Shotgun", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7c4061e1e4e14b39189_60cf70067d6b2275e3080a55_Boomacorn%2520(Shotgun-TPS).png"}, {"name": "Boss Nova", "type": "Assault Rifle", "manufacturer": "Scav", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb78fe52fc5193399ce7b_60cf7030558b6c70b469cfcb_Boss%2520Nova%2520(AR-TPS).png"}, {"name": "Boxxy Gunn", "type": "SMG", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60d02b2806d8359ee0a9de22_Boxxy%20Gunn%20(SMG-TPS).png"}, {"name": "Bullpup", "type": "Shotgun", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7c2347c39315b1b4d46_60cf7006148b7b457c29f616_Bullup%2520(Shotgun-TPS).png"}, {"name": "Cat o' Nine Tails", "type": "Laser", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb79f36f3d27abbd64ad1_60cf70276e441f7490b77145_Cat%2520o%2527Nine%2520Tails%2520(Laser-TPS).png"}, {"name": "Cheat Code", "type": "SMG", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7d006d835e65ea85848_60cf6ff41548f83269ad7974_Cheat%2520Code%2520(SMG-TPS).png"}, {"name": "Ch\u00e8re-amie", "type": "Sniper", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7e3525314caf23cc615_60cf6ffedb4ae44f5ac576d1_Ch%25C3%25A8re-amie%2520(Sniper-TPS).png"}, {"name": "Company Man", "type": "Shotgun", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7c25b485d4fbcc46d57_60cf70065efaf14aa6fbdb55_Company%2520Man%2520(Shotgun-TPS).png"}, {"name": "Creamer", "type": "Launcher", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7ad195f0e34a175d6e0_60cf702121c7156cd45b9661_Creamer%2520(Launcher-TPS).png"}, {"name": "Cry Baby", "type": "Assault Rifle", "manufacturer": "Scav", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/610039ec2857ba4deb2eb47b_Cry%20Baby%20(AR-TPS).png"}, {"name": "Cryophobia", "type": "Launcher", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7a8681c890f8af09c2a_60cf702286a4ade7d4289b6e_Cryophobia%2520(Launcher-TPS).png"}, {"name": "Cyber Eagle", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7ae36f3d22d93d64aed_60cf7015148b7b3c1a29f63f_Cyber%2520Eagle%2520(Pistol-TPS).png"}, {"name": "E-GUN", "type": "Laser", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7972b49360b73587819_60cf702782c9a81fc74f28f7_E-GUN%2520(Laser-TPS).png"}, {"name": "Excalibastard", "type": "Laser", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb79d7d6b22c896095667_60cf7027b0f8737ee71ab7c6_Excalibastard%2520(Laser-TPS).png"}, {"name": "Fast Talker", "type": "SMG", "manufacturer": "Scav", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7d106d835b883a85850_60cf6ff6525314a5ad3bc14f_Fast%2520Talker%2520(SMG-TPS).png"}, {"name": "Fatale", "type": "SMG", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7d31609523731e0d4d3_60cf6ff632cf136a57257be4_Fatale%2520(SMG-TPS).png"}, {"name": "Fibber", "type": "Pistol", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7bbdb4ae42f36c6adc9_60cf701506d83535c1a72790_Fibber%2520(Pistol-TPS).png"}, {"name": "Firestarta", "type": "Laser", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb79806d835ac4da85778_60cf7027fc485a159c778d7d_Firestarta%2520(Laser-TPS).png"}, {"name": "Flakker", "type": "Shotgun", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7caae9f4e1af2b84f67_60cf7007347c391d4519ffd0_Flakker%2520(Shotgun-TPS).png"}, {"name": "Flayer", "type": "Shotgun", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7cb30b8910071919e00_60cf70081d5ffe5c91f99fa9_Flayer%2520(Shotgun-TPS).png"}, {"name": "Fremington's Edge", "type": "Sniper", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7d986a4ad22c829c976_60cf6ffe32cf13815b257be7_Fremington%2527s%2520Edge%2520(Sniper-TPS).png"}, {"name": "Fridgia", "type": "SMG", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7cde3936452a506330f_60cf6ff61548f82631ad7975_Fridgia%2520(SMG-TPS).png"}, {"name": "Frostfire", "type": "SMG", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7cdc01a1030a9decad9_60cf6ff7525314d0d73bc150_Frostfire%2520(SMG-TPS).png"}, {"name": "Fusillade", "type": "Assault Rifle", "manufacturer": "Scav", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb79671570a95a6291ace_60cf7032fc9b05f5a4ab3ea0_Fusillade%2520(AR-TPS).png"}, {"name": "Globber", "type": "Pistol", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7ae38e06c4b2b23b63f_60cf701730b8915d78907b54_Globber%2520(Pistol-TPS).png"}, {"name": "Good Touch", "type": "SMG", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7d82b49365109587903_60cf6ff8db4ae43304c576cf_Good%2520Touch%2520(SMG-TPS).png"}, {"name": "Gwen's Other Head", "type": "Pistol", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7b27a99881d86d1d0ff_60cf7017681c898497ef724d_Gwen%2527s%2520Other%2520Head%2520(Pistol-TPS).png"}, {"name": "Hail", "type": "Assault Rifle", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb795681c890c8ff09c20_60cf703255b051dc2e380b4f_Hail%2520(AR-TPS).png"}, {"name": "Hammer Buster II", "type": "Assault Rifle", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb790fc485a86da78ea3f_60cf703236f3d28348d51e24_Hammer%2520Buster%2520II%2520(AR-TPS).png"}, {"name": "Hard Reboot", "type": "Pistol", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7af2b4936c95758786c_60cf7017347c39394819ffe0_Hard%2520Reboot%2520(Pistol-TPS).png"}, {"name": "Heart Breaker", "type": "Shotgun", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7cb681c89cb80f09c53_60cf70085b505d5f470e160a_Heart%2520Breaker%2520(Shotgun-TPS).png"}, {"name": "HellFire", "type": "SMG", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7d2987e291e5d788675_60cf6ff8b0f873aba51ab734_HellFire%2520(SMG-TPS).png"}, {"name": "IVF", "type": "SMG", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7d4fc9b05df43ac76e5_60cf6ff87d6b225c56080a53_IVF%2520(SMG-TPS).png"}, {"name": "Ice Scream", "type": "Assault Rifle", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb78d3ed9bd3e98feaf7f_60cf7033681c89bf01ef72b7_Ice%2520Scream%2520(AR-TPS).png"}, {"name": "Invader", "type": "Sniper", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7db1609524572e0d4d8_60cf6ffe558b6caa7569ceb6_Invader%2520(Sniper-TPS).png"}, {"name": "Jack-o'-Cannon", "type": "Shotgun", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7c5771e48038368335e_60cf700906d83563eba7278c_Jack-o%2527-Cannon%2520(Shotgun-TPS).png"}, {"name": "Kaneda's Laser", "type": "Launcher", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7ac061e1e4eb3b390cf_60cf7021681c8948c7ef7293_Kaneda%2527s%2520Laser%2520(Launcher-TPS).png"}, {"name": "KerBoom", "type": "Assault Rifle", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb795fc485a578f78ea46_60cf7034a776ab0e13158b5d_KerBoom%2520(AR-TPS).png"}, {"name": "Lady Fist", "type": "Pistol", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7bb0978a224a0437e32_60cf70176e441f712fb77011_Lady%2520Fist%2520(Pistol-TPS).png"}, {"name": "Laser Disker", "type": "Laser", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7a338e06c87e523b639_60cf7029fc485ad5ac778d91_Laser%2520Disker%2520(Laser-TPS).png"}, {"name": "Lazlo's Freezeasy", "type": "Laser", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7a05b485d4acbc46d50_60cf7029061e1e6dc6b25059_Lazlo%2527s%2520Freezeasy%2520(Laser-TPS).png"}, {"name": "Logan's Gun", "type": "Pistol", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7b4a6dc447914ad0c68_60cf701b3ce5aed601cdf5b8_Logan%2527s%2520Gun%2520(Pistol-TPS).png"}, {"name": "Longest Yard", "type": "Laser", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7a355b051dd9339707c_60cf7029d03ed9583bcd8572_Longest%2520Yard%2520(Laser-TPS).png"}, {"name": "Longnail", "type": "Sniper", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7dfae9f4e205fb84f71_60cf6ffe6e441ff651b76fad_Longnail%2520(Sniper-TPS).png"}, {"name": "Luck Cannon", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7b8000a6d6f8de0a06b_60cf701b681c89a867ef7252_Lucky%2520Cannon%2520(Pistol-TPS).png"}, {"name": "MINAC's Atonement", "type": "Laser", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb79bae9f4e1a70b84c95_60cf702b1548f809d8ad7b44_MINAC%2527s%2520Atonement%2520(Laser-TPS).png"}, {"name": "Maggie", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7b6c01a106d8edecad2_60cf701ba776aba182158b2e_Maggie%2520(Pistol-TPS).png"}, {"name": "Magma", "type": "Sniper", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7dd16095213dee0d4e1_60cf6fffd6d7331a5afe4fc3_Magma%2520(Sniper-TPS).png"}, {"name": "Major Tom", "type": "Assault Rifle", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7937a998856e7d1d0e8_60cf7035347c3965e019ffed_Major%2520Tom%2520(AR-TPS).png"}, {"name": "Marek's Mouth", "type": "SMG", "manufacturer": "Scav", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7d5c01a10cabedecadf_60cf6ff9fc485a534a778d2b_Marek%2527s%2520Mouth%2520(SMG-TPS).png"}, {"name": "Meat Grinder", "type": "SMG", "manufacturer": "Scav", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7d5d03ed923e1cec5a7_60cf6ffa5efaf190e0fbdafe_Meat%2520Grinder%2520(SMG-TPS).png"}, {"name": "Min Min Lighter", "type": "Laser", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7a0ae9f4e023db84ccb_60cf702b5b485d6961c33135_Min%2520Min%2520Lighter%2520(Laser-TPS).png"}, {"name": "Mining Laser", "type": "Laser", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7993d107fa88686b2d8_60cf702b30b8916bc6907bc8_Mining%2520Laser%2520(Laser-TPS).png"}, {"name": "Mongol", "type": "Launcher", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7a8987e299d7178866e_60cf7021dee7a62119e91c8a_Mongol%2520(Launcher-TPS).png"}, {"name": "Moonface", "type": "Shotgun", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7bda776ab3e5816e0ee_60cf700a061e1e0dbbb2504d_Moonface%2520(Shotgun-TPS).png"}, {"name": "Moonscaper", "type": "Shotgun", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7c3000a6d0bcce0a0b2_60cf700bfc485a1c6a778d73_Moonscaper%2520(Shotgun-TPS).png"}, {"name": "Nukem", "type": "Launcher", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7aa0978a21350437d52_60cf70242b49366405574ffc_Nukem%2520(Launcher-TPS).png"}, {"name": "Octo", "type": "Shotgun", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7bed1bfb11890fd805d_60cf700b3fb64c05362dd748_Octo%2520(Shotgun-TPS).png"}, {"name": "Ol' Painful", "type": "Assault Rifle", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7931548f8da44aed13f_60cf7034369bcbe245d11dc2_Ol%2527%2520Painful%2520(AR-TPS).png"}, {"name": "Ol' Rosie", "type": "Laser", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7995b485d0cd8c46d49_60cf702d5253143fdf3bc19b_Thorny%2520Ol%2527%2520Rosie%2520(Laser-TPS).png"}, {"name": "Omni-Cannon", "type": "Sniper", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7e2db4ae4f01ec6addb_60cf6fff347c393cf219ffcf_Omni-Cannon%2520(Sniper-TPS).png"}, {"name": "Party Line", "type": "Shotgun", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7c17a99887202d1d108_60cf700b3ce5ae6894cdf5b3_Pary%2520Line%2520(Shotgun-TPS).png"}, {"name": "Party Popper", "type": "Pistol", "manufacturer": "Scav", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7b0525314c4143cc3d9_60cf701b38e06c02be228759_Party%2520Popper%2520(Pistol-TPS).png"}, {"name": "Pitchfork", "type": "Sniper", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7dd3d107f9a1a86b357_60cf6fffd03ed9421ccd84f5_Pitchfork%2520(Sniper-TPS).png"}, {"name": "Plunkett", "type": "Sniper", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7dafc485a1e3e78eac0_60cf7000771e4837db66ecd1_Plunkett%2520(Sniper-TPS).png"}, {"name": "Probe", "type": "Pistol", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7ad55b0513120397092_60cf701ddee7a641a4e91c86_Probe%2520(Pistol-TPS).png"}, {"name": "Proletarian Revolution", "type": "Pistol", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7ba52531409503cc41a_60cf701dae9f4e74dfb70b21_Proletarian%2520Revolution%2520(Pistol-TPS).png"}, {"name": "Razorback", "type": "Sniper", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7da5253149be73cc51c_60cf7002577c3436d61fa471_Razorback%2520(Sniper-TPS).png"}, {"name": "Shooterang", "type": "Pistol", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7b607fddb4e013adb37_60cf701d7a9988d74ad0aa02_Shooterang%2520(Pistol-TPS).png"}, {"name": "Shredifier", "type": "Assault Rifle", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb794347c39393b1b4cf1_60cf7036b0f873ff531ab7c9_Shredifier%2520(AR-TPS).png"}, {"name": "Skullmasher", "type": "Sniper", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7e0987e29645d78869f_60cf700221c715e9b35b95f7_Skullmasher%2520(Sniper-TPS).png"}, {"name": "Sledge's Shotty", "type": "Shotgun", "manufacturer": "Scav", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7c6771e48ed5d6833ba_60cf700da776ab4c48158a8d_Sledge%2527s%2520Shotty%2520(Shotgun-TPS).png"}, {"name": "Smasher", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7b3347c3961cc1b4d38_60cf701d3ed9bd78b2fd6e7e_Smasher%2520(Pistol-TPS).png"}, {"name": "Striker", "type": "Shotgun", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7cad03ed92d13cec59f_60cf700e21c7157b7f5b95fa_Striker%2520(Shotgun-TPS).png"}, {"name": "T4s-R", "type": "Pistol", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7b1c01a1058b7decacb_60cf701f30b891eb80907b9b_T4s-R%2520(Pistol-TPS).png"}, {"name": "Tannis' Laser of Enlightenment", "type": "Laser", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb79c38e06c702023b615_60cf702be52fc5b91598af8a_Tanni%2527s%2520Laser%2520of%2520Enlightenment%2520(Laser-TPS).png"}, {"name": "The Machine", "type": "Sniper", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7ded03ed97469cec5ac_60cf7002577c3412b21fa472_The%2520Machine%2520(Sniper-TPS).png"}, {"name": "The ZX-1", "type": "Laser", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7a155b0511b34397076_60cf702d771e48843266ece4_The%2520ZX-1%2520(Laser-TPS).png"}, {"name": "Thingy", "type": "Launcher", "manufacturer": "Scav", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7ab55b051c77f39708b_60cf7024195f0e885c74c17e_Tingy%2520(Launcher-TPS).png"}, {"name": "Thunderfire", "type": "Laser", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7a42b49362444587861_60cf702de52fc5d7f898af8b_Thunderfire%2520(Laser-TPS).png"}, {"name": "Toby's Bright Spadroon", "type": "Laser", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb79a21c7152bde5cbba2_60cf702d577c3464661fa7ec_Toby%2527s%2520Bright%2520Spadroom%2520(Laser-TPS).png"}, {"name": "Too Scoops", "type": "Shotgun", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7bf7d6b22fcc009574e_60cf700e0978a228d4424ba4_Too%2520Scoops%2520(Shotgun-TPS).png"}, {"name": "Torguemada", "type": "Shotgun", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7c0fc9b0583c3ac76de_60cf700e0978a2a52c424c04_Torguemada%2520(Shotgun-TPS).png"}, {"name": "Torrent", "type": "SMG", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7d6061e1e1e07b39215_60cf6ffa2b493630c6574ff4_Torrent%2520(SMG-TPS).png"}, {"name": "Vandergraffen", "type": "Laser", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7a1347c3990e51b4d23_60cf702f55b0517122380b4e_Vandergraffen%2520(Laser-TPS).png"}, {"name": "Vibra-Pulse", "type": "Laser", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb79e0978a278d2437d48_60cf70303ce5aeebe4cdf5c3_Vibra-Pulse%2520(Laser-TPS).png"}, {"name": "Viral Marketer", "type": "Shotgun", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7c77a998817e5d1d10d_60cf700fb0f87355481ab74f_Viral%2520Marketer%2520(Shotgun-TPS).png"}, {"name": "Volt Thrower", "type": "Launcher", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7a6ae9f4e2cf8b84d25_60cf70245253146cb73bc198_Volt%2520Thrower%2520(Launcher-TPS).png"}, {"name": "Wallop", "type": "Assault Rifle", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb78edee7a68108ea10c6_60cf7036ae9f4e9092b70b49_Wallop%2520(AR-TPS).png"}, {"name": "Wet Week", "type": "Sniper", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7e2707f440d50fd6ca8_60cf7002fc9b054064ab3da6_Wet%2520Week%2520(Sniper-TPS).png"}, {"name": "Wombat", "type": "Shotgun", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7c0681c89f841f09c33_60cf701086a4ad3aab289b35_Wombat%2520(Shotgun-TPS).png"}, {"name": "Zappinator", "type": "Laser", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7961548f8d9aaaed145_60cf7030d0238c0f2e40bf5e_Zappinator%2520(Laser-TPS).png"}, {"name": "Zim", "type": "Pistol", "manufacturer": "Scav", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7b8347c3909361b4d40_60cf701f6e441f487cb77116_Zim%2520(Pistol-TPS).png"}]
+[
+  {
+    "name": "%Cu+ie^_^killer",
+    "type": "SMG",
+    "manufacturer": "Scav",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7cedb4ae4851bc6add1_60cf6ff3707f44a578fc08d2_%2525Cu%252Bie%255E_%255Ekiller%2520(SMG-TPS).png"
+  },
+  {
+    "name": "/He4rtf;ull Spl0Dge..r",
+    "type": "Laser",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb79fd0238c1e8a41e0fc_60cf70297a99882c72d0aa03_He4rtf%253Bull%2520Spl0Dge..r%2520(Laser-TPS).png"
+  },
+  {
+    "name": "88 Fragnum",
+    "type": "Pistol",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7b3dee7a616dbea10cf_60cf7015db4ae44416c576eb_88%2520Fragnum%2520(Pistol-TPS).png"
+  },
+  {
+    "name": "Absolute Zero",
+    "type": "Laser",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7a2347c39b5431b4d2a_60cf7024d1bfb1e994fc56be_Absolute%2520Zero%2520(Laser-TPS).png"
+  },
+  {
+    "name": "Bad Touch",
+    "type": "SMG",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7d7e3936474e9063320_60cf6ff3dee7a62b3de91bd5_Bad%2520Touch%2520(SMG-TPS).png"
+  },
+  {
+    "name": "Badaboom",
+    "type": "Launcher",
+    "manufacturer": "Scav",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7a7fc9b05e97bac76d1_60cf701f32cf132104257cca_Badaboom%2520(Launcher-TPS).png"
+  },
+  {
+    "name": "Berrigan",
+    "type": "Launcher",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7a6a776ab5cc516e01e_60cf701fe3936400c904f4f8_Berrigan%2520(Launcher-TPS).png"
+  },
+  {
+    "name": "Black Snake",
+    "type": "SMG",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7d207fddba7473adb4b_60cf6ff2347c39fc7619ffca_Black%2520Snake%2520(SMG-TPS).png"
+  },
+  {
+    "name": "Blowfly",
+    "type": "Pistol",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7b755b051162d397099_60cf70155b505d37ff0e161e_Blowfly%2520(Pistol-TPS).png"
+  },
+  {
+    "name": "Boganella",
+    "type": "Shotgun",
+    "manufacturer": "Scav",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7bc577c34723920b6ba_60cf7006195f0eca5b74c0c0_Boganella%2520(Shotgun-TPS).png"
+  },
+  {
+    "name": "Boomacorn",
+    "type": "Shotgun",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7c4061e1e4e14b39189_60cf70067d6b2275e3080a55_Boomacorn%2520(Shotgun-TPS).png"
+  },
+  {
+    "name": "Boss Nova",
+    "type": "Assault Rifle",
+    "manufacturer": "Scav",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb78fe52fc5193399ce7b_60cf7030558b6c70b469cfcb_Boss%2520Nova%2520(AR-TPS).png"
+  },
+  {
+    "name": "Boxxy Gunn",
+    "type": "SMG",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60d02b2806d8359ee0a9de22_Boxxy%20Gunn%20(SMG-TPS).png"
+  },
+  {
+    "name": "Bullpup",
+    "type": "Shotgun",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7c2347c39315b1b4d46_60cf7006148b7b457c29f616_Bullup%2520(Shotgun-TPS).png"
+  },
+  {
+    "name": "Cat o' Nine Tails",
+    "type": "Laser",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb79f36f3d27abbd64ad1_60cf70276e441f7490b77145_Cat%2520o%2527Nine%2520Tails%2520(Laser-TPS).png"
+  },
+  {
+    "name": "Cheat Code",
+    "type": "SMG",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7d006d835e65ea85848_60cf6ff41548f83269ad7974_Cheat%2520Code%2520(SMG-TPS).png"
+  },
+  {
+    "name": "Ch\u00e8re-amie",
+    "type": "Sniper",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7e3525314caf23cc615_60cf6ffedb4ae44f5ac576d1_Ch%25C3%25A8re-amie%2520(Sniper-TPS).png"
+  },
+  {
+    "name": "Company Man",
+    "type": "Shotgun",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7c25b485d4fbcc46d57_60cf70065efaf14aa6fbdb55_Company%2520Man%2520(Shotgun-TPS).png"
+  },
+  {
+    "name": "Creamer",
+    "type": "Launcher",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7ad195f0e34a175d6e0_60cf702121c7156cd45b9661_Creamer%2520(Launcher-TPS).png"
+  },
+  {
+    "name": "Cry Baby",
+    "type": "Assault Rifle",
+    "manufacturer": "Scav",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/610039ec2857ba4deb2eb47b_Cry%20Baby%20(AR-TPS).png"
+  },
+  {
+    "name": "Cryophobia",
+    "type": "Launcher",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7a8681c890f8af09c2a_60cf702286a4ade7d4289b6e_Cryophobia%2520(Launcher-TPS).png"
+  },
+  {
+    "name": "Cyber Eagle",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7ae36f3d22d93d64aed_60cf7015148b7b3c1a29f63f_Cyber%2520Eagle%2520(Pistol-TPS).png"
+  },
+  {
+    "name": "E-GUN",
+    "type": "Laser",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7972b49360b73587819_60cf702782c9a81fc74f28f7_E-GUN%2520(Laser-TPS).png"
+  },
+  {
+    "name": "Excalibastard",
+    "type": "Laser",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb79d7d6b22c896095667_60cf7027b0f8737ee71ab7c6_Excalibastard%2520(Laser-TPS).png"
+  },
+  {
+    "name": "Fast Talker",
+    "type": "SMG",
+    "manufacturer": "Scav",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7d106d835b883a85850_60cf6ff6525314a5ad3bc14f_Fast%2520Talker%2520(SMG-TPS).png"
+  },
+  {
+    "name": "Fatale",
+    "type": "SMG",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7d31609523731e0d4d3_60cf6ff632cf136a57257be4_Fatale%2520(SMG-TPS).png"
+  },
+  {
+    "name": "Fibber",
+    "type": "Pistol",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7bbdb4ae42f36c6adc9_60cf701506d83535c1a72790_Fibber%2520(Pistol-TPS).png"
+  },
+  {
+    "name": "Firestarta",
+    "type": "Laser",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb79806d835ac4da85778_60cf7027fc485a159c778d7d_Firestarta%2520(Laser-TPS).png"
+  },
+  {
+    "name": "Flakker",
+    "type": "Shotgun",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7caae9f4e1af2b84f67_60cf7007347c391d4519ffd0_Flakker%2520(Shotgun-TPS).png"
+  },
+  {
+    "name": "Flayer",
+    "type": "Shotgun",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7cb30b8910071919e00_60cf70081d5ffe5c91f99fa9_Flayer%2520(Shotgun-TPS).png"
+  },
+  {
+    "name": "Fremington's Edge",
+    "type": "Sniper",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7d986a4ad22c829c976_60cf6ffe32cf13815b257be7_Fremington%2527s%2520Edge%2520(Sniper-TPS).png"
+  },
+  {
+    "name": "Fridgia",
+    "type": "SMG",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7cde3936452a506330f_60cf6ff61548f82631ad7975_Fridgia%2520(SMG-TPS).png"
+  },
+  {
+    "name": "Frostfire",
+    "type": "SMG",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7cdc01a1030a9decad9_60cf6ff7525314d0d73bc150_Frostfire%2520(SMG-TPS).png"
+  },
+  {
+    "name": "Fusillade",
+    "type": "Assault Rifle",
+    "manufacturer": "Scav",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb79671570a95a6291ace_60cf7032fc9b05f5a4ab3ea0_Fusillade%2520(AR-TPS).png"
+  },
+  {
+    "name": "Globber",
+    "type": "Pistol",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7ae38e06c4b2b23b63f_60cf701730b8915d78907b54_Globber%2520(Pistol-TPS).png"
+  },
+  {
+    "name": "Good Touch",
+    "type": "SMG",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7d82b49365109587903_60cf6ff8db4ae43304c576cf_Good%2520Touch%2520(SMG-TPS).png"
+  },
+  {
+    "name": "Gwen's Other Head",
+    "type": "Pistol",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7b27a99881d86d1d0ff_60cf7017681c898497ef724d_Gwen%2527s%2520Other%2520Head%2520(Pistol-TPS).png"
+  },
+  {
+    "name": "Hail",
+    "type": "Assault Rifle",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb795681c890c8ff09c20_60cf703255b051dc2e380b4f_Hail%2520(AR-TPS).png"
+  },
+  {
+    "name": "Hammer Buster II",
+    "type": "Assault Rifle",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb790fc485a86da78ea3f_60cf703236f3d28348d51e24_Hammer%2520Buster%2520II%2520(AR-TPS).png"
+  },
+  {
+    "name": "Hard Reboot",
+    "type": "Pistol",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7af2b4936c95758786c_60cf7017347c39394819ffe0_Hard%2520Reboot%2520(Pistol-TPS).png"
+  },
+  {
+    "name": "Heart Breaker",
+    "type": "Shotgun",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7cb681c89cb80f09c53_60cf70085b505d5f470e160a_Heart%2520Breaker%2520(Shotgun-TPS).png"
+  },
+  {
+    "name": "HellFire",
+    "type": "SMG",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7d2987e291e5d788675_60cf6ff8b0f873aba51ab734_HellFire%2520(SMG-TPS).png"
+  },
+  {
+    "name": "IVF",
+    "type": "SMG",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7d4fc9b05df43ac76e5_60cf6ff87d6b225c56080a53_IVF%2520(SMG-TPS).png"
+  },
+  {
+    "name": "Ice Scream",
+    "type": "Assault Rifle",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb78d3ed9bd3e98feaf7f_60cf7033681c89bf01ef72b7_Ice%2520Scream%2520(AR-TPS).png"
+  },
+  {
+    "name": "Invader",
+    "type": "Sniper",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7db1609524572e0d4d8_60cf6ffe558b6caa7569ceb6_Invader%2520(Sniper-TPS).png"
+  },
+  {
+    "name": "Jack-o'-Cannon",
+    "type": "Shotgun",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7c5771e48038368335e_60cf700906d83563eba7278c_Jack-o%2527-Cannon%2520(Shotgun-TPS).png"
+  },
+  {
+    "name": "Kaneda's Laser",
+    "type": "Launcher",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7ac061e1e4eb3b390cf_60cf7021681c8948c7ef7293_Kaneda%2527s%2520Laser%2520(Launcher-TPS).png"
+  },
+  {
+    "name": "KerBoom",
+    "type": "Assault Rifle",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb795fc485a578f78ea46_60cf7034a776ab0e13158b5d_KerBoom%2520(AR-TPS).png"
+  },
+  {
+    "name": "Lady Fist",
+    "type": "Pistol",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7bb0978a224a0437e32_60cf70176e441f712fb77011_Lady%2520Fist%2520(Pistol-TPS).png"
+  },
+  {
+    "name": "Laser Disker",
+    "type": "Laser",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7a338e06c87e523b639_60cf7029fc485ad5ac778d91_Laser%2520Disker%2520(Laser-TPS).png"
+  },
+  {
+    "name": "Lazlo's Freezeasy",
+    "type": "Laser",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7a05b485d4acbc46d50_60cf7029061e1e6dc6b25059_Lazlo%2527s%2520Freezeasy%2520(Laser-TPS).png"
+  },
+  {
+    "name": "Logan's Gun",
+    "type": "Pistol",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7b4a6dc447914ad0c68_60cf701b3ce5aed601cdf5b8_Logan%2527s%2520Gun%2520(Pistol-TPS).png"
+  },
+  {
+    "name": "Longest Yard",
+    "type": "Laser",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7a355b051dd9339707c_60cf7029d03ed9583bcd8572_Longest%2520Yard%2520(Laser-TPS).png"
+  },
+  {
+    "name": "Longnail",
+    "type": "Sniper",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7dfae9f4e205fb84f71_60cf6ffe6e441ff651b76fad_Longnail%2520(Sniper-TPS).png"
+  },
+  {
+    "name": "Luck Cannon",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7b8000a6d6f8de0a06b_60cf701b681c89a867ef7252_Lucky%2520Cannon%2520(Pistol-TPS).png"
+  },
+  {
+    "name": "MINAC's Atonement",
+    "type": "Laser",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb79bae9f4e1a70b84c95_60cf702b1548f809d8ad7b44_MINAC%2527s%2520Atonement%2520(Laser-TPS).png"
+  },
+  {
+    "name": "Maggie",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7b6c01a106d8edecad2_60cf701ba776aba182158b2e_Maggie%2520(Pistol-TPS).png"
+  },
+  {
+    "name": "Magma",
+    "type": "Sniper",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7dd16095213dee0d4e1_60cf6fffd6d7331a5afe4fc3_Magma%2520(Sniper-TPS).png"
+  },
+  {
+    "name": "Major Tom",
+    "type": "Assault Rifle",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7937a998856e7d1d0e8_60cf7035347c3965e019ffed_Major%2520Tom%2520(AR-TPS).png"
+  },
+  {
+    "name": "Marek's Mouth",
+    "type": "SMG",
+    "manufacturer": "Scav",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7d5c01a10cabedecadf_60cf6ff9fc485a534a778d2b_Marek%2527s%2520Mouth%2520(SMG-TPS).png"
+  },
+  {
+    "name": "Meat Grinder",
+    "type": "SMG",
+    "manufacturer": "Scav",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7d5d03ed923e1cec5a7_60cf6ffa5efaf190e0fbdafe_Meat%2520Grinder%2520(SMG-TPS).png"
+  },
+  {
+    "name": "Min Min Lighter",
+    "type": "Laser",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7a0ae9f4e023db84ccb_60cf702b5b485d6961c33135_Min%2520Min%2520Lighter%2520(Laser-TPS).png"
+  },
+  {
+    "name": "Mining Laser",
+    "type": "Laser",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7993d107fa88686b2d8_60cf702b30b8916bc6907bc8_Mining%2520Laser%2520(Laser-TPS).png"
+  },
+  {
+    "name": "Mongol",
+    "type": "Launcher",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7a8987e299d7178866e_60cf7021dee7a62119e91c8a_Mongol%2520(Launcher-TPS).png"
+  },
+  {
+    "name": "Moonface",
+    "type": "Shotgun",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7bda776ab3e5816e0ee_60cf700a061e1e0dbbb2504d_Moonface%2520(Shotgun-TPS).png"
+  },
+  {
+    "name": "Moonscaper",
+    "type": "Shotgun",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7c3000a6d0bcce0a0b2_60cf700bfc485a1c6a778d73_Moonscaper%2520(Shotgun-TPS).png"
+  },
+  {
+    "name": "Nukem",
+    "type": "Launcher",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7aa0978a21350437d52_60cf70242b49366405574ffc_Nukem%2520(Launcher-TPS).png"
+  },
+  {
+    "name": "Octo",
+    "type": "Shotgun",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7bed1bfb11890fd805d_60cf700b3fb64c05362dd748_Octo%2520(Shotgun-TPS).png"
+  },
+  {
+    "name": "Ol' Painful",
+    "type": "Assault Rifle",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7931548f8da44aed13f_60cf7034369bcbe245d11dc2_Ol%2527%2520Painful%2520(AR-TPS).png"
+  },
+  {
+    "name": "Ol' Rosie",
+    "type": "Laser",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7995b485d0cd8c46d49_60cf702d5253143fdf3bc19b_Thorny%2520Ol%2527%2520Rosie%2520(Laser-TPS).png"
+  },
+  {
+    "name": "Omni-Cannon",
+    "type": "Sniper",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7e2db4ae4f01ec6addb_60cf6fff347c393cf219ffcf_Omni-Cannon%2520(Sniper-TPS).png"
+  },
+  {
+    "name": "Party Line",
+    "type": "Shotgun",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7c17a99887202d1d108_60cf700b3ce5ae6894cdf5b3_Pary%2520Line%2520(Shotgun-TPS).png"
+  },
+  {
+    "name": "Party Popper",
+    "type": "Pistol",
+    "manufacturer": "Scav",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7b0525314c4143cc3d9_60cf701b38e06c02be228759_Party%2520Popper%2520(Pistol-TPS).png"
+  },
+  {
+    "name": "Pitchfork",
+    "type": "Sniper",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7dd3d107f9a1a86b357_60cf6fffd03ed9421ccd84f5_Pitchfork%2520(Sniper-TPS).png"
+  },
+  {
+    "name": "Plunkett",
+    "type": "Sniper",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7dafc485a1e3e78eac0_60cf7000771e4837db66ecd1_Plunkett%2520(Sniper-TPS).png"
+  },
+  {
+    "name": "Probe",
+    "type": "Pistol",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7ad55b0513120397092_60cf701ddee7a641a4e91c86_Probe%2520(Pistol-TPS).png"
+  },
+  {
+    "name": "Proletarian Revolution",
+    "type": "Pistol",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7ba52531409503cc41a_60cf701dae9f4e74dfb70b21_Proletarian%2520Revolution%2520(Pistol-TPS).png"
+  },
+  {
+    "name": "Razorback",
+    "type": "Sniper",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7da5253149be73cc51c_60cf7002577c3436d61fa471_Razorback%2520(Sniper-TPS).png"
+  },
+  {
+    "name": "Shooterang",
+    "type": "Pistol",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7b607fddb4e013adb37_60cf701d7a9988d74ad0aa02_Shooterang%2520(Pistol-TPS).png"
+  },
+  {
+    "name": "Shredifier",
+    "type": "Assault Rifle",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb794347c39393b1b4cf1_60cf7036b0f873ff531ab7c9_Shredifier%2520(AR-TPS).png"
+  },
+  {
+    "name": "Skullmasher",
+    "type": "Sniper",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7e0987e29645d78869f_60cf700221c715e9b35b95f7_Skullmasher%2520(Sniper-TPS).png"
+  },
+  {
+    "name": "Sledge's Shotty",
+    "type": "Shotgun",
+    "manufacturer": "Scav",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7c6771e48ed5d6833ba_60cf700da776ab4c48158a8d_Sledge%2527s%2520Shotty%2520(Shotgun-TPS).png"
+  },
+  {
+    "name": "Smasher",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7b3347c3961cc1b4d38_60cf701d3ed9bd78b2fd6e7e_Smasher%2520(Pistol-TPS).png"
+  },
+  {
+    "name": "Striker",
+    "type": "Shotgun",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7cad03ed92d13cec59f_60cf700e21c7157b7f5b95fa_Striker%2520(Shotgun-TPS).png"
+  },
+  {
+    "name": "T4s-R",
+    "type": "Pistol",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7b1c01a1058b7decacb_60cf701f30b891eb80907b9b_T4s-R%2520(Pistol-TPS).png"
+  },
+  {
+    "name": "Tannis' Laser of Enlightenment",
+    "type": "Laser",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb79c38e06c702023b615_60cf702be52fc5b91598af8a_Tanni%2527s%2520Laser%2520of%2520Enlightenment%2520(Laser-TPS).png"
+  },
+  {
+    "name": "The Machine",
+    "type": "Sniper",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7ded03ed97469cec5ac_60cf7002577c3412b21fa472_The%2520Machine%2520(Sniper-TPS).png"
+  },
+  {
+    "name": "The ZX-1",
+    "type": "Laser",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7a155b0511b34397076_60cf702d771e48843266ece4_The%2520ZX-1%2520(Laser-TPS).png"
+  },
+  {
+    "name": "Thingy",
+    "type": "Launcher",
+    "manufacturer": "Scav",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7ab55b051c77f39708b_60cf7024195f0e885c74c17e_Tingy%2520(Launcher-TPS).png"
+  },
+  {
+    "name": "Thunderfire",
+    "type": "Laser",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7a42b49362444587861_60cf702de52fc5d7f898af8b_Thunderfire%2520(Laser-TPS).png"
+  },
+  {
+    "name": "Toby's Bright Spadroon",
+    "type": "Laser",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb79a21c7152bde5cbba2_60cf702d577c3464661fa7ec_Toby%2527s%2520Bright%2520Spadroom%2520(Laser-TPS).png"
+  },
+  {
+    "name": "Too Scoops",
+    "type": "Shotgun",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7bf7d6b22fcc009574e_60cf700e0978a228d4424ba4_Too%2520Scoops%2520(Shotgun-TPS).png"
+  },
+  {
+    "name": "Torguemada",
+    "type": "Shotgun",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7c0fc9b0583c3ac76de_60cf700e0978a2a52c424c04_Torguemada%2520(Shotgun-TPS).png"
+  },
+  {
+    "name": "Torrent",
+    "type": "SMG",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7d6061e1e1e07b39215_60cf6ffa2b493630c6574ff4_Torrent%2520(SMG-TPS).png"
+  },
+  {
+    "name": "Vandergraffen",
+    "type": "Laser",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7a1347c3990e51b4d23_60cf702f55b0517122380b4e_Vandergraffen%2520(Laser-TPS).png"
+  },
+  {
+    "name": "Vibra-Pulse",
+    "type": "Laser",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb79e0978a278d2437d48_60cf70303ce5aeebe4cdf5c3_Vibra-Pulse%2520(Laser-TPS).png"
+  },
+  {
+    "name": "Viral Marketer",
+    "type": "Shotgun",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7c77a998817e5d1d10d_60cf700fb0f87355481ab74f_Viral%2520Marketer%2520(Shotgun-TPS).png"
+  },
+  {
+    "name": "Volt Thrower",
+    "type": "Launcher",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7a6ae9f4e2cf8b84d25_60cf70245253146cb73bc198_Volt%2520Thrower%2520(Launcher-TPS).png"
+  },
+  {
+    "name": "Wallop",
+    "type": "Assault Rifle",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb78edee7a68108ea10c6_60cf7036ae9f4e9092b70b49_Wallop%2520(AR-TPS).png"
+  },
+  {
+    "name": "Wet Week",
+    "type": "Sniper",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7e2707f440d50fd6ca8_60cf7002fc9b054064ab3da6_Wet%2520Week%2520(Sniper-TPS).png"
+  },
+  {
+    "name": "Wombat",
+    "type": "Shotgun",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7c0681c89f841f09c33_60cf701086a4ad3aab289b35_Wombat%2520(Shotgun-TPS).png"
+  },
+  {
+    "name": "Zappinator",
+    "type": "Laser",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7961548f8d9aaaed145_60cf7030d0238c0f2e40bf5e_Zappinator%2520(Laser-TPS).png"
+  },
+  {
+    "name": "Zim",
+    "type": "Pistol",
+    "manufacturer": "Scav",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60cfb7b8347c3909361b4d40_60cf701f6e441f487cb77116_Zim%2520(Pistol-TPS).png"
+  }
+]

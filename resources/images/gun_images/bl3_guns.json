@@ -1,1 +1,1988 @@
-[{"name": "9-Volt", "type": "SMG", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd0cdd6736d4a1bbf5fbe_9-Volt%20(SMG-BL3).png"}, {"name": "AAA", "type": "Pistol", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ee951fa3c222860f2719a_AAA%20(Pistol-BL3).png"}, {"name": "ASMD", "type": "Sniper", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdb2ba46a319996036633_ASMD%20(Sniper-BL3).png"}, {"name": "Agonizer 1500", "type": "Launcher", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e63e2872852009485a516_Agonizer%201500%20(Launcher-BL3).png"}, {"name": "Alchemist", "type": "Assault Rifle", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5842f3906e597f350e4e_Alchemist%20(AR-BL3).png"}, {"name": "Amazing Grace", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeae55a0f53e5f39e6f03_Amazing%20Grace%20(Pistol-BL3).png"}, {"name": "Amber Management", "type": "Assault Rifle", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5885ed27fd2e6139d7af_Amber%20Managment%20(AR-BL3).png"}, {"name": "Anarchy", "type": "Shotgun", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fc90046278051dbc6d2c0_Anarchy%20(Shotgun-BL3).png"}, {"name": "Ashen Beast", "type": "SMG", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd0df6ce76641f8f10858_Ashen%20Beast%20(SMG-BL3).png"}, {"name": "Atlas Replay", "type": "Pistol", "manufacturer": "Atlas", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeaf13f7286f8d048502e_Atlas%20Replay%20(Pistol-BL3).png"}, {"name": "AutoAim\u00e8", "type": "Sniper", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdb41f6c6e0fe877694ae_AutoAim%C3%A8%20(Sniper-BL3).png"}, {"name": "Baby Maker", "type": "Pistol", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeafe3f728658ff485048_Baby%20Maker%20(Pistol-BL3).png"}, {"name": "Backburner", "type": "Launcher", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e64001df32e56e33547fa_Backburner%20(Launcher-BL3).png"}, {"name": "Bangarang", "type": "Pistol", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeb0a08769dab258df5ee_Bangarang%20(Pistol-BL3).png"}, {"name": "Barrage", "type": "Assault Rifle", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e58948d6d0a350ee44e41_Barrage%20(AR-BL3).png"}, {"name": "Beacon", "type": "Pistol", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeb92cc880721f0c7425b_Beacon%20(Pistol-BL3).png"}, {"name": "Bearcat", "type": "Assault Rifle", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5908d4fd657d25ad22de_Bearcat%20(AR-BL3).png"}, {"name": "Bekah", "type": "Assault Rifle", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e59144e9167a1d9f2022c_Bekah%20(AR-BL3).png"}, {"name": "Bird of Prey", "type": "Sniper", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdb4ea0adfa11ea7ef94c_Bird%20of%20Prey%20(Sniper-BL3).png"}, {"name": "Bitch", "type": "SMG", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd0ec0a1b035f6b750d28_Bitch%20(SMG-BL3).png"}, {"name": "Bite Size", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeb2366e5603f4a1dd18a_Bite%20Size%20(Pistol-BL3).png"}, {"name": "Black Flame", "type": "Shotgun", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fc9140a1b0347d574d835_Black%20Flame%20(Shotgun-BL3).png"}, {"name": "Blade Fury", "type": "Assault Rifle", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61fbaf2b5434708faa1c0b1e_Blade%20Fury%20(AR-BL3).png"}, {"name": "Blind Bandit", "type": "Shotgun", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fc9207849be7c336422f2_Blind%20Bandit%20(Shotgun-BL3).png"}, {"name": "Blind Sage", "type": "Shotgun", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fc936539c5ec9088fe926_Blind%20Sage%20(Shotgun-BL3).png"}, {"name": "Blood-Starved Beast", "type": "SMG", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd0f87ca5fb4b3a659818_Blood-Starved%20Beast%20(SMG-BL3).png"}, {"name": "Bloom", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeb2fe872ccf5a3441cdc_Bloom%20(Pistol-BL3).png"}, {"name": "Bone Shredder", "type": "Pistol", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeb3bdf40fc29f1552452_Bone%20Shredder%20(Pistol-BL3).png"}, {"name": "Boogeyman", "type": "Sniper", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdb5a1f12a01e2b107d03_Boogeyman%20(Sniper-BL3).png"}, {"name": "Boomer", "type": "SMG", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd10468034f1505942b70_Boomer%20(SMG-BL3).png"}, {"name": "Brad Luck", "type": "Assault Rifle", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5920ad6e2f6b6ed4e63e_Brad%20Luck%20(AR-BL3).png"}, {"name": "Brainstormer", "type": "Shotgun", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fca26b5d4b31843ba01cc_Brainstormer%20(Shotgun-BL3).png"}, {"name": "Brashi's Dedication", "type": "Sniper", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdb665710e1dd060cb0c5_Brashi%27s%20Dedication%20(Sniper-BL3).png"}, {"name": "Breath of the Dying", "type": "Assault Rifle", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e592dad6e2f2c7cd4e678_Breath%20of%20the%20Dying%20(AR-BL3).png"}, {"name": "Breeder", "type": "Pistol", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeb481f8da13ad2d71596_Breeder%20(Pistol-BL3).png"}, {"name": "Brightside", "type": "Shotgun", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fca338fa52f1cf28040ac_Brightside%20(Shotgun-BL3).png"}, {"name": "Bubble Blaster", "type": "Pistol", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeb547a7659218e987a72_Bubble%20Blaster%20(Pistol-BL3).png"}, {"name": "Buttplug", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeb616960b1ba9de7484b_Buttplug%20(Pistol-BL3).png"}, {"name": "Carrier", "type": "Assault Rifle", "manufacturer": "Atlas", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e59395c48ea16ec8dffb1_Carrier%20(AR-BL3).png"}, {"name": "Chandelier", "type": "Shotgun", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fca3f94f49c7993757c08_Chandelier%20(Shotgun-BL3).png"}, {"name": "Cheap Tips", "type": "SMG", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd110b5d4b360c2ba3649_Cheap%20Tips%20(SMG-BL3).png"}, {"name": "Chomper", "type": "Shotgun", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fca4b6ce766bf88f0efc9_Chomper%20(Shotgun-BL3).png"}, {"name": "Clairvoyance", "type": "Assault Rifle", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e59466fe81a3117c4ad46_Clairvoyance%20(AR-BL3).png"}, {"name": "Cloud Kill", "type": "SMG", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd11cb5d4b31250ba36be_Cloud%20Kill%20(SMG-BL3).png"}, {"name": "Cocky Bastard", "type": "Sniper", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdb734bdf48e1c1f38c54_Cocky%20Bastard%20(Sniper-BL3).png"}, {"name": "Cold Shoulder", "type": "Sniper", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdb7e7849be77c4646b88_Cold%20Shoulder%20(Sniper-BL3).png"}, {"name": "Complex Root", "type": "Sniper", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdc4bf6c6e077c87697d5_Complex%20Root%20(Sniper-BL3).png"}, {"name": "Conference Call", "type": "Shotgun", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fca57462780ffe6c6d493_Conference%20Call%20(Shotgun-BL3).png"}, {"name": "Contained Blast", "type": "Assault Rifle", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e59520fb75d6e7571f179_Contained%20Blast%20(AR-BL3).png"}, {"name": "Convergence", "type": "Shotgun", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fca64c9396f2744ee7775_Convergence%20(Shotgun-BL3).png"}, {"name": "Crader's EM-P5", "type": "SMG", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd1296b5fd0d1dbf8bab5_Crader%27s%20EM-P5%20(SMG-BL3).png"}, {"name": "Craps", "type": "Pistol", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61990a0879ca2dd5bee6df9a_Craps%20(Pistol-BL3).png"}, {"name": "Creamer", "type": "Launcher", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6439c4b1d60ea249f3e2_Creamer%20(Launcher-BL3).png"}, {"name": "Creeping Corruption", "type": "Assault Rifle", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6199094d045c5778ed2c617e_Creeping%20Corruption%20(AR-BL3).png"}, {"name": "Creeping Death", "type": "Shotgun", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fca707849be1bdb642a7e_Creeping%20Death%20(Shotgun-BL3).png"}, {"name": "Crit", "type": "SMG", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd1367dd18be865eeacab_Crit%20(SMG-BL3).png"}, {"name": "Critical Mass", "type": "Pistol", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeb86d89fa5bafe591baf_Critical%20Mass%20(Pistol-BL3).png"}, {"name": "Critical Thug", "type": "Shotgun", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fca7ddeee474a685eb9ad_Critical%20Thug%20(Shotgun-BL3).png"}, {"name": "Crossroad", "type": "SMG", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd141326861b3e73b0511_Crossroad%20(SMG-BL3).png"}, {"name": "Cutsman", "type": "SMG", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd14e3fb9e73973e25d7e_Cutsman%20(SMG-BL3).png"}, {"name": "D.N.A.", "type": "SMG", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd15ab5d4b3162cba37a7_D.N.A.%20(SMG-BL3).png"}, {"name": "Dakota", "type": "Shotgun", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fca895710e158180c763b_Dakota%20(Shotgun-BL3).png"}, {"name": "Damned", "type": "Assault Rifle", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e597d6114dd67aff68c42_Damned%20(AR-BL3).png"}, {"name": "Dark Army", "type": "SMG", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd16792067fb2b18aa318_Dark%20Army%20(SMG-BL3).png"}, {"name": "Dead Chamber", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeeaca51d173fd54984fa_Dead%20Chamber%20(Pistol-BL3).png"}, {"name": "Destructo Spinner", "type": "SMG", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd255098c65fdce1d5c65_Destructo%20Spinner%20(SMG-BL3).png"}, {"name": "Devastator", "type": "Pistol", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61990a22ca0cb37c2d76a5a8_Devastator%20(Pistol-BL3).png"}, {"name": "Devil's Foursum", "type": "Pistol", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61990a5b1619b71d2fed4971_Devils%20Foursum%20(Pistol-BL3).png"}, {"name": "Devoted", "type": "SMG", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd2603fb9e7498fe265b3_Devoted%20(SMG-BL3).png"}, {"name": "Digby's Smooth Tube", "type": "Assault Rifle", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e598903b74a5f4051c2f4_Digby%27s%20Smooth%20Tube%20(AR-BL3).png"}, {"name": "Dowsing Rod", "type": "Assault Rifle", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5995872852f724856cd0_Dowsing%20Rod%20(AR-BL3).png"}, {"name": "E-Gone", "type": "SMG", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd26d09868d0c561071ab_E-Gone%20(SMG-BL3).png"}, {"name": "Earworm", "type": "Assault Rifle", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e59a26114dd75ccf68dde_Earworm%20(AR-BL3).png"}, {"name": "Echo", "type": "Pistol", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61990a86ca0cb3840076a89b_Echo%20(Pistol-BL3).png"}, {"name": "Ember's Purge", "type": "SMG", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd2799e94525526a2a603_Ember%27s%20Purge%20(SMG-BL3).png"}, {"name": "Embrace the Pain", "type": "Assault Rifle", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e59ae2a7d739ae40c4a17_Embrace%20the%20Pain%20(AR-BL3).png"}, {"name": "Eridian Fabricator", "type": "Launcher", "manufacturer": "Eridian", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e644603b74a2e9c5203d2_Eridian%20Fabricator%20(Launcher-BL3).png"}, {"name": "Extreme Hangin' Chadd", "type": "Pistol", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeede6e8d9040946c90da_Extreme%20Hangin%27%20Chadd%20(Pistol-BL3).png"}, {"name": "Face-puncher", "type": "Shotgun", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fca951f12a0c23a102691_Face-Puncher%20(Shotgun-BL3).png"}, {"name": "Faisor", "type": "Assault Rifle", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e59bd0614ffcc9f21e46c_Faisor%20(AR-BL3).png"}, {"name": "Fearmonger", "type": "Shotgun", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcaa2d9f120ff4242a583_Fearmonger%20(Shotgun-BL3).png"}, {"name": "Fingerbiter", "type": "Shotgun", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcaaeaaba4d80f4cac59d_Fingerbiter%20(Shotgun-BL3).png"}, {"name": "Firecracker", "type": "Shotgun", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcabb35868a2a018c10ad_Firecracker%20(Shotgun-BL3).png"}, {"name": "Firefly", "type": "Pistol", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeeea932de1cebe4ab69c_Firefly%20(Pistol-BL3).png"}, {"name": "Firestorm", "type": "Sniper", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdb97462780983ac731b8_Firestorm%20(Sniper-BL3).png"}, {"name": "Flakker", "type": "Shotgun", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcac83a33a17dae1b7040_Flakker%20(Shotgun-BL3).png"}, {"name": "Flama Diddle", "type": "Shotgun", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcad435868a1e478c10b0_Flama%20Diddle%20(Shotgun-BL3).png"}, {"name": "Flipper", "type": "SMG", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd28611c95c1f0e346b09_Flipper%20(SMG-BL3).png"}, {"name": "Free Radical", "type": "Pistol", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61fbaeb8581866169b4d2380_Free%20Radical%20(Pistol-BL3).png"}, {"name": "Freeman", "type": "Launcher", "manufacturer": "Atlas", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e64fe0fb75d464f7239da_Freeman%20(Launcher-BL3).png"}, {"name": "Frequency", "type": "Shotgun", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcae0132898910c9ad915_Frequency%20(Shotgun-BL3).png"}, {"name": "Frozen Devil", "type": "Pistol", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eef036f80eb78538a0eb4_Frozen%20Devil%20(Pistol-BL3).png"}, {"name": "Gargoyle", "type": "Pistol", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eef106d4c446758a9fbb6_Gargoyle%20(Pistol-BL3).png"}, {"name": "Gatling Gun", "type": "Assault Rifle", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5a2fad6e2f3badd4e885_Gatling%20Gun%20(AR-BL3).png"}, {"name": "Gettleburger", "type": "Launcher", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e645fa7ac9b196b1e9ec5_Gettleburger%20(Launcher-BL3).png"}, {"name": "Girth Blaster Elite", "type": "Pistol", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eefb204703369a004eaf9_Girth%20Blaster%20Elite%20(Pistol-BL3).png"}, {"name": "Globetrottr", "type": "Launcher", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e646a5c48ea8d7b8e4cf2_Globetrottr%20(Launcher-BL3).png"}, {"name": "Gold Rush", "type": "SMG", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd292539c5e4270902457_Gold%20Rush%20(SMG-BL3).png"}, {"name": "Good Juju", "type": "Assault Rifle", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5a3ad4fd656e02ad2b9b_Good%20Juju%20(AR-BL3).png"}, {"name": "Grease Trap", "type": "Pistol", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eef29fa3c22603bf28191_Grease%20Trap%20(Pistol-BL3).png"}, {"name": "Guardian 4N631", "type": "Shotgun", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcaed06154ec84831786f_Guardian%204N631%20(Shotgun-BL3).png"}, {"name": "Gunerang", "type": "Pistol", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eef35e0d36f7f14f46de0_Gunerang%20(Pistol-BL3).png"}, {"name": "Hail", "type": "Assault Rifle", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5aa78d6d0a1842e45488_Hail%20(AR-BL3).png"}, {"name": "Hand of Glory", "type": "Assault Rifle", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5a531df32e22b235030e_Hand%20of%20Glory%20(AR-BL3).png"}, {"name": "Handsome Jackhammer", "type": "SMG", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd2dcf945d4f988558d82_Handsome%20Jackhammer%20(SMG-BL3).png"}, {"name": "Headsplosion", "type": "Sniper", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdba3539c5e774b904ac9_Headsplosion%20(Sniper-BL3).png"}, {"name": "Heart Breaker", "type": "Shotgun", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcaf944ab47382692d11b_Heart%20Breaker%20(Shotgun-BL3).png"}, {"name": "Heckle", "type": "Pistol", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eef427bc5bf476cbdc02c_Heckle%20(Pistol-BL3).png"}, {"name": "Hellfire", "type": "SMG", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd32146278028e4c70985_Hellfire%20(SMG-BL3).png"}, {"name": "Hellshock", "type": "Pistol", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eef4f6960b159b8e75ba8_Hellshock%20(Pistol-BL3).png"}, {"name": "Hellwalker", "type": "Shotgun", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcb06132898a4de9ad9e1_Hellwalker%20(Shotgun-BL3).png"}, {"name": "Hive", "type": "Launcher", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e64773d49665af91fa5ce_Hive%20(Launcher-BL3).png"}, {"name": "Hornet", "type": "Pistol", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eef5bcb09ca332c5e1d87_Hornet%20(Pistol-BL3).png"}, {"name": "Hot Drop", "type": "Launcher", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e650a2b77c40d98bde971_Hot%20Drop%20(Launcher-BL3).png"}, {"name": "Hotfoot Teddy", "type": "Assault Rifle", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5a5fef294d418776a8f1_Hotfoot%20Teddy%20(AR-BL3).png"}, {"name": "Hyde", "type": "Pistol", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60783a66fc408431bb895619_Hyde%20(Pistol-BL3).png"}, {"name": "Hydrafrost", "type": "Pistol", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eef76fbfef2110dd1a599_Hydrafrost%20(Pistol-BL3).png"}, {"name": "Hyper-Hydrator", "type": "Pistol", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eef81a4ecef1526be6a47_Hyper-Hydrator%20(Pistol-BL3).png"}, {"name": "Hyperfocus XZ41", "type": "SMG", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd32e326861371c3b1206_Hyperfocus%20XZ41%20(SMG-BL3).png"}, {"name": "ION CANNON", "type": "Launcher", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e649cc4b1d6118e49f564_ION%20CANNON%20(Launcher-BL3).png"}, {"name": "ION LASER", "type": "SMG", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd33a756c4cdf4fdf04e5_ION%20LASER%20(SMG-BL3).png"}, {"name": "Ice Age", "type": "Launcher", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6490699c34bafad1b90c_Ice%20Age%20(Launcher-BL3).png"}, {"name": "Ice Pick", "type": "Pistol", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eef8f66e56065dd1df2d5_Ice%20Pick%20(Pistol-BL3).png"}, {"name": "Icebreaker", "type": "Assault Rifle", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5a6c699c34c90ad172f7_Icebreaker%20(AR-BL3).png"}, {"name": "Iceburger", "type": "Shotgun", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcb123268612e943ad166_Iceburger%20(Shotgun-BL3).png"}, {"name": "Infinity", "type": "Pistol", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eef9b7bc5bfebfbbdc0d1_Infinity%20(Pistol-BL3).png"}, {"name": "Insider", "type": "Shotgun", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcb4d7ca5fb67c5657a54_Insider%20(Shotgun-BL3).png"}, {"name": "Ionic Disruptor", "type": "Sniper", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdbb094f49c10d675f9f4_Ionic%20Disruptor%20(Sniper-BL3).png"}, {"name": "Jericho", "type": "Launcher", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e65212a7d7389aa0c8923_Jericho%20(Launcher-BL3).png"}, {"name": "Juliet's Dazzle", "type": "Assault Rifle", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5a79a5afd75b03a68c3e_Juliet%27s%20Dazzle%20(AR-BL3).png"}, {"name": "Just Kaus", "type": "SMG", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd3475710e154850c9376_Just%20Kaus%20(SMG-BL3).png"}, {"name": "Kaleidoscope", "type": "Pistol", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef0086f80eb3d8c8a18e3_Kaleidoscope%20(Pistol-BL3).png"}, {"name": "Kaos", "type": "Assault Rifle", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5a855c48ea5f418e04e8_Kaos%20(AR-BL3).png"}, {"name": "Kaoson", "type": "SMG", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd3545710e1fb8e0c93a7_Kaoson%20(SMG-BL3).png"}, {"name": "Kenulox", "type": "Sniper", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdbbd3a33a102591bb400_Kenulox%20(Sniper-BL3).png"}, {"name": "Kevin's Chilly", "type": "SMG", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd3607dd18ba44deebb36_Kevin%27s%20Chilly%20(SMG-BL3).png"}, {"name": "Kickcharger", "type": "Launcher", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e64b52413b5b0b9d81dbd_Kickcharger%20(Launcher-BL3).png"}, {"name": "Kill-o'-the-Wisp", "type": "Shotgun", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcb59f6c6e0b677764041_Kill-o%27-the-Wisp%20(Shotgun-BL3).png"}, {"name": "King's Call", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef0153f7286a642488685_King%27s%20Call%20(Pistol-BL3).png"}, {"name": "Krakatoa", "type": "Sniper", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdbc9201104d63659dd6f_Krakatoa%20(Sniper-BL3).png"}, {"name": "Kyb's Worth", "type": "SMG", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd36ddc1f6909caa96854_Kyb%27s%20Worth%20(SMG-BL3).png"}, {"name": "LOV3M4CH1N3", "type": "SMG", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd3861f12a094e91056a3_LOV3M4CH1N3%20(SMG-BL3).png"}, {"name": "La Varlope", "type": "Assault Rifle", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5a9aad6e2f74d9d4e934_La%20Varlope%20(AR-BL3).png"}, {"name": "Laser-Sploder", "type": "Assault Rifle", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5ae301c18fd4ab609738_Laser-Sploder%20(AR-BL3).png"}, {"name": "Lead Sprinkler", "type": "Assault Rifle", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5aef87285258aa8571d0_Lead%20Sprinkler%20(AR-BL3).png"}, {"name": "Light Show", "type": "Pistol", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef022cba8218b330db135_Light%20Show%20(Pistol-BL3).png"}, {"name": "Likable Rascal", "type": "Assault Rifle", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5afca1c7aba8f5588259_Likable%20Rascal%20(AR-BL3).png"}, {"name": "Linc", "type": "Pistol", "manufacturer": "Atlas", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef02f85053a8478039654_Linc%20(Pistol-BL3).png"}, {"name": "Linoge", "type": "Pistol", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef03bfa3c221823f28846_Linoge%20(Pistol-BL3).png"}, {"name": "Little Yeeti", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef0484d489600b6c9ff08_Little%20Yeeti%20(Pistol-BL3).png"}, {"name": "Long Musket", "type": "SMG", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd3797129c8b1aa7bf821_Long%20Musket%20(SMG-BL3).png"}, {"name": "Lovable Rogue", "type": "Assault Rifle", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5b098de9703a815d39b5_Lovable%20Rogue%20(AR-BL3).png"}, {"name": "Love Drill", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef0556e8d90465d6c91c5_Love%20Drill%20(Epic-Pistol-BL3).png"}, {"name": "Love Drill", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef062e2b06fa3d2b91d04_Love%20Drill%20(Legendary-Pistol-BL3).png"}, {"name": "Lucian's Call", "type": "Assault Rifle", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5b1575766577352d5b2e_Lucian%27s%20Call%20(AR-BL3).png"}, {"name": "Lucky 7", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef06f027602aa4c7c63f9_Lucky%207%20(Pistol-BL3).png"}, {"name": "Lyuda", "type": "Sniper", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdbd6d12d5a18a3f62b38_Lyuda%20(Sniper-BL3).png"}, {"name": "Maggie", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef07b3709512b29b6025d_Maggie%20(Pistol-BL3).png"}, {"name": "Magnificent", "type": "Pistol", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61b85867e7feca4c550bd3d4_Magnificent%20(Pistol-BL3).png"}, {"name": "Major Kong", "type": "Launcher", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e64c22413b53312d81edc_Major%20Kong%20(Launcher-BL3).png"}, {"name": "Malak's Bane", "type": "Sniper", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdbe2aaba4d89ffcb29e3_Malak%27s%20Bane%20(Sniper-BL3).png"}, {"name": "Manic Pixie Dream Gun", "type": "Shotgun", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcb6689cbccebef8f96fb_Manic%20Pixie%20Dream%20Gun%20(Shotgun-BL3).png"}, {"name": "Masterwork Crossbow", "type": "Sniper", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdbee201104a2e659e039_Masterwork%20Crossbow%20(Sniper-BL3).png"}, {"name": "Mechanic", "type": "Launcher", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e64ce5c48ea3ba78e4e20_Mechanic%20(Launcher-BL3).png"}, {"name": "Melt Facer", "type": "Shotgun", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcb73098c651bfd1d3dfd_Melt%20Facer%20(Shotgun-BL3).png"}, {"name": "Mind-Killer", "type": "Shotgun", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcb7f44ab47ee6992d40e_Mind-Killer%20(Shotgun-BL3).png"}, {"name": "Minor Kong", "type": "Launcher", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e64db5c48ea38fd8e4f0c_Minor%20Kong%20(Launcher-BL3).png"}, {"name": "Miscreant", "type": "Pistol", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef0952294057ec3983c36_Miscreant%20(Pistol-BL3).png"}, {"name": "Mongol", "type": "Launcher", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e64e7699c341a7ad1bb93_Mongol%20(Launcher-BL3).png"}, {"name": "Monocle", "type": "Sniper", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdbfbf6c6e0346c7697bf_Monocle%20(Sniper-BL3).png"}, {"name": "Moonfire", "type": "Pistol", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61990ac8e3db846be88ebbe5_Moonfire%20(Pistol-BL3).png"}, {"name": "Mother Too", "type": "SMG", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd3936ce7663946f11ee5_Mother%20Too%20(SMG-BL3).png"}, {"name": "Multi-tap", "type": "Pistol", "manufacturer": "Atlas", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef0aff5fc35737e9cf06d_Multi-tap%20(Pistol-BL3).png"}, {"name": "Mutant", "type": "Assault Rifle", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5b22c4b1d6426649bd0c_Mutant%20(AR-BL3).png"}, {"name": "Narp", "type": "Sniper", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdc07ad989ce7693372d0_Narp%20(Sniper-BL3).png"}, {"name": "Needle Gun", "type": "SMG", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd39f9e945226b2a2b39b_Needle%20Gun%20(SMG-BL3).png"}, {"name": "Nemesis", "type": "Pistol", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef0bc04703319d604edd0_Nemesis%20(Pistol-BL3).png"}, {"name": "Night Flyer", "type": "Pistol", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef0c93f7286410748921a_Night%20Flyer%20(Pistol-BL3).png"}, {"name": "Night Hawkin", "type": "SMG", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd3ac33c64a08be7ff4e2_Night%20Hawkin%20(SMG-BL3).png"}, {"name": "Nimble Jack", "type": "Shotgun", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcb8c94f49ca8d17580d8_Nimble%20Jack%20(Shotgun-BL3).png"}, {"name": "NoPewPew", "type": "Assault Rifle", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5b31699c345218d17795_NoPewPew%20(AR-BL3).png"}, {"name": "Nothingness", "type": "Shotgun", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcbf55710e1b6550c7933_Nothingness%20(Shotgun-BL3).png"}, {"name": "Nukem", "type": "Launcher", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6a2497730256e6582792_Nukem%20(Launcher-BL3).png"}, {"name": "Null Pointer", "type": "Sniper", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdc59aaba4d8ffdcb2a7d_Null%20Pointer%20(Sniper-BL3).png"}, {"name": "O.P.Q. System", "type": "Assault Rifle", "manufacturer": "Atlas", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5b3cf8ffcc2b2ba89421_O.P.Q.%20System%20(AR-BL3).png"}, {"name": "Occultist", "type": "Pistol", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61990b08d3a10e7b4e2f93ac_Occultist%20(Pistol-BL3).png"}, {"name": "Ogre", "type": "Assault Rifle", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5b650fb75dd67871f69f_Ogre%20(AR-BL3).png"}, {"name": "Oldridian", "type": "SMG", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd3b989cbccba7d8fb2cb_Oldridian%20(SMG-BL3).png"}, {"name": "Omniloader", "type": "Pistol", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef0e304eb55cc86339e51_Omniloader%20(Pistol-BL3).png"}, {"name": "One Pump Chump", "type": "Shotgun", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcc027129c8c52f7bd2b4_One%20Pump%20Chump%20(Shotgun-BL3).png"}, {"name": "Operator", "type": "Sniper", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdc20d12d5a5a0ff62d29_Operator%20(Sniper-BL3).png"}, {"name": "P.A.T. Mk. II", "type": "SMG", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd3c63268611b963b1436_P.A.T.%20Mk.%20II%20(SMG-BL3).png"}, {"name": "P.A.T. Mk. III", "type": "SMG", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd3d24bdf48353cf35649_P.A.T.%20Mk.%20III%20(SMG-BL3).png"}, {"name": "P2P Networker", "type": "SMG", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd3dff945d41e0f559085_P2P%20Networker%20(SMG-BL3).png"}, {"name": "Pa's Rifle", "type": "Assault Rifle", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5b79a1c7abddf95882d3_Pa%27s%20Rifle%20(AR-BL3).png"}, {"name": "Pain is Power", "type": "Assault Rifle", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5b55761dfbee999a9c9a_Pain%20is%20Power%20(AR-BL3).png"}, {"name": "Peacemonger", "type": "Pistol", "manufacturer": "Atlas", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef0f0e0d36f1656f473f5_Peacemonger%20(Pistol-BL3).png"}, {"name": "Peashooter", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef0fd3f48097f433b9744_Peashooter%20(Pistol-BL3).png"}, {"name": "Pestilence", "type": "Pistol", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef1d3a4eceff2fcbe8084_Pestilence%20(Pistol-BL3).png"}, {"name": "Phebert", "type": "Shotgun", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcc0e4bdf48d627f31e6a_Phebert%20(Shotgun-BL3).png"}, {"name": "Plaguebearer", "type": "Launcher", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6d335ac26a92202dd3e4_Plaguebearer%20(Launcher-BL3).png"}, {"name": "Plasma Coil", "type": "SMG", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd3ec92067f4be88ab3a4_Plasma%20Coil%20(SMG-BL3).png"}, {"name": "Plumage", "type": "Launcher", "manufacturer": "Atlas", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6d4e8d6d0a5fa5e4be85_Plumage%20(Launcher-BL3).png"}, {"name": "Polyaimourous", "type": "SMG", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd3f9b5d4b344b7ba499c_Polyaimourous%20(SMG-BL3).png"}, {"name": "Polybius", "type": "Shotgun", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcc1c09868d84f91059c6_Polybius%20(Shotgun-BL3).png"}, {"name": "Porta-Pooper 5000", "type": "Launcher", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6d650614fffdfb224cba_Porta-Pooper%205000%20(Launcher-BL3).png"}, {"name": "Portals and Shite", "type": "Assault Rifle", "manufacturer": "Atlas", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5bc8a1c7ab686058839e_Portals%20and%20Shite%20(AR-BL3).png"}, {"name": "Predatory Lending", "type": "SMG", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd4068fa52f19448088cc_Predatory%20Lending%20(SMG-BL3).png"}, {"name": "Pricker", "type": "SMG", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd41394f49c6f3075b342_Pricker%20(SMG-BL3).png"}, {"name": "Projectile Recursion", "type": "Shotgun", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcc287dd18b4dd6ee9d86_Projectile%20Recursion%20(Shotgun-BL3).png"}, {"name": "Prompt Critical", "type": "Pistol", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef1e0027602ae437c7308_Prompt%20Critical%20(Pistol-BL3).png"}, {"name": "Proprietary License", "type": "SMG", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd44e11c95cf9233474a7_Proprietary%20License%20(SMG-BL3).png"}, {"name": "Psycho Stabber", "type": "Pistol", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef1ed131397b7f1b32d0f_Psycho%20Stabber%20(Pistol-BL3).png"}, {"name": "Quadomizer", "type": "Launcher", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6d7ea5afd774fda70bcf_Quadomizer%20(Launcher-BL3).png"}, {"name": "Queen's Call", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef1fb9830894212b069f1_Queen%27s%20Call%20(Pistol-BL3).png"}, {"name": "Quickdraw", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef2083f480928623b996f_Quickdraw%20(Pistol-BL3).png"}, {"name": "R.Y.N.A.H.", "type": "Launcher", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6d97284c734349b43a2f_R.Y.N.A.H.%20(Launcher-BL3).png"}, {"name": "Rebel Yell", "type": "Assault Rifle", "manufacturer": "Atlas", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5bbea47bd548733a7dba_Rebel%20Yell%20(AR-BL3).png"}, {"name": "Rebound", "type": "Assault Rifle", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61fbb0118f3250c12f468fa1_Rebound%20(AR-BL3).png"}, {"name": "Redeye Rocket Pod", "type": "Launcher", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6da72b77c40687be1cee_Redeye%20Rocket%20Pod%20(Launcher-BL3).png"}, {"name": "Redistributor", "type": "SMG", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd45a68034fe8ca9440ed_Redistributor%20(Legendary-SMG-BL3).png"}, {"name": "Redistributor", "type": "SMG", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd46733c64aad247ff71b_Redistributor%20(Rare-SMG-BL3).png"}, {"name": "Redline", "type": "Shotgun", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcc341f12a065d6102ea9_Redline%20(Shotgun-BL3).png"}, {"name": "Reflux", "type": "Shotgun", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcc4238f8db80e151dc38_Reflux%20(Shotgun-BL3).png"}, {"name": "Res", "type": "Pistol", "manufacturer": "Atlas", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef215cc8807fce3c76acc_Res%20(Pistol-BL3).png"}, {"name": "Reunion", "type": "Shotgun", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcc4ef3028a9cb2156207_Reunion%20(Shotgun-BL3).png"}, {"name": "Ripper", "type": "SMG", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd4753a33a12d0e1b9b67_Ripper%20(SMG-BL3).png"}, {"name": "Robin's Call", "type": "Shotgun", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcc5ba46a31454003140a_Robin%27s%20Call%20(Shotgun-BL3).png"}, {"name": "Robo-Melter", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef2221313979bf4b32d1b_Robo-Melter%20(Pistol-BL3).png"}, {"name": "Rogue-Sight", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef22fe0d36f564af47ecb_Rogue-Sight%20(Pistol-BL3).png"}, {"name": "Roisen's Thorns", "type": "Pistol", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61990b1d265aac9f9a025390_Roisen%27s%20Thorns%20(Pistol-BL3).png"}, {"name": "Rowan's Call", "type": "Assault Rifle", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5cda8d6d0a5f8de4576c_Rowan%27s%20Call%20(AR-BL3).png"}, {"name": "Ruby's Wrath", "type": "Launcher", "manufacturer": "Atlas", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6db8761484467c0fad05_Ruby%27s%20Wrath%20(Launcher-BL3).png"}, {"name": "S3RV-80S-EXECUTE", "type": "Pistol", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef24afa3c227dacf29cc2_S3RV-8OS-EXECUTE%20(Pistol-BL3).png"}, {"name": "SF Force", "type": "SMG", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd481b5d4b33b74ba4d93_SF%20Force%20(SMG-BL3).png"}, {"name": "Sacrificial Lamb", "type": "Shotgun", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcc68d32b12f716d282b7_Sacrificial%20Lamb%20(Shotgun-BL3).png"}, {"name": "Sand Hawk", "type": "Sniper", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdc9b326861279d3b3d70_Sand%20Hawk%20(Sniper-BL3).png"}, {"name": "Satisfaction", "type": "Launcher", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6dd34e91678065f26ab3_Satisfaction%20(Launcher-BL3).png"}, {"name": "Sawbar", "type": "Assault Rifle", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5bfb6fe81a1683c4bad3_Sawbar%20(AR-BL3).png"}, {"name": "Sawpenny", "type": "Assault Rifle", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5c087576656a452d5e19_Sawpenny%20(AR-BL3).png"}, {"name": "Scorpio", "type": "Pistol", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef257f5fc351a2d9cfa4b_Scorpio%20(Pistol-BL3).png"}, {"name": "Scourge", "type": "Launcher", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6de763b6975d8746f1fc_Scourge%20(Launcher-BL3).png"}, {"name": "Scoville", "type": "Pistol", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef2646f80ebddd98a20b9_Scoville%20(Pistol-BL3).png"}, {"name": "Seeryul Killur", "type": "Assault Rifle", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5c150fb75d1c4371faa2_Seeryul%20Killur%20(AR-BL3).png"}, {"name": "Sellout", "type": "Pistol", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef271afb18613f3872c38_Sellout%20(Pistol-BL3).png"}, {"name": "Septimator", "type": "Sniper", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdca8deee47e16a5f101b_Septimator%20(Sniper-BL3).png"}, {"name": "Septimator Prime", "type": "Sniper", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61fbaf6c40b1994d6f14fddb_Septimator%20Prime%20(Sniper-BL3).png"}, {"name": "Seventh Sense", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef28c7fe854481bbcf4cf_Seventh%20Sense%20(Legendary-Pistol-BL3).png"}, {"name": "Seventh Sense", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef27eafb18664cc872cba_Seventh%20Sense%20(Epic-Pistol-BL3).png"}, {"name": "Sheega's Launcher", "type": "Launcher", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6e042a7d7310220cbb0f_Sheega%27s%20Launcher%20(Launcher-BL3).png"}, {"name": "Shocker", "type": "Shotgun", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcc7511c95c3125345581_Shocker%20(Shotgun-BL3).png"}, {"name": "Short Stick", "type": "SMG", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd48e7ca5fb14ac65a5f2_Short%20Stick%20(SMG-BL3).png"}, {"name": "Shredifier", "type": "Assault Rifle", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5c24d0d3fe7809c5a7ac_Shredifier%20(AR-BL3).png"}, {"name": "Shrieking Devil", "type": "Shotgun", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcc8193326983125290ad_Shrieking%20Devil%20(Shotgun-BL3).png"}, {"name": "Sickle", "type": "Assault Rifle", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5cec6114dd45d7f69754_Sickle%20(AR-BL3).png"}, {"name": "SkekSil", "type": "Pistol", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef2996e8d9068476c9cbf_SkekSil%20(Pistol-BL3).png"}, {"name": "Skullmasher", "type": "Sniper", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdcc1132898ef4f9b3bde_Skullmasher%20(Sniper-BL3).png"}, {"name": "Sledge's Shotgun", "type": "Shotgun", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcc8ed32b127d29d284cf_Sledge%27s%20Shotgun%20(Shotgun-BL3).png"}, {"name": "Sleeping Giant", "type": "SMG", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd49b3a33a1110b1b9b8b_Sleeping%20Giant%20(SMG-BL3).png"}, {"name": "Slow Hand", "type": "Shotgun", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcc9b539c5ee1f190014f_Slow%20Hand%20(Shotgun-BL3).png"}, {"name": "Smart-Gun", "type": "SMG", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd4a87129c8d3407bfc0f_Smart-Gun%20(SMG-BL3).png"}, {"name": "Smog", "type": "SMG", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd4b5756c4c3628df0943_Smog%20(SMG-BL3).png"}, {"name": "Soleki Protocol", "type": "Sniper", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdcced32b121ff6d2ce75_Soleki%20Protocol%20(Sniper-BL3).png"}, {"name": "Soulrender", "type": "Assault Rifle", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5c3cad6e2f21e3d4f06b_Soulrender%20(AR-BL3).png"}, {"name": "Spade", "type": "Shotgun", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcca838f8db658c51e019_Spade%20(Shotgun-BL3).png"}, {"name": "Splinter", "type": "Shotgun", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcd0889cbcc2d818f9b29_Splinter%20(Shotgun-BL3).png"}, {"name": "Stalker", "type": "Sniper", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdcda3a33a158e51bb721_Stalker%20(Sniper-BL3).png"}, {"name": "Star Helix", "type": "Assault Rifle", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5c4987285231bc85775b_Star%20Helix%20(AR-BL3).png"}, {"name": "Starkiller", "type": "Pistol", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef2a66960b1b9f8e75e71_Starkiller%20(Pistol-BL3).png"}, {"name": "Stauros' Burn", "type": "Assault Rifle", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5c561959e8da8d86e250_Stauros%27%20Burn%20(AR-BL3).png"}, {"name": "Stonethrower", "type": "Assault Rifle", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5d0a02b759623a2b0c02_Stonethrower%20(AR-BL3).png"}, {"name": "Storm", "type": "Sniper", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdce77ca5fb01d465cc7a_Storm%20(Sniper-BL3).png"}, {"name": "Superball", "type": "Pistol", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef2b47fe8549e2dbcf9dc_Superball%20(Pistol-BL3).png"}, {"name": "Superstreamer", "type": "Shotgun", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcd194bdf486d28f31edd_Superstreamer%20(Shotgun-BL3).png"}, {"name": "T.K's Wave", "type": "Shotgun", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcd2ca46a31003503156d_T.K%27s%20Wave%20(Shotgun-BL3).png"}, {"name": "THE TWO TIME", "type": "Sniper", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdd33418b846c1edffd9b_THE%20TWO%20TIME%20(Sniper-BL3).png"}, {"name": "TNTina", "type": "Pistol", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6199090e83260447b394f720_TNTina%20(Pistol-BL3).png"}, {"name": "Tankman's Shield", "type": "Sniper", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdcf41f12a00028108420_Tankman%27s%20Shield%20(Sniper-BL3).png"}, {"name": "Ten Gallon", "type": "SMG", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd4c2756c4c4bb4df098e_Ten%20Gallon%20(SMG-BL3).png"}, {"name": "The Beast", "type": "Assault Rifle", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5c702b77c46940bdc40b_The%20Beast%20(AR-BL3).png"}, {"name": "The Big Succ", "type": "Assault Rifle", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5c7d5c48ea33998e1d28_The%20Big%20Succ%20(AR-BL3).png"}, {"name": "The Blanc", "type": "Pistol", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef2c15a0f5321289e9c7a_The%20Blanc%20(Pistol-BL3).png"}, {"name": "The Boo", "type": "SMG", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd4cfb5d4b377b6ba51e1_The%20Boo%20(SMG-BL3).png"}, {"name": "The Boring Gun", "type": "Shotgun", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcd3e3fb9e700cfe24f20_The%20Boring%20Gun%20(Shotgun-BL3).png"}, {"name": "The Butcher", "type": "Shotgun", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61fbafa99a3b286654aeee79_Butcher%20(Shotgun-BL3).png"}, {"name": "The Chalice", "type": "Assault Rifle", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5c8a6fe81a2543c4bc41_The%20Chalice%20(AR-BL3).png"}, {"name": "The Companion", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef2cee2b06fbff5b92e16_The%20Companion%20(Pistol-BL3).png"}, {"name": "The Cure", "type": "Shotgun", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcd793268616cb53af13c_The%20Cure%20(Shotgun-BL3).png"}, {"name": "The Dictator", "type": "Assault Rifle", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5c9787285259ae85798b_The%20Dictator%20(AR-BL3).png"}, {"name": "The Duc", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef2e56f80ebad568a2709_The%20Duc%20(Pistol-BL3).png"}, {"name": "The Emperor's Condiment", "type": "SMG", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd4dcad989c47bd333569_The%20Emperor%27s%20Condiment%20(SMG-BL3).png"}, {"name": "The Flood", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef2f2e2b06f051cb92f56_The%20Flood%20(Pistol-BL3).png"}, {"name": "The Garcia", "type": "Shotgun", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcd8335868a8e2c8c215c_The%20Garcia%20(Shotgun-BL3).png"}, {"name": "The Horizon", "type": "Shotgun", "manufacturer": "Tediore", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcd9094f49c32ca759285_The%20Horizon%20(Shotgun-BL3).png"}, {"name": "The Hunt(ed)", "type": "Sniper", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdd012fdd52e2c0a6191f_The%20Hunt(ed)%20(Sniper-BL3).png"}, {"name": "The Hunt(er)", "type": "Sniper", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdd0d8fa52f93db80b8a6_The%20Hunt(er)%20(Sniper-BL3).png"}, {"name": "The Hunt(ress)", "type": "Sniper", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdd1a94f49c874576044d_The%20Hunt(ress)%20(Sniper-BL3).png"}, {"name": "The Ice Queen", "type": "Sniper", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdd2692067f70f28af275_The%20Ice%20Queen%20(Sniper-BL3).png"}, {"name": "The Killing Word", "type": "Pistol", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef304b328f0f3557b1a64_The%20Killing%20Word%20(Pistol-BL3).png"}, {"name": "The Leech", "type": "Pistol", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef311cb09ca08945e2ef3_The%20Leech%20(Pistol-BL3).png"}, {"name": "The Lob", "type": "Shotgun", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcda109868d33f1105dbf_The%20Lob%20(Shotgun-BL3).png"}, {"name": "The Monarch", "type": "Assault Rifle", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5d5b4e9167ab4df21cba_The%20Monarch%20(AR-BL3).png"}, {"name": "The Shoddy", "type": "Shotgun", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcdaf8fa52fcd338056db_The%20Shoddy%20(Shotgun-BL3).png"}, {"name": "The Tidal Wave", "type": "Shotgun", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcdba2fdd5261fba5e420_The%20Tidal%20Wave%20(Shotgun-BL3).png"}, {"name": "Thumper", "type": "Shotgun", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcdca3fb9e7e654e2596a_Thumper%20(Shotgun-BL3).png"}, {"name": "Thunderball Fists", "type": "Pistol", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef31f13b13ccea00a795f_Thunderball%20Fists%20(Pistol-BL3).png"}, {"name": "Tiggs' Boom", "type": "Shotgun", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcdd97ca5fb84c665899c_Tiggs%27%20Boom%20(Shotgun-BL3).png"}, {"name": "Tizzy", "type": "Pistol", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef32e4d48962289ca2571_Tizzy%20(Pistol-BL3).png"}, {"name": "Torrent", "type": "SMG", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd4e9539c5e9453902b1e_Torrent%20(SMG-BL3).png"}, {"name": "Traitor's Death", "type": "Assault Rifle", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5cb1ed27fd45ea39efb8_Traitor%27s%20Death%20(AR-BL3).png"}, {"name": "Trevonator", "type": "Shotgun", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcdf5539c5e4d2c9001dd_Trevonator%20(Shotgun-BL3).png"}, {"name": "Trickshot", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef344e0d36f7060f48b34_Trickshot%20(Pistol-BL3).png"}, {"name": "Troubleshooter", "type": "SMG", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd4f70a1b039385752107_Troubleshooter%20(SMG-BL3).png"}, {"name": "Try-Bolt", "type": "Assault Rifle", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5cbe6114dd463af69674_Try-Bolt%20(AR-BL3).png"}, {"name": "Tsunami", "type": "SMG", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd503f6c6e0bae9767ac2_Tsunami%20(SMG-BL3).png"}, {"name": "Tunguska", "type": "Launcher", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6e24a5afd7c19fa70dd3_Tunguska%20(Launcher-BL3).png"}, {"name": "Unforgiven", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef35b7fe85466c7bd07c3_Unforgiven%20(Pistol-BL3).png"}, {"name": "Unkempt Harold", "type": "Pistol", "manufacturer": "Torgue", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef3676e8d9078776ca256_Unkempt%20Harold%20(Pistol-BL3).png"}, {"name": "Unseen Threat", "type": "Sniper", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdd41d9f120ea5842ee74_Unseen%20Threat%20(Sniper-BL3).png"}, {"name": "Vanquisher", "type": "SMG", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd51068034f0730944498_Vanquisher%20(SMG-BL3).png"}, {"name": "Vault Hero", "type": "SMG", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd51d33c64a7c967ffc3d_Vault%20Hero%20(SMG-BL3).png"}, {"name": "Vibra-Pulse", "type": "SMG", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd52af945d4aa7d5594d7_Vibra-Pulse%20(SMG-BL3).png"}, {"name": "Vosk's Deathgrip", "type": "Shotgun", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fce00a0adfaf3a77e8d13_Vosk%27s%20Deathgrip%20(Shotgun-BL3).png"}, {"name": "Wagon Wheel", "type": "Pistol", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef3730276020b7f7c8259_Wagon%20Wheel%20(Pistol-BL3).png"}, {"name": "Warlord", "type": "Assault Rifle", "manufacturer": "DAHL", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5d858de970378d5d43a7_Warlord%20(AR-BL3).png"}, {"name": "Web Slinger", "type": "Assault Rifle", "manufacturer": "Vladof", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5da8761dfb7cde9aa4bf_Web%20Slinger%20(AR-BL3).png"}, {"name": "Wedding Invitation", "type": "Sniper", "manufacturer": "Jakobs", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdd4daaba4daccfcb3129_Wedding%20Invitation%20(Sniper-BL3).png"}, {"name": "Westergun", "type": "SMG", "manufacturer": "Maliwan", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd53844ab476f09931626_Westergun%20(SMG-BL3).png"}, {"name": "Woodblocker", "type": "Sniper", "manufacturer": "Hyperion", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdd59d9f120bb2442f051_Woodblocker%20(Sniper-BL3).png"}, {"name": "Yellowcake", "type": "Launcher", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6e3a03b74ae8c0524137_Yellowcake%20(Launcher-BL3).png"}, {"name": "Zheitsev's Eruption", "type": "Assault Rifle", "manufacturer": "COV", "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61fbafdf48a996485c851aad_Zheitsev%27s%20Eruption%20(AR-BL3).png"}]
+[
+  {
+    "name": "9-Volt",
+    "type": "SMG",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd0cdd6736d4a1bbf5fbe_9-Volt%20(SMG-BL3).png"
+  },
+  {
+    "name": "AAA",
+    "type": "Pistol",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ee951fa3c222860f2719a_AAA%20(Pistol-BL3).png"
+  },
+  {
+    "name": "ASMD",
+    "type": "Sniper",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdb2ba46a319996036633_ASMD%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Agonizer 1500",
+    "type": "Launcher",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e63e2872852009485a516_Agonizer%201500%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Alchemist",
+    "type": "Assault Rifle",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5842f3906e597f350e4e_Alchemist%20(AR-BL3).png"
+  },
+  {
+    "name": "Amazing Grace",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeae55a0f53e5f39e6f03_Amazing%20Grace%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Amber Management",
+    "type": "Assault Rifle",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5885ed27fd2e6139d7af_Amber%20Managment%20(AR-BL3).png"
+  },
+  {
+    "name": "Anarchy",
+    "type": "Shotgun",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fc90046278051dbc6d2c0_Anarchy%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Ashen Beast",
+    "type": "SMG",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd0df6ce76641f8f10858_Ashen%20Beast%20(SMG-BL3).png"
+  },
+  {
+    "name": "Atlas Replay",
+    "type": "Pistol",
+    "manufacturer": "Atlas",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeaf13f7286f8d048502e_Atlas%20Replay%20(Pistol-BL3).png"
+  },
+  {
+    "name": "AutoAim\u00e8",
+    "type": "Sniper",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdb41f6c6e0fe877694ae_AutoAim%C3%A8%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Baby Maker",
+    "type": "Pistol",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeafe3f728658ff485048_Baby%20Maker%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Backburner",
+    "type": "Launcher",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e64001df32e56e33547fa_Backburner%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Bangarang",
+    "type": "Pistol",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeb0a08769dab258df5ee_Bangarang%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Barrage",
+    "type": "Assault Rifle",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e58948d6d0a350ee44e41_Barrage%20(AR-BL3).png"
+  },
+  {
+    "name": "Beacon",
+    "type": "Pistol",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeb92cc880721f0c7425b_Beacon%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Bearcat",
+    "type": "Assault Rifle",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5908d4fd657d25ad22de_Bearcat%20(AR-BL3).png"
+  },
+  {
+    "name": "Bekah",
+    "type": "Assault Rifle",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e59144e9167a1d9f2022c_Bekah%20(AR-BL3).png"
+  },
+  {
+    "name": "Bird of Prey",
+    "type": "Sniper",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdb4ea0adfa11ea7ef94c_Bird%20of%20Prey%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Bitch",
+    "type": "SMG",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd0ec0a1b035f6b750d28_Bitch%20(SMG-BL3).png"
+  },
+  {
+    "name": "Bite Size",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeb2366e5603f4a1dd18a_Bite%20Size%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Black Flame",
+    "type": "Shotgun",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fc9140a1b0347d574d835_Black%20Flame%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Blade Fury",
+    "type": "Assault Rifle",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61fbaf2b5434708faa1c0b1e_Blade%20Fury%20(AR-BL3).png"
+  },
+  {
+    "name": "Blind Bandit",
+    "type": "Shotgun",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fc9207849be7c336422f2_Blind%20Bandit%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Blind Sage",
+    "type": "Shotgun",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fc936539c5ec9088fe926_Blind%20Sage%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Blood-Starved Beast",
+    "type": "SMG",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd0f87ca5fb4b3a659818_Blood-Starved%20Beast%20(SMG-BL3).png"
+  },
+  {
+    "name": "Bloom",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeb2fe872ccf5a3441cdc_Bloom%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Bone Shredder",
+    "type": "Pistol",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeb3bdf40fc29f1552452_Bone%20Shredder%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Boogeyman",
+    "type": "Sniper",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdb5a1f12a01e2b107d03_Boogeyman%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Boomer",
+    "type": "SMG",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd10468034f1505942b70_Boomer%20(SMG-BL3).png"
+  },
+  {
+    "name": "Brad Luck",
+    "type": "Assault Rifle",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5920ad6e2f6b6ed4e63e_Brad%20Luck%20(AR-BL3).png"
+  },
+  {
+    "name": "Brainstormer",
+    "type": "Shotgun",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fca26b5d4b31843ba01cc_Brainstormer%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Brashi's Dedication",
+    "type": "Sniper",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdb665710e1dd060cb0c5_Brashi%27s%20Dedication%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Breath of the Dying",
+    "type": "Assault Rifle",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e592dad6e2f2c7cd4e678_Breath%20of%20the%20Dying%20(AR-BL3).png"
+  },
+  {
+    "name": "Breeder",
+    "type": "Pistol",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeb481f8da13ad2d71596_Breeder%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Brightside",
+    "type": "Shotgun",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fca338fa52f1cf28040ac_Brightside%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Bubble Blaster",
+    "type": "Pistol",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeb547a7659218e987a72_Bubble%20Blaster%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Buttplug",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeb616960b1ba9de7484b_Buttplug%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Carrier",
+    "type": "Assault Rifle",
+    "manufacturer": "Atlas",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e59395c48ea16ec8dffb1_Carrier%20(AR-BL3).png"
+  },
+  {
+    "name": "Chandelier",
+    "type": "Shotgun",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fca3f94f49c7993757c08_Chandelier%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Cheap Tips",
+    "type": "SMG",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd110b5d4b360c2ba3649_Cheap%20Tips%20(SMG-BL3).png"
+  },
+  {
+    "name": "Chomper",
+    "type": "Shotgun",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fca4b6ce766bf88f0efc9_Chomper%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Clairvoyance",
+    "type": "Assault Rifle",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e59466fe81a3117c4ad46_Clairvoyance%20(AR-BL3).png"
+  },
+  {
+    "name": "Cloud Kill",
+    "type": "SMG",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd11cb5d4b31250ba36be_Cloud%20Kill%20(SMG-BL3).png"
+  },
+  {
+    "name": "Cocky Bastard",
+    "type": "Sniper",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdb734bdf48e1c1f38c54_Cocky%20Bastard%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Cold Shoulder",
+    "type": "Sniper",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdb7e7849be77c4646b88_Cold%20Shoulder%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Complex Root",
+    "type": "Sniper",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdc4bf6c6e077c87697d5_Complex%20Root%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Conference Call",
+    "type": "Shotgun",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fca57462780ffe6c6d493_Conference%20Call%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Contained Blast",
+    "type": "Assault Rifle",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e59520fb75d6e7571f179_Contained%20Blast%20(AR-BL3).png"
+  },
+  {
+    "name": "Convergence",
+    "type": "Shotgun",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fca64c9396f2744ee7775_Convergence%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Crader's EM-P5",
+    "type": "SMG",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd1296b5fd0d1dbf8bab5_Crader%27s%20EM-P5%20(SMG-BL3).png"
+  },
+  {
+    "name": "Craps",
+    "type": "Pistol",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61990a0879ca2dd5bee6df9a_Craps%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Creamer",
+    "type": "Launcher",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6439c4b1d60ea249f3e2_Creamer%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Creeping Corruption",
+    "type": "Assault Rifle",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6199094d045c5778ed2c617e_Creeping%20Corruption%20(AR-BL3).png"
+  },
+  {
+    "name": "Creeping Death",
+    "type": "Shotgun",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fca707849be1bdb642a7e_Creeping%20Death%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Crit",
+    "type": "SMG",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd1367dd18be865eeacab_Crit%20(SMG-BL3).png"
+  },
+  {
+    "name": "Critical Mass",
+    "type": "Pistol",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeb86d89fa5bafe591baf_Critical%20Mass%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Critical Thug",
+    "type": "Shotgun",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fca7ddeee474a685eb9ad_Critical%20Thug%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Crossroad",
+    "type": "SMG",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd141326861b3e73b0511_Crossroad%20(SMG-BL3).png"
+  },
+  {
+    "name": "Cutsman",
+    "type": "SMG",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd14e3fb9e73973e25d7e_Cutsman%20(SMG-BL3).png"
+  },
+  {
+    "name": "D.N.A.",
+    "type": "SMG",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd15ab5d4b3162cba37a7_D.N.A.%20(SMG-BL3).png"
+  },
+  {
+    "name": "Dakota",
+    "type": "Shotgun",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fca895710e158180c763b_Dakota%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Damned",
+    "type": "Assault Rifle",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e597d6114dd67aff68c42_Damned%20(AR-BL3).png"
+  },
+  {
+    "name": "Dark Army",
+    "type": "SMG",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd16792067fb2b18aa318_Dark%20Army%20(SMG-BL3).png"
+  },
+  {
+    "name": "Dead Chamber",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeeaca51d173fd54984fa_Dead%20Chamber%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Destructo Spinner",
+    "type": "SMG",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd255098c65fdce1d5c65_Destructo%20Spinner%20(SMG-BL3).png"
+  },
+  {
+    "name": "Devastator",
+    "type": "Pistol",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61990a22ca0cb37c2d76a5a8_Devastator%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Devil's Foursum",
+    "type": "Pistol",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61990a5b1619b71d2fed4971_Devils%20Foursum%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Devoted",
+    "type": "SMG",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd2603fb9e7498fe265b3_Devoted%20(SMG-BL3).png"
+  },
+  {
+    "name": "Digby's Smooth Tube",
+    "type": "Assault Rifle",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e598903b74a5f4051c2f4_Digby%27s%20Smooth%20Tube%20(AR-BL3).png"
+  },
+  {
+    "name": "Dowsing Rod",
+    "type": "Assault Rifle",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5995872852f724856cd0_Dowsing%20Rod%20(AR-BL3).png"
+  },
+  {
+    "name": "E-Gone",
+    "type": "SMG",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd26d09868d0c561071ab_E-Gone%20(SMG-BL3).png"
+  },
+  {
+    "name": "Earworm",
+    "type": "Assault Rifle",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e59a26114dd75ccf68dde_Earworm%20(AR-BL3).png"
+  },
+  {
+    "name": "Echo",
+    "type": "Pistol",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61990a86ca0cb3840076a89b_Echo%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Ember's Purge",
+    "type": "SMG",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd2799e94525526a2a603_Ember%27s%20Purge%20(SMG-BL3).png"
+  },
+  {
+    "name": "Embrace the Pain",
+    "type": "Assault Rifle",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e59ae2a7d739ae40c4a17_Embrace%20the%20Pain%20(AR-BL3).png"
+  },
+  {
+    "name": "Eridian Fabricator",
+    "type": "Launcher",
+    "manufacturer": "Eridian",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e644603b74a2e9c5203d2_Eridian%20Fabricator%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Extreme Hangin' Chadd",
+    "type": "Pistol",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeede6e8d9040946c90da_Extreme%20Hangin%27%20Chadd%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Face-puncher",
+    "type": "Shotgun",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fca951f12a0c23a102691_Face-Puncher%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Faisor",
+    "type": "Assault Rifle",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e59bd0614ffcc9f21e46c_Faisor%20(AR-BL3).png"
+  },
+  {
+    "name": "Fearmonger",
+    "type": "Shotgun",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcaa2d9f120ff4242a583_Fearmonger%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Fingerbiter",
+    "type": "Shotgun",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcaaeaaba4d80f4cac59d_Fingerbiter%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Firecracker",
+    "type": "Shotgun",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcabb35868a2a018c10ad_Firecracker%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Firefly",
+    "type": "Pistol",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eeeea932de1cebe4ab69c_Firefly%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Firestorm",
+    "type": "Sniper",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdb97462780983ac731b8_Firestorm%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Flakker",
+    "type": "Shotgun",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcac83a33a17dae1b7040_Flakker%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Flama Diddle",
+    "type": "Shotgun",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcad435868a1e478c10b0_Flama%20Diddle%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Flipper",
+    "type": "SMG",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd28611c95c1f0e346b09_Flipper%20(SMG-BL3).png"
+  },
+  {
+    "name": "Free Radical",
+    "type": "Pistol",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61fbaeb8581866169b4d2380_Free%20Radical%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Freeman",
+    "type": "Launcher",
+    "manufacturer": "Atlas",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e64fe0fb75d464f7239da_Freeman%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Frequency",
+    "type": "Shotgun",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcae0132898910c9ad915_Frequency%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Frozen Devil",
+    "type": "Pistol",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eef036f80eb78538a0eb4_Frozen%20Devil%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Gargoyle",
+    "type": "Pistol",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eef106d4c446758a9fbb6_Gargoyle%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Gatling Gun",
+    "type": "Assault Rifle",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5a2fad6e2f3badd4e885_Gatling%20Gun%20(AR-BL3).png"
+  },
+  {
+    "name": "Gettleburger",
+    "type": "Launcher",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e645fa7ac9b196b1e9ec5_Gettleburger%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Girth Blaster Elite",
+    "type": "Pistol",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eefb204703369a004eaf9_Girth%20Blaster%20Elite%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Globetrottr",
+    "type": "Launcher",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e646a5c48ea8d7b8e4cf2_Globetrottr%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Gold Rush",
+    "type": "SMG",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd292539c5e4270902457_Gold%20Rush%20(SMG-BL3).png"
+  },
+  {
+    "name": "Good Juju",
+    "type": "Assault Rifle",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5a3ad4fd656e02ad2b9b_Good%20Juju%20(AR-BL3).png"
+  },
+  {
+    "name": "Grease Trap",
+    "type": "Pistol",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eef29fa3c22603bf28191_Grease%20Trap%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Guardian 4N631",
+    "type": "Shotgun",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcaed06154ec84831786f_Guardian%204N631%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Gunerang",
+    "type": "Pistol",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eef35e0d36f7f14f46de0_Gunerang%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Hail",
+    "type": "Assault Rifle",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5aa78d6d0a1842e45488_Hail%20(AR-BL3).png"
+  },
+  {
+    "name": "Hand of Glory",
+    "type": "Assault Rifle",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5a531df32e22b235030e_Hand%20of%20Glory%20(AR-BL3).png"
+  },
+  {
+    "name": "Handsome Jackhammer",
+    "type": "SMG",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd2dcf945d4f988558d82_Handsome%20Jackhammer%20(SMG-BL3).png"
+  },
+  {
+    "name": "Headsplosion",
+    "type": "Sniper",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdba3539c5e774b904ac9_Headsplosion%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Heart Breaker",
+    "type": "Shotgun",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcaf944ab47382692d11b_Heart%20Breaker%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Heckle",
+    "type": "Pistol",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eef427bc5bf476cbdc02c_Heckle%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Hellfire",
+    "type": "SMG",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd32146278028e4c70985_Hellfire%20(SMG-BL3).png"
+  },
+  {
+    "name": "Hellshock",
+    "type": "Pistol",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eef4f6960b159b8e75ba8_Hellshock%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Hellwalker",
+    "type": "Shotgun",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcb06132898a4de9ad9e1_Hellwalker%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Hive",
+    "type": "Launcher",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e64773d49665af91fa5ce_Hive%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Hornet",
+    "type": "Pistol",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eef5bcb09ca332c5e1d87_Hornet%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Hot Drop",
+    "type": "Launcher",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e650a2b77c40d98bde971_Hot%20Drop%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Hotfoot Teddy",
+    "type": "Assault Rifle",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5a5fef294d418776a8f1_Hotfoot%20Teddy%20(AR-BL3).png"
+  },
+  {
+    "name": "Hyde",
+    "type": "Pistol",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/60783a66fc408431bb895619_Hyde%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Hydrafrost",
+    "type": "Pistol",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eef76fbfef2110dd1a599_Hydrafrost%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Hyper-Hydrator",
+    "type": "Pistol",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eef81a4ecef1526be6a47_Hyper-Hydrator%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Hyperfocus XZ41",
+    "type": "SMG",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd32e326861371c3b1206_Hyperfocus%20XZ41%20(SMG-BL3).png"
+  },
+  {
+    "name": "ION CANNON",
+    "type": "Launcher",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e649cc4b1d6118e49f564_ION%20CANNON%20(Launcher-BL3).png"
+  },
+  {
+    "name": "ION LASER",
+    "type": "SMG",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd33a756c4cdf4fdf04e5_ION%20LASER%20(SMG-BL3).png"
+  },
+  {
+    "name": "Ice Age",
+    "type": "Launcher",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6490699c34bafad1b90c_Ice%20Age%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Ice Pick",
+    "type": "Pistol",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eef8f66e56065dd1df2d5_Ice%20Pick%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Icebreaker",
+    "type": "Assault Rifle",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5a6c699c34c90ad172f7_Icebreaker%20(AR-BL3).png"
+  },
+  {
+    "name": "Iceburger",
+    "type": "Shotgun",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcb123268612e943ad166_Iceburger%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Infinity",
+    "type": "Pistol",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618eef9b7bc5bfebfbbdc0d1_Infinity%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Insider",
+    "type": "Shotgun",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcb4d7ca5fb67c5657a54_Insider%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Ionic Disruptor",
+    "type": "Sniper",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdbb094f49c10d675f9f4_Ionic%20Disruptor%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Jericho",
+    "type": "Launcher",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e65212a7d7389aa0c8923_Jericho%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Juliet's Dazzle",
+    "type": "Assault Rifle",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5a79a5afd75b03a68c3e_Juliet%27s%20Dazzle%20(AR-BL3).png"
+  },
+  {
+    "name": "Just Kaus",
+    "type": "SMG",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd3475710e154850c9376_Just%20Kaus%20(SMG-BL3).png"
+  },
+  {
+    "name": "Kaleidoscope",
+    "type": "Pistol",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef0086f80eb3d8c8a18e3_Kaleidoscope%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Kaos",
+    "type": "Assault Rifle",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5a855c48ea5f418e04e8_Kaos%20(AR-BL3).png"
+  },
+  {
+    "name": "Kaoson",
+    "type": "SMG",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd3545710e1fb8e0c93a7_Kaoson%20(SMG-BL3).png"
+  },
+  {
+    "name": "Kenulox",
+    "type": "Sniper",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdbbd3a33a102591bb400_Kenulox%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Kevin's Chilly",
+    "type": "SMG",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd3607dd18ba44deebb36_Kevin%27s%20Chilly%20(SMG-BL3).png"
+  },
+  {
+    "name": "Kickcharger",
+    "type": "Launcher",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e64b52413b5b0b9d81dbd_Kickcharger%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Kill-o'-the-Wisp",
+    "type": "Shotgun",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcb59f6c6e0b677764041_Kill-o%27-the-Wisp%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "King's Call",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef0153f7286a642488685_King%27s%20Call%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Krakatoa",
+    "type": "Sniper",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdbc9201104d63659dd6f_Krakatoa%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Kyb's Worth",
+    "type": "SMG",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd36ddc1f6909caa96854_Kyb%27s%20Worth%20(SMG-BL3).png"
+  },
+  {
+    "name": "LOV3M4CH1N3",
+    "type": "SMG",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd3861f12a094e91056a3_LOV3M4CH1N3%20(SMG-BL3).png"
+  },
+  {
+    "name": "La Varlope",
+    "type": "Assault Rifle",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5a9aad6e2f74d9d4e934_La%20Varlope%20(AR-BL3).png"
+  },
+  {
+    "name": "Laser-Sploder",
+    "type": "Assault Rifle",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5ae301c18fd4ab609738_Laser-Sploder%20(AR-BL3).png"
+  },
+  {
+    "name": "Lead Sprinkler",
+    "type": "Assault Rifle",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5aef87285258aa8571d0_Lead%20Sprinkler%20(AR-BL3).png"
+  },
+  {
+    "name": "Light Show",
+    "type": "Pistol",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef022cba8218b330db135_Light%20Show%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Likable Rascal",
+    "type": "Assault Rifle",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5afca1c7aba8f5588259_Likable%20Rascal%20(AR-BL3).png"
+  },
+  {
+    "name": "Linc",
+    "type": "Pistol",
+    "manufacturer": "Atlas",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef02f85053a8478039654_Linc%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Linoge",
+    "type": "Pistol",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef03bfa3c221823f28846_Linoge%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Little Yeeti",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef0484d489600b6c9ff08_Little%20Yeeti%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Long Musket",
+    "type": "SMG",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd3797129c8b1aa7bf821_Long%20Musket%20(SMG-BL3).png"
+  },
+  {
+    "name": "Lovable Rogue",
+    "type": "Assault Rifle",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5b098de9703a815d39b5_Lovable%20Rogue%20(AR-BL3).png"
+  },
+  {
+    "name": "Love Drill",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef0556e8d90465d6c91c5_Love%20Drill%20(Epic-Pistol-BL3).png"
+  },
+  {
+    "name": "Love Drill",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef062e2b06fa3d2b91d04_Love%20Drill%20(Legendary-Pistol-BL3).png"
+  },
+  {
+    "name": "Lucian's Call",
+    "type": "Assault Rifle",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5b1575766577352d5b2e_Lucian%27s%20Call%20(AR-BL3).png"
+  },
+  {
+    "name": "Lucky 7",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef06f027602aa4c7c63f9_Lucky%207%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Lyuda",
+    "type": "Sniper",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdbd6d12d5a18a3f62b38_Lyuda%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Maggie",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef07b3709512b29b6025d_Maggie%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Magnificent",
+    "type": "Pistol",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61b85867e7feca4c550bd3d4_Magnificent%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Major Kong",
+    "type": "Launcher",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e64c22413b53312d81edc_Major%20Kong%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Malak's Bane",
+    "type": "Sniper",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdbe2aaba4d89ffcb29e3_Malak%27s%20Bane%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Manic Pixie Dream Gun",
+    "type": "Shotgun",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcb6689cbccebef8f96fb_Manic%20Pixie%20Dream%20Gun%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Masterwork Crossbow",
+    "type": "Sniper",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdbee201104a2e659e039_Masterwork%20Crossbow%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Mechanic",
+    "type": "Launcher",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e64ce5c48ea3ba78e4e20_Mechanic%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Melt Facer",
+    "type": "Shotgun",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcb73098c651bfd1d3dfd_Melt%20Facer%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Mind-Killer",
+    "type": "Shotgun",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcb7f44ab47ee6992d40e_Mind-Killer%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Minor Kong",
+    "type": "Launcher",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e64db5c48ea38fd8e4f0c_Minor%20Kong%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Miscreant",
+    "type": "Pistol",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef0952294057ec3983c36_Miscreant%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Mongol",
+    "type": "Launcher",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e64e7699c341a7ad1bb93_Mongol%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Monocle",
+    "type": "Sniper",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdbfbf6c6e0346c7697bf_Monocle%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Moonfire",
+    "type": "Pistol",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61990ac8e3db846be88ebbe5_Moonfire%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Mother Too",
+    "type": "SMG",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd3936ce7663946f11ee5_Mother%20Too%20(SMG-BL3).png"
+  },
+  {
+    "name": "Multi-tap",
+    "type": "Pistol",
+    "manufacturer": "Atlas",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef0aff5fc35737e9cf06d_Multi-tap%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Mutant",
+    "type": "Assault Rifle",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5b22c4b1d6426649bd0c_Mutant%20(AR-BL3).png"
+  },
+  {
+    "name": "Narp",
+    "type": "Sniper",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdc07ad989ce7693372d0_Narp%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Needle Gun",
+    "type": "SMG",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd39f9e945226b2a2b39b_Needle%20Gun%20(SMG-BL3).png"
+  },
+  {
+    "name": "Nemesis",
+    "type": "Pistol",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef0bc04703319d604edd0_Nemesis%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Night Flyer",
+    "type": "Pistol",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef0c93f7286410748921a_Night%20Flyer%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Night Hawkin",
+    "type": "SMG",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd3ac33c64a08be7ff4e2_Night%20Hawkin%20(SMG-BL3).png"
+  },
+  {
+    "name": "Nimble Jack",
+    "type": "Shotgun",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcb8c94f49ca8d17580d8_Nimble%20Jack%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "NoPewPew",
+    "type": "Assault Rifle",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5b31699c345218d17795_NoPewPew%20(AR-BL3).png"
+  },
+  {
+    "name": "Nothingness",
+    "type": "Shotgun",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcbf55710e1b6550c7933_Nothingness%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Nukem",
+    "type": "Launcher",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6a2497730256e6582792_Nukem%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Null Pointer",
+    "type": "Sniper",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdc59aaba4d8ffdcb2a7d_Null%20Pointer%20(Sniper-BL3).png"
+  },
+  {
+    "name": "O.P.Q. System",
+    "type": "Assault Rifle",
+    "manufacturer": "Atlas",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5b3cf8ffcc2b2ba89421_O.P.Q.%20System%20(AR-BL3).png"
+  },
+  {
+    "name": "Occultist",
+    "type": "Pistol",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61990b08d3a10e7b4e2f93ac_Occultist%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Ogre",
+    "type": "Assault Rifle",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5b650fb75dd67871f69f_Ogre%20(AR-BL3).png"
+  },
+  {
+    "name": "Oldridian",
+    "type": "SMG",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd3b989cbccba7d8fb2cb_Oldridian%20(SMG-BL3).png"
+  },
+  {
+    "name": "Omniloader",
+    "type": "Pistol",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef0e304eb55cc86339e51_Omniloader%20(Pistol-BL3).png"
+  },
+  {
+    "name": "One Pump Chump",
+    "type": "Shotgun",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcc027129c8c52f7bd2b4_One%20Pump%20Chump%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Operator",
+    "type": "Sniper",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdc20d12d5a5a0ff62d29_Operator%20(Sniper-BL3).png"
+  },
+  {
+    "name": "P.A.T. Mk. II",
+    "type": "SMG",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd3c63268611b963b1436_P.A.T.%20Mk.%20II%20(SMG-BL3).png"
+  },
+  {
+    "name": "P.A.T. Mk. III",
+    "type": "SMG",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd3d24bdf48353cf35649_P.A.T.%20Mk.%20III%20(SMG-BL3).png"
+  },
+  {
+    "name": "P2P Networker",
+    "type": "SMG",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd3dff945d41e0f559085_P2P%20Networker%20(SMG-BL3).png"
+  },
+  {
+    "name": "Pa's Rifle",
+    "type": "Assault Rifle",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5b79a1c7abddf95882d3_Pa%27s%20Rifle%20(AR-BL3).png"
+  },
+  {
+    "name": "Pain is Power",
+    "type": "Assault Rifle",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5b55761dfbee999a9c9a_Pain%20is%20Power%20(AR-BL3).png"
+  },
+  {
+    "name": "Peacemonger",
+    "type": "Pistol",
+    "manufacturer": "Atlas",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef0f0e0d36f1656f473f5_Peacemonger%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Peashooter",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef0fd3f48097f433b9744_Peashooter%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Pestilence",
+    "type": "Pistol",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef1d3a4eceff2fcbe8084_Pestilence%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Phebert",
+    "type": "Shotgun",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcc0e4bdf48d627f31e6a_Phebert%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Plaguebearer",
+    "type": "Launcher",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6d335ac26a92202dd3e4_Plaguebearer%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Plasma Coil",
+    "type": "SMG",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd3ec92067f4be88ab3a4_Plasma%20Coil%20(SMG-BL3).png"
+  },
+  {
+    "name": "Plumage",
+    "type": "Launcher",
+    "manufacturer": "Atlas",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6d4e8d6d0a5fa5e4be85_Plumage%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Polyaimourous",
+    "type": "SMG",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd3f9b5d4b344b7ba499c_Polyaimourous%20(SMG-BL3).png"
+  },
+  {
+    "name": "Polybius",
+    "type": "Shotgun",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcc1c09868d84f91059c6_Polybius%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Porta-Pooper 5000",
+    "type": "Launcher",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6d650614fffdfb224cba_Porta-Pooper%205000%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Portals and Shite",
+    "type": "Assault Rifle",
+    "manufacturer": "Atlas",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5bc8a1c7ab686058839e_Portals%20and%20Shite%20(AR-BL3).png"
+  },
+  {
+    "name": "Predatory Lending",
+    "type": "SMG",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd4068fa52f19448088cc_Predatory%20Lending%20(SMG-BL3).png"
+  },
+  {
+    "name": "Pricker",
+    "type": "SMG",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd41394f49c6f3075b342_Pricker%20(SMG-BL3).png"
+  },
+  {
+    "name": "Projectile Recursion",
+    "type": "Shotgun",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcc287dd18b4dd6ee9d86_Projectile%20Recursion%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Prompt Critical",
+    "type": "Pistol",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef1e0027602ae437c7308_Prompt%20Critical%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Proprietary License",
+    "type": "SMG",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd44e11c95cf9233474a7_Proprietary%20License%20(SMG-BL3).png"
+  },
+  {
+    "name": "Psycho Stabber",
+    "type": "Pistol",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef1ed131397b7f1b32d0f_Psycho%20Stabber%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Quadomizer",
+    "type": "Launcher",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6d7ea5afd774fda70bcf_Quadomizer%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Queen's Call",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef1fb9830894212b069f1_Queen%27s%20Call%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Quickdraw",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef2083f480928623b996f_Quickdraw%20(Pistol-BL3).png"
+  },
+  {
+    "name": "R.Y.N.A.H.",
+    "type": "Launcher",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6d97284c734349b43a2f_R.Y.N.A.H.%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Rebel Yell",
+    "type": "Assault Rifle",
+    "manufacturer": "Atlas",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5bbea47bd548733a7dba_Rebel%20Yell%20(AR-BL3).png"
+  },
+  {
+    "name": "Rebound",
+    "type": "Assault Rifle",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61fbb0118f3250c12f468fa1_Rebound%20(AR-BL3).png"
+  },
+  {
+    "name": "Redeye Rocket Pod",
+    "type": "Launcher",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6da72b77c40687be1cee_Redeye%20Rocket%20Pod%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Redistributor",
+    "type": "SMG",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd45a68034fe8ca9440ed_Redistributor%20(Legendary-SMG-BL3).png"
+  },
+  {
+    "name": "Redistributor",
+    "type": "SMG",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd46733c64aad247ff71b_Redistributor%20(Rare-SMG-BL3).png"
+  },
+  {
+    "name": "Redline",
+    "type": "Shotgun",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcc341f12a065d6102ea9_Redline%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Reflux",
+    "type": "Shotgun",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcc4238f8db80e151dc38_Reflux%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Res",
+    "type": "Pistol",
+    "manufacturer": "Atlas",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef215cc8807fce3c76acc_Res%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Reunion",
+    "type": "Shotgun",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcc4ef3028a9cb2156207_Reunion%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Ripper",
+    "type": "SMG",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd4753a33a12d0e1b9b67_Ripper%20(SMG-BL3).png"
+  },
+  {
+    "name": "Robin's Call",
+    "type": "Shotgun",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcc5ba46a31454003140a_Robin%27s%20Call%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Robo-Melter",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef2221313979bf4b32d1b_Robo-Melter%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Rogue-Sight",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef22fe0d36f564af47ecb_Rogue-Sight%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Roisen's Thorns",
+    "type": "Pistol",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61990b1d265aac9f9a025390_Roisen%27s%20Thorns%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Rowan's Call",
+    "type": "Assault Rifle",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5cda8d6d0a5f8de4576c_Rowan%27s%20Call%20(AR-BL3).png"
+  },
+  {
+    "name": "Ruby's Wrath",
+    "type": "Launcher",
+    "manufacturer": "Atlas",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6db8761484467c0fad05_Ruby%27s%20Wrath%20(Launcher-BL3).png"
+  },
+  {
+    "name": "S3RV-80S-EXECUTE",
+    "type": "Pistol",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef24afa3c227dacf29cc2_S3RV-8OS-EXECUTE%20(Pistol-BL3).png"
+  },
+  {
+    "name": "SF Force",
+    "type": "SMG",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd481b5d4b33b74ba4d93_SF%20Force%20(SMG-BL3).png"
+  },
+  {
+    "name": "Sacrificial Lamb",
+    "type": "Shotgun",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcc68d32b12f716d282b7_Sacrificial%20Lamb%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Sand Hawk",
+    "type": "Sniper",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdc9b326861279d3b3d70_Sand%20Hawk%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Satisfaction",
+    "type": "Launcher",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6dd34e91678065f26ab3_Satisfaction%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Sawbar",
+    "type": "Assault Rifle",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5bfb6fe81a1683c4bad3_Sawbar%20(AR-BL3).png"
+  },
+  {
+    "name": "Sawpenny",
+    "type": "Assault Rifle",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5c087576656a452d5e19_Sawpenny%20(AR-BL3).png"
+  },
+  {
+    "name": "Scorpio",
+    "type": "Pistol",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef257f5fc351a2d9cfa4b_Scorpio%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Scourge",
+    "type": "Launcher",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6de763b6975d8746f1fc_Scourge%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Scoville",
+    "type": "Pistol",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef2646f80ebddd98a20b9_Scoville%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Seeryul Killur",
+    "type": "Assault Rifle",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5c150fb75d1c4371faa2_Seeryul%20Killur%20(AR-BL3).png"
+  },
+  {
+    "name": "Sellout",
+    "type": "Pistol",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef271afb18613f3872c38_Sellout%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Septimator",
+    "type": "Sniper",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdca8deee47e16a5f101b_Septimator%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Septimator Prime",
+    "type": "Sniper",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61fbaf6c40b1994d6f14fddb_Septimator%20Prime%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Seventh Sense",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef28c7fe854481bbcf4cf_Seventh%20Sense%20(Legendary-Pistol-BL3).png"
+  },
+  {
+    "name": "Seventh Sense",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef27eafb18664cc872cba_Seventh%20Sense%20(Epic-Pistol-BL3).png"
+  },
+  {
+    "name": "Sheega's Launcher",
+    "type": "Launcher",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6e042a7d7310220cbb0f_Sheega%27s%20Launcher%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Shocker",
+    "type": "Shotgun",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcc7511c95c3125345581_Shocker%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Short Stick",
+    "type": "SMG",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd48e7ca5fb14ac65a5f2_Short%20Stick%20(SMG-BL3).png"
+  },
+  {
+    "name": "Shredifier",
+    "type": "Assault Rifle",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5c24d0d3fe7809c5a7ac_Shredifier%20(AR-BL3).png"
+  },
+  {
+    "name": "Shrieking Devil",
+    "type": "Shotgun",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcc8193326983125290ad_Shrieking%20Devil%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Sickle",
+    "type": "Assault Rifle",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5cec6114dd45d7f69754_Sickle%20(AR-BL3).png"
+  },
+  {
+    "name": "SkekSil",
+    "type": "Pistol",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef2996e8d9068476c9cbf_SkekSil%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Skullmasher",
+    "type": "Sniper",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdcc1132898ef4f9b3bde_Skullmasher%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Sledge's Shotgun",
+    "type": "Shotgun",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcc8ed32b127d29d284cf_Sledge%27s%20Shotgun%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Sleeping Giant",
+    "type": "SMG",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd49b3a33a1110b1b9b8b_Sleeping%20Giant%20(SMG-BL3).png"
+  },
+  {
+    "name": "Slow Hand",
+    "type": "Shotgun",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcc9b539c5ee1f190014f_Slow%20Hand%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Smart-Gun",
+    "type": "SMG",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd4a87129c8d3407bfc0f_Smart-Gun%20(SMG-BL3).png"
+  },
+  {
+    "name": "Smog",
+    "type": "SMG",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd4b5756c4c3628df0943_Smog%20(SMG-BL3).png"
+  },
+  {
+    "name": "Soleki Protocol",
+    "type": "Sniper",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdcced32b121ff6d2ce75_Soleki%20Protocol%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Soulrender",
+    "type": "Assault Rifle",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5c3cad6e2f21e3d4f06b_Soulrender%20(AR-BL3).png"
+  },
+  {
+    "name": "Spade",
+    "type": "Shotgun",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcca838f8db658c51e019_Spade%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Splinter",
+    "type": "Shotgun",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcd0889cbcc2d818f9b29_Splinter%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Stalker",
+    "type": "Sniper",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdcda3a33a158e51bb721_Stalker%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Star Helix",
+    "type": "Assault Rifle",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5c4987285231bc85775b_Star%20Helix%20(AR-BL3).png"
+  },
+  {
+    "name": "Starkiller",
+    "type": "Pistol",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef2a66960b1b9f8e75e71_Starkiller%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Stauros' Burn",
+    "type": "Assault Rifle",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5c561959e8da8d86e250_Stauros%27%20Burn%20(AR-BL3).png"
+  },
+  {
+    "name": "Stonethrower",
+    "type": "Assault Rifle",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5d0a02b759623a2b0c02_Stonethrower%20(AR-BL3).png"
+  },
+  {
+    "name": "Storm",
+    "type": "Sniper",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdce77ca5fb01d465cc7a_Storm%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Superball",
+    "type": "Pistol",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef2b47fe8549e2dbcf9dc_Superball%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Superstreamer",
+    "type": "Shotgun",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcd194bdf486d28f31edd_Superstreamer%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "T.K's Wave",
+    "type": "Shotgun",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcd2ca46a31003503156d_T.K%27s%20Wave%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "THE TWO TIME",
+    "type": "Sniper",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdd33418b846c1edffd9b_THE%20TWO%20TIME%20(Sniper-BL3).png"
+  },
+  {
+    "name": "TNTina",
+    "type": "Pistol",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6199090e83260447b394f720_TNTina%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Tankman's Shield",
+    "type": "Sniper",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdcf41f12a00028108420_Tankman%27s%20Shield%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Ten Gallon",
+    "type": "SMG",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd4c2756c4c4bb4df098e_Ten%20Gallon%20(SMG-BL3).png"
+  },
+  {
+    "name": "The Beast",
+    "type": "Assault Rifle",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5c702b77c46940bdc40b_The%20Beast%20(AR-BL3).png"
+  },
+  {
+    "name": "The Big Succ",
+    "type": "Assault Rifle",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5c7d5c48ea33998e1d28_The%20Big%20Succ%20(AR-BL3).png"
+  },
+  {
+    "name": "The Blanc",
+    "type": "Pistol",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef2c15a0f5321289e9c7a_The%20Blanc%20(Pistol-BL3).png"
+  },
+  {
+    "name": "The Boo",
+    "type": "SMG",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd4cfb5d4b377b6ba51e1_The%20Boo%20(SMG-BL3).png"
+  },
+  {
+    "name": "The Boring Gun",
+    "type": "Shotgun",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcd3e3fb9e700cfe24f20_The%20Boring%20Gun%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "The Butcher",
+    "type": "Shotgun",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61fbafa99a3b286654aeee79_Butcher%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "The Chalice",
+    "type": "Assault Rifle",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5c8a6fe81a2543c4bc41_The%20Chalice%20(AR-BL3).png"
+  },
+  {
+    "name": "The Companion",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef2cee2b06fbff5b92e16_The%20Companion%20(Pistol-BL3).png"
+  },
+  {
+    "name": "The Cure",
+    "type": "Shotgun",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcd793268616cb53af13c_The%20Cure%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "The Dictator",
+    "type": "Assault Rifle",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5c9787285259ae85798b_The%20Dictator%20(AR-BL3).png"
+  },
+  {
+    "name": "The Duc",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef2e56f80ebad568a2709_The%20Duc%20(Pistol-BL3).png"
+  },
+  {
+    "name": "The Emperor's Condiment",
+    "type": "SMG",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd4dcad989c47bd333569_The%20Emperor%27s%20Condiment%20(SMG-BL3).png"
+  },
+  {
+    "name": "The Flood",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef2f2e2b06f051cb92f56_The%20Flood%20(Pistol-BL3).png"
+  },
+  {
+    "name": "The Garcia",
+    "type": "Shotgun",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcd8335868a8e2c8c215c_The%20Garcia%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "The Horizon",
+    "type": "Shotgun",
+    "manufacturer": "Tediore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcd9094f49c32ca759285_The%20Horizon%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "The Hunt(ed)",
+    "type": "Sniper",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdd012fdd52e2c0a6191f_The%20Hunt(ed)%20(Sniper-BL3).png"
+  },
+  {
+    "name": "The Hunt(er)",
+    "type": "Sniper",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdd0d8fa52f93db80b8a6_The%20Hunt(er)%20(Sniper-BL3).png"
+  },
+  {
+    "name": "The Hunt(ress)",
+    "type": "Sniper",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdd1a94f49c874576044d_The%20Hunt(ress)%20(Sniper-BL3).png"
+  },
+  {
+    "name": "The Ice Queen",
+    "type": "Sniper",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdd2692067f70f28af275_The%20Ice%20Queen%20(Sniper-BL3).png"
+  },
+  {
+    "name": "The Killing Word",
+    "type": "Pistol",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef304b328f0f3557b1a64_The%20Killing%20Word%20(Pistol-BL3).png"
+  },
+  {
+    "name": "The Leech",
+    "type": "Pistol",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef311cb09ca08945e2ef3_The%20Leech%20(Pistol-BL3).png"
+  },
+  {
+    "name": "The Lob",
+    "type": "Shotgun",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcda109868d33f1105dbf_The%20Lob%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "The Monarch",
+    "type": "Assault Rifle",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5d5b4e9167ab4df21cba_The%20Monarch%20(AR-BL3).png"
+  },
+  {
+    "name": "The Shoddy",
+    "type": "Shotgun",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcdaf8fa52fcd338056db_The%20Shoddy%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "The Tidal Wave",
+    "type": "Shotgun",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcdba2fdd5261fba5e420_The%20Tidal%20Wave%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Thumper",
+    "type": "Shotgun",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcdca3fb9e7e654e2596a_Thumper%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Thunderball Fists",
+    "type": "Pistol",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef31f13b13ccea00a795f_Thunderball%20Fists%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Tiggs' Boom",
+    "type": "Shotgun",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcdd97ca5fb84c665899c_Tiggs%27%20Boom%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Tizzy",
+    "type": "Pistol",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef32e4d48962289ca2571_Tizzy%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Torrent",
+    "type": "SMG",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd4e9539c5e9453902b1e_Torrent%20(SMG-BL3).png"
+  },
+  {
+    "name": "Traitor's Death",
+    "type": "Assault Rifle",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5cb1ed27fd45ea39efb8_Traitor%27s%20Death%20(AR-BL3).png"
+  },
+  {
+    "name": "Trevonator",
+    "type": "Shotgun",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fcdf5539c5e4d2c9001dd_Trevonator%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Trickshot",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef344e0d36f7060f48b34_Trickshot%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Troubleshooter",
+    "type": "SMG",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd4f70a1b039385752107_Troubleshooter%20(SMG-BL3).png"
+  },
+  {
+    "name": "Try-Bolt",
+    "type": "Assault Rifle",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5cbe6114dd463af69674_Try-Bolt%20(AR-BL3).png"
+  },
+  {
+    "name": "Tsunami",
+    "type": "SMG",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd503f6c6e0bae9767ac2_Tsunami%20(SMG-BL3).png"
+  },
+  {
+    "name": "Tunguska",
+    "type": "Launcher",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6e24a5afd7c19fa70dd3_Tunguska%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Unforgiven",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef35b7fe85466c7bd07c3_Unforgiven%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Unkempt Harold",
+    "type": "Pistol",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef3676e8d9078776ca256_Unkempt%20Harold%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Unseen Threat",
+    "type": "Sniper",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdd41d9f120ea5842ee74_Unseen%20Threat%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Vanquisher",
+    "type": "SMG",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd51068034f0730944498_Vanquisher%20(SMG-BL3).png"
+  },
+  {
+    "name": "Vault Hero",
+    "type": "SMG",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd51d33c64a7c967ffc3d_Vault%20Hero%20(SMG-BL3).png"
+  },
+  {
+    "name": "Vibra-Pulse",
+    "type": "SMG",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd52af945d4aa7d5594d7_Vibra-Pulse%20(SMG-BL3).png"
+  },
+  {
+    "name": "Vosk's Deathgrip",
+    "type": "Shotgun",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fce00a0adfaf3a77e8d13_Vosk%27s%20Deathgrip%20(Shotgun-BL3).png"
+  },
+  {
+    "name": "Wagon Wheel",
+    "type": "Pistol",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618ef3730276020b7f7c8259_Wagon%20Wheel%20(Pistol-BL3).png"
+  },
+  {
+    "name": "Warlord",
+    "type": "Assault Rifle",
+    "manufacturer": "DAHL",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5d858de970378d5d43a7_Warlord%20(AR-BL3).png"
+  },
+  {
+    "name": "Web Slinger",
+    "type": "Assault Rifle",
+    "manufacturer": "Vladof",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e5da8761dfb7cde9aa4bf_Web%20Slinger%20(AR-BL3).png"
+  },
+  {
+    "name": "Wedding Invitation",
+    "type": "Sniper",
+    "manufacturer": "Jakobs",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdd4daaba4daccfcb3129_Wedding%20Invitation%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Westergun",
+    "type": "SMG",
+    "manufacturer": "Maliwan",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd53844ab476f09931626_Westergun%20(SMG-BL3).png"
+  },
+  {
+    "name": "Woodblocker",
+    "type": "Sniper",
+    "manufacturer": "Hyperion",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fdd59d9f120bb2442f051_Woodblocker%20(Sniper-BL3).png"
+  },
+  {
+    "name": "Yellowcake",
+    "type": "Launcher",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618e6e3a03b74ae8c0524137_Yellowcake%20(Launcher-BL3).png"
+  },
+  {
+    "name": "Zheitsev's Eruption",
+    "type": "Assault Rifle",
+    "manufacturer": "COV",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/61fbafdf48a996485c851aad_Zheitsev%27s%20Eruption%20(AR-BL3).png"
+  }
+]
