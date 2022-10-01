@@ -15,16 +15,17 @@ from app.tab_utils import add_stat_to_layout
 from classes.json_reader import get_file_data
 
 from PyQt5.QtCore import Qt
-from PyQt5 import QAxContainer
-from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton, QCheckBox)
+from PyQt5 import QAxContainer, QtCore
+from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton, QCheckBox, QStatusBar)
 
 
 class GunTab(QWidget):
-    def __init__(self, basedir):
+    def __init__(self, basedir, statusbar):
         super(GunTab, self).__init__()
 
         # Load classes
         self.basedir = basedir
+        self.statusbar = statusbar
 
         # PDF and Image Classes
         self.gun_pdf = GunPDF(self.basedir)
@@ -37,56 +38,72 @@ class GunTab(QWidget):
         base_stats_layout = QGridLayout()
         base_stats_layout.setAlignment(Qt.AlignTop)
 
+        # Index counter for gridlayout across all widgets
+        idx = 0
+
+        ##### Information Separator
+        information_separator = QLabel("Information")
+        information_separator.setStyleSheet("font-weight: bold")
+        information_separator.setAlignment(QtCore.Qt.AlignCenter)
+        base_stats_layout.addWidget(information_separator, idx, 0, 1, -1)
+        idx += 1
+
         # Gun Name
-        self.name_line_edit = add_stat_to_layout(base_stats_layout, "Gun Name:", 0)
+        self.name_line_edit = add_stat_to_layout(base_stats_layout, "Gun Name:", idx)
+        idx += 1
 
         # Item Level
-        base_stats_layout.addWidget(QLabel("Item Level: "), 1, 0)
+        base_stats_layout.addWidget(QLabel("Item Level: "), idx, 0)
         self.item_level_box = QComboBox()
         self.item_level_box.addItem("Random")
         for item in get_file_data(basedir + "resources/guns/gun_types.json").get("pistol").keys():
             self.item_level_box.addItem(item)
-        base_stats_layout.addWidget(self.item_level_box, 1, 1)
+        base_stats_layout.addWidget(self.item_level_box, idx, 1)
+        idx += 1
 
         # Gun Type
         self.gun_type_choices = ['pistol', 'submachine_gun', 'shotgun',
                                  'combat_rifle', 'sniper_rifle', 'rocket_launcher']
 
-        base_stats_layout.addWidget(QLabel("Gun Type: "), 2, 0)
+        base_stats_layout.addWidget(QLabel("Gun Type: "), idx, 0)
         self.gun_type_box = QComboBox()
         self.gun_type_box.addItem("Random")
         for item in self.gun_type_choices:
             self.gun_type_box.addItem(item.capitalize().replace('_', ' '))
-        base_stats_layout.addWidget(self.gun_type_box, 2, 1)
+        base_stats_layout.addWidget(self.gun_type_box, idx, 1)
+        idx += 1
 
         # Guild
-        base_stats_layout.addWidget(QLabel("Guild: "), 3, 0)
+        base_stats_layout.addWidget(QLabel("Guild: "), idx, 0)
         self.guild_type_box = QComboBox()
         self.guild_type_box.addItem("Random")
         for item in get_file_data(basedir + "resources/guns/guild_table.json").keys():
             self.guild_type_box.addItem(item.capitalize())
-        base_stats_layout.addWidget(self.guild_type_box, 3, 1)
+        base_stats_layout.addWidget(self.guild_type_box, idx, 1)
+        idx += 1
 
         # Rarity
         rarities = ["Random", "Common", "Uncommon", "Rare", "Epic", "Legendary"]
-        base_stats_layout.addWidget(QLabel("Rarity: "), 4, 0)
+        base_stats_layout.addWidget(QLabel("Rarity: "), idx, 0)
         self.rarity_type_box = QComboBox()
         for item in rarities:
             self.rarity_type_box.addItem(item)
-        base_stats_layout.addWidget(self.rarity_type_box, 4, 1)
+        base_stats_layout.addWidget(self.rarity_type_box, idx, 1)
+        idx += 1
 
         # Prefix: [None, Random, Selection]
-        base_stats_layout.addWidget(QLabel("Prefix: "), 5, 0)
+        base_stats_layout.addWidget(QLabel("Prefix: "), idx, 0)
         self.prefix_box = QComboBox()
         self.prefix_box.addItem("None")
         self.prefix_box.addItem("Random")
         for pidx, (key, item) in enumerate(get_file_data(basedir + "resources/guns/prefix.json").items()):
             self.prefix_box.addItem(f"[{pidx + 1}] {item['name']}")
-        self.prefix_box.setToolTip("Choose whether to add a random Prefix or a specific one")
-        base_stats_layout.addWidget(self.prefix_box, 5, 1)
+        self.prefix_box.setStatusTip("Choose whether to add a random Prefix or a specific one")
+        base_stats_layout.addWidget(self.prefix_box, idx, 1)
+        idx += 1
 
         # RedText: [None, Random, Selection]
-        base_stats_layout.addWidget(QLabel("Red Text: "), 6, 0)
+        base_stats_layout.addWidget(QLabel("Red Text: "), idx, 0)
         self.redtext_box = QComboBox()
         self.redtext_box.addItem("None")
         self.redtext_box.addItem("Random (All Rarities)")
@@ -96,8 +113,60 @@ class GunTab(QWidget):
             self.redtext_box.addItem(f"[{key}] {item['name']}")
 
         self.redtext_box.setCurrentIndex(3)
-        self.redtext_box.setToolTip("Choose whether to add a random RedText for Epics/Legendaries or a specific one regardless of rarity")
-        base_stats_layout.addWidget(self.redtext_box, 6, 1)
+        self.redtext_box.setStatusTip("Choose whether to add a random RedText for Epics/Legendaries or a specific one regardless of rarity")
+        base_stats_layout.addWidget(self.redtext_box, idx, 1)
+        idx += 1
+
+        # Whether to hide Red Text Effects
+        hide_redtext_label = QLabel("Hide Red Text Effect: ")
+        hide_redtext_label.setStatusTip("Whether to show the text but high the effect for Red Texts")
+        base_stats_layout.addWidget(hide_redtext_label, idx, 0)
+        self.hide_redtext_check = QCheckBox()
+        self.hide_redtext_check.setStatusTip("Whether to show the text but high the effect for Red Texts")
+        base_stats_layout.addWidget(self.hide_redtext_check, idx, 1)
+        idx += 1
+
+        ##### Art Separator
+        base_stats_layout.addWidget(QLabel(""), idx, 0)
+        idx += 1
+
+        art_separator = QLabel("Art")
+        art_separator.setStyleSheet("font-weight: bold")
+        art_separator.setAlignment(QtCore.Qt.AlignCenter)
+        base_stats_layout.addWidget(art_separator, idx, 0, 1, -1)
+        idx += 1
+
+        ##### Element Separator
+        base_stats_layout.addWidget(QLabel(""), idx, 0)
+        idx += 1
+
+        element_separator = QLabel("Element")
+        element_separator.setStyleSheet("font-weight: bold")
+        element_separator.setAlignment(QtCore.Qt.AlignCenter)
+        base_stats_layout.addWidget(element_separator, idx, 0, 1, -1)
+        idx += 1
+
+        # Whether to force an element roll on the table
+        element_roll_text_label = QLabel("Force an Element Roll: ")
+        element_roll_text_label.setStatusTip(
+            "Choose whether to always add an element roll regardless of the rarity rolled. "
+            "This does NOT guarantee an element, just rolling on the table.")
+        base_stats_layout.addWidget(element_roll_text_label, idx, 0)
+        self.element_roll = QCheckBox()
+        self.element_roll.setStatusTip("Choose whether to always add an element roll regardless of the rarity rolled. "
+                                     "This does NOT guarantee an element, just rolling on the table.")
+        base_stats_layout.addWidget(self.element_roll, idx, 1)
+        idx += 1
+
+        ##### Rules/Misc Separator
+        base_stats_layout.addWidget(QLabel(""), idx, 0)
+        idx += 1
+
+        rules_separator = QLabel("Settings/Rules")
+        rules_separator.setStyleSheet("font-weight: bold")
+        rules_separator.setAlignment(QtCore.Qt.AlignCenter)
+        base_stats_layout.addWidget(rules_separator, idx, 0, 1, -1)
+        idx += 1
 
         # Gun Balance Table
         self.gun_balance_dict = {
@@ -106,40 +175,23 @@ class GunTab(QWidget):
             "RobMWJ\'s": "gun_types_robmwj"
         }
         balance_label = QLabel("Damage Balance Sheet: ")
-        balance_label.setToolTip("Choose which Gun Damage Balance system to use - either the source book\'s or homebrew alternatives.")
-        base_stats_layout.addWidget(balance_label, 7, 0)
+        balance_label.setStatusTip("Choose which Gun Damage Balance system to use - either the source book\'s or homebrew alternatives.")
+        base_stats_layout.addWidget(balance_label, idx, 0)
         self.gun_balance_box = QComboBox()
         for item in self.gun_balance_dict.keys():
             self.gun_balance_box.addItem(item)
-        base_stats_layout.addWidget(self.gun_balance_box, 7, 1)
-
-        # Whether to hide Red Text Effects
-        hide_redtext_label = QLabel("Hide Red Text Effect: ")
-        hide_redtext_label.setToolTip("Whether to show the text but high the effect for Red Texts")
-        base_stats_layout.addWidget(hide_redtext_label, 8, 0)
-        self.hide_redtext_check = QCheckBox()
-        self.hide_redtext_check.setToolTip("Whether to show the text but high the effect for Red Texts")
-        base_stats_layout.addWidget(self.hide_redtext_check, 8, 1)
-
-        # Whether to force an element roll on the table
-        element_roll_text_label = QLabel("Force an Element Roll: ")
-        element_roll_text_label.setToolTip(
-            "Choose whether to always add an element roll regardless of the rarity rolled. "
-            "This does NOT guarantee an element, just rolling on the table.")
-        base_stats_layout.addWidget(element_roll_text_label, 9, 0)
-        self.element_roll = QCheckBox()
-        self.element_roll.setToolTip("Choose whether to always add an element roll regardless of the rarity rolled. "
-                                     "This does NOT guarantee an element, just rolling on the table.")
-        base_stats_layout.addWidget(self.element_roll, 9, 1)
+        base_stats_layout.addWidget(self.gun_balance_box, idx, 1)
+        idx += 1
 
         # Whether to roll for Red Text on epic or legendary
         rarity_border_label = QLabel("Use Gun Color Splashes: ")
-        rarity_border_label.setToolTip("Choose whether to outline the gun art in a colored-outline based on rarity.")
-        base_stats_layout.addWidget(rarity_border_label, 10, 0)
+        rarity_border_label.setStatusTip("Choose whether to outline the gun art in a colored-outline based on rarity.")
+        base_stats_layout.addWidget(rarity_border_label, idx, 0)
         self.rarity_border_check = QCheckBox()
-        self.rarity_border_check.setToolTip("Choose whether to outline the gun art in a colored-outline based on rarity.")
+        self.rarity_border_check.setStatusTip("Choose whether to outline the gun art in a colored-outline based on rarity.")
         self.rarity_border_check.setChecked(True)
-        base_stats_layout.addWidget(self.rarity_border_check, 10, 1)
+        base_stats_layout.addWidget(self.rarity_border_check, idx, 1)
+        idx += 1
 
         # Grid layout
         base_stats_group.setLayout(base_stats_layout)
@@ -156,27 +208,28 @@ class GunTab(QWidget):
 
         # Whether to save the PDF as form-fillable still
         form_fill_label = QLabel("Keep PDF Form-Fillable:")
-        form_fill_label.setToolTip("Choose whether to keep the PDF unflattened so filled forms can be modified in a PDF editor.")
+        form_fill_label.setStatusTip("Choose whether to keep the PDF unflattened so filled forms can be modified in a PDF editor.")
         generation_layout.addWidget(form_fill_label, 0, 0)
         self.form_fill_check = QCheckBox()
-        self.form_fill_check.setToolTip("Choose whether to keep the PDF unflattened so filled forms can be modified in a PDF editor.")
+        self.form_fill_check.setStatusTip("Choose whether to keep the PDF unflattened so filled forms can be modified in a PDF editor.")
         generation_layout.addWidget(self.form_fill_check, 0, 1)
 
         # Whether to save the PDF as form-fillable still
         form_design_label = QLabel("Use 2-Page Design:")
-        form_design_label.setToolTip("Chooses whether to use the single card or two page card designs for output.")
+        form_design_label.setStatusTip("Chooses whether to use the single card or two page card designs for output.")
         generation_layout.addWidget(form_design_label, 1, 0)
         self.form_design_check = QCheckBox()
-        self.form_design_check.setToolTip("Chooses whether to use the single card or two page card designs for output.")
+        self.form_design_check.setChecked(True)
+        self.form_design_check.setStatusTip("Chooses whether to use the single card or two page card designs for output.")
         generation_layout.addWidget(self.form_design_check, 1, 1)
 
         # PDF Output Name
         self.pdf_line_edit = add_stat_to_layout(generation_layout, "PDF Filename:", 2)
-        self.pdf_line_edit.setToolTip("Specify the filename that Generate Gun saves the next gun under.")
+        self.pdf_line_edit.setStatusTip("Specify the filename that Generate Gun saves the next gun under.")
 
         # Generate button
         button = QPushButton("Generate Gun")
-        button.setToolTip("Handles generating the gun and locally saving the PDF in \"outputs/\".")
+        button.setStatusTip("Handles generating the gun and locally saving the PDF in \"outputs/\".")
         button.clicked.connect(lambda: self.generate_gun())
         generation_layout.addWidget(button, 3, 0, 1, -1)
 
@@ -199,27 +252,28 @@ class GunTab(QWidget):
 
         # Whether to save the PDF as form-fillable still
         multi_fill_label = QLabel("Keep PDF Form-Fillable:")
-        multi_fill_label.setToolTip("Choose whether to keep the PDF unflattened so filled forms can be modified in a PDF editor.")
+        multi_fill_label.setStatusTip("Choose whether to keep the PDF unflattened so filled forms can be modified in a PDF editor.")
         multi_layout.addWidget(multi_fill_label, 0, 0)
         self.multi_fill_check = QCheckBox()
-        self.multi_fill_check.setToolTip("Choose whether to keep the PDF unflattened so filled forms can be modified in a PDF editor.")
+        self.multi_fill_check.setStatusTip("Choose whether to keep the PDF unflattened so filled forms can be modified in a PDF editor.")
         multi_layout.addWidget(self.multi_fill_check, 0, 1)
 
         # Whether to save the PDF as form-fillable still
         multi_design_label = QLabel("Use 2-Page Design:")
-        multi_design_label.setToolTip("Chooses whether to use the single card or two page card designs for output.")
+        multi_design_label.setStatusTip("Chooses whether to use the single card or two page card designs for output.")
         multi_layout.addWidget(multi_design_label, 1, 0)
         self.multi_design_check = QCheckBox()
-        self.multi_design_check.setToolTip("Chooses whether to use the single card or two page card designs for output.")
+        self.multi_design_check.setChecked(True)
+        self.multi_design_check.setStatusTip("Chooses whether to use the single card or two page card designs for output.")
         multi_layout.addWidget(self.multi_design_check, 1, 1)
 
         # PDF Output Name
         self.numgun_line_edit = add_stat_to_layout(multi_layout, "# Guns to Generate:", 2, force_int=True)
-        self.numgun_line_edit.setToolTip("Choose how many guns to automatically generate and save.")
+        self.numgun_line_edit.setStatusTip("Choose how many guns to automatically generate and save.")
 
         # Generate button
         button = QPushButton("Generate Multiple Guns")
-        button.setToolTip("Handles generating the guns and locally saving their PDFs in \"outputs/\".")
+        button.setStatusTip("Handles generating the guns and locally saving their PDFs in \"outputs/\".")
         button.clicked.connect(lambda: self.generate_multiple_guns())
         multi_layout.addWidget(button, 3, 0, 1, -1)
 
@@ -243,7 +297,7 @@ class GunTab(QWidget):
         self.WebBrowser = QAxContainer.QAxWidget(self)
         self.WebBrowser.setFixedHeight(800)
         self.WebBrowser.setControl("{8856F961-340A-11D0-A96B-00C04FD705A2}")
-        self.WebBrowser.setToolTip("If nothing is displaying or the text is not displaying, then either "
+        self.WebBrowser.setStatusTip("If nothing is displaying or the text is not displaying, then either "
                                    "1.) you do not have a local PDF Viewer or 2.) the OS you are on doesn't support annotation rendering.")
         gun_card_layout.addWidget(self.WebBrowser, 0, 1, -1, 1)
 
@@ -267,9 +321,9 @@ class GunTab(QWidget):
         gun_card_group.setFixedWidth(1000)
 
         # Setting appropriate layout heights
-        base_stats_group.setFixedHeight(300)
+        base_stats_group.setFixedHeight(500)
         generation_group.setFixedHeight(150)
-        multi_group.setFixedHeight(350)
+        multi_group.setFixedHeight(150)
         gun_card_group.setFixedHeight(800)
 
         # Gun Generation Layout

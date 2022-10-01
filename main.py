@@ -14,7 +14,7 @@ from app.PotionTab import PotionTab
 from app.GrenadeTab import GrenadeTab
 
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import (QApplication, QMainWindow, QTabWidget)
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QTabWidget, QStatusBar)
 
 
 class Window(QMainWindow):
@@ -27,11 +27,15 @@ class Window(QMainWindow):
         # Window Title
         self.setWindowTitle("Bunkers and Badasses - LootGenerator")
 
+        # Add a status bar
+        self.statusbar = QStatusBar()
+        self.setStatusBar(self.statusbar)
+
         # TabWidget for the different generation menus
         self.tabMenu = QTabWidget()
 
         # Gun Tab
-        self.gun_tab = GunTab(basedir)
+        self.gun_tab = GunTab(basedir, self.statusbar)
         self.tabMenu.addTab(self.gun_tab.get_tab(), "Gun")
         self.tabMenu.setTabText(0, "Guns")
 
