@@ -15,6 +15,7 @@ from app.tab_utils import add_stat_to_layout
 from classes.json_reader import get_file_data
 
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QIcon
 from PyQt5 import QAxContainer, QtCore
 from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton, QCheckBox, QStatusBar)
 
@@ -144,6 +145,37 @@ class GunTab(QWidget):
         element_separator.setStyleSheet("font-weight: bold")
         element_separator.setAlignment(QtCore.Qt.AlignCenter)
         base_stats_layout.addWidget(element_separator, idx, 0, 1, -1)
+        idx += 1
+
+        # Forcing specific elements to be present
+        element_icon_paths = {
+            "cryo": "Cryo.png",
+            "corrosive": "Corrosion.png",
+            "explosive": "Explosive.png",
+            "incendiary": "Incendiary.png",
+            "radiation": "Radiation.png",
+            "shock": "Shock.png"
+        }
+
+        # Build a dictionary of button object IDs
+        self.element_checkboxes = dict()
+        element_buttons = QGridLayout()
+        for i, icon in enumerate(element_icon_paths.keys()):
+            element_checkbox = QCheckBox()
+            element_checkbox.setIcon(QIcon(f"resources/images/element_icons/{element_icon_paths[icon]}"))
+
+            if i < len(element_icon_paths.keys()) // 2:
+                element_buttons.addWidget(element_checkbox, 0, i)
+            else:
+                element_buttons.addWidget(element_checkbox, 1, i % 3)
+            self.element_checkboxes[icon] = element_checkbox
+
+        base_stats_layout.addWidget(QLabel("Select Specific Elements:"), idx, 0, QtCore.Qt.AlignTop)
+        base_stats_layout.addLayout(element_buttons, idx, 1, QtCore.Qt.AlignTop)
+        idx += 2
+
+        # Setting a custom element damage die
+        self.element_damage_die_edit = add_stat_to_layout(base_stats_layout, "Custom Element Damage:", idx, placeholder='e.g. 1d8')
         idx += 1
 
         # Whether to force an element roll on the table
@@ -352,7 +384,9 @@ class GunTab(QWidget):
         guild = self.guild_type_box.currentText().lower()
         rarity = self.rarity_type_box.currentText().lower()
 
+        element_damage = self.element_damage_die_edit.text()
         element_roll = self.element_roll.isChecked()
+
         prefix = self.prefix_box.currentText()
         if ']' in prefix:
             prefix = prefix[1:prefix.index("]")]
@@ -368,9 +402,18 @@ class GunTab(QWidget):
         # Get the gun balance type
         damage_balance_json = self.gun_balance_dict[self.gun_balance_box.currentText()]
 
+        # Build list of elements that are manually selected
+        selected_elements = []
+        for element_key in self.element_checkboxes.keys():
+            if self.element_checkboxes[element_key].isChecked():
+                selected_elements.append(element_key)
+
         # Generate the gun object
-        gun = Gun(self.basedir, name=name, item_level=item_level, gun_type=gun_type, gun_guild=guild, gun_rarity=rarity,
-                  damage_balance=damage_balance_json, rarity_element=element_roll, prefix=prefix, redtext=redtext)
+        gun = Gun(self.basedir,
+                  name=name, item_level=item_level, gun_type=gun_type, gun_guild=guild, gun_rarity=rarity,
+                  damage_balance=damage_balance_json,
+                  element_damage=element_damage, rarity_element=element_roll, selected_elements=selected_elements,
+                  prefix=prefix, redtext=redtext)
 
         # Generate the PDF output name as the gun name
         output_name = f"{gun.type.title().replace('_', ' ')}_{gun.rarity.title()}_{gun.guild.title()}_{gun.name}".replace(' ', '') \

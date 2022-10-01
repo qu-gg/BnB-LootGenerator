@@ -118,25 +118,22 @@ class GunPDF:
 
         # If input is a list, it has multiple elements. Check for combo elements.
         if type(elements) == list:
-            returns = []
-
-            # Combo element check
             if "corrosive" in elements and "shock" in elements:
-                returns.append("corroshock")
-            elif "explosive" in elements and "cryo" in elements:
-                returns.append("explosivcryo")
-            elif "incendiary" in elements and "radiation" in elements:
-                returns.append("incendiaradiation")
+                elements.append("corroshock")
+                elements.remove("corrosive")
+                elements.remove("shock")
 
-            # Otherwise it is two separate, non-combined elements
-            elif len(elements) == 2:
-                returns = elements
+            if "explosive" in elements and "cryo" in elements:
+                elements.append("explosivcryo")
+                elements.remove("explosive")
+                elements.remove("cryo")
 
-            # In the incredibly rare case there are 3 elements (high ele roll + prefix), add the third element
-            if len(elements) > 2:
-                returns.append(elements[-1])
+            if "incendiary" in elements and "radiation" in elements:
+                elements.append("incendiaradiation")
+                elements.remove("incendiary")
+                elements.remove("radiation")
 
-            return returns
+            return elements
 
     def fill_pdf(self, input_pdf_path, output_pdf_path, data_dict, form_check):
         """
@@ -391,20 +388,6 @@ class GunPDF:
         # Define if red text should be shown on front screen
         redtext_name_str = gun.redtext_name if gun.redtext_name is not None else ""
 
-        # If the element list is a string, check all entries for a bonus die
-        if type(gun.element) == list:
-            element_bonus_str = ""
-            for ele in gun.element:
-                if '(' in ele or ')' in ele:
-                    element_bonus_str = ele[ele.index('(') + 1:ele.index(')')]
-                    gun.element[0] = ele.split(' ')[0]
-        # If its just a string, its one element. Check it for bonus die
-        elif type(gun.element) == str and len(gun.element.split(' ')) > 1:
-            element_bonus_str = gun.element.split(' ')[-1]
-        # Otherwise there is no element
-        else:
-            element_bonus_str = ""
-
         # Construct damage die string
         die_num, die_type = gun.damage.split('d')
         if int(die_num) > 1:
@@ -430,7 +413,7 @@ class GunPDF:
             "Crit_Medium": '{}'.format(gun.accuracy['8-15']['crits']),
             "Crit_High": '{}'.format(gun.accuracy['16+']['crits']),
 
-            "ElementBonus": element_bonus_str,
+            "ElementBonus": gun.element_bonus,
             "RedTextName": redtext_name_str,
             "EffectBox": effect_str,
         }
@@ -477,9 +460,14 @@ class GunPDF:
             self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(element[0])}', position)
 
             # In the event that there are 3 elements, add the third element as a separate icon below
-            if len(element) == 2:
+            if len(element) >= 2:
                 position = {'page': 1, 'x0': 410, 'y0': 360, 'x1': 460, 'y1': 390}
                 self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(element[1])}', position)
+
+            # In the event that there are 3 elements, add the third element as a separate icon below
+            if len(element) == 3:
+                position = {'page': 1, 'x0': 445, 'y0': 360, 'x1': 495, 'y1': 390}
+                self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(element[2])}', position)
 
         # Remove temporary gun image
         os.remove(f'{self.base_dir}output/guns/temporary_gun_image.png')

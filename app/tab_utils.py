@@ -14,6 +14,7 @@ def add_stat_to_layout(layout, label, row, force_int=False, placeholder=None):
     :param label: The label to display
     :param row: The row number to add on
     :param force_int: Force input to be an integer value
+    :param placeholder: light gray text to put in, usually to guide a user for input
     :returns: The QLineEdit object
     """
     new_label = QLabel(label)
