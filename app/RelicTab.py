@@ -155,7 +155,7 @@ class RelicTab(QWidget):
         self.current_relic_pdf = "EXAMPLE_RELIC.pdf"
 
         # Load in Gun Card Template
-        f = Path(os.path.abspath(self.basedir + "output/relics/EXAMPLE_RELIC.pdf")).as_uri()
+        f = Path(os.path.abspath(self.basedir + "output/examples/EXAMPLE_RELIC.pdf")).as_uri()
         self.RelicWebBrowser.dynamicCall('Navigate(const QString&)', f)
 
         # Grid layout

@@ -146,7 +146,7 @@ class ShieldTab(QWidget):
         self.current_shield_pdf = "EXAMPLE_SHIELD.pdf"
 
         # Load in Gun Card Template
-        f = Path(os.path.abspath(self.basedir + "output/shields/EXAMPLE_SHIELD.pdf")).as_uri()
+        f = Path(os.path.abspath(self.basedir + "output/examples/EXAMPLE_SHIELD.pdf")).as_uri()
         self.shieldWebBrowser.dynamicCall('Navigate(const QString&)', f)
 
         # Grid layout

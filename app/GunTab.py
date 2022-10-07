@@ -368,7 +368,7 @@ class GunTab(QWidget):
         self.current_pdf = "EXAMPLE_GUN.pdf"
 
         # Load in Gun Card Template
-        f = Path(os.path.abspath(self.basedir + "output/guns/EXAMPLE_GUN.pdf")).as_uri()
+        f = Path(os.path.abspath(self.basedir + "output/examples/EXAMPLE_GUN.pdf")).as_uri()
         self.WebBrowser.dynamicCall('Navigate(const QString&)', f)
 
         # Grid layout

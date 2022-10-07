@@ -142,7 +142,7 @@ class PotionTab(QWidget):
         self.current_potion_pdf = "EXAMPLE_POTION.pdf"
 
         # Load in Gun Card Template
-        f = Path(os.path.abspath(self.basedir + "output/potions/EXAMPLE_POTION.pdf")).as_uri()
+        f = Path(os.path.abspath(self.basedir + "output/examples/EXAMPLE_POTION.pdf")).as_uri()
         self.PotionWebBrowser.dynamicCall('Navigate(const QString&)', f)
 
         # Grid layout
