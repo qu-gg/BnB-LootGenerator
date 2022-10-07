@@ -7,12 +7,16 @@ Class to generate the PDF of the BnB Card Design for a given Gun.
 import os
 import fitz
 import pdfrw
+import requests
+
+from PIL import Image
 
 
 class GunPDF:
-    def __init__(self, base_dir):
+    def __init__(self, base_dir, statusbar):
         # Base executable directory
         self.base_dir = base_dir
+        self.statusbar = statusbar
 
         # KEY Names for PDF
         self.ANNOT_KEY = '/Annots'
@@ -214,7 +218,7 @@ class GunPDF:
         os.remove(pdf_path)
         os.rename(temp_path, pdf_path)
 
-    def generate_gun_pdf(self, output_name, gun, gun_images, rarity_border, form_check, redtext_check):
+    def generate_gun_pdf(self, output_name, gun, gun_images, rarity_border, form_check, redtext_check, gun_art=None):
         """
         Handles generating a Gun Card PDF filled out with the information from the generated gun
         :param output_name: name of the output PDF to save
@@ -255,20 +259,6 @@ class GunPDF:
         if gun.guild_info is not None:
             effect_str += f"[{gun.guild.title()}]\n{gun.guild_mod}"
 
-        # If the element list is a string, check all entries for a bonus die
-        if type(gun.element) == list:
-            element_bonus_str = ""
-            for ele in gun.element:
-                if '(' in ele or ')' in ele:
-                    element_bonus_str = ele[ele.index('(') + 1:ele.index(')')]
-                    gun.element[0] = ele.split(' ')[0]
-        # If its just a string, its one element. Check it for bonus die
-        elif type(gun.element) == str and len(gun.element.split(' ')) > 1:
-            element_bonus_str = gun.element.split(' ')[-1]
-        # Otherwise there is no element
-        else:
-            element_bonus_str = ""
-
         # Construct damage die string
         die_num, die_type = gun.damage.split('d')
         if int(die_num) > 1:
@@ -283,7 +273,7 @@ class GunPDF:
         data_dict = {
             'Name': gun.name,
             "Guild": gun.guild.title(),
-            "Rarity": gun.rarity.title(),
+            "Rarity": f"{gun.rarity.title()} ({gun.item_level})",
 
             "GunType": gun.rarity.title(),
             "DieNumber": die_string,
@@ -299,24 +289,46 @@ class GunPDF:
             "Crit_High": '{}'.format(gun.accuracy['16+']['crits']),
 
             "RedTextName": redtext_name_str,
-            "ElementBonus": element_bonus_str,
+            "ElementBonus": gun.element_bonus,
             "EffectBox": effect_str
         }
 
         # Fill the PDF with the given information
         self.fill_pdf(self.base_dir + 'resources/GunTemplate.pdf', output_path, data_dict, form_check)
 
-        # Get a gun sample
-        gun_images.sample_gun_image(gun.type, gun.guild, None)
-
         # Add gun rarity color splash background
         if rarity_border:
             position = {'page': 1, 'x0': 350, 'y0': 140, 'x1': 750, 'y1': 390}
             self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/rarity_images/{self.gun_colors_paths.get(gun.rarity)}", position)
 
-        # Apply gun art to gun card
+        # Apply gun art to gun card, either given via file/URL or randomly sampled
         position = {'page': 1, 'x0': 350, 'y0': 140, 'x1': 750, 'y1': 390}
-        self.add_image_to_pdf(output_path, self.base_dir + 'output/guns/temporary_gun_image.png', position)
+        art_success = True
+        if gun_art not in ["", None]:
+            # Try local file first
+            try:
+                self.add_image_to_pdf(output_path, gun_art, position)
+            except:
+                art_success = False
+
+            # Then try URL on failure
+            if art_success is False:
+                try:
+                    # Get image and then save locally temporarily
+                    response = requests.get(gun_art, stream=True)
+                    img = Image.open(response.raw)
+                    img.save(self.base_dir + 'output/guns/temporary_gun_image.png')
+                    self.add_image_to_pdf(output_path, self.base_dir + 'output/guns/temporary_gun_image.png', position)
+                    art_success = True
+                except:
+                    self.statusbar.clearMessage()
+                    self.statusbar.showMessage("Invalid URL or filepath when trying to open, defaulting to normal image!", 5000)
+                    art_success = False
+
+        # If no URL/File given or invalid paths, then sample a gun
+        if art_success is False or gun_art in ["", None]:
+            gun_images.sample_gun_image(gun.type, gun.guild, None)
+            self.add_image_to_pdf(output_path, self.base_dir + 'output/guns/temporary_gun_image.png', position)
 
         # Apply gun icon to gun card
         position = {'page': 1, 'x0': 615, 'y0': 45, 'x1': 815, 'y1': 75}
@@ -335,15 +347,31 @@ class GunPDF:
 
         # Apply element icon to gun card
         if element is not None:
-            position = {'page': 1, 'x0': 60, 'y0': 440, 'x1': 110, 'y1': 470}
-            self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(element[0])}', position)
+            # If there is only one element icon, then add it in the middle
+            if len(element) == 1:
+                position = {'page': 1, 'x0': 60, 'y0': 440, 'x1': 110, 'y1': 470}
+                self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(element[0])}', position)
 
             # In the event that there are 3 elements, add the third element as a separate icon below
-            if len(element) == 2:
-                position = {'page': 1, 'x0': 60, 'y0': 500, 'x1': 110, 'y1': 530}
+            elif len(element) >= 2:
+                position = {'page': 1, 'x0': 40, 'y0': 440, 'x1': 90, 'y1': 470}
+                self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(element[0])}', position)
+
+                position = {'page': 1, 'x0': 80, 'y0': 440, 'x1': 130, 'y1': 470}
                 self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(element[1])}', position)
 
-    def generate_split_gun_pdf(self, output_name, gun, gun_images, rarity_border, form_check, redtext_check):
+            # In the event that there are 3 elements, add the third element as a separate icon below
+            if len(element) == 3:
+                position = {'page': 1, 'x0': 60, 'y0': 500, 'x1': 110, 'y1': 530}
+                self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(element[2])}', position)
+
+        # Remove temporary gun image, which only exists for non-local files
+        try:
+            os.remove(f'{self.base_dir}output/guns/temporary_gun_image.png')
+        except FileNotFoundError:
+            pass
+
+    def generate_split_gun_pdf(self, output_name, gun, gun_images, rarity_border, form_check, redtext_check, gun_art=None):
         """
         Handles generating a Gun Card PDF that has two sides - one related to gun art only and the other related to gun
         information
@@ -421,17 +449,39 @@ class GunPDF:
         # Fill the PDF with the given information
         self.fill_pdf(self.base_dir + 'resources/GunTemplateSplitSmall.pdf', output_path, data_dict, form_check)
 
-        # Get a gun sample
-        gun_images.sample_gun_image(gun.type, gun.guild, None)
-
         # Add gun rarity color splash background
         if rarity_border:
             position = {'page': 2, 'x0': 100, 'y0': 125, 'x1': 500, 'y1': 375}
             self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/rarity_images/{self.gun_colors_paths.get(gun.rarity)}", position)
 
-        # Apply gun art to gun card
+        # Apply gun art to gun card, either given via file/URL or randomly sampled
         position = {'page': 2, 'x0': 100, 'y0': 125, 'x1': 500, 'y1': 375}
-        self.add_image_to_pdf(output_path, self.base_dir + 'output/guns/temporary_gun_image.png', position)
+        art_success = True
+        if gun_art not in ["", None]:
+            # Try local file first
+            try:
+                self.add_image_to_pdf(output_path, gun_art, position)
+            except:
+                art_success = False
+
+            # Then try URL on failure
+            if art_success is False:
+                try:
+                    # Get image and then save locally temporarily
+                    response = requests.get(gun_art, stream=True)
+                    img = Image.open(response.raw)
+                    img.save(self.base_dir + 'output/guns/temporary_gun_image.png')
+                    self.add_image_to_pdf(output_path, self.base_dir + 'output/guns/temporary_gun_image.png', position)
+                    art_success = True
+                except:
+                    self.statusbar.clearMessage()
+                    self.statusbar.showMessage("Invalid URL or filepath when trying to open, defaulting to normal image!", 5000)
+                    art_success = False
+
+        # If no URL/File given or invalid paths, then sample a gun
+        if art_success is False or gun_art in ["", None]:
+            gun_images.sample_gun_image(gun.type, gun.guild, None)
+            self.add_image_to_pdf(output_path, self.base_dir + 'output/guns/temporary_gun_image.png', position)
 
         # Apply gun icon to gun card
         position = {'page': 1, 'x0': 480, 'y0': 25, 'x1': 580, 'y1': 55}
@@ -469,5 +519,8 @@ class GunPDF:
                 position = {'page': 1, 'x0': 445, 'y0': 360, 'x1': 495, 'y1': 390}
                 self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(element[2])}', position)
 
-        # Remove temporary gun image
-        os.remove(f'{self.base_dir}output/guns/temporary_gun_image.png')
+        # Remove temporary gun image, which only exists for non-local files
+        try:
+            os.remove(f'{self.base_dir}output/guns/temporary_gun_image.png')
+        except FileNotFoundError:
+            pass

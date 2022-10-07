@@ -15,9 +15,10 @@ from app.tab_utils import add_stat_to_layout
 from classes.json_reader import get_file_data
 
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import QIcon, QFont
 from PyQt5 import QAxContainer, QtCore
-from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton, QCheckBox, QStatusBar)
+from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton,
+                             QCheckBox, QFileDialog, QLineEdit)
 
 
 class GunTab(QWidget):
@@ -29,7 +30,7 @@ class GunTab(QWidget):
         self.statusbar = statusbar
 
         # PDF and Image Classes
-        self.gun_pdf = GunPDF(self.basedir)
+        self.gun_pdf = GunPDF(self.basedir, self.statusbar)
         self.gun_images = GunImage(self.basedir)
 
         ###################################
@@ -42,9 +43,13 @@ class GunTab(QWidget):
         # Index counter for gridlayout across all widgets
         idx = 0
 
+        # Font to share for section headers
+        font = QFont("Times", 9, QFont.Bold)
+        font.setUnderline(True)
+
         ##### Information Separator
-        information_separator = QLabel("Information")
-        information_separator.setStyleSheet("font-weight: bold")
+        information_separator = QLabel("Gun Information")
+        information_separator.setFont(font)
         information_separator.setAlignment(QtCore.Qt.AlignCenter)
         base_stats_layout.addWidget(information_separator, idx, 0, 1, -1)
         idx += 1
@@ -127,22 +132,13 @@ class GunTab(QWidget):
         base_stats_layout.addWidget(self.hide_redtext_check, idx, 1)
         idx += 1
 
-        ##### Art Separator
+        # Add spacing between groups
         base_stats_layout.addWidget(QLabel(""), idx, 0)
-        idx += 1
-
-        art_separator = QLabel("Art")
-        art_separator.setStyleSheet("font-weight: bold")
-        art_separator.setAlignment(QtCore.Qt.AlignCenter)
-        base_stats_layout.addWidget(art_separator, idx, 0, 1, -1)
         idx += 1
 
         ##### Element Separator
-        base_stats_layout.addWidget(QLabel(""), idx, 0)
-        idx += 1
-
-        element_separator = QLabel("Element")
-        element_separator.setStyleSheet("font-weight: bold")
+        element_separator = QLabel("Element Selection")
+        element_separator.setFont(font)
         element_separator.setAlignment(QtCore.Qt.AlignCenter)
         base_stats_layout.addWidget(element_separator, idx, 0, 1, -1)
         idx += 1
@@ -163,6 +159,7 @@ class GunTab(QWidget):
         for i, icon in enumerate(element_icon_paths.keys()):
             element_checkbox = QCheckBox()
             element_checkbox.setIcon(QIcon(f"resources/images/element_icons/{element_icon_paths[icon]}"))
+            element_checkbox.setStatusTip(f"Choose whether the {icon} element is always added.")
 
             if i < len(element_icon_paths.keys()) // 2:
                 element_buttons.addWidget(element_checkbox, 0, i)
@@ -176,6 +173,7 @@ class GunTab(QWidget):
 
         # Setting a custom element damage die
         self.element_damage_die_edit = add_stat_to_layout(base_stats_layout, "Custom Element Damage:", idx, placeholder='e.g. 1d8')
+        self.element_damage_die_edit.setStatusTip("Choose a specific damage die (e.g. 1d20) to replace the elemental damage bonus.")
         idx += 1
 
         # Whether to force an element roll on the table
@@ -185,17 +183,59 @@ class GunTab(QWidget):
             "This does NOT guarantee an element, just rolling on the table.")
         base_stats_layout.addWidget(element_roll_text_label, idx, 0)
         self.element_roll = QCheckBox()
-        self.element_roll.setStatusTip("Choose whether to always add an element roll regardless of the rarity rolled. "
-                                     "This does NOT guarantee an element, just rolling on the table.")
+        self.element_roll.setStatusTip(
+            "Choose whether to always add an element roll regardless of the rarity rolled. "
+            "This does NOT guarantee an element, just rolling on the table.")
         base_stats_layout.addWidget(self.element_roll, idx, 1)
         idx += 1
 
-        ##### Rules/Misc Separator
+        # Add spacing between groups
         base_stats_layout.addWidget(QLabel(""), idx, 0)
         idx += 1
 
+        ##### Art Separator
+        art_separator = QLabel("Custom Art Selection")
+        art_separator.setFont(font)
+        art_separator.setAlignment(QtCore.Qt.AlignCenter)
+        base_stats_layout.addWidget(art_separator, idx, 0, 1, -1)
+        idx += 1
+
+        # Filepath display for custom art
+        self.art_filepath = QLineEdit("")
+
+        # Buttons and file dialog associated with selecting local files
+        art_gridlayout = QGridLayout()
+        self.art_filedialog = QFileDialog()
+        self.art_filedialog.setStatusTip("Uses custom art on the gun art side when given either a local image path or a URL.")
+
+        self.art_select = QPushButton("Open")
+        self.art_select.clicked.connect(self.open_file)
+        self.art_select.setStatusTip("Used to select an image to use in place of the Borderlands gun art.")
+
+        art_gridlayout.addWidget(self.art_filepath, 0, 1)
+        art_gridlayout.addWidget(self.art_select, 0, 2)
+
+        base_stats_layout.addWidget(QLabel("Custom Art File/URL:"), idx, 0)
+        base_stats_layout.addLayout(art_gridlayout, idx, 1)
+        idx += 1
+
+        # Whether to show rarity-based color splashes behind the gun
+        rarity_border_label = QLabel("Use Gun Color Splashes: ")
+        rarity_border_label.setStatusTip("Choose whether to outline the gun art in a colored-outline based on rarity.")
+        base_stats_layout.addWidget(rarity_border_label, idx, 0)
+        self.rarity_border_check = QCheckBox()
+        self.rarity_border_check.setStatusTip("Choose whether to outline the gun art in a colored-outline based on rarity.")
+        self.rarity_border_check.setChecked(True)
+        base_stats_layout.addWidget(self.rarity_border_check, idx, 1)
+        idx += 1
+
+        # Add spacing between groups
+        base_stats_layout.addWidget(QLabel(""), idx, 0)
+        idx += 1
+
+        ##### Rules/Misc Separator
         rules_separator = QLabel("Settings/Rules")
-        rules_separator.setStyleSheet("font-weight: bold")
+        rules_separator.setFont(font)
         rules_separator.setAlignment(QtCore.Qt.AlignCenter)
         base_stats_layout.addWidget(rules_separator, idx, 0, 1, -1)
         idx += 1
@@ -212,17 +252,8 @@ class GunTab(QWidget):
         self.gun_balance_box = QComboBox()
         for item in self.gun_balance_dict.keys():
             self.gun_balance_box.addItem(item)
+        self.gun_balance_box.setStatusTip("Choose whether to use non-base gun balance sheets, given by community members.")
         base_stats_layout.addWidget(self.gun_balance_box, idx, 1)
-        idx += 1
-
-        # Whether to roll for Red Text on epic or legendary
-        rarity_border_label = QLabel("Use Gun Color Splashes: ")
-        rarity_border_label.setStatusTip("Choose whether to outline the gun art in a colored-outline based on rarity.")
-        base_stats_layout.addWidget(rarity_border_label, idx, 0)
-        self.rarity_border_check = QCheckBox()
-        self.rarity_border_check.setStatusTip("Choose whether to outline the gun art in a colored-outline based on rarity.")
-        self.rarity_border_check.setChecked(True)
-        base_stats_layout.addWidget(self.rarity_border_check, idx, 1)
         idx += 1
 
         # Grid layout
@@ -353,10 +384,10 @@ class GunTab(QWidget):
         gun_card_group.setFixedWidth(1000)
 
         # Setting appropriate layout heights
-        base_stats_group.setFixedHeight(500)
+        base_stats_group.setFixedHeight(550)
         generation_group.setFixedHeight(150)
         multi_group.setFixedHeight(150)
-        gun_card_group.setFixedHeight(800)
+        gun_card_group.setFixedHeight(850)
 
         # Gun Generation Layout
         self.gun_generation_layout = QGridLayout()
@@ -370,6 +401,16 @@ class GunTab(QWidget):
 
     def get_tab(self):
         return self.gun_tab
+
+    def open_file(self):
+        """ Handles opening a file for the art path images; if an invalid image then show a message to the statusbar """
+        filename = self.art_filedialog.getOpenFileName(self, 'Load File', self.basedir + '/')[0]
+
+        # Error handling for image paths
+        if '.png' not in filename and '.jpg' not in filename:
+            self.statusbar.showMessage("Filename invalid, select again!", 3000)
+        else:
+            self.art_filepath.setText(filename)
 
     def generate_gun(self):
         """ Handles performing the call to generate a gun given the parameters and updating the Gun Card image """
@@ -398,6 +439,8 @@ class GunTab(QWidget):
         redtext_check = self.hide_redtext_check.isChecked()
         color_check = self.rarity_border_check.isChecked()
         form_check = self.form_fill_check.isChecked()
+
+        art_filepath = self.art_filepath.text()
 
         # Get the gun balance type
         damage_balance_json = self.gun_balance_dict[self.gun_balance_box.currentText()]
@@ -429,9 +472,9 @@ class GunTab(QWidget):
 
         # Generate the local gun card PDF depending on the form design chosen
         if self.form_design_check.isChecked():
-            self.gun_pdf.generate_split_gun_pdf(output_name, gun, self.gun_images, color_check, form_check, redtext_check)
+            self.gun_pdf.generate_split_gun_pdf(output_name, gun, self.gun_images, color_check, form_check, redtext_check, art_filepath)
         else:
-            self.gun_pdf.generate_gun_pdf(output_name, gun, self.gun_images, color_check, form_check, redtext_check)
+            self.gun_pdf.generate_gun_pdf(output_name, gun, self.gun_images, color_check, form_check, redtext_check, art_filepath)
 
         # Load in gun card PDF
         f = Path(os.path.abspath("output/guns/{}.pdf".format(output_name))).as_uri()
