@@ -513,6 +513,8 @@ class GunTab(QWidget):
         color_check = self.rarity_border_check.isChecked()
         form_check = self.form_fill_check.isChecked()
 
+        art_filepath = self.art_filepath.text()
+
         # Get the gun balance type
         damage_balance_json = self.gun_balance_dict[self.gun_balance_box.currentText()]
 
@@ -545,9 +547,9 @@ class GunTab(QWidget):
 
             # Generate the local gun card PDF
             if self.multi_design_check.isChecked():
-                self.gun_pdf.generate_split_gun_pdf(output_name, gun, self.gun_images, color_check, form_check, redtext_check)
+                self.gun_pdf.generate_split_gun_pdf(output_name, gun, self.gun_images, color_check, form_check, redtext_check, art_filepath)
             else:
-                self.gun_pdf.generate_gun_pdf(output_name, gun, self.gun_images, color_check, form_check, redtext_check)
+                self.gun_pdf.generate_gun_pdf(output_name, gun, self.gun_images, color_check, form_check, redtext_check, art_filepath)
 
         # Set text and current PDF name
         self.multi_output_label.setText("Saved {} guns to 'output/guns/'!".format(number_gen))
