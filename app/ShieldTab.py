@@ -164,8 +164,8 @@ class ShieldTab(QWidget):
         # Setting appropriate layout heights
         shield_stats_group.setFixedHeight(300)
         shield_generation_group.setFixedHeight(150)
-        shield_multi_group.setFixedHeight(350)
-        shield_card_group.setFixedHeight(800)
+        shield_multi_group.setFixedHeight(400)
+        shield_card_group.setFixedHeight(850)
 
         # Potion Generation Layout
         self.shield_generation_layout = QGridLayout()

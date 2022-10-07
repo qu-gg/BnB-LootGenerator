@@ -160,8 +160,8 @@ class PotionTab(QWidget):
         # Setting appropriate layout heights
         potion_stats_group.setFixedHeight(300)
         potion_generation_group.setFixedHeight(150)
-        potion_multi_group.setFixedHeight(350)
-        potion_card_group.setFixedHeight(800)
+        potion_multi_group.setFixedHeight(400)
+        potion_card_group.setFixedHeight(850)
 
         # Potion Generation Layout
         self.potion_generation_layout = QGridLayout()

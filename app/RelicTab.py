@@ -173,8 +173,8 @@ class RelicTab(QWidget):
         # Setting appropriate layout heights
         relic_stats_group.setFixedHeight(300)
         relic_generation_group.setFixedHeight(150)
-        relic_multi_group.setFixedHeight(350)
-        relic_card_group.setFixedHeight(800)
+        relic_multi_group.setFixedHeight(400)
+        relic_card_group.setFixedHeight(850)
 
         # Potion Generation Layout
         self.relic_generation_layout = QGridLayout()
