@@ -492,6 +492,7 @@ class GunTab(QWidget):
         guild = self.guild_type_box.currentText().lower()
         rarity = self.rarity_type_box.currentText().lower()
 
+        element_damage = self.element_damage_die_edit.text()
         element_roll = self.element_roll.isChecked()
 
         # Error check for no number specified
@@ -519,11 +520,20 @@ class GunTab(QWidget):
         output_name = "EXAMPLE"
         number_gen = int(self.numgun_line_edit.text())
 
+        # Build list of elements that are manually selected
+        selected_elements = []
+        for element_key in self.element_checkboxes.keys():
+            if self.element_checkboxes[element_key].isChecked():
+                selected_elements.append(element_key)
+
         # Generate N guns
         for _ in range(number_gen):
             # Generate the gun object
-            gun = Gun(self.basedir, item_level=item_level, gun_type=gun_type, gun_guild=guild, gun_rarity=rarity,
-                      damage_balance=damage_balance_json, rarity_element=element_roll, prefix=prefix, redtext=redtext)
+            gun = Gun(self.basedir, item_level=item_level,
+                      gun_type=gun_type, gun_guild=guild, gun_rarity=rarity,
+                      damage_balance=damage_balance_json,
+                      element_damage=element_damage, rarity_element=element_roll, selected_elements=selected_elements,
+                      prefix=prefix, redtext=redtext)
 
             # Generate the PDF output name as the gun name
             output_name = f"{gun.type.title().replace('_', ' ')}_{gun.rarity.title()}_{gun.guild.title()}_{gun.name}".replace(' ', '')
