@@ -155,7 +155,7 @@ class RelicTab(QWidget):
         self.current_relic_pdf = "EXAMPLE_RELIC.pdf"
 
         # Load in Gun Card Template
-        f = Path(os.path.abspath(self.basedir + "output/relics/EXAMPLE_RELIC.pdf")).as_uri()
+        f = Path(os.path.abspath(self.basedir + "output/examples/EXAMPLE_RELIC.pdf")).as_uri()
         self.RelicWebBrowser.dynamicCall('Navigate(const QString&)', f)
 
         # Grid layout
@@ -173,8 +173,8 @@ class RelicTab(QWidget):
         # Setting appropriate layout heights
         relic_stats_group.setFixedHeight(300)
         relic_generation_group.setFixedHeight(150)
-        relic_multi_group.setFixedHeight(350)
-        relic_card_group.setFixedHeight(800)
+        relic_multi_group.setFixedHeight(400)
+        relic_card_group.setFixedHeight(850)
 
         # Potion Generation Layout
         self.relic_generation_layout = QGridLayout()

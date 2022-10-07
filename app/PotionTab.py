@@ -142,7 +142,7 @@ class PotionTab(QWidget):
         self.current_potion_pdf = "EXAMPLE_POTION.pdf"
 
         # Load in Gun Card Template
-        f = Path(os.path.abspath(self.basedir + "output/potions/EXAMPLE_POTION.pdf")).as_uri()
+        f = Path(os.path.abspath(self.basedir + "output/examples/EXAMPLE_POTION.pdf")).as_uri()
         self.PotionWebBrowser.dynamicCall('Navigate(const QString&)', f)
 
         # Grid layout
@@ -160,8 +160,8 @@ class PotionTab(QWidget):
         # Setting appropriate layout heights
         potion_stats_group.setFixedHeight(300)
         potion_generation_group.setFixedHeight(150)
-        potion_multi_group.setFixedHeight(350)
-        potion_card_group.setFixedHeight(800)
+        potion_multi_group.setFixedHeight(400)
+        potion_card_group.setFixedHeight(850)
 
         # Potion Generation Layout
         self.potion_generation_layout = QGridLayout()

@@ -1,0 +1,524 @@
+[
+  {
+    "name": "AUTOMAGIC.exe",
+    "type": "Pistol",
+    "manufacturer": "Stoker",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/62653a8dc6c1fb82f3aef71d_AUTOMAGIC.exe%20(Pistol-WL).png"
+  },
+  {
+    "name": "Anchor",
+    "type": "Launcher",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/626538b9fd624c2c05bffc68_Anchor%20(Launcher-WL).png"
+  },
+  {
+    "name": "Antique Greatbow",
+    "type": "Sniper",
+    "manufacturer": "Hyperius",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265af4b0f314608f9b12df0_Antique%20Greatbow%20(Sniper-WL).png"
+  },
+  {
+    "name": "Birthright",
+    "type": "Pistol",
+    "manufacturer": "Stoker",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/62653a9c8d38bcfdd65ce8ca_Birthright%20(Pistol-WL).png"
+  },
+  {
+    "name": "Blazing Volley",
+    "type": "SMG",
+    "manufacturer": "Hyperius",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265ace2b08454595f162eef_Blazing%20Volley%20(SMG-WL).png"
+  },
+  {
+    "name": "Blue Cake",
+    "type": "Launcher",
+    "manufacturer": "Skuldugger",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/626536a2800e39c75b4a7b66_Blue%20Cake%20(Launcher-WL).png"
+  },
+  {
+    "name": "Body Spray",
+    "type": "Melee",
+    "manufacturer": "Kleave",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265a9998e039c41974fd597_Body%20Spray%20(Melee-WL).png"
+  },
+  {
+    "name": "Boniface's Soul",
+    "type": "Pistol",
+    "manufacturer": "Feriore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/62653aa430a5c2de82e97eef_Boniface%27s%20Soul%20(Pistol-WL).png"
+  },
+  {
+    "name": "Borea's Breath",
+    "type": "SMG",
+    "manufacturer": "Feriore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265acf076dd5ba887320636_Borea%27s%20Breath%20(SMG-WL).png"
+  },
+  {
+    "name": "Butterboom",
+    "type": "Pistol",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/62920581e9025cbe6a283900_Butterboom%20(Pistol-WL).png"
+  },
+  {
+    "name": "Cannonballer",
+    "type": "Launcher",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/626538c7732d38702c28fd26_Cannonballer%20(Launcher-WL).png"
+  },
+  {
+    "name": "Carrouser",
+    "type": "Sniper",
+    "manufacturer": "Blackpowder",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265af5ab67c336900a4b5dc_Carrouser%20(Sniper-WL).png"
+  },
+  {
+    "name": "Catatumbo",
+    "type": "Pistol",
+    "manufacturer": "Blackpowder",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/62653aaba9da5b22aa2cf6d6_Catatumbo%20(Pistol-WL).png"
+  },
+  {
+    "name": "Circuitous Gyre",
+    "type": "Shotgun",
+    "manufacturer": "Hyperius",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265ac6fd7c509f1a6063e1e_Circuitus%20Gyre%20(Shotgun-WL).png"
+  },
+  {
+    "name": "Crossblade",
+    "type": "Shotgun",
+    "manufacturer": "Blackpowder",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265ac7d45767bfb7e5787ee_Crossblade%20(Shotgun-WL).png"
+  },
+  {
+    "name": "Crossbolt Generator",
+    "type": "Assault Rifle",
+    "manufacturer": "Blackpowder",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/62653936b1845a1a0007f013_Crossbolt%20Generator%20(AR-WL).png"
+  },
+  {
+    "name": "Diamondguard Sword",
+    "type": "Melee",
+    "manufacturer": "Swifft",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265a9a1b5b386063a475ee9_Diamondguard%20Sword%20(Melee-WL).png"
+  },
+  {
+    "name": "Die-Vergent",
+    "type": "Shotgun",
+    "manufacturer": "Feriore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265ac838d38bc2a605fe759_Die-Vergent%20(Shotgun-WL).png"
+  },
+  {
+    "name": "Donkey",
+    "type": "Assault Rifle",
+    "manufacturer": "Stoker",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265395ad7e9e7c14d915d5f_Donkey%20(AR-WL).png"
+  },
+  {
+    "name": "Dreadlord's Finest",
+    "type": "Assault Rifle",
+    "manufacturer": "Stoker",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/62653963b08454027b12db80_Dreadlord%27s%20Finest%20(AR-WL).png"
+  },
+  {
+    "name": "Dry'l's Fury",
+    "type": "Sniper",
+    "manufacturer": "Stoker",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265af61d71f1c81d659b974_Dry%27l%27s%20Fury%20(Sniper-WL).png"
+  },
+  {
+    "name": "Dry'l's Legacy",
+    "type": "SMG",
+    "manufacturer": "Hyperius",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265acf70215f660a10e97b5_Dry%27l%27s%20Legacy%20(SMG-WL).png"
+  },
+  {
+    "name": "Echoing Phoenix",
+    "type": "Assault Rifle",
+    "manufacturer": "Blackpowder",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/62b743ae19e99b4444404b25_Echoing%20Phoenix%20(AR-WL).png"
+  },
+  {
+    "name": "Eight Piece",
+    "type": "Assault Rifle",
+    "manufacturer": "Skuldugger",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265396a6f38db7840604460_Eight%20Piece%20(AR-WL).png"
+  },
+  {
+    "name": "Envy",
+    "type": "Sniper",
+    "manufacturer": "Blackpowder",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265af6849337b59cf36202c_Envy%20(Sniper-WL).png"
+  },
+  {
+    "name": "Fatebreaker",
+    "type": "Melee",
+    "manufacturer": "Valora",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265a9a9fd624c6739c38e37_Fatebreaker%20(Melee-WL).png"
+  },
+  {
+    "name": "Fragment Rain",
+    "type": "SMG",
+    "manufacturer": "Feriore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265acfd0f3146fffeb11308_Fragment%20Rain%20(SMG-WL).png"
+  },
+  {
+    "name": "Frostbite",
+    "type": "Melee",
+    "manufacturer": "Kleave",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265a9b4e8ee773392ee22f6_Frostbite%20(Melee-WL).png"
+  },
+  {
+    "name": "Frying Pan",
+    "type": "Melee",
+    "manufacturer": "Bonk",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265a9c1d71f1c6243598504_Frying%20Pan%20(Melee-WL).png"
+  },
+  {
+    "name": "Gluttony",
+    "type": "Pistol",
+    "manufacturer": "Feriore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/62653ab2a4cc8fcebecf9654_Gluttony%20(Pistol-WL).png"
+  },
+  {
+    "name": "Goblin Pickaxe",
+    "type": "Melee",
+    "manufacturer": "Kleave",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265a9cb30a5c2e3dfecbda6_Goblin%20Pickaxe%20(Melee-WL).png"
+  },
+  {
+    "name": "Goblin Repellant",
+    "type": "Pistol",
+    "manufacturer": "Skuldugger",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/62653abbac537429c279a27e_Goblin%20Repellant%20(Pistol-WL).png"
+  },
+  {
+    "name": "Goblin's Bane",
+    "type": "Melee",
+    "manufacturer": "Swifft",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265a8c41ad96b3d3630366c_Goblin%27s%20Bane%20(Melee-WL).png"
+  },
+  {
+    "name": "Greed Warden",
+    "type": "Melee",
+    "manufacturer": "Bonk",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/62b743769b109a3dce40cf1e_Greed%20Warden%20(Melee-WL).png"
+  },
+  {
+    "name": "Hawkins' Wrath",
+    "type": "Shotgun",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265ac8a30a5c260d5ecd7b3_Hawkins%27%20Wrath%20(Shotgun-WL).png"
+  },
+  {
+    "name": "Headcanon",
+    "type": "Pistol",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/62653ac47852972720b0f9b2_Headcanon%20(Pistol-WL).png"
+  },
+  {
+    "name": "Heckwader",
+    "type": "SMG",
+    "manufacturer": "DAHLIA",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265ad0423fd21894a1e4c32_Heckwader%20(SMG-WL).png"
+  },
+  {
+    "name": "Ironsides",
+    "type": "Sniper",
+    "manufacturer": "Blackpowder",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265af6f82be7a0c7a709172_Ironsides%20(Sniper-WL).png"
+  },
+  {
+    "name": "Kao Khan",
+    "type": "Sniper",
+    "manufacturer": "Hyperius",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265af76aa34ea695b7422e8_Kao%20Khan%20(Sniper-WL).png"
+  },
+  {
+    "name": "Last Rites",
+    "type": "Shotgun",
+    "manufacturer": "Hyperius",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265ac91b084545b14162d63_Last%20Rites%20(Shotgun-WL).png"
+  },
+  {
+    "name": "LeChance's Last Leg",
+    "type": "Melee",
+    "manufacturer": "Bonk",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265a8dab3a0883bc51c485c_LeChance%27s%20Last%20Leg%20(Melee-WL).png"
+  },
+  {
+    "name": "Lil K's Bread Slicer",
+    "type": "Assault Rifle",
+    "manufacturer": "Stoker",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/62653973beb21a38491fe488_Lil%20K%27s%20Bread%20Slicer%20(AR-WL).png"
+  },
+  {
+    "name": "Liquid Cooling",
+    "type": "Pistol",
+    "manufacturer": "Skuldugger",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/62653acb0f314645f4ad4b84_Liquid%20Cooling%20(Pistol-WL).png"
+  },
+  {
+    "name": "Live Wire",
+    "type": "SMG",
+    "manufacturer": "DAHLIA",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265ad0bb67c33e8dca49844_Live%20Wire%20(SMG-WL).png"
+  },
+  {
+    "name": "Love Leopard",
+    "type": "Launcher",
+    "manufacturer": "Skuldugger",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/626538ce58a08c7643e2561e_Love%20Leopard%20(Launcher-WL).png"
+  },
+  {
+    "name": "Mage Staff",
+    "type": "Melee",
+    "manufacturer": "Valora",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265a8e1b5b38614a347566a_Mage%20Staff%20(Melee-WL).png"
+  },
+  {
+    "name": "Manual Transmission",
+    "type": "Assault Rifle",
+    "manufacturer": "Stoker",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265398156a98b297de0a027_Manual%20Transmission%20(AR-WL).png"
+  },
+  {
+    "name": "Masterwork Handbow",
+    "type": "Pistol",
+    "manufacturer": "Blackpowder",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/62653ad282be7a0dad6cadc5_Masterwork%20Handbow%20(Pistol-WL).png"
+  },
+  {
+    "name": "Message",
+    "type": "Pistol",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/62653ad9059766780d08f094_Message%20(Pistol-WL).png"
+  },
+  {
+    "name": "Metal Lute",
+    "type": "Melee",
+    "manufacturer": "Bonk",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265a92c776abbc794730f8c_Metal%20Lute%20(Melee-WL).png"
+  },
+  {
+    "name": "Mistrial",
+    "type": "Assault Rifle",
+    "manufacturer": "DAHLIA",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/626539870f3146c9f6ad4706_Mistrial%20(AR-WL).png"
+  },
+  {
+    "name": "Moleman",
+    "type": "Launcher",
+    "manufacturer": "Stoker",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/626538d523fd2140c51b046d_Moleman%20(Launcher-WL).png"
+  },
+  {
+    "name": "Negotiator",
+    "type": "Shotgun",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265ac98b3a08847641c687c_Negotiator%20(Shotgun-WL).png"
+  },
+  {
+    "name": "Oil and Spice",
+    "type": "SMG",
+    "manufacturer": "DAHLIA",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6291e9640e183258845879f6_Oil%20and%20Spice%20(SMG-WL).png"
+  },
+  {
+    "name": "Paladin's Sword",
+    "type": "Melee",
+    "manufacturer": "Valora",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265a934732d38f2fe2c7711_Paladin%27s%20Sword%20(Melee-WL).png"
+  },
+  {
+    "name": "Peg Leg",
+    "type": "Melee",
+    "manufacturer": "Bonk",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265a93bb5b386d09547598f_Peg%20Leg%20(Melee-WL).png"
+  },
+  {
+    "name": "Perceiver",
+    "type": "Pistol",
+    "manufacturer": "DAHLIA",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/62653ae066bcd647c1f06842_Perceiver%20(Pistol-WL).png"
+  },
+  {
+    "name": "Petty Tantrum",
+    "type": "Melee",
+    "manufacturer": "Bonk",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/62b743960c4d6879dac3e801_Petty%20Tantrum%20(Melee-WL).png"
+  },
+  {
+    "name": "Pincushion",
+    "type": "Melee",
+    "manufacturer": "Bonk",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265a9422ae743e0caec0b17_Pincushion%20(Melee-WL).png"
+  },
+  {
+    "name": "Pookie's Chew Toy",
+    "type": "Pistol",
+    "manufacturer": "Blackpowder",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/62653ae5b3a088ec0018d6b3_Pookie%27s%20Chew%20Toy%20(Pistol-WL).png"
+  },
+  {
+    "name": "Portable Sawmill",
+    "type": "Sniper",
+    "manufacturer": "Stoker",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265af7dfd624c0edbc3d18e_Portable%20Sawmill%20(Sniper-WL).png"
+  },
+  {
+    "name": "Quad Bow",
+    "type": "Assault Rifle",
+    "manufacturer": "DAHLIA",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265398f8e039c799a4c609a_Quad%20Bow%20(AR-WL).png"
+  },
+  {
+    "name": "Queen's Cry",
+    "type": "Pistol",
+    "manufacturer": "Stoker",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/62653aecb5b386743e4411c3_Queen%27s%20Cry%20(Pistol-WL).png"
+  },
+  {
+    "name": "Ragnarok",
+    "type": "Melee",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265a949b67c337320a47ecb_Ragnarok%20(Melee-WL).png"
+  },
+  {
+    "name": "Red Hellion",
+    "type": "Shotgun",
+    "manufacturer": "Hyperius",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265ac9f66bcd6a42af3ca1e_Red%20Hellion%20(Shotgun-WL).png"
+  },
+  {
+    "name": "Reign of Arrows",
+    "type": "Shotgun",
+    "manufacturer": "Blackpowder",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265aca682be7a3bbc707713_Reign%20of%20Arrows%20(Shotgun-WL).png"
+  },
+  {
+    "name": "Rogue Imp",
+    "type": "Assault Rifle",
+    "manufacturer": "Skuldugger",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/62653996800e394ef34a9fbf_Rogue%20Imp%20(AR-WL).png"
+  },
+  {
+    "name": "Ruby's Spite",
+    "type": "Pistol",
+    "manufacturer": "DAHLIA",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/62653af37852970503b0fb2e_Ruby%27s%20Spite%20(Pistol-WL).png"
+  },
+  {
+    "name": "Salt and Battery",
+    "type": "Melee",
+    "manufacturer": "Bonk",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6291e9787d502ba035c5be84_Salt%20and%20Battery%20(Melee-WL).png"
+  },
+  {
+    "name": "Shadowfire",
+    "type": "SMG",
+    "manufacturer": "Feriore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265ad1288660faf5a5c41e3_Shadowfire%20(SMG-WL).png"
+  },
+  {
+    "name": "Skeep Prod",
+    "type": "Sniper",
+    "manufacturer": "DAHLIA",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265af84cdca6d16f894d34c_Skeep%20Prod%20(Sniper-WL).png"
+  },
+  {
+    "name": "Slammin' Salmon",
+    "type": "Melee",
+    "manufacturer": "Bonk",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265a950cef3793e89d97105_Slammin%27%20Salmon%20(Melee-WL).png"
+  },
+  {
+    "name": "Snake Stick",
+    "type": "Melee",
+    "manufacturer": "Kleave",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265a95858a08c560fe5848f_Snake%20Stick%20(Melee-WL).png"
+  },
+  {
+    "name": "Spellblade",
+    "type": "Melee",
+    "manufacturer": "Swifft",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265a95facb30e287becf034_Spellblade%20(Melee-WL).png"
+  },
+  {
+    "name": "Stab-O-Matic",
+    "type": "Shotgun",
+    "manufacturer": "Hyperius",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/62b743c43b83086c23ad18c2_Stab-O-Matic%20(Shotgun-WL).png"
+  },
+  {
+    "name": "Storm Surge",
+    "type": "Melee",
+    "manufacturer": "Valora",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265a96645767b4b39576fd1_Storm%20Surge%20(Melee-WL).png"
+  },
+  {
+    "name": "Sworderang",
+    "type": "Shotgun",
+    "manufacturer": "Feriore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265acad732d38cb302c8fd2_Sworderang%20(Shotgun-WL).png"
+  },
+  {
+    "name": "Swordsplosion",
+    "type": "Shotgun",
+    "manufacturer": "Torgue",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265acb42ae74356c0ec2dfe_Swordsplosion%20(Shotgun-WL).png"
+  },
+  {
+    "name": "Throwable Hole",
+    "type": "SMG",
+    "manufacturer": "Feriore",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265ad1958a08c864de59860_Throwable%20Hole%20(SMG-WL).png"
+  },
+  {
+    "name": "Thunder Anima",
+    "type": "Assault Rifle",
+    "manufacturer": "Skuldugger",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265399c30a5c21239e973b0_Thunder%20Anima%20(AR-WL).png"
+  },
+  {
+    "name": "Tidesorrow",
+    "type": "Melee",
+    "manufacturer": "Valora",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265a96edcc3836955f8bbc5_Tidesorrow%20(Melee-WL).png"
+  },
+  {
+    "name": "Tootherator",
+    "type": "Sniper",
+    "manufacturer": "Hyperius",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265af8b0f3146612ab12e7e_Tootherator%20(Sniper-WL).png"
+  },
+  {
+    "name": "Twin Soul",
+    "type": "Melee",
+    "manufacturer": "Swifft",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265a975dcc383f481f8bbdf_Twin%20Soul%20(Melee-WL).png"
+  },
+  {
+    "name": "Twisted Delugeon",
+    "type": "Launcher",
+    "manufacturer": "Stoker",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/626538db8e039c21a94c5b06_Twisted%20Delugeon%20(Launcher-WL).png"
+  },
+  {
+    "name": "Wailing Banshee",
+    "type": "Melee",
+    "manufacturer": "Valora",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265a97c73ec368a0279432e_Wailing%20Banshee%20(Melee-WL).png"
+  },
+  {
+    "name": "White Rider",
+    "type": "SMG",
+    "manufacturer": "DAHLIA",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265ad20a9da5be34e30aae9_White%20Rider%20(SMG-WL).png"
+  },
+  {
+    "name": "Wizard's Pipe",
+    "type": "SMG",
+    "manufacturer": "Hyperius",
+    "image_link": "https://global-uploads.webflow.com/5ff36780a1084987868ce198/6265ad27800e395ca74df45a_Wizard%27s%20Pipe%20(SMG-WL).png"
+  }
+]

@@ -20,12 +20,14 @@ class GunImage:
         # List of individual JSONs
         PREFIX = prefix + "resources/images/gun_images/"
         FILELIST = [PREFIX + "bl1_guns.json", PREFIX + "bl2_guns.json",
-                    PREFIX + "bl3_guns.json", PREFIX + "bltps_guns.json"]
+                    PREFIX + "bl3_guns.json", PREFIX + "bltps_guns.json",
+                    PREFIX + "blwl_guns.json"]
 
         # Manu and Type maps for conversion
         self.manu_map = {
             "alas!": "Atlas",
             "skuldugger": "Tediore",
+            "feriore": "Tediore",
             "dahlia": "DAHL",
             "blackpowder": "Jakobs",
             "malefactor": "Maliwan",

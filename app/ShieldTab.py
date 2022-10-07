@@ -146,7 +146,7 @@ class ShieldTab(QWidget):
         self.current_shield_pdf = "EXAMPLE_SHIELD.pdf"
 
         # Load in Gun Card Template
-        f = Path(os.path.abspath(self.basedir + "output/shields/EXAMPLE_SHIELD.pdf")).as_uri()
+        f = Path(os.path.abspath(self.basedir + "output/examples/EXAMPLE_SHIELD.pdf")).as_uri()
         self.shieldWebBrowser.dynamicCall('Navigate(const QString&)', f)
 
         # Grid layout
@@ -164,8 +164,8 @@ class ShieldTab(QWidget):
         # Setting appropriate layout heights
         shield_stats_group.setFixedHeight(300)
         shield_generation_group.setFixedHeight(150)
-        shield_multi_group.setFixedHeight(350)
-        shield_card_group.setFixedHeight(800)
+        shield_multi_group.setFixedHeight(400)
+        shield_card_group.setFixedHeight(850)
 
         # Potion Generation Layout
         self.shield_generation_layout = QGridLayout()

@@ -13,7 +13,8 @@ from classes.json_reader import get_file_data
 
 class Gun:
     def __init__(self, base_dir, name=None, item_level=None, gun_type=None, gun_guild=None, gun_rarity=None,
-                 damage_balance=False, rarity_element=False, prefix=True, redtext=True):
+                 damage_balance=False, element_damage=None, rarity_element=False, selected_elements=None,
+                 prefix=True, redtext=True):
         """ Handles generating a gun completely from scratch, modified to specifics by user info """
         # If item level is to be generated
         self.item_level = item_level
@@ -82,7 +83,9 @@ class Gun:
 
         # Roll for element iff it has an appropriate guild and rarity
         self.element = None
-        if self.guild_element_roll is True and self.rarity_element_roll is True:
+        if len(selected_elements) > 0:
+            self.element = selected_elements
+        elif self.guild_element_roll is True and self.rarity_element_roll is True:
             roll_element = str(randint(1, 100))
             roll_element = self.check_element_boost(roll_element, self.guild, self.rarity)
 
@@ -106,10 +109,26 @@ class Gun:
                 self.element_info = get_file_data(base_dir + "resources/elements/elemental_type.json").get(element)
 
             if type(self.element) == list:
-                self.element_info = [
-                    get_file_data(base_dir + "resources/elements/elemental_type.json").get(self.element[0]),
-                    get_file_data(base_dir + "resources/elements/elemental_type.json").get(self.element[1])
-                ]
+                self.element_info = []
+                for element in self.element:
+                    self.element_info.append(get_file_data(f"{base_dir}resources/elements/elemental_type.json").get(element))
+
+        # Check for passed in element
+        self.element_bonus = ""
+        if element_damage != "":
+            self.element_bonus = f"(+{element_damage})"
+        # If the element is a list, check all entries for a bonus die
+        elif type(self.element) == list:
+            for ele in self.element:
+                if '(' in ele or ')' in ele:
+                    self.element_bonus = ele[ele.index('(') + 1:ele.index(')')]
+                    self.element[0] = ele.split(' ')[0]
+        # If its just a string, its one element. Check it for bonus die
+        elif type(self.element) == str and len(self.element.split(' ')) > 1:
+            self.element_bonus = self.element.split(' ')[-1]
+        # Otherwise there is no element
+        else:
+            self.element_bonus = ""
 
         # Prefix parsing, either Random or Selected
         self.prefix_name = None

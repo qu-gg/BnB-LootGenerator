@@ -147,7 +147,7 @@ class GrenadeTab(QWidget):
         self.current_grenade_pdf = "EXAMPLE_GRENADE.pdf"
 
         # Load in Gun Card Template
-        f = Path(os.path.abspath(self.basedir + "output/grenades/EXAMPLE_GRENADE.pdf")).as_uri()
+        f = Path(os.path.abspath(self.basedir + "output/examples/EXAMPLE_GRENADE.pdf")).as_uri()
         self.grenadeWebBrowser.dynamicCall('Navigate(const QString&)', f)
 
         # Grid layout
@@ -165,8 +165,8 @@ class GrenadeTab(QWidget):
         # Setting appropriate layout heights
         grenade_stats_group.setFixedHeight(300)
         grenade_generation_group.setFixedHeight(150)
-        grenade_multi_group.setFixedHeight(350)
-        grenade_card_group.setFixedHeight(800)
+        grenade_multi_group.setFixedHeight(400)
+        grenade_card_group.setFixedHeight(850)
 
         # Potion Generation Layout
         self.grenade_generation_layout = QGridLayout()
