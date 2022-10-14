@@ -105,7 +105,7 @@ class GunPDF:
             "corroshock": "CorroShock.png",
             "explosivcryo": "ExplosivCryo.png",
             "explosive": "Explosive.png",
-            "incendiaradiation": "IncendiaRadiation.png",
+            "incendiation": "Incendiation.png",
             "incendiary": "Incendiary.png",
             "radiation": "Radiation.png",
             "shock": "Shock.png"
@@ -133,7 +133,7 @@ class GunPDF:
                 elements.remove("cryo")
 
             if "incendiary" in elements and "radiation" in elements:
-                elements.append("incendiaradiation")
+                elements.append("incendiation")
                 elements.remove("incendiary")
                 elements.remove("radiation")
 
@@ -218,7 +218,7 @@ class GunPDF:
         os.remove(pdf_path)
         os.rename(temp_path, pdf_path)
 
-    def generate_gun_pdf(self, output_name, gun, gun_images, rarity_border, form_check, redtext_check, gun_art=None):
+    def generate_gun_pdf(self, output_name, gun, rarity_border, form_check, redtext_check):
         """
         Handles generating a Gun Card PDF filled out with the information from the generated gun
         :param output_name: name of the output PDF to save
@@ -304,30 +304,29 @@ class GunPDF:
         # Apply gun art to gun card, either given via file/URL or randomly sampled
         position = {'page': 1, 'x0': 350, 'y0': 140, 'x1': 750, 'y1': 390}
         art_success = True
-        if gun_art not in ["", None]:
-            # Try local file first
+
+        # Try local path first
+        try:
+            self.add_image_to_pdf(output_path, gun.gun_art_path, position)
+        except:
+            art_success = False
+
+        # Then try URL on failure
+        if art_success is False:
             try:
-                self.add_image_to_pdf(output_path, gun_art, position)
+                # Get image and then save locally temporarily
+                response = requests.get(gun.gun_art_path, stream=True)
+                img = Image.open(response.raw)
+                img.save(self.base_dir + 'output/guns/temporary_gun_image.png')
+                self.add_image_to_pdf(output_path, self.base_dir + 'output/guns/temporary_gun_image.png', position)
+                art_success = True
             except:
+                self.statusbar.clearMessage()
+                self.statusbar.showMessage("Invalid URL or filepath when trying to open, defaulting to normal image!", 5000)
                 art_success = False
 
-            # Then try URL on failure
-            if art_success is False:
-                try:
-                    # Get image and then save locally temporarily
-                    response = requests.get(gun_art, stream=True)
-                    img = Image.open(response.raw)
-                    img.save(self.base_dir + 'output/guns/temporary_gun_image.png')
-                    self.add_image_to_pdf(output_path, self.base_dir + 'output/guns/temporary_gun_image.png', position)
-                    art_success = True
-                except:
-                    self.statusbar.clearMessage()
-                    self.statusbar.showMessage("Invalid URL or filepath when trying to open, defaulting to normal image!", 5000)
-                    art_success = False
-
         # If no URL/File given or invalid paths, then sample a gun
-        if art_success is False or gun_art in ["", None]:
-            gun_images.sample_gun_image(gun.type, gun.guild, None)
+        if art_success is False:
             self.add_image_to_pdf(output_path, self.base_dir + 'output/guns/temporary_gun_image.png', position)
 
         # Apply gun icon to gun card
@@ -365,13 +364,7 @@ class GunPDF:
                 position = {'page': 1, 'x0': 60, 'y0': 500, 'x1': 110, 'y1': 530}
                 self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(element[2])}', position)
 
-        # Remove temporary gun image, which only exists for non-local files
-        try:
-            os.remove(f'{self.base_dir}output/guns/temporary_gun_image.png')
-        except FileNotFoundError:
-            pass
-
-    def generate_split_gun_pdf(self, output_name, gun, gun_images, rarity_border, form_check, redtext_check, gun_art=None):
+    def generate_split_gun_pdf(self, output_name, gun, rarity_border, form_check, redtext_check):
         """
         Handles generating a Gun Card PDF that has two sides - one related to gun art only and the other related to gun
         information
@@ -457,30 +450,29 @@ class GunPDF:
         # Apply gun art to gun card, either given via file/URL or randomly sampled
         position = {'page': 2, 'x0': 100, 'y0': 125, 'x1': 500, 'y1': 375}
         art_success = True
-        if gun_art not in ["", None]:
-            # Try local file first
+
+        # Try local path first
+        try:
+            self.add_image_to_pdf(output_path, gun.gun_art_path, position)
+        except:
+            art_success = False
+
+        # Then try URL on failure
+        if art_success is False:
             try:
-                self.add_image_to_pdf(output_path, gun_art, position)
+                # Get image and then save locally temporarily
+                response = requests.get(gun.gun_art_path, stream=True)
+                img = Image.open(response.raw)
+                img.save(self.base_dir + 'output/guns/temporary_gun_image.png')
+                self.add_image_to_pdf(output_path, self.base_dir + 'output/guns/temporary_gun_image.png', position)
+                art_success = True
             except:
+                self.statusbar.clearMessage()
+                self.statusbar.showMessage("Invalid URL or filepath when trying to open, defaulting to normal image!", 5000)
                 art_success = False
 
-            # Then try URL on failure
-            if art_success is False:
-                try:
-                    # Get image and then save locally temporarily
-                    response = requests.get(gun_art, stream=True)
-                    img = Image.open(response.raw)
-                    img.save(self.base_dir + 'output/guns/temporary_gun_image.png')
-                    self.add_image_to_pdf(output_path, self.base_dir + 'output/guns/temporary_gun_image.png', position)
-                    art_success = True
-                except:
-                    self.statusbar.clearMessage()
-                    self.statusbar.showMessage("Invalid URL or filepath when trying to open, defaulting to normal image!", 5000)
-                    art_success = False
-
         # If no URL/File given or invalid paths, then sample a gun
-        if art_success is False or gun_art in ["", None]:
-            gun_images.sample_gun_image(gun.type, gun.guild, None)
+        if art_success is False:
             self.add_image_to_pdf(output_path, self.base_dir + 'output/guns/temporary_gun_image.png', position)
 
         # Apply gun icon to gun card
@@ -518,9 +510,3 @@ class GunPDF:
             if len(element) == 3:
                 position = {'page': 1, 'x0': 445, 'y0': 360, 'x1': 495, 'y1': 390}
                 self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(element[2])}', position)
-
-        # Remove temporary gun image, which only exists for non-local files
-        try:
-            os.remove(f'{self.base_dir}output/guns/temporary_gun_image.png')
-        except FileNotFoundError:
-            pass

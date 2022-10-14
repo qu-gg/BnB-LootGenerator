@@ -102,7 +102,7 @@ class GunImage:
         
         return guns_data
 
-    def sample_gun_image(self, gun_type=None, manufacturer=None, rarity=None):
+    def sample_gun_image(self, gun_type=None, manufacturer=None):
         """
         Handles sampling and downloading a relevant gun image from the games for gun card display use
         :param gun_type: type to filter on
@@ -140,43 +140,7 @@ class GunImage:
         response = requests.get(url, stream=True)
         img = Image.open(response.raw)
         img.save(self.prefix + 'output/guns/temporary_gun_image.png')
-
-        # Apply a colored outline based on the rarity
-        if rarity is not None:
-            # Have to save/reload due to PIL loading dimension issues
-            img_alpha = cv.imread(self.prefix + "output/guns/temporary_gun_image.png", cv.IMREAD_UNCHANGED)
-            img_alpha = np.pad(img_alpha, pad_width=((35, 35), (50, 50), (0, 0)), constant_values=0)
-
-            # First get the mask of the given color
-            mask = img_alpha.copy()
-            mask[np.where(mask[:, :, -1] >= 2)] = self.rarity_colors.get(rarity)
-
-            # Enlarge the mask by 5%
-            scale_percent = 105
-            width = int(img_alpha.shape[1] * scale_percent / 100)
-            height = int(img_alpha.shape[0] * scale_percent / 100)
-            dim = (width, height)
-            mask = cv.resize(mask, dim)
-
-            # Cut off resize padding to maintain shape
-            width_diff = width - img_alpha.shape[1]
-            height_diff = height - img_alpha.shape[0]
-            mask = mask[height_diff // 2:-height_diff // 2, width_diff // 2: -width_diff // 2, :]
-
-            # Perform the Gaussian blur
-            mask = cv.blur(mask, (45, 45))
-
-            # Compose images together
-            final_image = np.zeros_like(img_alpha)
-            for x in range(img_alpha.shape[0]):
-                for y in range(img_alpha.shape[1]):
-                    if img_alpha[x, y, -1] > 0:
-                        final_image[x, y] = img_alpha[x, y]
-                    else:
-                        final_image[x, y] = mask[x, y]
-
-            # Save output
-            Image.fromarray(final_image).save(self.prefix + 'output/guns/temporary_gun_image.png')
+        return url
 
     def manu_conversion(self, guild_name):
         """ Conversion table from game manu names to BnB guild names """

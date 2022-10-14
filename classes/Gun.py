@@ -12,9 +12,12 @@ from classes.json_reader import get_file_data
 
 
 class Gun:
-    def __init__(self, base_dir, name=None, item_level=None, gun_type=None, gun_guild=None, gun_rarity=None,
-                 damage_balance=False, element_damage=None, rarity_element=False, selected_elements=None,
-                 prefix=True, redtext=True):
+    def __init__(self, base_dir, gun_images,
+                 name=None, item_level=None, gun_type=None, gun_guild=None, gun_rarity=None,
+                 damage_balance=False,
+                 element_damage=None, rarity_element=False, selected_elements=None,
+                 prefix=True, redtext=True,
+                 gun_art=None):
         """ Handles generating a gun completely from scratch, modified to specifics by user info """
         # If item level is to be generated
         self.item_level = item_level
@@ -186,6 +189,13 @@ class Gun:
                     else:
                         self.element = [self.element, element]
                         self.element_info = self.element_info + "\n" + get_file_data(base_dir + "resources/elements/elemental_type.json").get(element)
+
+        # Set file art path; sample if not given
+        self.gun_art_path = ""
+        if gun_art not in ["", None]:
+            self.gun_art_path = gun_art
+        else:
+            self.gun_art_path = gun_images.sample_gun_image(self.type, self.guild)
 
     def get_random_ilevel(self, base_dir):
         """ Handles rolling for a random item level and giving back the tier key for it """
