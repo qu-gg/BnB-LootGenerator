@@ -164,7 +164,7 @@ class GunTab(QWidget):
         for i, icon in enumerate(element_icon_paths.keys()):
             element_checkbox = QCheckBox()
             element_checkbox.setIcon(QIcon(f"resources/images/element_icons/{element_icon_paths[icon]}"))
-            element_checkbox.setStatusTip(f"Choose whether the {icon} element is always added.")
+            element_checkbox.setStatusTip(f"Choose whether the {icon.title()} element is always added.")
 
             if i < len(element_icon_paths.keys()) // 2:
                 element_buttons.addWidget(element_checkbox, 0, i)
@@ -239,7 +239,7 @@ class GunTab(QWidget):
         idx += 1
 
         ##### Rules/Misc Separator
-        rules_separator = QLabel("Settings/Rules/APIs")
+        rules_separator = QLabel("Rules/Settings")
         rules_separator.setFont(font)
         rules_separator.setAlignment(QtCore.Qt.AlignCenter)
         base_stats_layout.addWidget(rules_separator, idx, 0, 1, -1)
@@ -261,12 +261,44 @@ class GunTab(QWidget):
         base_stats_layout.addWidget(self.gun_balance_box, idx, 1)
         idx += 1
 
+        # Whether to save the PDF as form-fillable still
+        form_fill_label = QLabel("Keep PDF Form-Fillable:")
+        form_fill_label.setStatusTip("Choose whether to keep the PDF unflattened so filled forms can be modified in a PDF editor.")
+        base_stats_layout.addWidget(form_fill_label, idx, 0)
+        self.form_fill_check = QCheckBox()
+        self.form_fill_check.setStatusTip("Choose whether to keep the PDF unflattened so filled forms can be modified in a PDF editor.")
+        base_stats_layout.addWidget(self.form_fill_check, idx, 1)
+        idx += 1
+
+        # Whether to save the PDF as form-fillable still
+        form_design_label = QLabel("Use 2-Page Design:")
+        form_design_label.setStatusTip("Chooses whether to use the single card or two page card designs for output.")
+        base_stats_layout.addWidget(form_design_label, idx, 0)
+        self.form_design_check = QCheckBox()
+        self.form_design_check.setChecked(True)
+        self.form_design_check.setStatusTip("Chooses whether to use the single card or two page card designs for output.")
+        base_stats_layout.addWidget(self.form_design_check, idx, 1)
+        idx += 1
+
+        # Add spacing between groups
+        base_stats_layout.addWidget(QLabel(""), idx, 0)
+        idx += 1
+
+        ##### APIs
+        apis_separator = QLabel("External Tools")
+        apis_separator.setFont(font)
+        apis_separator.setAlignment(QtCore.Qt.AlignCenter)
+        base_stats_layout.addWidget(apis_separator, idx, 0, 1, -1)
+        idx += 1
+
         # FoundryVTT JSON flag
         foundry_export_label = QLabel("FoundryVTT JSON Export: ")
-        foundry_export_label.setStatusTip("Choose whether to output a JSON file that can be imported by the B&B FoundryVTT System.")
+        foundry_export_label.setStatusTip(
+            "Choose whether to output a JSON file that can be imported by the B&B FoundryVTT System.")
         base_stats_layout.addWidget(foundry_export_label, idx, 0)
         self.foundry_export_check = QCheckBox()
-        self.foundry_export_check.setStatusTip("Choose whether to output a JSON file that can be imported by the B&B FoundryVTT System.")
+        self.foundry_export_check.setStatusTip(
+            "Choose whether to output a JSON file that can be imported by the B&B FoundryVTT System.")
         self.foundry_export_check.setChecked(False)
         base_stats_layout.addWidget(self.foundry_export_check, idx, 1)
         idx += 1
@@ -284,36 +316,19 @@ class GunTab(QWidget):
         generation_layout = QGridLayout()
         generation_layout.setAlignment(Qt.AlignTop)
 
-        # Whether to save the PDF as form-fillable still
-        form_fill_label = QLabel("Keep PDF Form-Fillable:")
-        form_fill_label.setStatusTip("Choose whether to keep the PDF unflattened so filled forms can be modified in a PDF editor.")
-        generation_layout.addWidget(form_fill_label, 0, 0)
-        self.form_fill_check = QCheckBox()
-        self.form_fill_check.setStatusTip("Choose whether to keep the PDF unflattened so filled forms can be modified in a PDF editor.")
-        generation_layout.addWidget(self.form_fill_check, 0, 1)
-
-        # Whether to save the PDF as form-fillable still
-        form_design_label = QLabel("Use 2-Page Design:")
-        form_design_label.setStatusTip("Chooses whether to use the single card or two page card designs for output.")
-        generation_layout.addWidget(form_design_label, 1, 0)
-        self.form_design_check = QCheckBox()
-        self.form_design_check.setChecked(True)
-        self.form_design_check.setStatusTip("Chooses whether to use the single card or two page card designs for output.")
-        generation_layout.addWidget(self.form_design_check, 1, 1)
-
         # PDF Output Name
-        self.pdf_line_edit = add_stat_to_layout(generation_layout, "PDF Filename:", 2)
+        self.pdf_line_edit = add_stat_to_layout(generation_layout, "PDF Filename:", 0)
         self.pdf_line_edit.setStatusTip("Specify the filename that Generate Gun saves the next gun under.")
 
         # Generate button
         button = QPushButton("Generate Gun")
         button.setStatusTip("Handles generating the gun and locally saving the PDF in \"outputs/\".")
         button.clicked.connect(lambda: self.generate_gun())
-        generation_layout.addWidget(button, 3, 0, 1, -1)
+        generation_layout.addWidget(button, 1, 0, 1, -1)
 
         # Label for savefile output
         self.output_pdf_label = QLabel()
-        generation_layout.addWidget(self.output_pdf_label, 4, 0, 1, -1)
+        generation_layout.addWidget(self.output_pdf_label, 2, 0, 1, -1)
 
         # Grid layout
         generation_group.setLayout(generation_layout)
@@ -328,36 +343,19 @@ class GunTab(QWidget):
         multi_layout = QGridLayout()
         multi_layout.setAlignment(Qt.AlignTop)
 
-        # Whether to save the PDF as form-fillable still
-        multi_fill_label = QLabel("Keep PDF Form-Fillable:")
-        multi_fill_label.setStatusTip("Choose whether to keep the PDF unflattened so filled forms can be modified in a PDF editor.")
-        multi_layout.addWidget(multi_fill_label, 0, 0)
-        self.multi_fill_check = QCheckBox()
-        self.multi_fill_check.setStatusTip("Choose whether to keep the PDF unflattened so filled forms can be modified in a PDF editor.")
-        multi_layout.addWidget(self.multi_fill_check, 0, 1)
-
-        # Whether to save the PDF as form-fillable still
-        multi_design_label = QLabel("Use 2-Page Design:")
-        multi_design_label.setStatusTip("Chooses whether to use the single card or two page card designs for output.")
-        multi_layout.addWidget(multi_design_label, 1, 0)
-        self.multi_design_check = QCheckBox()
-        self.multi_design_check.setChecked(True)
-        self.multi_design_check.setStatusTip("Chooses whether to use the single card or two page card designs for output.")
-        multi_layout.addWidget(self.multi_design_check, 1, 1)
-
         # PDF Output Name
-        self.numgun_line_edit = add_stat_to_layout(multi_layout, "# Guns to Generate:", 2, force_int=True)
+        self.numgun_line_edit = add_stat_to_layout(multi_layout, "# Guns to Generate:", 0, force_int=True)
         self.numgun_line_edit.setStatusTip("Choose how many guns to automatically generate and save.")
 
         # Generate button
         button = QPushButton("Generate Multiple Guns")
         button.setStatusTip("Handles generating the guns and locally saving their PDFs in \"outputs/\".")
         button.clicked.connect(lambda: self.generate_multiple_guns())
-        multi_layout.addWidget(button, 3, 0, 1, -1)
+        multi_layout.addWidget(button, 1, 0, 1, -1)
 
         # Label for savefile output
         self.multi_output_label = QLabel()
-        multi_layout.addWidget(self.multi_output_label, 4, 0, 1, -1)
+        multi_layout.addWidget(self.multi_output_label, 2, 0, 1, -1)
 
         # Grid layout
         multi_group.setLayout(multi_layout)
@@ -399,9 +397,9 @@ class GunTab(QWidget):
         gun_card_group.setFixedWidth(1000)
 
         # Setting appropriate layout heights
-        base_stats_group.setFixedHeight(550)
-        generation_group.setFixedHeight(150)
-        multi_group.setFixedHeight(150)
+        base_stats_group.setFixedHeight(630)
+        generation_group.setFixedHeight(110)
+        multi_group.setFixedHeight(110)
         gun_card_group.setFixedHeight(850)
 
         # Gun Generation Layout
@@ -569,7 +567,7 @@ class GunTab(QWidget):
                 continue
 
             # Generate the local gun card PDF
-            if self.multi_design_check.isChecked():
+            if self.form_design_check.isChecked():
                 self.gun_pdf.generate_split_gun_pdf(output_name, gun, color_check, form_check, redtext_check)
             else:
                 self.gun_pdf.generate_gun_pdf(output_name, gun, color_check, form_check, redtext_check)
