@@ -30,34 +30,6 @@ class FoundryTranslator:
         # Regex pattern for guild mod modifiers
         self.pattern = re.compile(r"\d\s[a-zA-Z]+\sMod", re.IGNORECASE)
 
-    def convert_element(self, elements):
-        """ Handles converting a given element of various types into the parseable element icon path """
-        if elements is None:
-            return None
-
-        # If the element is a string, it is a single element. Check for added damage
-        if type(elements) == str:
-            return [elements.split(' ')[0]]
-
-        # If input is a list, it has multiple elements. Check for combo elements.
-        if type(elements) == list:
-            if "corrosive" in elements and "shock" in elements:
-                elements.append("corroshock")
-                elements.remove("corrosive")
-                elements.remove("shock")
-
-            if "explosive" in elements and "cryo" in elements:
-                elements.append("explosivcryo")
-                elements.remove("explosive")
-                elements.remove("cryo")
-
-            if "incendiary" in elements and "radiation" in elements:
-                elements.append("incendiation")
-                elements.remove("incendiary")
-                elements.remove("radiation")
-
-            return elements
-
     def export_gun(self, gun, output_name, redtext_check):
         """
         Handles exporting the generated gun in the FoundryVTT JSON format, saving both the JSON and gun art image
@@ -107,11 +79,10 @@ class FoundryTranslator:
 
         """ Element information """
         # Elements enabling
-        element = self.convert_element(gun.element)
         first_element = True
-        if element is not None:
+        if gun.element is not None:
             for key in template["system"]["elements"].keys():
-                if key in element or (key == "crysplosive" and "explosivcryo" in element):
+                if key in gun.element or (key == "crysplosive" and "explosivcryo" in gun.element):
                     template["system"]["elements"][key]["enabled"] = True
                     template["system"]["elements"][key]["damage"] = " "
 
