@@ -12,9 +12,12 @@ from classes.json_reader import get_file_data
 
 
 class Gun:
-    def __init__(self, base_dir, name=None, item_level=None, gun_type=None, gun_guild=None, gun_rarity=None,
-                 damage_balance=False, element_damage=None, rarity_element=False, selected_elements=None,
-                 prefix=True, redtext=True):
+    def __init__(self, base_dir, gun_images,
+                 name=None, item_level=None, gun_type=None, gun_guild=None, gun_rarity=None,
+                 damage_balance=False,
+                 element_damage=None, rarity_element=False, selected_elements=None,
+                 prefix=True, redtext=True,
+                 gun_art=None):
         """ Handles generating a gun completely from scratch, modified to specifics by user info """
         # If item level is to be generated
         self.item_level = item_level
@@ -81,8 +84,12 @@ class Gun:
         self.guild_mod = self.guild_table.get("tiers").get(self.rarity)
         self.guild_info = self.guild_table.get("gun_info")
 
-        # Roll for element iff it has an appropriate guild and rarity
+        # Element rolling and parsing
         self.element = None
+        self.element_info = []
+        self.element_bonus = ""
+
+        # Roll for element iff it has an appropriate guild and rarity
         if len(selected_elements) > 0:
             self.element = selected_elements
         elif self.guild_element_roll is True and self.rarity_element_roll is True:
@@ -101,34 +108,20 @@ class Gun:
                 element_table = get_file_data(base_dir + "resources/elements/elemental_table.json")
                 self.element = element_table.get(self.get_element_tier(roll_element, element_table)).get(self.rarity)
 
-        # Get element info if it exists
-        self.element_info = None
-        if self.element is not None:
-            if type(self.element) == str:
-                element = self.element.split(' ')[0]   # make sure to remove bonuses when parsing
-                self.element_info = get_file_data(base_dir + "resources/elements/elemental_type.json").get(element)
-
-            if type(self.element) == list:
-                self.element_info = []
-                for element in self.element:
-                    self.element_info.append(get_file_data(f"{base_dir}resources/elements/elemental_type.json").get(element))
-
-        # Check for passed in element
-        self.element_bonus = ""
+        # Check for passed in element, overwrites any rolled damage die
         if element_damage != "":
             self.element_bonus = f"(+{element_damage})"
-        # If the element is a list, check all entries for a bonus die
-        elif type(self.element) == list:
-            for ele in self.element:
+        # Check all element entries for a bonus die
+        elif self.element is not None:
+            for ele_idx, ele in enumerate(self.element):
                 if '(' in ele or ')' in ele:
-                    self.element_bonus = ele[ele.index('(') + 1:ele.index(')')]
-                    self.element[0] = ele.split(' ')[0]
-        # If its just a string, its one element. Check it for bonus die
-        elif type(self.element) == str and len(self.element.split(' ')) > 1:
-            self.element_bonus = self.element.split(' ')[-1]
-        # Otherwise there is no element
-        else:
-            self.element_bonus = ""
+                    self.element_bonus = ele[ele.index('('):ele.index(')') + 1]
+                    self.element[ele_idx] = ele.split(' ')[0]
+
+        # Get element info if it exists
+        if self.element is not None:
+            for element in self.element:
+                self.element_info.append(get_file_data(f"{base_dir}resources/elements/elemental_type.json").get(element))
 
         # Prefix parsing, either Random or Selected
         self.prefix_name = None
@@ -175,17 +168,23 @@ class Gun:
 
                 # If there is no element, just simply add the element
                 if self.element is None:
-                    self.element = element
-                    self.element_info = get_file_data(base_dir + "resources/elements/elemental_type.json").get(element)
+                    self.element = [element]
+                    self.element_info = [get_file_data(base_dir + "resources/elements/elemental_type.json").get(element)]
 
                 # Other check if element already is applied
                 elif self.redtext_info.split(' ')[1].lower() not in self.element:
-                    if type(self.element) == list:
-                        self.element.append(element)
-                        self.element_info.append(get_file_data(base_dir + "resources/elements/elemental_type.json").get(element))
-                    else:
-                        self.element = [self.element, element]
-                        self.element_info = self.element_info + "\n" + get_file_data(base_dir + "resources/elements/elemental_type.json").get(element)
+                    self.element.append(element)
+                    self.element_info.append(get_file_data(base_dir + "resources/elements/elemental_type.json").get(element))
+
+        # Check for combination elements
+        self.element = self.convert_element(self.element)
+
+        # Set file art path; sample if not given
+        self.gun_art_path = ""
+        if gun_art not in ["", None]:
+            self.gun_art_path = gun_art
+        else:
+            self.gun_art_path = gun_images.sample_gun_image(self.type, self.guild)
 
     def get_random_ilevel(self, base_dir):
         """ Handles rolling for a random item level and giving back the tier key for it """
@@ -198,6 +197,29 @@ class Gun:
                 tier = key
 
         return tier
+
+    def convert_element(self, elements):
+        """ Handles converting a given element of various types into the parseable element icon path """
+        if elements is None:
+            return None
+
+        # Check for combination elements and replace with combined element
+        if "corrosive" in elements and "shock" in elements:
+            elements.append("corroshock")
+            elements.remove("corrosive")
+            elements.remove("shock")
+
+        if "explosive" in elements and "cryo" in elements:
+            elements.append("explosivcryo")
+            elements.remove("explosive")
+            elements.remove("cryo")
+
+        if "incendiary" in elements and "radiation" in elements:
+            elements.append("incendiation")
+            elements.remove("incendiary")
+            elements.remove("radiation")
+
+        return elements
 
     def check_element_odds(self, base_dir, rarity):
         """

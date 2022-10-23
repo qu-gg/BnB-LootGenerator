@@ -1,0 +1,141 @@
+{
+  "name": "",
+  "type": "gun",
+  "img": "",
+  "system": {
+    "description": "",
+    "effect": "",
+    "level": 0,
+    "special": {
+      "overrideType": ""
+    },
+    "isLoot": true,
+    "guild": "",
+    "rarity": {
+      "name": "",
+      "value": "",
+      "colorValue": ""
+    },
+    "carried": true,
+    "equipped": false,
+    "redText": "",
+    "redTextEffect": "",
+    "redTextEffectBM": "",
+    "elements": {
+      "kinetic": {
+        "enabled": false,
+        "damage": "",
+        "color": "rgb(76, 76, 76)",
+        "label": "Kinetic"
+      },
+      "incendiary": {
+        "enabled": false,
+        "damage": "",
+        "color": "rgb(213, 59, 49)",
+        "label": "Incendiary"
+      },
+      "shock": {
+        "enabled": false,
+        "damage": "",
+        "color": "rgb(113, 148, 205)",
+        "label": "Shock"
+      },
+      "corrosive": {
+        "enabled": false,
+        "damage": "",
+        "color": "rgb(141, 157, 62)",
+        "label": "Corrosive"
+      },
+      "explosive": {
+        "enabled": false,
+        "damage": "",
+        "color": "rgb(234, 70, 134)",
+        "label": "Explosive"
+      },
+      "radiation": {
+        "enabled": false,
+        "damage": "",
+        "color": "rgb(228, 170, 22)",
+        "label": "Radiation"
+      },
+      "cryo": {
+        "enabled": false,
+        "damage": "",
+        "color": "rgb(18, 152, 185)",
+        "label": "Cryo"
+      },
+      "incendiation": {
+        "enabled": false,
+        "damage": "",
+        "color": "rgb(167, 78, 101)",
+        "label": "Incendiation"
+      },
+      "corroshock": {
+        "enabled": false,
+        "damage": "",
+        "color": "rgb(73, 125, 135)",
+        "label": "Corroshock"
+      },
+      "crysplosive": {
+        "enabled": false,
+        "damage": "",
+        "color": "rgb(115, 105, 160)",
+        "label": "Crysplosive"
+      }
+    },
+    "weilded": false,
+    "prefix": {
+      "name": "",
+      "effects": ""
+    },
+    "type": {
+      "value": "",
+      "name": ""
+    },
+    "accuracy": {
+      "low": {
+        "hits": 0,
+        "crits": 0
+      },
+      "mid": {
+        "hits": 0,
+        "crits": 0
+      },
+      "high": {
+        "hits": 0,
+        "crits": 0
+      }
+    },
+    "damage": "",
+    "range": 0,
+    "bonusCritDmg": 0,
+    "statMods": {
+      "acc": 0,
+      "dmg": 0,
+      "spd": 0,
+      "mst": 0
+    },
+    "hitBonus": 0,
+    "isSplash": false,
+    "overheat": "",
+    "bonus": "",
+    "guildBonus": ""
+  },
+  "effects": [],
+  "flags": {
+    "exportSource": {
+      "world": "bnb-testing",
+      "system": "bunkers-and-badasses",
+      "coreVersion": "10.286",
+      "systemVersion": "0.2.0"
+    }
+  },
+  "_stats": {
+    "systemId": "bunkers-and-badasses",
+    "systemVersion": "0.2.0",
+    "coreVersion": "10.286",
+    "createdTime": 1665436860787,
+    "modifiedTime": 1665436917766,
+    "lastModifiedBy": "EbqGN0VlirtxVP9W"
+  }
+}

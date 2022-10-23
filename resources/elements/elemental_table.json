@@ -10,146 +10,146 @@
         "common": null,
         "uncommon": null,
         "rare": null,
-        "epic": "radiation",
-        "legendary": "radiation"
+        "epic": ["radiation"],
+        "legendary": ["radiation"]
     },
     "16-20": {
         "common": null,
         "uncommon": null,
         "rare": null,
-        "epic": "corrosive",
-        "legendary": "corrosive"
+        "epic": ["corrosive"],
+        "legendary": ["corrosive"]
     },
     "21-25": {
         "common": null,
         "uncommon": null,
         "rare": null,
-        "epic": "shock",
-        "legendary": "shock"
+        "epic": ["shock"],
+        "legendary": ["shock"]
     },
     "26-30": {
         "common": null,
         "uncommon": null,
-        "rare": "radiation",
-        "epic": "explosive",
-        "legendary": "explosive"
+        "rare": ["radiation"],
+        "epic": ["explosive"],
+        "legendary": ["explosive"]
     },
     "31-35": {
         "common": null,
         "uncommon": null,
-        "rare": "corrosive",
-        "epic": "incendiary",
-        "legendary": "incendiary"
+        "rare": ["corrosive"],
+        "epic": ["incendiary"],
+        "legendary": ["incendiary"]
     },
     "36-40": {
         "common": null,
         "uncommon": null,
-        "rare": "shock",
-        "epic": "cryo",
-        "legendary": "cryo"
+        "rare": ["shock"],
+        "epic": ["cryo"],
+        "legendary": ["cryo"]
     },
     "41-45": {
         "common": null,
         "uncommon": null,
-        "rare": "explosive",
-        "epic": "radiation (+1d6)",
-        "legendary": "radiation (+1d6)"
+        "rare": ["explosive"],
+        "epic": ["radiation (+1d6)"],
+        "legendary": ["radiation (+1d6)"]
     },
     "46-50": {
         "common": null,
         "uncommon": null,
-        "rare": "incendiary",
-        "epic": "corrosive (+1d6)",
-        "legendary": "corrosive (+1d6)"
+        "rare": ["incendiary"],
+        "epic": ["corrosive (+1d6)"],
+        "legendary": ["corrosive (+1d6)"]
     },
     "51-55": {
         "common": null,
         "uncommon": null,
-        "rare": "cryo",
-        "epic": "shock (+1d6)",
-        "legendary": "shock (+1d6)"
+        "rare": ["cryo"],
+        "epic": ["shock (+1d6)"],
+        "legendary": ["shock (+1d6)"]
     },
     "56-60": {
         "common": null,
-        "uncommon": "radiation",
-        "rare": "radiation (+1d6)",
-        "epic": "explosive (+1d6)",
-        "legendary": "explosive (+1d6)"
+        "uncommon": ["radiation"],
+        "rare": ["radiation (+1d6)"],
+        "epic": ["explosive (+1d6)"],
+        "legendary": ["explosive (+1d6)]"]
     },
     "61-65": {
         "common": null,
-        "uncommon": "corrosive",
-        "rare": "corrosive (+1d6)",
-        "epic": "incendiary (+1d6)",
-        "legendary": "incendiary (+1d6)"
+        "uncommon": ["corrosive"],
+        "rare": ["corrosive (+1d6)"],
+        "epic": ["incendiary (+1d6)"],
+        "legendary": ["incendiary (+1d6)"]
     },
     "66-70": {
         "common": null,
-        "uncommon": "shock",
-        "rare": "shock (+1d6)",
-        "epic": "cryo (+1d6)",
-        "legendary": "cryo (+1d6)"
+        "uncommon": ["shock"],
+        "rare": ["shock (+1d6)"],
+        "epic": ["cryo (+1d6)"],
+        "legendary": ["cryo (+1d6)"]
     },
     "71-75": {
         "common": null,
-        "uncommon": "explosive",
-        "rare": "explosive (+1d6)",
-        "epic": "radiation (+2d6)",
-        "legendary": "radiation (+2d6)"
+        "uncommon": ["explosive"],
+        "rare": ["explosive (+1d6)"],
+        "epic": ["radiation (+2d6)"],
+        "legendary": ["radiation (+2d6)"]
     },
     "76-80": {
         "common": null,
-        "uncommon": "incendiary",
-        "rare": "incendiary (+1d6)",
-        "epic": "corrosive (+2d6)",
-        "legendary": "corrosive (+2d6)"
+        "uncommon": ["incendiary"],
+        "rare": ["incendiary (+1d6)"],
+        "epic": ["corrosive (+2d6)"],
+        "legendary": ["corrosive (+2d6)"]
     },
     "81-85": {
         "common": null,
-        "uncommon": "cryo",
-        "rare": "cryo (+1d6)",
-        "epic": "shock (+2d6)",
-        "legendary": "shock (+2d6)"
+        "uncommon": ["cryo"],
+        "rare": ["cryo (+1d6)"],
+        "epic": ["shock (+2d6)"],
+        "legendary": ["shock (+2d6)"]
     },
     "86-90": {
-        "common": "radiation",
-        "uncommon": "radiation (+1d6)",
-        "rare": "radiation (+2d6)",
-        "epic": "explosive (+2d6)",
-        "legendary": "explosive (+2d6)"
+        "common": ["radiation"],
+        "uncommon": ["radiation (+1d6)"],
+        "rare": ["radiation (+2d6)"],
+        "epic": ["explosive (+2d6)"],
+        "legendary": ["explosive (+2d6)"]
     },
     "91-92": {
-        "common": "corrosive",
-        "uncommon": "corrosive (+1d6)",
-        "rare": "corrosive (+2d6)",
-        "epic": "incendiary (+2d6)",
-        "legendary": "incendiary (+2d6)"
+        "common": ["corrosive"],
+        "uncommon": ["corrosive (+1d6)"],
+        "rare": ["corrosive (+2d6)"],
+        "epic": ["incendiary (+2d6)"],
+        "legendary": ["incendiary (+2d6)"]
     },
     "93-94": {
-        "common": "shock",
-        "uncommon": "shock (+1d6)",
-        "rare": "shock (+2d6)",
-        "epic": "cryo (+2d6)",
-        "legendary": "cryo (+2d6)"
+        "common": ["shock"],
+        "uncommon": ["shock (+1d6)"],
+        "rare": ["shock (+2d6)"],
+        "epic": ["cryo (+2d6)"],
+        "legendary": ["cryo (+2d6)"]
     },
     "95-96": {
-        "common": "explosive",
-        "uncommon": "explosive (+1d6)",
-        "rare": "explosive (+2d6)",
+        "common": ["explosive"],
+        "uncommon": ["explosive (+1d6)"],
+        "rare": ["explosive (+2d6)"],
         "epic": ["radiation", "incendiary"],
         "legendary": ["radiation", "incendiary"]
     },
     "97-98": {
-        "common": "incendiary",
-        "uncommon": "incendiary (+1d6)",
-        "rare": "incendiary (+2d6)",
+        "common": ["incendiary"],
+        "uncommon": ["incendiary (+1d6)"],
+        "rare": ["incendiary (+2d6)"],
         "epic": ["shock", "corrosive"],
         "legendary": ["shock", "corrosive"]
     },
     "99-100": {
-        "common": "cryo",
-        "uncommon": "cryo (+1d6)",
-        "rare": "cryo (+2d6)",
+        "common": ["cryo"],
+        "uncommon": ["cryo (+1d6)"],
+        "rare": ["cryo (+2d6)"],
         "epic": ["explosive", "cryo"],
         "legendary": ["explosive", "cryo"]
     }

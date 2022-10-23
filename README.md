@@ -27,6 +27,25 @@ Here is a list of ones that work and don't work thus far from personal testing. 
 
 <b>Untested</b>: Slim Reader, Nitro Reader, PDF Viewer Pro, Xodo PDF Reader, ...
 
+## PDF Filesize + Compression
+By default the size of the output PDFs will be rather large (e.g. 40MB). This is due to how layer stacking is performed
+in the PDF graph. No pure-Python libraries have the ability to perform compression with annotation and most external
+programs are unable to preserve annotations.
+
+However I found that QPDF (https://github.com/qpdf/qpdf/releases/tag/v11.1.1) is able to do this. As such, if QPDF 11.1.1
+is installed and in <code>C:/Program Files/</code>, the PDF files will be automatically compressed (40MB -> 250KB!). The standard
+installer package to grab is <code>qpdf-11.1.1-mingw64.exe</code> for Windows 10 users.
+
+<p align='center'><img src="https://user-images.githubusercontent.com/32918812/197358506-e0b39fd4-befa-40a2-a122-022473fdabdb.png" alt="gunBack" /></p>
+<p align='center'>Fig 4. Compression gained by QPDF.</p>
+
+## FoundryVTT Support
+This LootGenerator has support for outputting files to import into Eronth's <a href="https://github.com/eronth/bunkers-and-badasses">BnB FoundryVTT</a> system!
+There is a checkbox in the program that outputs a .JSON file that the <code>Import Data</code> function on Items recognizes. The files are stored in <code>api/foundryVTT/outputs/guns/</code>.
+
+<p align='center'><img src="https://user-images.githubusercontent.com/32918812/197358814-5445cb01-0b36-42bc-b773-5d57d9df701b.png" alt="gunBack" /></p>
+<p align='center'>Fig 5. Process of importing items into FoundryVTT.</p>
+
 ## Folder Layout:
 ```
   BnB-LootGenerator/
