@@ -335,7 +335,7 @@ class GunPDF:
 
         # Try PDF Compression via QPDF. Requires user install to function.
         if os.path.exists('C:/Program Files/qpdf 11.1.1/bin/qpdf.exe'):
-            os.system(f'C:\\"Program Files"\\"qpdf 11.1.1"\\bin\\qpdf.exe --flatten-annotations=all "{output_path}" "{output_path[:-4]}.compressed.pdf"')
+            os.system(f'C:\\"Program Files"\\"qpdf 11.1.1"\\bin\\qpdf.exe --no-warn --flatten-annotations=all "{output_path}" "{output_path[:-4]}.compressed.pdf"')
             if os.path.exists(f"{output_path[:-4]}.compressed.pdf"):
                 os.remove(f"{output_path}")
                 os.rename(f"{output_path[:-4]}.compressed.pdf", f"{output_path[:-4]}.pdf")
@@ -487,7 +487,7 @@ class GunPDF:
 
         # Try PDF Compression via QPDF. Requires user install to function.
         if os.path.exists('C:/Program Files/qpdf 11.1.1/bin/qpdf.exe'):
-            os.system(f'C:\\"Program Files"\\"qpdf 11.1.1"\\bin\\qpdf.exe --flatten-annotations=all "{output_path}" "{output_path[:-4]}.compressed.pdf"')
+            os.system(f'C:\\"Program Files"\\"qpdf 11.1.1"\\bin\\qpdf.exe --no-warn --flatten-annotations=all "{output_path}" "{output_path[:-4]}.compressed.pdf"')
             if os.path.exists(f"{output_path[:-4]}.compressed.pdf"):
                 os.remove(f"{output_path}")
                 os.rename(f"{output_path[:-4]}.compressed.pdf", f"{output_path[:-4]}.pdf")
