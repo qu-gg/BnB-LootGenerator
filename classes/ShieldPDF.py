@@ -183,3 +183,10 @@ class ShieldPDF:
         # Apply guild icon to gun card
         position = {'page': 1, 'x0': 300, 'y0': 45, 'x1': 425, 'y1': 75}
         self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/guild_icons/{self.guild_icon_paths.get(shield.guild)}", position)
+
+        # Try PDF Compression via QPDF. Requires user install to function.
+        if os.path.exists('C:/Program Files/qpdf 11.1.1/bin/qpdf.exe'):
+            os.system(f'C:\\"Program Files"\\"qpdf 11.1.1"\\bin\\qpdf.exe --no-warn --flatten-annotations=all "{output_path}" "{output_path[:-4]}.compressed.pdf"')
+            if os.path.exists(f"{output_path[:-4]}.compressed.pdf"):
+                os.remove(f"{output_path}")
+                os.rename(f"{output_path[:-4]}.compressed.pdf", f"{output_path[:-4]}.pdf")
