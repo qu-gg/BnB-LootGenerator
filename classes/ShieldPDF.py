@@ -32,7 +32,7 @@ class ShieldPDF:
             "Effect": ('/Helvetica-Bold 0 Tf 0 g', 1),
         }
 
-    def fill_pdf(self, input_pdf_path, output_pdf_path, data_dict):
+    def fill_pdf(self, input_pdf_path, output_pdf_path, data_dict, form_check):
         """
         Handles filling in the form fields of a given gun card PDF template with information
         from the generated gun
@@ -70,8 +70,9 @@ class ShieldPDF:
                                 )
 
                                 # Change from fillable to static text
-                                annotation[self.PARENT_KEY].update(pdfrw.PdfDict(Ff=1))
-                                annotation.update(pdfrw.PdfDict(Ff=1))
+                                if form_check is False:
+                                    annotation[self.PARENT_KEY].update(pdfrw.PdfDict(Ff=1))
+                                    annotation.update(pdfrw.PdfDict(Ff=1))
 
                                 # Update the AP of this annotation to nothing
                                 annotation[self.PARENT_KEY].update(pdfrw.PdfDict(AP=''))
@@ -99,7 +100,7 @@ class ShieldPDF:
         )
         file_handle.save(out_path)
 
-    def generate_shield_pdf(self, output_name, shield, shield_images):
+    def generate_shield_pdf(self, output_name, shield, form_check):
         """
         Handles generating a Gun Card PDF filled out with the information from the generated gun
         :param output_name: name of the output PDF to save
@@ -123,10 +124,7 @@ class ShieldPDF:
 
         # Fill the PDF with the given information
         self.fill_pdf(self.base_dir + 'resources/ShieldTemplate.pdf',
-                      self.base_dir + 'output/shields/' + output_name + '_temp.pdf', data_dict)
-
-        # Get a shield image sample
-        shield_images.sample_shield_image()
+                      self.base_dir + 'output/shields/' + output_name + '_temp.pdf', data_dict, form_check)
 
         # Apply shield art to shield card
         position = {'page': 1, 'x0': 140, 'y0': 150, 'x1': 376, 'y1': 406}

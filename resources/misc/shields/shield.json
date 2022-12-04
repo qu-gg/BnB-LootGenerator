@@ -207,7 +207,7 @@
     "4": {
       "capacity":  75,
       "recharge":  15,
-      "effect": "Insults an Enemy as Mr. torgue each turn, dealing 1d4 damage and Taunting the Enemy."
+      "effect": "Insults an Enemy as Mr. Torgue each turn, dealing 1d4 damage and Taunting the Enemy."
     },
     "5": {
       "capacity":  80,

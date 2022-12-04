@@ -7,6 +7,8 @@ Handles the logic and state for the PyQT tab related to shield generation
 import os
 from pathlib import Path
 
+from PyQt5.QtGui import QFont
+
 from classes.Shield import Shield
 from classes.ShieldPDF import ShieldPDF
 from classes.ShieldImage import ShieldImage
@@ -15,20 +17,28 @@ from app.tab_utils import add_stat_to_layout
 from classes.json_reader import get_file_data
 
 from PyQt5.QtCore import Qt
-from PyQt5 import QAxContainer
-from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton)
+from PyQt5 import QAxContainer, QtCore
+from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton, QCheckBox)
 
 
 class ShieldTab(QWidget):
-    def __init__(self, basedir):
+    def __init__(self, basedir, statusbar, foundry_translator):
         super(ShieldTab, self).__init__()
 
         # Load classes
         self.basedir = basedir
+        self.statusbar = statusbar
 
         # PDF and Image Classes
         self.shield_pdf = ShieldPDF(self.basedir)
         self.shield_images = ShieldImage(self.basedir)
+
+        # API Classes
+        self.foundry_translator = foundry_translator
+
+        # Font to share for section headers
+        font = QFont("Times", 9, QFont.Bold)
+        font.setUnderline(True)
 
         ###################################
         ###  BEGIN: Shield Stats Grid    ###
@@ -37,36 +47,95 @@ class ShieldTab(QWidget):
         shield_stats_layout = QGridLayout()
         shield_stats_layout.setAlignment(Qt.AlignTop)
 
+        # Index counter for gridlayout across all widgets
+        idx = 0
+
+        ##### Information Separator
+        information_separator = QLabel("Shield Information")
+        information_separator.setFont(font)
+        information_separator.setAlignment(QtCore.Qt.AlignCenter)
+        shield_stats_layout.addWidget(information_separator, idx, 0, 1, -1)
+        idx += 1
+
         # Shield Name
-        self.shield_line_edit = add_stat_to_layout(shield_stats_layout, "Shield Name:", 0, placeholder="Random")
+        self.shield_line_edit = add_stat_to_layout(shield_stats_layout, "Shield Name:", idx, placeholder="Random")
+        idx += 1
 
         # Shield Guild
-        shield_stats_layout.addWidget(QLabel("Guild: "), 1, 0)
+        shield_stats_layout.addWidget(QLabel("Guild: "), idx, 0)
         self.guild_shield_type_box = QComboBox()
         self.guild_shield_type_box.addItem("Random")
         for item in get_file_data(basedir + "resources/misc/shields/shield.json").keys():
             self.guild_shield_type_box.addItem(item)
-        shield_stats_layout.addWidget(self.guild_shield_type_box, 1, 1)
+        shield_stats_layout.addWidget(self.guild_shield_type_box, idx, 1)
+        idx += 1
 
         # Shield Tier
-        shield_stats_layout.addWidget(QLabel("Tier: "), 2, 0)
+        shield_stats_layout.addWidget(QLabel("Tier: "), idx, 0)
         self.tier_shield_type_box = QComboBox()
         self.tier_shield_type_box.addItem("Random")
         for item in get_file_data(basedir + "resources/misc/shields/shield.json")["Ashen"].keys():
             self.tier_shield_type_box.addItem(item)
-        shield_stats_layout.addWidget(self.tier_shield_type_box, 2, 1)
+        shield_stats_layout.addWidget(self.tier_shield_type_box, idx, 1)
+        idx += 1
 
         # Shield Capacity
-        self.shield_capacity_edit = add_stat_to_layout(shield_stats_layout, "Capacity:", 3, force_int=True)
+        self.shield_capacity_edit = add_stat_to_layout(shield_stats_layout, "Capacity:", idx, force_int=True)
         self.shield_capacity_edit.setToolTip("Either manually enter a shield capacity or let it be rolled.")
+        idx += 1
 
         # Shield Recharge
-        self.shield_recharge_edit = add_stat_to_layout(shield_stats_layout, "Recharge Rate:", 4, force_int=True)
+        self.shield_recharge_edit = add_stat_to_layout(shield_stats_layout, "Recharge Rate:", idx, force_int=True)
         self.shield_recharge_edit.setToolTip("Either manually enter a shield recharge rate or let it be rolled.")
+        idx += 1
 
         # Shield Effect
-        self.shield_effect_edit = add_stat_to_layout(shield_stats_layout, "Effect:", 5, placeholder="Random")
+        self.shield_effect_edit = add_stat_to_layout(shield_stats_layout, "Effect:", idx, placeholder="Random")
         self.shield_effect_edit.setToolTip("Either manually enter a shield effect or let it be rolled.")
+        idx += 1
+
+        # Add spacing between groups
+        shield_stats_layout.addWidget(QLabel(""), idx, 0)
+        idx += 1
+
+        ##### Rules/Misc Separator
+        rules_separator = QLabel("Rules/Settings")
+        rules_separator.setFont(font)
+        rules_separator.setAlignment(QtCore.Qt.AlignCenter)
+        shield_stats_layout.addWidget(rules_separator, idx, 0, 1, -1)
+        idx += 1
+
+        # Whether to save the PDF as form-fillable still
+        form_fill_label = QLabel("Keep PDF Form-Fillable:")
+        form_fill_label.setStatusTip("Choose whether to keep the PDF unflattened so filled forms can be modified in a PDF editor.")
+        shield_stats_layout.addWidget(form_fill_label, idx, 0)
+        self.form_fill_check = QCheckBox()
+        self.form_fill_check.setStatusTip("Choose whether to keep the PDF unflattened so filled forms can be modified in a PDF editor.")
+        shield_stats_layout.addWidget(self.form_fill_check, idx, 1)
+        idx += 1
+
+        # Add spacing between groups
+        shield_stats_layout.addWidget(QLabel(""), idx, 0)
+        idx += 1
+
+        ##### External Tools Separator
+        api_separator = QLabel("External Tools")
+        api_separator.setFont(font)
+        api_separator.setAlignment(QtCore.Qt.AlignCenter)
+        shield_stats_layout.addWidget(api_separator, idx, 0, 1, -1)
+        idx += 1
+
+        # FoundryVTT JSON flag
+        foundry_export_label = QLabel("FoundryVTT JSON Export: ")
+        foundry_export_label.setStatusTip(
+            "Choose whether to output a JSON file that can be imported by the B&B FoundryVTT System.")
+        shield_stats_layout.addWidget(foundry_export_label, idx, 0)
+        self.foundry_export_check = QCheckBox()
+        self.foundry_export_check.setStatusTip(
+            "Choose whether to output a JSON file that can be imported by the B&B FoundryVTT System.")
+        self.foundry_export_check.setChecked(False)
+        shield_stats_layout.addWidget(self.foundry_export_check, idx, 1)
+        idx += 1
 
         # Grid layout
         shield_stats_group.setLayout(shield_stats_layout)
@@ -189,9 +258,11 @@ class ShieldTab(QWidget):
         shield_capacity = str(self.shield_capacity_edit.text())
         shield_recharge = str(self.shield_recharge_edit.text())
         shield_effect = self.shield_effect_edit.text()
+        shield_form_check = self.form_fill_check.isChecked()
 
         # Generate a shield
-        shield = Shield(self.basedir, name=shield_name, guild=shield_guild, tier=shield_tier,
+        shield = Shield(self.basedir, self.shield_images,
+                        name=shield_name, guild=shield_guild, tier=shield_tier,
                         capacity=shield_capacity, recharge=shield_recharge, effect=shield_effect)
 
         # Generate output name and check if it is already in use
@@ -202,7 +273,7 @@ class ShieldTab(QWidget):
             return
 
         # Generate the PDF
-        self.shield_pdf.generate_shield_pdf(output_name, shield, self.shield_images)
+        self.shield_pdf.generate_shield_pdf(output_name, shield, shield_form_check)
 
         # Update the label and pdf name
         self.output_shield_pdf_label.setText("Saved to output/shields/{}.pdf!".format(output_name))
@@ -211,6 +282,10 @@ class ShieldTab(QWidget):
         # Load in gun card PDF
         f = Path(os.path.abspath("output/shields/{}.pdf".format(output_name))).as_uri()
         self.shieldWebBrowser.dynamicCall('Navigate(const QString&)', f)
+
+        # FoundryVTT Check
+        if self.foundry_export_check.isChecked() is True:
+            self.foundry_translator.export_shield(shield, output_name)
 
     def generate_multiple_shields(self):
         """ Handles generating and saving multiple shield cards at once """
@@ -225,13 +300,15 @@ class ShieldTab(QWidget):
         shield_capacity = str(self.shield_capacity_edit.text())
         shield_recharge = str(self.shield_recharge_edit.text())
         shield_effect = self.shield_effect_edit.text()
+        shield_form_check = self.form_fill_check.isChecked()
 
         # Get a base output name to display and the number to generate
         output_name = self.current_shield_pdf
         number_gen = int(self.numshield_line_edit.text())
         for _ in range(number_gen):
             # Generate a shield
-            shield = Shield(self.basedir, guild=shield_guild, tier=shield_tier, capacity=shield_capacity,
+            shield = Shield(self.basedir, self.shield_images,
+                            guild=shield_guild, tier=shield_tier, capacity=shield_capacity,
                             recharge=shield_recharge, effect=shield_effect)
 
             # Generate output name and check if it is already in use
@@ -241,7 +318,11 @@ class ShieldTab(QWidget):
                 continue
 
             # Generate the PDF
-            self.shield_pdf.generate_shield_pdf(output_name, shield, self.shield_images)
+            self.shield_pdf.generate_shield_pdf(output_name, shield, shield_form_check)
+
+            # FoundryVTT Check
+            if self.foundry_export_check.isChecked() is True:
+                self.foundry_translator.export_shield(shield, output_name)
 
         # Update the label and pdf name
         self.shield_multi_output_label.setText("Saved {} potions to 'output/shields/'!".format(number_gen))
