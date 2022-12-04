@@ -32,8 +32,8 @@ class GunTab(QWidget):
         self.statusbar = statusbar
 
         # PDF and Image Classes
-        self.gun_pdf = GunPDF(self.basedir, self.statusbar)
         self.gun_images = GunImage(self.basedir)
+        self.gun_pdf = GunPDF(self.basedir, self.statusbar, self.gun_images)
 
         # API Classes
         self.foundry_translator = foundry_translator

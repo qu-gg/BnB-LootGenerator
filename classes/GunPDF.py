@@ -13,10 +13,13 @@ from PIL import Image
 
 
 class GunPDF:
-    def __init__(self, base_dir, statusbar):
+    def __init__(self, base_dir, statusbar, gun_images):
         # Base executable directory
         self.base_dir = base_dir
         self.statusbar = statusbar
+
+        # Image Class
+        self.gun_images = gun_images
 
         # KEY Names for PDF
         self.ANNOT_KEY = '/Annots'
@@ -449,6 +452,7 @@ class GunPDF:
 
         # If no URL/File given or invalid paths, then sample a gun
         if art_success is False:
+            self.gun_images.sample_gun_image(gun.type, gun.guild)
             self.add_image_to_pdf(output_path, self.base_dir + 'output/guns/temporary_gun_image.png', position)
 
         # Apply gun icon to gun card

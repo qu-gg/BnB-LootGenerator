@@ -31,8 +31,8 @@ class ShieldTab(QWidget):
         self.statusbar = statusbar
 
         # PDF and Image Classes
-        self.shield_pdf = ShieldPDF(self.basedir, self.statusbar)
         self.shield_images = ShieldImage(self.basedir)
+        self.shield_pdf = ShieldPDF(self.basedir, self.statusbar, self.shield_images)
 
         # API Classes
         self.foundry_translator = foundry_translator

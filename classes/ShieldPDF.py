@@ -12,10 +12,13 @@ from PIL import Image
 
 
 class ShieldPDF:
-    def __init__(self, base_dir, statusbar):
+    def __init__(self, base_dir, statusbar, shield_images):
         # Base executable directory
         self.base_dir = base_dir
         self.statusbar = statusbar
+
+        # Image Classes
+        self.shield_images = shield_images
 
         # KEY Names for PDF
         self.ANNOT_KEY = '/Annots'
@@ -178,6 +181,7 @@ class ShieldPDF:
 
         # If no URL/File given or invalid paths, then sample a gun
         if art_success is False:
+            self.shield_images.sample_shield_image()
             self.add_image_to_pdf(output_path, self.base_dir + 'output/shields/temporary_shield_image.png', position)
 
         # Apply guild icon to gun card
