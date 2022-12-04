@@ -35,3 +35,4 @@ class RelicImage:
         response = requests.get(url, stream=True)
         img = Image.open(response.raw)
         img.save(self.basedir + 'output/relics/temporary_relic_image.png')
+        return url

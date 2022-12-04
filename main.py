@@ -49,7 +49,7 @@ class Window(QMainWindow):
         self.tabMenu.setTabText(1, "Shields")
 
         # Relic Tab
-        self.relic_tab = RelicTab(basedir)
+        self.relic_tab = RelicTab(basedir, self.statusbar, self.foundry_translator)
         self.tabMenu.addTab(self.relic_tab.get_tab(), "Relic")
         self.tabMenu.setTabText(2, "Relics")
 

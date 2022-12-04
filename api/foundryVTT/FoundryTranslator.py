@@ -199,3 +199,38 @@ class FoundryTranslator:
         with open(f"{self.basedir}api/foundryVTT/outputs/shields/{output_name}.json", 'w') as f:
             json.dump(template, f)
 
+    def export_relic(self, relic, output_name):
+        """
+        Handles exporting the generated Relic in the FoundryVTT JSON format, saving both the JSON and gun art image
+        in a folder output under api/foundryVTT/outputs/relics/
+        :param relic: Relic object
+        :param output_name: output filename assigned to the object
+        """
+        # Loading in the template for gun items
+        with open(f"{self.basedir}api/foundryVTT/templates/fvtt_relic_template.json", 'r') as f:
+            template = json.load(f)
+
+        """ Foundry display information """
+        template["name"] = relic.name
+        template["img"] = relic.art_path
+
+        """ Relic Effect + Description """
+        template["system"]["effect"] = relic.effect
+        template["system"]["description"] = relic.effect
+
+        """ Rarity """
+        template["system"]["rarity"]["name"] = relic.rarity.title()
+        template["system"]["rarity"]["value"] = relic.rarity
+        template["system"]["rarity"]["colorValue"] = self.rarity_colors[relic.rarity]
+
+        """ Cost """
+        template["system"]["cost"] = relic.cost
+
+        """ Class and Class Effect """
+        template["system"]["class"] = relic.class_id
+        template["system"]["classEffect"] = relic.class_effect
+
+        # Saving relic json and image to folder
+        with open(f"{self.basedir}api/foundryVTT/outputs/relics/{output_name}.json", 'w') as f:
+            json.dump(template, f)
+
