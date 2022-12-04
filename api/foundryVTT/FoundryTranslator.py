@@ -174,6 +174,9 @@ class FoundryTranslator:
         template["system"]["rarity"]["value"] = self.tier_to_rarity[shield.tier]
         template["system"]["rarity"]["colorValue"] = self.rarity_colors[self.tier_to_rarity[shield.tier]]
 
+        """ Cost """
+        template["system"]["cost"] = shield.cost
+
         """ Guild information """
         template["system"]["guild"] = shield.guild.title()
 
