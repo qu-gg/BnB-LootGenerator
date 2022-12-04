@@ -24,7 +24,7 @@ from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget,
 
 
 class GunTab(QWidget):
-    def __init__(self, basedir, statusbar):
+    def __init__(self, basedir, statusbar, foundry_translator):
         super(GunTab, self).__init__()
 
         # Load classes
@@ -36,7 +36,7 @@ class GunTab(QWidget):
         self.gun_images = GunImage(self.basedir)
 
         # API Classes
-        self.foundry_translator = FoundryTranslator(self.basedir, self.statusbar)
+        self.foundry_translator = foundry_translator
 
         ###################################
         ###  BEGIN: Base Stats Grid     ###

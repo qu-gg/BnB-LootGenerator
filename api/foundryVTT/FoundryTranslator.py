@@ -27,17 +27,28 @@ class FoundryTranslator:
             "legendary": "#ffa500"
         }
 
+        # Tier to rarity mapping
+        self.tier_to_rarity = {
+            "1": "common",
+            "2": "uncommon",
+            "3": "rare",
+            "4": "epic",
+            "5": "legendary",
+        }
+
         # Regex pattern for guild mod modifiers
-        self.pattern = re.compile(r"\d\s[a-zA-Z]+\sMod", re.IGNORECASE)
+        self.guild_mod_pattern = re.compile(r"\d\s[a-zA-Z]+\sMod", re.IGNORECASE)
 
     def export_gun(self, gun, output_name, redtext_check):
         """
         Handles exporting the generated gun in the FoundryVTT JSON format, saving both the JSON and gun art image
         in a folder output under api/foundryVTT/outputs/guns/
         :param gun: Gun object
+        :param output_name: output filename assigned to the object
+        :param redtext_check: whether to show or hide the redtext effect for the player
         """
         # Loading in the template for gun items
-        with open(f"{self.basedir}api/foundryVTT/fvtt-gun-template.json", 'r') as f:
+        with open(f"{self.basedir}api/foundryVTT/templates/fvtt_gun_template.json", 'r') as f:
             template = json.load(f)
 
         """ Foundry display information """
@@ -55,6 +66,9 @@ class FoundryTranslator:
         template["system"]["rarity"]["name"] = gun.rarity.title()
         template["system"]["rarity"]["value"] = gun.rarity.lower()
         template["system"]["rarity"]["colorValue"] = self.rarity_colors[gun.rarity.lower()]
+
+        """ Cost """
+        template["system"]["cost"] = gun.cost
 
         """ Guild information """
         template["system"]["guild"] = gun.guild.title()
@@ -78,22 +92,22 @@ class FoundryTranslator:
         template["system"]["redTextEffectBM"] = gun.redtext_info if gun.redtext_info is not None else ""
 
         """ Element information """
-        # Elements enabling
-        first_element = True
-        if gun.element is not None:
-            for key in template["system"]["elements"].keys():
-                if key in gun.element or (key == "crysplosive" and "explosivcryo" in gun.element):
-                    template["system"]["elements"][key]["enabled"] = True
-                    template["system"]["elements"][key]["damage"] = " "
-
-                    # Just add elemental damage bonus to the first element for now
-                    if first_element is True and gun.element_bonus != "":
-                        template["system"]["elements"][key]["damage"] = gun.element_bonus.replace("(+", "").replace(")", "")
-                        first_element = False
-
         # Add gun damage base die to kinetic
         template["system"]["elements"]["kinetic"]["enabled"] = True
         template["system"]["elements"]["kinetic"]["damage"] = gun.damage
+
+        # Elements enabling
+        first_element = True
+        if gun.element is not None:
+            for key in template["system"]["bonusElements"].keys():
+                if key in gun.element or (key == "crysplosive" and "explosivcryo" in gun.element):
+                    template["system"]["bonusElements"][key]["enabled"] = True
+                    template["system"]["bonusElements"][key]["damage"] = " "
+
+                    # Just add elemental damage bonus to the first element for now
+                    if first_element is True and gun.element_bonus != "":
+                        template["system"]["bonusElements"][key]["damage"] = gun.element_bonus.replace("(+", "").replace(")", "")
+                        first_element = False
 
         """ Prefix information"""
         template["system"]["prefix"]["name"] = gun.prefix_name if gun.prefix_name is not None else " "
@@ -117,7 +131,7 @@ class FoundryTranslator:
         """ Stat mod modifiers """
         # Loop through each term in the guild mod, check against regex, and modify template values
         for modifier in gun.guild_mod.split(', '):
-            if self.pattern.match(modifier.replace("+", "").replace("-", "")):
+            if self.guild_mod_pattern.match(modifier.replace("+", "").replace("-", "")):
                 modifier = modifier.split(' ')
                 mod = int(modifier[0])
                 stat = modifier[1].lower()
@@ -132,3 +146,53 @@ class FoundryTranslator:
         # Saving gun json and image to folder
         with open(f"{self.basedir}api/foundryVTT/outputs/guns/{output_name}.json", 'w') as f:
             json.dump(template, f)
+
+    def export_shield(self, shield, output_name):
+        """
+        Handles exporting the generated shield in the FoundryVTT JSON format, saving both the JSON and gun art image
+        in a folder output under api/foundryVTT/outputs/shields/
+        :param shield: Shield object
+        :param output_name: output filename assigned to the object
+        """
+        # Loading in the template for gun items
+        with open(f"{self.basedir}api/foundryVTT/templates/fvtt_shield_template.json", 'r') as f:
+            template = json.load(f)
+
+        """ Foundry display information """
+        template["name"] = shield.name
+        template["img"] = shield.shield_art_path
+
+        """ Item Level """
+        template["system"]["level"] = int(shield.tier)
+
+        """ Shield Effect + Description """
+        template["system"]["effect"] = shield.effect
+        template["system"]["description"] = shield.effect
+
+        """ Rarity """
+        template["system"]["rarity"]["name"] = self.tier_to_rarity[shield.tier].title()
+        template["system"]["rarity"]["value"] = self.tier_to_rarity[shield.tier]
+        template["system"]["rarity"]["colorValue"] = self.rarity_colors[self.tier_to_rarity[shield.tier]]
+
+        """ Guild information """
+        template["system"]["guild"] = shield.guild.title()
+
+        """ Capacity and Recharge Rate """
+        template["system"]["capacity"] = shield.capacity
+        template["system"]["recoveryRate"] = shield.recharge
+
+        """ Element information """
+        if "Resistance" in shield.effect:
+            effect = shield.effect.split(" ")
+            resistance_die = effect[0]
+            resistance_element = effect[1].lower()
+
+            template["system"]["elements"][resistance_element]["enabled"] = True
+            template["system"]["elements"][resistance_element]["damage"] = resistance_die
+
+        # TODO - Figure out Max Health, HP Regen fill-out
+
+        # Saving shield json and image to folder
+        with open(f"{self.basedir}api/foundryVTT/outputs/shields/{output_name}.json", 'w') as f:
+            json.dump(template, f)
+

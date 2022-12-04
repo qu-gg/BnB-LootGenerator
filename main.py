@@ -12,6 +12,7 @@ from app.ShieldTab import ShieldTab
 from app.RelicTab import RelicTab
 from app.PotionTab import PotionTab
 from app.GrenadeTab import GrenadeTab
+from api.foundryVTT.FoundryTranslator import FoundryTranslator
 
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QTabWidget, QStatusBar)
@@ -34,13 +35,16 @@ class Window(QMainWindow):
         # TabWidget for the different generation menus
         self.tabMenu = QTabWidget()
 
+        # FoundryVTT Translator
+        self.foundry_translator = FoundryTranslator(self.basedir, self.statusbar)
+
         # Gun Tab
-        self.gun_tab = GunTab(basedir, self.statusbar)
+        self.gun_tab = GunTab(basedir, self.statusbar, self.foundry_translator)
         self.tabMenu.addTab(self.gun_tab.get_tab(), "Gun")
         self.tabMenu.setTabText(0, "Guns")
 
         # Shield Tab
-        self.shield_tab = ShieldTab(basedir)
+        self.shield_tab = ShieldTab(basedir, self.statusbar, self.foundry_translator)
         self.tabMenu.addTab(self.shield_tab.get_tab(), "Shield")
         self.tabMenu.setTabText(1, "Shields")
 
@@ -66,7 +70,7 @@ class Window(QMainWindow):
 if __name__ == '__main__':
     # Specify whether this is local development or application compilation
     basedir = ""
-    application = True
+    application = False
 
     # If application compilation, get the folder from which the executable is being executed
     if application:
