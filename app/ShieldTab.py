@@ -18,7 +18,8 @@ from classes.json_reader import get_file_data
 
 from PyQt5.QtCore import Qt
 from PyQt5 import QAxContainer, QtCore
-from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton, QCheckBox)
+from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton, QCheckBox, QLineEdit,
+                             QFileDialog)
 
 
 class ShieldTab(QWidget):
@@ -30,7 +31,7 @@ class ShieldTab(QWidget):
         self.statusbar = statusbar
 
         # PDF and Image Classes
-        self.shield_pdf = ShieldPDF(self.basedir)
+        self.shield_pdf = ShieldPDF(self.basedir, self.statusbar)
         self.shield_images = ShieldImage(self.basedir)
 
         # API Classes
@@ -92,6 +93,37 @@ class ShieldTab(QWidget):
         # Shield Effect
         self.shield_effect_edit = add_stat_to_layout(shield_stats_layout, "Effect:", idx, placeholder="Random")
         self.shield_effect_edit.setToolTip("Either manually enter a shield effect or let it be rolled.")
+        idx += 1
+
+        # Add spacing between groups
+        shield_stats_layout.addWidget(QLabel(""), idx, 0)
+        idx += 1
+
+        ##### Art Separator
+        art_separator = QLabel("Custom Art Selection")
+        art_separator.setFont(font)
+        art_separator.setAlignment(QtCore.Qt.AlignCenter)
+        shield_stats_layout.addWidget(art_separator, idx, 0, 1, -1)
+        idx += 1
+
+        # Filepath display for custom art
+        self.art_filepath = QLineEdit("")
+
+        # Buttons and file dialog associated with selecting local files
+        art_gridlayout = QGridLayout()
+        self.art_filedialog = QFileDialog()
+        self.art_filedialog.setStatusTip(
+            "Uses custom art on the gun art side when given either a local image path or a URL.")
+
+        self.art_select = QPushButton("Open")
+        self.art_select.clicked.connect(self.open_file)
+        self.art_select.setStatusTip("Used to select an image to use in place of the Borderlands gun art.")
+
+        art_gridlayout.addWidget(self.art_filepath, 0, 1)
+        art_gridlayout.addWidget(self.art_select, 0, 2)
+
+        shield_stats_layout.addWidget(QLabel("Custom Art File/URL:"), idx, 0)
+        shield_stats_layout.addLayout(art_gridlayout, idx, 1)
         idx += 1
 
         # Add spacing between groups
@@ -231,9 +263,9 @@ class ShieldTab(QWidget):
         shield_card_group.setFixedWidth(1000)
 
         # Setting appropriate layout heights
-        shield_stats_group.setFixedHeight(300)
+        shield_stats_group.setFixedHeight(400)
         shield_generation_group.setFixedHeight(150)
-        shield_multi_group.setFixedHeight(400)
+        shield_multi_group.setFixedHeight(300)
         shield_card_group.setFixedHeight(850)
 
         # Potion Generation Layout
@@ -249,6 +281,16 @@ class ShieldTab(QWidget):
     def get_tab(self):
         return self.shield_tab
 
+    def open_file(self):
+        """ Handles opening a file for the art path images; if an invalid image then show a message to the statusbar """
+        filename = self.art_filedialog.getOpenFileName(self, 'Load File', self.basedir + '/')[0]
+
+        # Error handling for image paths
+        if '.png' not in filename and '.jpg' not in filename:
+            self.statusbar.showMessage("Filename invalid, select again!", 3000)
+        else:
+            self.art_filepath.setText(filename)
+
     def generate_shield(self):
         """ Handles performing the call to generate a shield given the parameters and updating the Shield Card image """
         # Load in properties that are currently set in the program
@@ -259,11 +301,13 @@ class ShieldTab(QWidget):
         shield_recharge = str(self.shield_recharge_edit.text())
         shield_effect = self.shield_effect_edit.text()
         shield_form_check = self.form_fill_check.isChecked()
+        shield_art_path = self.art_filepath.text()
 
         # Generate a shield
         shield = Shield(self.basedir, self.shield_images,
                         name=shield_name, guild=shield_guild, tier=shield_tier,
-                        capacity=shield_capacity, recharge=shield_recharge, effect=shield_effect)
+                        capacity=shield_capacity, recharge=shield_recharge, effect=shield_effect,
+                        shield_art=shield_art_path)
 
         # Generate output name and check if it is already in use
         output_name = "{}_Tier{}_{}".format(shield.guild, shield.tier, shield.name.replace(" ", "")) \
@@ -301,6 +345,7 @@ class ShieldTab(QWidget):
         shield_recharge = str(self.shield_recharge_edit.text())
         shield_effect = self.shield_effect_edit.text()
         shield_form_check = self.form_fill_check.isChecked()
+        shield_art_path = self.art_filepath.text()
 
         # Get a base output name to display and the number to generate
         output_name = self.current_shield_pdf
@@ -309,7 +354,8 @@ class ShieldTab(QWidget):
             # Generate a shield
             shield = Shield(self.basedir, self.shield_images,
                             guild=shield_guild, tier=shield_tier, capacity=shield_capacity,
-                            recharge=shield_recharge, effect=shield_effect)
+                            recharge=shield_recharge, effect=shield_effect,
+                            shield_art=shield_art_path)
 
             # Generate output name and check if it is already in use
             output_name = "{}_Tier{}_{}".format(shield.guild, shield.tier, shield.name.replace(" ", ""))

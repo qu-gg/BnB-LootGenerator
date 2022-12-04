@@ -340,7 +340,6 @@ class GunPDF:
                 os.remove(f"{output_path}")
                 os.rename(f"{output_path[:-4]}.compressed.pdf", f"{output_path[:-4]}.pdf")
 
-
     def generate_split_gun_pdf(self, output_name, gun, rarity_border, form_check, redtext_check):
         """
         Handles generating a Gun Card PDF that has two sides - one related to gun art only and the other related to gun
