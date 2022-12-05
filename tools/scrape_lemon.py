@@ -1,6 +1,6 @@
 """
 @file scrape_lemon.py
-@author Chris Vantine
+@author Ryan Missel
 
 Handles web scraping Lootlemon's database for all of its Borderlands gun art and stats over the 4 games.
 """
@@ -18,9 +18,6 @@ BL_VERSION = "wl"
 def main():
     # Get base weapon list for the given version
     url = "https://www.lootlemon.com/db/borderlands-{}/guns".format(BL_VERSION)
-    url = "https://www.lootlemon.com/db/wonderlands/weapons".format(BL_VERSION)
-
-    # url = "https://www.lootlemon.com/db/wonderlands/wards"
 
     wep_url = "https://www.lootlemon.com/"
     html = requests.get(url).text
@@ -29,9 +26,12 @@ def main():
     # Define the array to hold all guns
     guns = []
 
+    # Iterate through each division object in the HTML
     for link in tqdm(soup.find_all("div", "db_item")):
-        # Get gun stats
+        # Get the cell associated with a gun object
         cells = link.find_all("div", "db_cell")
+
+        # Create it as a new dictionary
         new_gun = {}
         new_gun['name'] = cells[0].string
         new_gun['type'] = cells[1].string

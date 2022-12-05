@@ -80,6 +80,9 @@ class Gun:
             self.rarity_element_roll = True
             self.rarity = self.rarity[0]
 
+        # Add cost information
+        self.cost = get_file_data(base_dir + "resources/guns/gun_cost.json").get(self.rarity.lower())
+
         # Get guild information
         self.guild_mod = self.guild_table.get("tiers").get(self.rarity)
         self.guild_info = self.guild_table.get("gun_info")

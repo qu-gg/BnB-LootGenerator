@@ -1,0 +1,93 @@
+{
+  "name": "",
+  "type": "grenade",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "",
+    "effect": "",
+    "level": 1,
+    "special": {
+      "overrideType": ""
+    },
+    "isLoot": true,
+    "quantity": 1,
+    "cost": 0,
+    "guild": "",
+    "rarity": {
+      "name": "Common",
+      "value": "common",
+      "colorValue": "#a5a49f"
+    },
+    "carried": true,
+    "equipped": false,
+    "redText": "",
+    "redTextEffect": "",
+    "redTextEffectBM": "",
+    "elements": {
+      "kinetic": {
+        "enabled": false,
+        "damage": ""
+      },
+      "incendiary": {
+        "enabled": false,
+        "damage": ""
+      },
+      "shock": {
+        "enabled": false,
+        "damage": ""
+      },
+      "corrosive": {
+        "enabled": false,
+        "damage": ""
+      },
+      "explosive": {
+        "enabled": false,
+        "damage": ""
+      },
+      "radiation": {
+        "enabled": false,
+        "damage": ""
+      },
+      "cryo": {
+        "enabled": false,
+        "damage": ""
+      },
+      "incendiation": {
+        "enabled": false,
+        "damage": ""
+      },
+      "corroshock": {
+        "enabled": false,
+        "damage": ""
+      },
+      "crysplosive": {
+        "enabled": false,
+        "damage": ""
+      }
+    },
+    "damage": "",
+    "gainHealth": false,
+    "gainShield": false,
+    "gainArmor": false,
+    "gainBone": false,
+    "gainEridian": false,
+    "detonations": 1
+  },
+  "effects": [],
+  "flags": {
+    "exportSource": {
+      "world": "bnb-testing",
+      "system": "bunkers-and-badasses",
+      "coreVersion": "10.286",
+      "systemVersion": "0.3.5"
+    }
+  },
+  "_stats": {
+    "systemId": "bunkers-and-badasses",
+    "systemVersion": "0.3.5",
+    "coreVersion": "10.286",
+    "createdTime": 1670198451926,
+    "modifiedTime": 1670198454976,
+    "lastModifiedBy": "EbqGN0VlirtxVP9W"
+  }
+}

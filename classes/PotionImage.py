@@ -36,3 +36,4 @@ class PotionImage:
         response = requests.get(url, stream=True)
         img = Image.open(response.raw)
         img.save(self.basedir + 'output/potions/temporary_potion_image.png')
+        return url

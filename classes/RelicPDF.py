@@ -7,12 +7,18 @@ Class to generate the PDF of the BnB Card Design for a given relic.
 import os
 import fitz
 import pdfrw
+import requests
+from PIL import Image
 
 
 class RelicPDF:
-    def __init__(self, base_dir):
+    def __init__(self, base_dir, statusbar, relic_images):
         # Base executable directory
         self.base_dir = base_dir
+        self.statusbar = statusbar
+
+        # Image class
+        self.relic_images = relic_images
 
         # KEY Names for PDF
         self.ANNOT_KEY = '/Annots'
@@ -40,7 +46,7 @@ class RelicPDF:
             "ClassEffect": ('/Helvetica-Bold 16 Tf 0 g', 0),
         }
 
-    def fill_pdf(self, input_pdf_path, output_pdf_path, data_dict):
+    def fill_pdf(self, input_pdf_path, output_pdf_path, data_dict, form_check):
         """
         Handles filling in the form fields of a given gun card PDF template with information
         from the generated gun
@@ -78,8 +84,9 @@ class RelicPDF:
                                 )
 
                                 # Change from fillable to static text
-                                annotation[self.PARENT_KEY].update(pdfrw.PdfDict(Ff=1))
-                                annotation.update(pdfrw.PdfDict(Ff=1))
+                                if form_check is False:
+                                    annotation[self.PARENT_KEY].update(pdfrw.PdfDict(Ff=1))
+                                    annotation.update(pdfrw.PdfDict(Ff=1))
 
                                 # Update the AP of this annotation to nothing
                                 annotation[self.PARENT_KEY].update(pdfrw.PdfDict(AP=''))
@@ -88,12 +95,11 @@ class RelicPDF:
         template_pdf.Root.AcroForm.update(pdfrw.PdfDict(NeedAppearances=pdfrw.PdfObject('true')))  # NEW
         pdfrw.PdfWriter().write(output_pdf_path, template_pdf)
 
-    def add_image_to_pdf(self, pdf_path, out_path, image, position):
+    def add_image_to_pdf(self, pdf_path, image, position):
         """
         Handles adding an image to a Pdf through the library PyMuPDF. Essentially layers two pages (page and image as a page)
         onto each other before compressing to one page
         :param pdf_path: filled out template
-        :param out_path: output path for name
         :param image: image path to use
         :param position: where in the template to place the image
         """
@@ -105,40 +111,70 @@ class RelicPDF:
             position['x1'], position['y1']),
             filename=image
         )
-        file_handle.save(out_path)
 
-    def generate_relic_pdf(self, output_name, relic, relic_images):
+        temp_path = f'{self.base_dir}output/guns/temp.pdf'
+
+        # Save output path as same name
+        file_handle.save(temp_path)
+        file_handle.close()
+
+        # Clean up old pdf_path
+        os.remove(pdf_path)
+        os.rename(temp_path, pdf_path)
+
+    def generate_relic_pdf(self, output_name, relic, form_check):
         """
         Handles generating a Gun Card PDF filled out with the information from the generated gun
         :param output_name: name of the output PDF to save
         """
+        # Output of the generated PDF
+        output_path = f'{self.base_dir}output/relics/{output_name}.pdf'
+
         # Build up data dictionary to fill in PDF
         data_dict = {
             'Name': relic.name,
             "Rarity": relic.type,
             "Effect": "(Effect) {}".format(relic.effect),
             "ClassEffect": "({}) {}".format(relic.class_id, relic.class_effect),
-            # "Type": relic.type
         }
 
         self.appearances["Rarity"] = ('/Helvetica-Bold 0 Tf 1 Tr {} rg'.format(self.rarity_colors[relic.rarity.lower()]), 1)
 
         # Fill the PDF with the given information
-        self.fill_pdf(self.base_dir + 'resources/RelicTemplate.pdf',
-                      self.base_dir + 'output/relics/' + output_name + '_temp.pdf', data_dict)
+        self.fill_pdf(self.base_dir + 'resources/RelicTemplate.pdf', output_path, data_dict, form_check)
 
-        # Get a relic image sample
-        relic_images.sample_relic_image()
-
-        # Apply gun art to gun card
+        # Apply relic art to relic card
         position = {'page': 1, 'x0': 90, 'y0': 150, 'x1': 346, 'y1': 406}
-        self.add_image_to_pdf(
-            self.base_dir + 'output/relics/' + output_name + '_temp.pdf',
-            self.base_dir + 'output/relics/' + output_name + '.pdf',
-            self.base_dir + 'output/relics/temporary_relic_image.png',
-            position
-        )
+        art_success = True
 
-        # Remove old files
-        os.remove(self.base_dir + "output/relics/" + output_name + '_temp.pdf')
-        os.remove(self.base_dir + "output/relics/temporary_relic_image.png")
+        # Try local path first
+        try:
+            self.add_image_to_pdf(output_path, relic.art_path, position)
+        except:
+            art_success = False
+
+        # Then try URL on failure
+        if art_success is False:
+            try:
+                # Get image and then save locally temporarily
+                response = requests.get(relic.art_path, stream=True)
+                img = Image.open(response.raw)
+                img.save(self.base_dir + 'output/relics/temporary_relic_image.png')
+                self.add_image_to_pdf(output_path, self.base_dir + 'output/relics/temporary_relic_image.png', position)
+                art_success = True
+            except:
+                self.statusbar.clearMessage()
+                self.statusbar.showMessage("Invalid URL or filepath when trying to open, defaulting to normal image!", 5000)
+                art_success = False
+
+        # If no URL/File given or invalid paths, then sample a relic
+        if art_success is False:
+            self.relic_images.sample_relic_image()
+            self.add_image_to_pdf(output_path, self.base_dir + 'output/relics/temporary_relic_image.png', position)
+
+        # Try PDF Compression via QPDF. Requires user install to function.
+        if os.path.exists('C:/Program Files/qpdf 11.1.1/bin/qpdf.exe'):
+            os.system(f'C:\\"Program Files"\\"qpdf 11.1.1"\\bin\\qpdf.exe --no-warn --flatten-annotations=all "{output_path}" "{output_path[:-4]}.compressed.pdf"')
+            if os.path.exists(f"{output_path[:-4]}.compressed.pdf"):
+                os.remove(f"{output_path}")
+                os.rename(f"{output_path[:-4]}.compressed.pdf", f"{output_path[:-4]}.pdf")

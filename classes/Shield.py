@@ -10,10 +10,14 @@ from classes.json_reader import get_file_data
 
 
 class Shield:
-    def __init__(self, base_dir, name='', guild="Random", tier="Random", capacity="", recharge="", effect=""):
+    def __init__(self, base_dir, shield_images,
+                 name='', guild="Random", tier="Random",
+                 capacity="", recharge="", effect="",
+                 shield_art=None):
         """ Handles generating a shield, modified to specifics by user info """
         # Load in shield data
         shield_data = get_file_data(base_dir + 'resources/misc/shields/shield.json')
+        shield_costs = get_file_data(base_dir + 'resources/misc/shields/shield_cost.json')
         shield_guild = get_file_data(base_dir + 'resources/misc/shields/shield_guild.json')
         shield_names = get_file_data(base_dir + 'resources/misc/shields/shield_lexicon.json')
 
@@ -48,3 +52,13 @@ class Shield:
 
         # Effect
         self.effect = effect if effect != "" else shield_dict.get("effect")
+
+        # Cost
+        self.cost = shield_costs.get(self.tier)
+
+        # Set file art path; sample if not given
+        self.shield_art_path = ""
+        if shield_art not in ["", None]:
+            self.shield_art_path = shield_art
+        else:
+            self.shield_art_path = shield_images.sample_shield_image()

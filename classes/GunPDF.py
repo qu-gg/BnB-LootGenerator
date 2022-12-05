@@ -13,10 +13,13 @@ from PIL import Image
 
 
 class GunPDF:
-    def __init__(self, base_dir, statusbar):
+    def __init__(self, base_dir, statusbar, gun_images):
         # Base executable directory
         self.base_dir = base_dir
         self.statusbar = statusbar
+
+        # Image Class
+        self.gun_images = gun_images
 
         # KEY Names for PDF
         self.ANNOT_KEY = '/Annots'
@@ -340,7 +343,6 @@ class GunPDF:
                 os.remove(f"{output_path}")
                 os.rename(f"{output_path[:-4]}.compressed.pdf", f"{output_path[:-4]}.pdf")
 
-
     def generate_split_gun_pdf(self, output_name, gun, rarity_border, form_check, redtext_check):
         """
         Handles generating a Gun Card PDF that has two sides - one related to gun art only and the other related to gun
@@ -450,6 +452,7 @@ class GunPDF:
 
         # If no URL/File given or invalid paths, then sample a gun
         if art_success is False:
+            self.gun_images.sample_gun_image(gun.type, gun.guild)
             self.add_image_to_pdf(output_path, self.base_dir + 'output/guns/temporary_gun_image.png', position)
 
         # Apply gun icon to gun card

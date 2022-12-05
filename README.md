@@ -7,13 +7,13 @@ LootGenerator is a local application to handle Gun and Lootsplosion generation i
 ## Running:
 Currently this program is a PyQT GUI application in which the user can specify specific gun attributes to roll with. 
 
-<p align='center'><img src="https://user-images.githubusercontent.com/32918812/183751130-36cefcfa-cbc9-4dcb-93d7-d6fcecf42062.png" alt="gunBack" /></p>
+<p align='center'><img src="https://user-images.githubusercontent.com/32918812/205549787-9d2d62f0-1d68-4fb3-b1bb-f5560d40661a.png" alt="gunFront" /></p>
 <p align='center'>Fig 1. Front view of the 2-Sided Gun Card.</p>
 
-<p align='center'><img src="https://user-images.githubusercontent.com/32918812/183751114-8c745ffb-b0a1-40e0-b41e-b291bf43be62.png" alt="gunBack" /></p>
+<p align='center'><img src="https://user-images.githubusercontent.com/32918812/205549744-c5211acc-f243-4d66-99bc-f2cdca238f14.png" alt="gunBack" /></p>
 <p align='center'>Fig 2. Back/Details view of the 2-Sided Gun Card.</p>
 
-<p align='center'><img src="https://user-images.githubusercontent.com/32918812/183753821-ea56de4d-95e8-4f12-91a8-72dd2814b4f2.png" alt="gunBack" /></p>
+<p align='center'><img src="https://user-images.githubusercontent.com/32918812/183753821-ea56de4d-95e8-4f12-91a8-72dd2814b4f2.png" alt="exampleCard" /></p>
 <p align='center'>Fig 3. Front/Back of a printed card.</p>
 
 ## Note on PDF Viewers
@@ -40,8 +40,10 @@ installer package to grab is <code>qpdf-11.1.1-mingw64.exe</code> for Windows 10
 <p align='center'>Fig 4. Compression gained by QPDF.</p>
 
 ## FoundryVTT Support
-This LootGenerator has support for outputting files to import into Eronth's <a href="https://github.com/eronth/bunkers-and-badasses">BnB FoundryVTT</a> system!
-There is a checkbox in the program that outputs a .JSON file that the <code>Import Data</code> function on Items recognizes. The files are stored in <code>api/foundryVTT/outputs/guns/</code>.
+This LootGenerator has support for outputting files to import into Eronth's 
+<a href="https://github.com/eronth/bunkers-and-badasses">BnB FoundryVTT</a> system!
+There is a checkbox in the program that outputs a .JSON file that the <code>Import Data</code> function on Items recognizes. 
+The files are stored in <code>api/foundryVTT/outputs/</code>.
 
 <p align='center'><img src="https://user-images.githubusercontent.com/32918812/197358814-5445cb01-0b36-42bc-b773-5d57d9df701b.png" alt="gunBack" /></p>
 <p align='center'>Fig 5. Process of importing items into FoundryVTT.</p>
@@ -52,7 +54,9 @@ There is a checkbox in the program that outputs a .JSON file that the <code>Impo
   │
   ├── main.py           - Entrypoint for the PyQT local application
   ├── requirements      - Automatically installs needed pypi packages
-  |
+  │
+  ├── api/
+  │   └── foundryVTT/   - FoundryVTT folder and output files
   ├── app/
   │   ├── GunTab.py     - PyQt tab dedicated to Gun display
   │   └── ...           - Tabs for relics, shields, etc.
@@ -70,7 +74,8 @@ There is a checkbox in the program that outputs a .JSON file that the <code>Impo
   │   ├── guns/         - Tables dedicated to gun generation
   │   ├── images/       - Tables that have URL PNG links to gun art from all Borderland games
   │   └── misc/         - Holds the tables for misc objects (shields, grenades, etc)
-  └── tests/
+  │── tests/
+  └────
 ```
   
 ## Custom Additions:

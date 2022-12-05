@@ -35,3 +35,4 @@ class ShieldImage:
         response = requests.get(url, stream=True)
         img = Image.open(response.raw)
         img.save(self.basedir + 'output/shields/temporary_shield_image.png')
+        return url

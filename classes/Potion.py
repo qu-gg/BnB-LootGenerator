@@ -10,7 +10,8 @@ from classes.json_reader import get_file_data
 
 
 class Potion:
-    def __init__(self, base_dir, potion_id=None):
+    def __init__(self, base_dir, potion_images,
+                 potion_id=None, art_path=None):
         """ Handles generating a potion, modified to specifics by user info """
         # Load in potion data
         potion_data = get_file_data(base_dir + 'resources/misc/potions/potion.json')
@@ -80,6 +81,26 @@ class Potion:
             self.effect = self.effect.replace("x", self.elements.get(randint(1, 6)))
         if self.name == "Stat Potion":
             self.effect = self.effect.replace("x", self.stats.get(randint(1, 4)))
+
+        # Derive rarity of potion based on name (all base are common)
+        self.rarity = "common"
+        if "common" in self.name.lower():
+            self.rarity = "common"
+        elif "uncommon" in self.name.lower():
+            self.rarity = "uncommon"
+        elif "rare" in self.name.lower():
+            self.rarity = "rare"
+        elif "epic" in self.name.lower():
+            self.rarity = "epic"
+        elif "legendary" in self.name.lower():
+            self.rarity = "legendary"
+
+        # Set file art path; sample if not given
+        self.art_path = ""
+        if art_path not in ["", None]:
+            self.art_path = art_path
+        else:
+            self.art_path = potion_images.sample_potion_image()
 
     def check_tina_range(self, potion_id):
         """

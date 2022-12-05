@@ -1,0 +1,7 @@
+{
+  "common": 100,
+  "uncommon": 250,
+  "rare": 500,
+  "epic": 1000,
+  "legendary": 2500
+}

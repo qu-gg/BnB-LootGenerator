@@ -7,12 +7,18 @@ Class to generate the PDF of the BnB Card Design for a given Shield.
 import os
 import fitz
 import pdfrw
+import requests
+from PIL import Image
 
 
 class ShieldPDF:
-    def __init__(self, base_dir):
+    def __init__(self, base_dir, statusbar, shield_images):
         # Base executable directory
         self.base_dir = base_dir
+        self.statusbar = statusbar
+
+        # Image Classes
+        self.shield_images = shield_images
 
         # KEY Names for PDF
         self.ANNOT_KEY = '/Annots'
@@ -32,7 +38,19 @@ class ShieldPDF:
             "Effect": ('/Helvetica-Bold 0 Tf 0 g', 1),
         }
 
-    def fill_pdf(self, input_pdf_path, output_pdf_path, data_dict):
+        # File paths for the guild icon images
+        self.guild_icon_paths = {
+            "Ashen": "ASHEN.png",
+            "Alas!": "ALAS.png",
+            "Dahlia": "DAHLIA.png",
+            "Feriore": "FERIORE.png",
+            "Malefactor": "MALEFACTOR.png",
+            "Pangoblin": "PANGOBLIN.png",
+            "Stoker": "STOKER.png",
+            "Torgue": "TORGUE.png"
+        }
+
+    def fill_pdf(self, input_pdf_path, output_pdf_path, data_dict, form_check):
         """
         Handles filling in the form fields of a given gun card PDF template with information
         from the generated gun
@@ -70,8 +88,9 @@ class ShieldPDF:
                                 )
 
                                 # Change from fillable to static text
-                                annotation[self.PARENT_KEY].update(pdfrw.PdfDict(Ff=1))
-                                annotation.update(pdfrw.PdfDict(Ff=1))
+                                if form_check is False:
+                                    annotation[self.PARENT_KEY].update(pdfrw.PdfDict(Ff=1))
+                                    annotation.update(pdfrw.PdfDict(Ff=1))
 
                                 # Update the AP of this annotation to nothing
                                 annotation[self.PARENT_KEY].update(pdfrw.PdfDict(AP=''))
@@ -80,7 +99,7 @@ class ShieldPDF:
         template_pdf.Root.AcroForm.update(pdfrw.PdfDict(NeedAppearances=pdfrw.PdfObject('true')))  # NEW
         pdfrw.PdfWriter().write(output_pdf_path, template_pdf)
 
-    def add_image_to_pdf(self, pdf_path, out_path, image, position):
+    def add_image_to_pdf(self, pdf_path, image, position):
         """
         Handles adding an image to a Pdf through the library PyMuPDF. Essentially layers two pages (page and image as a page)
         onto each other before compressing to one page
@@ -97,13 +116,25 @@ class ShieldPDF:
             position['x1'], position['y1']),
             filename=image
         )
-        file_handle.save(out_path)
 
-    def generate_shield_pdf(self, output_name, shield, shield_images):
+        temp_path = f'{self.base_dir}output/shields/temp.pdf'
+
+        # Save output path as same name
+        file_handle.save(temp_path)
+        file_handle.close()
+
+        # Clean up old pdf_path
+        os.remove(pdf_path)
+        os.rename(temp_path, pdf_path)
+
+    def generate_shield_pdf(self, output_name, shield, form_check):
         """
         Handles generating a Gun Card PDF filled out with the information from the generated gun
         :param output_name: name of the output PDF to save
         """
+        # Output of the generated PDF
+        output_path = f'{self.base_dir}output/shields/{output_name}.pdf'
+
         # Build up the effect string
         effect_str = ""
         for idx, word in enumerate(shield.effect.split(" ")):
@@ -122,42 +153,44 @@ class ShieldPDF:
         }
 
         # Fill the PDF with the given information
-        self.fill_pdf(self.base_dir + 'resources/ShieldTemplate.pdf',
-                      self.base_dir + 'output/shields/' + output_name + '_temp.pdf', data_dict)
-
-        # Get a shield image sample
-        shield_images.sample_shield_image()
+        self.fill_pdf(self.base_dir + 'resources/ShieldTemplate.pdf', output_path, data_dict, form_check)
 
         # Apply shield art to shield card
         position = {'page': 1, 'x0': 140, 'y0': 150, 'x1': 376, 'y1': 406}
-        self.add_image_to_pdf(
-            self.base_dir + 'output/shields/' + output_name + '_temp.pdf',
-            self.base_dir + 'output/shields/' + output_name + '_temp2.pdf',
-            self.base_dir + 'output/shields/temporary_shield_image.png',
-            position
-        )
+        art_success = True
+
+        # Try local path first
+        try:
+            self.add_image_to_pdf(output_path, shield.shield_art_path, position)
+        except:
+            art_success = False
+
+        # Then try URL on failure
+        if art_success is False:
+            try:
+                # Get image and then save locally temporarily
+                response = requests.get(shield.shield_art_path, stream=True)
+                img = Image.open(response.raw)
+                img.save(self.base_dir + 'output/shields/temporary_shield_image.png')
+                self.add_image_to_pdf(output_path, self.base_dir + 'output/shields/temporary_shield_image.png', position)
+                art_success = True
+            except:
+                self.statusbar.clearMessage()
+                self.statusbar.showMessage("Invalid URL or filepath when trying to open, defaulting to normal image!", 5000)
+                art_success = False
+
+        # If no URL/File given or invalid paths, then sample a gun
+        if art_success is False:
+            self.shield_images.sample_shield_image()
+            self.add_image_to_pdf(output_path, self.base_dir + 'output/shields/temporary_shield_image.png', position)
 
         # Apply guild icon to gun card
-        guild_icon_paths = {
-            "Ashen": "ASHEN.png",
-            "Alas!": "ALAS.png",
-            "Dahlia": "DAHLIA.png",
-            "Feriore": "FERIORE.png",
-            "Malefactor": "MALEFACTOR.png",
-            "Pangoblin": "PANGOBLIN.png",
-            "Stoker": "STOKER.png",
-            "Torgue": "TORGUE.png"
-        }
-
         position = {'page': 1, 'x0': 300, 'y0': 45, 'x1': 425, 'y1': 75}
-        self.add_image_to_pdf(
-            self.base_dir + 'output/shields/' + output_name + '_temp2.pdf',
-            self.base_dir + 'output/shields/' + output_name + '.pdf',
-            self.base_dir + 'resources/images/guild_icons/{}'.format(guild_icon_paths.get(shield.guild)),
-            position
-        )
+        self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/guild_icons/{self.guild_icon_paths.get(shield.guild)}", position)
 
-        # Remove old files
-        os.remove(self.base_dir + "output/shields/" + output_name + '_temp.pdf')
-        os.remove(self.base_dir + "output/shields/" + output_name + '_temp2.pdf')
-        os.remove(self.base_dir + "output/shields/temporary_shield_image.png")
+        # Try PDF Compression via QPDF. Requires user install to function.
+        if os.path.exists('C:/Program Files/qpdf 11.1.1/bin/qpdf.exe'):
+            os.system(f'C:\\"Program Files"\\"qpdf 11.1.1"\\bin\\qpdf.exe --no-warn --flatten-annotations=all "{output_path}" "{output_path[:-4]}.compressed.pdf"')
+            if os.path.exists(f"{output_path[:-4]}.compressed.pdf"):
+                os.remove(f"{output_path}")
+                os.rename(f"{output_path[:-4]}.compressed.pdf", f"{output_path[:-4]}.pdf")

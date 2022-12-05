@@ -10,11 +10,13 @@ from classes.json_reader import get_file_data
 
 
 class Relic:
-    def __init__(self, base_dir, name='', relic_id="Random", relic_type='', rarity="Random",
-                 effect='', class_id="Random", class_effect=''):
+    def __init__(self, base_dir, relic_images,
+                 name='', relic_id="Random", relic_type='', rarity="Random",
+                 effect='', class_id="Random", class_effect='', art_path=None):
         """ Handles generating a relic, modified to specifics by user info """
         # Load in relic data
         relic_data = get_file_data(base_dir + 'resources/misc/relics/relic.json')
+        relic_cost = get_file_data(base_dir + 'resources/misc/relics/relic_cost.json')
         relic_class = get_file_data(base_dir + 'resources/misc/relics/relic_class.json')
         relic_names = get_file_data(base_dir + 'resources/misc/relics/relic_lexicon.json')
 
@@ -63,6 +65,7 @@ class Relic:
 
         # Relic Rarity
         self.rarity = rarity if rarity != "Random" else relic_dict['rarity']
+        self.rarity = self.rarity.lower()
 
         # Effect
         self.effect = effect if effect != '' else relic_dict['effect']
@@ -72,6 +75,16 @@ class Relic:
 
         # Class ID (which class)
         self.class_id = class_id if class_id != "Random" else relic_class[choice(list(relic_class.keys()))]
+
+        # Cost of relic
+        self.cost = relic_cost[self.rarity]
+
+        # Set file art path; sample if not given
+        self.art_path = ""
+        if art_path not in ["", None]:
+            self.art_path = art_path
+        else:
+            self.art_path = relic_images.sample_relic_image()
 
     def get_relic_tier(self, roll, relic_data):
         """

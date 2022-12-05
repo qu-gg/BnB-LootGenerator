@@ -1,20 +1,23 @@
 {
-  "name": "",
+  "name": "EXAMPLE",
   "type": "gun",
-  "img": "",
+  "img": "icons/svg/item-bag.svg",
   "system": {
     "description": "",
     "effect": "",
-    "level": 0,
+    "level": 1,
     "special": {
       "overrideType": ""
     },
     "isLoot": true,
+    "quantity": 1,
+    "cost": 0,
     "guild": "",
+    "guildBonus": "",
     "rarity": {
-      "name": "",
-      "value": "",
-      "colorValue": ""
+      "name": "Common",
+      "value": "common",
+      "colorValue": "#a5a49f"
     },
     "carried": true,
     "equipped": false,
@@ -24,63 +27,43 @@
     "elements": {
       "kinetic": {
         "enabled": false,
-        "damage": "",
-        "color": "rgb(76, 76, 76)",
-        "label": "Kinetic"
+        "damage": ""
       },
       "incendiary": {
         "enabled": false,
-        "damage": "",
-        "color": "rgb(213, 59, 49)",
-        "label": "Incendiary"
+        "damage": ""
       },
       "shock": {
         "enabled": false,
-        "damage": "",
-        "color": "rgb(113, 148, 205)",
-        "label": "Shock"
+        "damage": ""
       },
       "corrosive": {
         "enabled": false,
-        "damage": "",
-        "color": "rgb(141, 157, 62)",
-        "label": "Corrosive"
+        "damage": ""
       },
       "explosive": {
         "enabled": false,
-        "damage": "",
-        "color": "rgb(234, 70, 134)",
-        "label": "Explosive"
+        "damage": ""
       },
       "radiation": {
         "enabled": false,
-        "damage": "",
-        "color": "rgb(228, 170, 22)",
-        "label": "Radiation"
+        "damage": ""
       },
       "cryo": {
         "enabled": false,
-        "damage": "",
-        "color": "rgb(18, 152, 185)",
-        "label": "Cryo"
+        "damage": ""
       },
       "incendiation": {
         "enabled": false,
-        "damage": "",
-        "color": "rgb(167, 78, 101)",
-        "label": "Incendiation"
+        "damage": ""
       },
       "corroshock": {
         "enabled": false,
-        "damage": "",
-        "color": "rgb(73, 125, 135)",
-        "label": "Corroshock"
+        "damage": ""
       },
       "crysplosive": {
         "enabled": false,
-        "damage": "",
-        "color": "rgb(115, 105, 160)",
-        "label": "Crysplosive"
+        "damage": ""
       }
     },
     "weilded": false,
@@ -106,7 +89,48 @@
         "crits": 0
       }
     },
-    "damage": "",
+    "bonusElements": {
+      "kinetic": {
+        "enabled": false,
+        "damage": ""
+      },
+      "incendiary": {
+        "enabled": false,
+        "damage": ""
+      },
+      "shock": {
+        "enabled": false,
+        "damage": ""
+      },
+      "corrosive": {
+        "enabled": false,
+        "damage": ""
+      },
+      "explosive": {
+        "enabled": false,
+        "damage": ""
+      },
+      "radiation": {
+        "enabled": false,
+        "damage": ""
+      },
+      "cryo": {
+        "enabled": false,
+        "damage": ""
+      },
+      "incendiation": {
+        "enabled": false,
+        "damage": ""
+      },
+      "corroshock": {
+        "enabled": false,
+        "damage": ""
+      },
+      "crysplosive": {
+        "enabled": false,
+        "damage": ""
+      }
+    },
     "range": 0,
     "bonusCritDmg": 0,
     "statMods": {
@@ -118,8 +142,7 @@
     "hitBonus": 0,
     "isSplash": false,
     "overheat": "",
-    "bonus": "",
-    "guildBonus": ""
+    "bonus": ""
   },
   "effects": [],
   "flags": {
@@ -127,15 +150,15 @@
       "world": "bnb-testing",
       "system": "bunkers-and-badasses",
       "coreVersion": "10.286",
-      "systemVersion": "0.2.0"
+      "systemVersion": "0.3.5"
     }
   },
   "_stats": {
     "systemId": "bunkers-and-badasses",
-    "systemVersion": "0.2.0",
+    "systemVersion": "0.3.5",
     "coreVersion": "10.286",
-    "createdTime": 1665436860787,
-    "modifiedTime": 1665436917766,
+    "createdTime": 1670183974961,
+    "modifiedTime": 1670183974961,
     "lastModifiedBy": "EbqGN0VlirtxVP9W"
   }
 }

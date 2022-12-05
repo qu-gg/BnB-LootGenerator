@@ -24,7 +24,7 @@ from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget,
 
 
 class GunTab(QWidget):
-    def __init__(self, basedir, statusbar):
+    def __init__(self, basedir, statusbar, foundry_translator):
         super(GunTab, self).__init__()
 
         # Load classes
@@ -32,11 +32,11 @@ class GunTab(QWidget):
         self.statusbar = statusbar
 
         # PDF and Image Classes
-        self.gun_pdf = GunPDF(self.basedir, self.statusbar)
         self.gun_images = GunImage(self.basedir)
+        self.gun_pdf = GunPDF(self.basedir, self.statusbar, self.gun_images)
 
         # API Classes
-        self.foundry_translator = FoundryTranslator(self.basedir, self.statusbar)
+        self.foundry_translator = foundry_translator
 
         ###################################
         ###  BEGIN: Base Stats Grid     ###
@@ -270,7 +270,7 @@ class GunTab(QWidget):
         base_stats_layout.addWidget(self.form_fill_check, idx, 1)
         idx += 1
 
-        # Whether to save the PDF as form-fillable still
+        # Whether to use the single page or 2-page PDF design
         form_design_label = QLabel("Use 2-Page Design:")
         form_design_label.setStatusTip("Chooses whether to use the single card or two page card designs for output.")
         base_stats_layout.addWidget(form_design_label, idx, 0)
