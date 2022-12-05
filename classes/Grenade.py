@@ -10,7 +10,9 @@ from classes.json_reader import get_file_data
 
 
 class Grenade:
-    def __init__(self, base_dir, name='', guild="Random", tier="Random", grenade_type="", damage="", effect=""):
+    def __init__(self, base_dir, grenade_images,
+                 name='', guild="Random", tier="Random",
+                 grenade_type="", damage="", effect="", art_path=None):
         """ Handles generating a grenade, modified to specifics by user info """
         # Load in grenade data
         grenade_data = get_file_data(base_dir + 'resources/misc/grenades/grenade.json')
@@ -53,3 +55,10 @@ class Grenade:
         if self.guild == "Malefactor" and effect == "":
             elements = list(get_file_data('resources/elements/elemental_type.json').keys())
             self.effect = self.effect.replace("xx", choice(elements).title())
+
+        # Set file art path; sample if not given
+        self.art_path = ""
+        if art_path not in ["", None]:
+            self.art_path = art_path
+        else:
+            self.art_path = grenade_images.sample_grenade_image()

@@ -59,7 +59,7 @@ class Window(QMainWindow):
         self.tabMenu.setTabText(3, "Potions")
 
         # Grenade Tab
-        self.grenade_tab = GrenadeTab(basedir)
+        self.grenade_tab = GrenadeTab(basedir, self.statusbar, self.foundry_translator)
         self.tabMenu.addTab(self.grenade_tab.get_tab(), "Grenade")
         self.tabMenu.setTabText(4, "Grenades")
 

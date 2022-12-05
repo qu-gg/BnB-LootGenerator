@@ -34,3 +34,4 @@ class GrenadeImage:
         response = requests.get(url, stream=True)
         img = Image.open(response.raw)
         img.save(self.basedir + 'output/grenades/temporary_grenade_image.png')
+        return url

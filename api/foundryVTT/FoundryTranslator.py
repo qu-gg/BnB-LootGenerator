@@ -193,8 +193,6 @@ class FoundryTranslator:
             template["system"]["elements"][resistance_element]["enabled"] = True
             template["system"]["elements"][resistance_element]["damage"] = resistance_die
 
-        # TODO - Figure out Max Health, HP Regen fill-out
-
         # Saving shield json and image to folder
         with open(f"{self.basedir}api/foundryVTT/outputs/shields/{output_name}.json", 'w') as f:
             json.dump(template, f)
@@ -233,4 +231,3 @@ class FoundryTranslator:
         # Saving relic json and image to folder
         with open(f"{self.basedir}api/foundryVTT/outputs/relics/{output_name}.json", 'w') as f:
             json.dump(template, f)
-
