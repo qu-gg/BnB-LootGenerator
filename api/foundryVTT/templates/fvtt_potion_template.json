@@ -1,0 +1,44 @@
+{
+  "name": "",
+  "type": "potion",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "",
+    "effect": "",
+    "level": 1,
+    "special": {
+      "overrideType": ""
+    },
+    "isLoot": true,
+    "quantity": 1,
+    "cost": 0,
+    "guild": "",
+    "rarity": {
+      "name": "Common",
+      "value": "common",
+      "colorValue": "#a5a49f"
+    },
+    "carried": true,
+    "equipped": false,
+    "redText": "",
+    "redTextEffect": "",
+    "redTextEffectBM": ""
+  },
+  "effects": [],
+  "flags": {
+    "exportSource": {
+      "world": "bnb-testing",
+      "system": "bunkers-and-badasses",
+      "coreVersion": "10.286",
+      "systemVersion": "0.3.5"
+    }
+  },
+  "_stats": {
+    "systemId": "bunkers-and-badasses",
+    "systemVersion": "0.3.5",
+    "coreVersion": "10.286",
+    "createdTime": 1670209769560,
+    "modifiedTime": 1670209775877,
+    "lastModifiedBy": "EbqGN0VlirtxVP9W"
+  }
+}

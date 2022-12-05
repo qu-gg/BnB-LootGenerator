@@ -54,7 +54,7 @@ class Window(QMainWindow):
         self.tabMenu.setTabText(2, "Relics")
 
         # Potion Tab
-        self.potion_tab = PotionTab(basedir)
+        self.potion_tab = PotionTab(basedir, self.statusbar, self.foundry_translator)
         self.tabMenu.addTab(self.potion_tab.get_tab(), "Potion")
         self.tabMenu.setTabText(3, "Potions")
 

@@ -290,3 +290,34 @@ class FoundryTranslator:
         # Saving grenade json and image to folder
         with open(f"{self.basedir}api/foundryVTT/outputs/grenades/{output_name}.json", 'w') as f:
             json.dump(template, f)
+
+    def export_potion(self, potion, output_name):
+        """
+        Handles exporting the generated potion in the FoundryVTT JSON format, saving both the JSON and gun art image
+        in a folder output under api/foundryVTT/outputs/potions/
+        :param potion: potion object
+        :param output_name: output filename assigned to the object
+        """
+        # Loading in the template for gun items
+        with open(f"{self.basedir}api/foundryVTT/templates/fvtt_potion_template.json", 'r') as f:
+            template = json.load(f)
+
+        """ Foundry display information """
+        template["name"] = potion.name
+        template["img"] = potion.art_path
+
+        """ Potion Effect + Description """
+        template["system"]["effect"] = potion.effect
+        template["system"]["description"] = potion.effect
+
+        """ Rarity """
+        template["system"]["rarity"]["name"] = potion.rarity.title()
+        template["system"]["rarity"]["value"] = potion.rarity
+        template["system"]["rarity"]["colorValue"] = self.rarity_colors[potion.rarity]
+
+        """ Cost """
+        template["system"]["cost"] = potion.cost
+
+        # Saving potion json and image to folder
+        with open(f"{self.basedir}api/foundryVTT/outputs/potions/{output_name}.json", 'w') as f:
+            json.dump(template, f)
