@@ -231,3 +231,62 @@ class FoundryTranslator:
         # Saving relic json and image to folder
         with open(f"{self.basedir}api/foundryVTT/outputs/relics/{output_name}.json", 'w') as f:
             json.dump(template, f)
+
+    def export_grenade(self, grenade, output_name):
+        """
+        Handles exporting the generated Grenade in the FoundryVTT JSON format, saving both the JSON and gun art image
+        in a folder output under api/foundryVTT/outputs/grenades/
+        :param grenade: grenade object
+        :param output_name: output filename assigned to the object
+        """
+        # Loading in the template for gun items
+        with open(f"{self.basedir}api/foundryVTT/templates/fvtt_grenade_template.json", 'r') as f:
+            template = json.load(f)
+
+        """ Foundry display information """
+        template["name"] = grenade.name
+        template["img"] = grenade.art_path
+
+        """ Item Level """
+        template["system"]["level"] = int(grenade.tier)
+
+        """ Grenade Effect + Description """
+        template["system"]["effect"] = grenade.effect
+        template["system"]["description"] = grenade.effect
+
+        """ Damage """
+        template["system"]["damage"] = grenade.damage
+
+        """ Rarity """
+        template["system"]["rarity"]["name"] = self.tier_to_rarity[grenade.tier].title()
+        template["system"]["rarity"]["value"] = self.tier_to_rarity[grenade.tier]
+        template["system"]["rarity"]["colorValue"] = self.rarity_colors[self.tier_to_rarity[grenade.tier]]
+
+        """ Cost """
+        template["system"]["cost"] = grenade.cost
+
+        """ Guild information """
+        template["system"]["guild"] = grenade.guild.title()
+
+        """ Elemental information """
+        if grenade.element is not None:
+            template["system"]["elements"][grenade.element]["enabled"] = True
+            template["system"]["elements"][grenade.element]["damage"] = " "
+
+        """ Detonation """
+        if grenade.type == "Jumping":
+            template["system"]["detonations"] = 2
+
+        if grenade.type == "MIRV":
+            template["system"]["detonations"] = 3
+
+        """ Regain/Recharge Mechanics """
+        if "gain health" in grenade.effect.lower():
+            template["system"]["gainHealth"] = True
+
+        if "recharges shields" in grenade.effect.lower():
+            template["system"]["gainShield"] = True
+
+        # Saving grenade json and image to folder
+        with open(f"{self.basedir}api/foundryVTT/outputs/grenades/{output_name}.json", 'w') as f:
+            json.dump(template, f)

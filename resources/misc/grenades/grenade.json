@@ -184,7 +184,7 @@
     },
     "5": {
       "type": "Proximity Mine",
-      "effect": "",
+      "effect": "Wont detonate until target is adjacent.",
       "damage": "5d8"
     }
   },

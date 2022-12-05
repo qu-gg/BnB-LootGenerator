@@ -321,6 +321,10 @@ class GrenadeTab(QWidget):
         # Generate the PDF
         self.grenade_pdf.generate_grenade_pdf(output_name, grenade, grenade_form_check)
 
+        # FoundryVTT Check
+        if self.foundry_export_check.isChecked() is True:
+            self.foundry_translator.export_grenade(grenade, output_name)
+
         # Update the label and pdf name
         self.output_grenade_pdf_label.setText("Saved to output/grenades/{}.pdf!".format(output_name))
         self.current_grenade_pdf = output_name
@@ -363,6 +367,10 @@ class GrenadeTab(QWidget):
 
             # Generate the PDF
             self.grenade_pdf.generate_grenade_pdf(output_name, grenade, grenade_form_check)
+
+            # FoundryVTT Check
+            if self.foundry_export_check.isChecked() is True:
+                self.foundry_translator.export_grenade(grenade, output_name)
 
         # Update the label and pdf name
         self.grenade_multi_output_label.setText("Saved {} potions to 'output/grenades/'!".format(number_gen))
