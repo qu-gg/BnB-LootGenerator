@@ -475,7 +475,7 @@ class GunTab(QWidget):
                   gun_art=art_filepath)
 
         # Generate the PDF output name as the gun name
-        output_name = f"{gun.type.title().replace('_', ' ')}_{gun.rarity.title()}_{gun.guild.title()}_{gun.name}".replace(' ', '') \
+        output_name = f"{gun.type.title().replace('_', ' ')}_Level{int(gun.item_level.split('-')[0])}_{gun.rarity.title()}_{gun.guild.title()}_{gun.name}".replace(' ', '') \
             if self.pdf_line_edit.text() == "" else self.pdf_line_edit.text()
 
         # Check if it is already in use
@@ -559,7 +559,7 @@ class GunTab(QWidget):
                       gun_art=art_filepath)
 
             # Generate the PDF output name as the gun name
-            output_name = f"{gun.type.title().replace('_', ' ')}_{gun.rarity.title()}_{gun.guild.title()}_{gun.name}".replace(' ', '')
+            output_name = f"{gun.type.title().replace('_', ' ')}_Level{int(gun.item_level.split('-')[0])}_{gun.rarity.title()}_{gun.guild.title()}_{gun.name}".replace(' ', '')
 
             # Check if it is already in use
             if output_name == self.current_pdf:

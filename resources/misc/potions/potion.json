@@ -46,7 +46,7 @@
   },
   "46-50":{
     "name": "Twofer Potion",
-    "info": "Gain 1d8 +3 Health and Shields.",
+    "info": "Gain 1d8+3 Health and Shields.",
     "cost": 70
   },
   "51-55":{

@@ -129,12 +129,23 @@ class GunImage:
         for temp in temp_data:
             gun_data.extend(temp)
 
-        # In the event of no images, just output the same image (even if it doesn't make sense)
-        if len(gun_data) == 0:
-            url = "https://global-uploads.webflow.com/5ff36780a1084987868ce198/618fd0cdd6736d4a1bbf5fbe_9-Volt%20(SMG-BL3).png"
+        # In the event of no gun images for this combo, sample a random image of that type from any manu
+        while len(gun_data) == 0:
+            _, val = random.choice(list(self.manu_map.items()))
+
+            # For each given gun type, get its filtered data and concatenate
+            temp_data = []
+            for entry in gun_type:
+                temp_data.append(
+                    self.filter_guns_data(self.guns_data, entry, val)
+                )
+
+            gun_data = []
+            for temp in temp_data:
+                gun_data.extend(temp)
+
         # Get a sample and its url link
-        else:
-            url = random.sample(gun_data, 1)[0]['image_link']
+        url = random.sample(gun_data, 1)[0]['image_link']
 
         # Get image and then save locally temporarily
         response = requests.get(url, stream=True)

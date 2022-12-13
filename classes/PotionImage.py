@@ -28,6 +28,11 @@ class PotionImage:
         with open(basedir + "resources/images/potion_images/bltps_ozkits.json", "r") as f:
             self.potion_data = json.load(f)
 
+        # Manually add potion images from the sourcebook
+        self.potion_data.append({"name": "bnb_redpotion", "image_link": "https://i.imgur.com/tZLchwQ.png"})
+        self.potion_data.append({"name": "bnb_bluepotion", "image_link": "https://i.imgur.com/4QiQ1MV.png"})
+        self.potion_data.append({"name": "bnb_purplepotion", "image_link": "https://i.imgur.com/azF5maH.png"})
+
     def sample_potion_image(self):
         """ Handles sampling and downloading a relevant potion image from the games """
         url = random.sample(self.potion_data, 1)[0]['image_link']

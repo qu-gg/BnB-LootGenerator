@@ -72,7 +72,7 @@ class RelicTab(QWidget):
         idx += 1
 
         # Relic Type
-        self.relic_type_edit = add_stat_to_layout(relic_stats_layout, "Relic Type:", idx, placeholder="Random")
+        self.relic_type_edit = add_stat_to_layout(relic_stats_layout, "Relic Type:", idx)
         self.relic_type_edit.setToolTip("Either manually enter a relic type or let it be rolled.")
         idx += 1
 
@@ -96,12 +96,12 @@ class RelicTab(QWidget):
         idx += 1
 
         # Relic Effect
-        self.relic_effect_edit = add_stat_to_layout(relic_stats_layout, "Effect:", idx, placeholder="Random")
+        self.relic_effect_edit = add_stat_to_layout(relic_stats_layout, "Effect:", idx)
         self.relic_effect_edit.setToolTip("Either manually enter a relic effect or let it be rolled.")
         idx += 1
 
         # Relic Class Effect
-        self.relic_class_effect_edit = add_stat_to_layout(relic_stats_layout, "Class Effect:", idx, placeholder="Random")
+        self.relic_class_effect_edit = add_stat_to_layout(relic_stats_layout, "Class Effect:", idx)
         self.relic_class_effect_edit.setToolTip("Either manually enter a relic class effect or let it be rolled.")
         idx += 1
 

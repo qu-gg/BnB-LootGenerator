@@ -59,7 +59,7 @@ class GrenadeTab(QWidget):
         idx += 1
 
         # grenade Name
-        self.grenade_line_edit = add_stat_to_layout(grenade_stats_layout, "Grenade Name:", idx)
+        self.grenade_line_edit = add_stat_to_layout(grenade_stats_layout, "Grenade Name:", idx, placeholder="Random")
         idx += 1
 
         # grenade Guild
