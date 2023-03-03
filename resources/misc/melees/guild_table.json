@@ -1,0 +1,42 @@
+{
+    "valora": {
+        "tiers": {
+            "common": "+1d4 Melee Damage, -3 Melee ACC Mod.",
+            "uncommon": "+1d6 Melee Damage, -2 Melee ACC Mod.",
+            "rare": "+1d8 Melee Damage, -1 Melee ACC Mod.",
+            "epic": "+1d10 Melee Damage.",
+            "legendary": "+1d12 Melee Damage."
+        },
+        "element_roll": true
+    },
+    "swifft": {
+        "tiers": {
+            "common": "Extra Melee Attack, -3 Melee Damage.",
+            "uncommon": "Extra Melee Attack, -2 Melee Damage.",
+            "rare": "Extra Melee Attack, -1 Melee Damage.",
+            "epic": "Extra Melee Attack.",
+            "legendary": "Extra Melee Attack, Extra Melee Attack."
+        },
+        "element_roll": true
+    },
+    "kleave": {
+        "tiers": {
+            "common": "-3 Damage, Crits on a 19-20 on the d20.",
+            "uncommon": "-2 Damage, Crits on a 18-20 on the d20.",
+            "rare": "-1 Damage, Crits on a 17-20 on the d20.",
+            "epic": "Crits on a 16-20 on the d20, +1 Crit Damage.",
+            "legendary": "Crits on a 15-20 on the d20, +2 Crit Damage."
+        },
+        "element_roll": true
+    },
+    "bonk!": {
+        "tiers": {
+            "common": "+3 Melee Damage, all Melee Crits are 1d8.",
+            "uncommon": "+4 Melee Damage, all Melee Crits are 1d8.",
+            "rare": "+5 Melee Damage, all Melee Crits are 1d8.",
+            "epic": "+6 Melee Damage, all Melee Crits are 1d8.",
+            "legendary": "+7 Melee Damage, all Melee Crits are 1d8."
+        },
+        "element_roll": true
+    }
+}
