@@ -1,0 +1,34 @@
+{
+    "1-6": {
+        "name": "",
+        "info": ""
+    },
+    "7-8": {
+        "name": "Ancient",
+        "info": "When you deal Melee Damage, roll a d20. On a 20, recover one daily use of your Action Skill."
+    },
+    "9-10": {
+        "name": "Amp'd",
+        "info": "When you deal Melee Damage, your Gun Attacks get +2d4 Damage until the end of your next turn."
+    },
+    "11-12": {
+        "name": "Archmage's",
+        "info": "When you deal Melee Damage, roll a d20, on 20, gain a grenade."
+    },
+    "13-14": {
+        "name": "Caustic",
+        "info": "When you deal Melee Damage, gain +2d4 Elemental Damage until the start of your next Turn"
+    },
+    "15-16": {
+        "name": "Echoing",
+        "info": "Your Melee Attacks gain +1d4 Damage for each Gun Attack you made on the previous Turn.\n"
+    },
+    "17-18": {
+        "name": "Vampiric",
+        "info": "When you deal Melee Damage, gain 1d4 Health, or 1d4 Shield Capacity, whichever is lower."
+    },
+    "19-20": {
+        "name": "Warrior's",
+        "info": "When you deal Melee Damage, gain +1d4 Damage Reduction and +1d4 Melee Damage until the start of your next turn."
+    }
+}

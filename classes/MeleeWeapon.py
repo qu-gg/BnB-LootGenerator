@@ -103,16 +103,20 @@ class MeleeWeapon:
         # Prefix parsing, either Random or Selected
         self.prefix_name = ""
         self.prefix_info = ""
+        prefix_table = get_file_data(base_dir + "resources/misc/melees/prefix.json")
         if prefix == "Random":
-            roll_prefix = str(randint(1, 20))
+            # For melee weapons, common items cannot have prefixes
+            if self.rarity == "common":
+                roll_prefix = 1
+            else:
+                roll_prefix = str(randint(1, 20))
+            prefix = prefix_table.get(self.get_prefix(roll_prefix, prefix_table))
         else:
-            roll_prefix = prefix
+            prefix = prefix_table.get(prefix)
 
-        # TODO: make this melee prefixes
         if prefix != "None":
-            prefix_table = get_file_data(base_dir + "resources/guns/prefix.json").get(roll_prefix)
-            self.prefix_name = prefix_table['name']
-            self.prefix_info = prefix_table['info']
+            self.prefix_name = prefix['name']
+            self.prefix_info = prefix['info']
             self.name = self.prefix_name + ' ' + self.name
 
         # Red Text parsing, depending on the desired tier of randomness
@@ -148,7 +152,7 @@ class MeleeWeapon:
         :return: True if an element roll
         """
         elements, total = 0, 0
-        for key in get_file_data(base_dir + "resources/melees/rarity_table.json").values():
+        for key in get_file_data(base_dir + "resources/guns/rarity_table.json").values():
             for val in key.values():
                 # Check for non-element
                 if type(val) == str and val == rarity:
@@ -173,6 +177,24 @@ class MeleeWeapon:
 
         tier = None
         for key in element_table.keys():
+            lower, upper = [int(i) for i in key.split('-')]
+            if lower <= roll <= upper:
+                tier = key
+
+        return tier
+
+    def get_prefix(self, roll, prefix_table):
+        """
+        Handles getting the prefix in which the roll resides.
+        The tiers are non-uniform and range-based in JSON, so this is an easy solution.
+        :param roll: 1-20 random roll
+        :param prefix_table: loaded in dictionary of prefix.json
+        :return: JSON key of the tier rolled
+        """
+        roll = int(roll)
+
+        tier = None
+        for key in prefix_table.keys():
             lower, upper = [int(i) for i in key.split('-')]
             if lower <= roll <= upper:
                 tier = key

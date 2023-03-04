@@ -19,7 +19,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon, QFont, QPixmap
 from PyQt5 import QAxContainer, QtCore
 from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton,
-                             QCheckBox, QFileDialog, QLineEdit)
+                             QCheckBox, QFileDialog, QLineEdit, QTextEdit)
 
 
 class MeleeTab(QWidget):
@@ -76,7 +76,7 @@ class MeleeTab(QWidget):
         base_stats_layout.addWidget(QLabel("Guild: "), idx, 0)
         self.guild_type_box = QComboBox()
         self.guild_type_box.addItem("Random")
-        for item in get_file_data(basedir + "resources/guns/guild_table.json").keys():
+        for item in get_file_data(basedir + "resources/misc/melees/guild_table.json").keys():
             self.guild_type_box.addItem(item.capitalize())
         base_stats_layout.addWidget(self.guild_type_box, idx, 1)
         idx += 1
@@ -91,13 +91,14 @@ class MeleeTab(QWidget):
         idx += 1
 
         # Prefix: [None, Random, Selection]
-        # TODO: swap this out for melee prefixes
         base_stats_layout.addWidget(QLabel("Prefix: "), idx, 0)
         self.prefix_box = QComboBox()
-        self.prefix_box.addItem("None")
         self.prefix_box.addItem("Random")
-        for pidx, (key, item) in enumerate(get_file_data(basedir + "resources/guns/prefix.json").items()):
-            self.prefix_box.addItem(f"[{pidx + 1}] {item['name']}")
+        for pidx, (key, item) in enumerate(get_file_data(basedir + "resources/misc/melees/prefix.json").items()):
+            if item['name'] == "":
+                self.prefix_box.addItem(f"[{key}] None")
+            else:
+                self.prefix_box.addItem(f"[{key}] {item['name']}")
         self.prefix_box.setStatusTip("Choose whether to add a random Prefix or a specific one")
         base_stats_layout.addWidget(self.prefix_box, idx, 1)
         idx += 1
@@ -124,7 +125,7 @@ class MeleeTab(QWidget):
         idx += 1
 
         # Forcing specific elements to be present
-        element_icon_paths = {
+        self.element_icon_paths = {
             "cryo": "Cryo.png",
             "corrosive": "Corrosion.png",
             "explosive": "Explosive.png",
@@ -136,12 +137,12 @@ class MeleeTab(QWidget):
         # Build a dictionary of button object IDs
         self.element_checkboxes = dict()
         element_buttons = QGridLayout()
-        for i, icon in enumerate(element_icon_paths.keys()):
+        for i, icon in enumerate(self.element_icon_paths.keys()):
             element_checkbox = QCheckBox()
-            element_checkbox.setIcon(QIcon(f"resources/images/element_icons/{element_icon_paths[icon]}"))
+            element_checkbox.setIcon(QIcon(f"resources/images/element_icons/{self.element_icon_paths[icon]}"))
             element_checkbox.setStatusTip(f"Choose whether the {icon.title()} element is always added.")
 
-            if i < len(element_icon_paths.keys()) // 2:
+            if i < len(self.element_icon_paths.keys()) // 2:
                 element_buttons.addWidget(element_checkbox, 0, i)
             else:
                 element_buttons.addWidget(element_checkbox, 1, i % 3)
@@ -245,89 +246,11 @@ class MeleeTab(QWidget):
         ###################################
         ###  START: Melee Display       ###
         ###################################
-        melee_card_group = QGroupBox("Melee Card")
-        melee_card_layout = QGridLayout()
-        melee_card_layout.setAlignment(Qt.AlignTop)
+        self.melee_card_group = QGroupBox("Melee Card")
+        self.melee_card_layout = QGridLayout()
+        self.melee_card_layout.setAlignment(Qt.AlignTop)
 
-        # Index counter for gridlayout across all widgets
-        idx = 0
-
-        # Pixmap for the MeleeWeapon Image
-        self.melee_display = QLabel()
-        self.melee_pixmap = QPixmap("resources/images/slamminsalmon.png").scaled(300, 300, Qt.KeepAspectRatio)
-        self.melee_display.setAlignment(Qt.AlignCenter)
-        self.melee_display.setPixmap(self.melee_pixmap)
-        melee_card_layout.addWidget(self.melee_display, idx, 0, 1, -1)
-        idx += 1
-
-        # Add spacing between groups
-        melee_card_layout.addWidget(QLabel(""), idx, 0)
-        idx += 1
-
-        # Melee Weapon Name
-        self.melee_name = add_stat_to_layout(melee_card_layout, "Name: ", idx)
-        idx += 1
-
-        # Melee Weapon Item Level
-        self.melee_item_level = add_stat_to_layout(melee_card_layout, "Item Level: ", idx)
-        idx += 1
-
-        # Melee Weapon Item Level
-        self.melee_rarity = add_stat_to_layout(melee_card_layout, "Rarity: ", idx)
-        idx += 1
-
-        # Melee Weapon Guild
-        self.melee_guild = add_stat_to_layout(melee_card_layout, "Guild: ", idx)
-        idx += 1
-
-        # Melee Weapon Guild
-        self.melee_guild_effect = add_stat_to_layout(melee_card_layout, "Guild Effect: ", idx)
-        idx += 1
-
-        # Add spacing between groups
-        melee_card_layout.addWidget(QLabel(""), idx, 0)
-        idx += 1
-
-        # Melee Weapon Prefix
-        self.melee_prefix = add_stat_to_layout(melee_card_layout, "Prefix: ", idx)
-        idx += 1
-
-        # Melee Weapon RedText
-        self.melee_redtext_name = add_stat_to_layout(melee_card_layout, "RedText Name: ", idx)
-        idx += 1
-
-        # Melee Weapon Guild
-        self.melee_redtext_effect = add_stat_to_layout(melee_card_layout, "RedText Effect: ", idx)
-        idx += 1
-
-        # Add spacing between groups
-        melee_card_layout.addWidget(QLabel(""), idx, 0)
-        idx += 1
-
-        # Build a dictionary of button object IDs
-        self.melee_element_checkboxes = dict()
-        self.melee_elements = QGridLayout()
-        self.melee_elements.setAlignment(Qt.AlignCenter)
-        for i, icon in enumerate(element_icon_paths.keys()):
-            element_checkbox = QCheckBox()
-            element_checkbox.setIcon(QIcon(f"resources/images/element_icons/{element_icon_paths[icon]}"))
-
-            if i < len(element_icon_paths.keys()) // 2:
-                self.melee_elements.addWidget(element_checkbox, 0, i)
-            else:
-                self.melee_elements.addWidget(element_checkbox, 1, i % 3)
-            self.melee_element_checkboxes[icon] = element_checkbox
-
-        melee_card_layout.addWidget(QLabel("Elements:"), idx, 0, QtCore.Qt.AlignTop)
-        melee_card_layout.addLayout(self.melee_elements, idx, 1, QtCore.Qt.AlignTop)
-        idx += 2
-
-        # Melee Weapon Guild
-        self.melee_element_damage = add_stat_to_layout(melee_card_layout, "Element Die: ", idx)
-        idx += 1
-
-        # Grid layout
-        melee_card_group.setLayout(melee_card_layout)
+        self.melee_card_group.setLayout(self.melee_card_layout)
         ###################################
         ###  END: melee Display           ###
         ###################################
@@ -335,19 +258,19 @@ class MeleeTab(QWidget):
         # Setting appropriate column widths
         base_stats_group.setFixedWidth(300)
         generation_group.setFixedWidth(300)
-        melee_card_group.setFixedWidth(325)
+        self.melee_card_group.setFixedWidth(325)
 
         # Setting appropriate layout heights
         base_stats_group.setFixedHeight(550)
         generation_group.setFixedHeight(300)
-        melee_card_group.setFixedHeight(850)
+        self.melee_card_group.setFixedHeight(850)
 
         # melee Generation Layout
         self.melee_generation_layout = QGridLayout()
         self.melee_generation_layout.setAlignment(Qt.AlignLeft)
         self.melee_generation_layout.addWidget(base_stats_group, 0, 0)
         self.melee_generation_layout.addWidget(generation_group, 1, 0)
-        self.melee_generation_layout.addWidget(melee_card_group, 0, 1, -1, 1)
+        self.melee_generation_layout.addWidget(self.melee_card_group, 0, 1, -1, 1)
 
         self.melee_tab = QWidget()
         self.melee_tab.setLayout(self.melee_generation_layout)
@@ -364,6 +287,15 @@ class MeleeTab(QWidget):
             self.statusbar.showMessage("Filename invalid, select again!", 3000)
         else:
             self.art_filepath.setText(filename)
+
+    def clear_layout(self, layout):
+        if layout is not None:
+            while layout.count():
+                child = layout.takeAt(0)
+                if child.widget() is not None:
+                    child.widget().deleteLater()
+                elif child.layout() is not None:
+                    self.clear_layout(child.layout())
 
     def generate_melee(self):
         """ Handles performing the call to generate a melee given the parameters and updating the melee Card image """
@@ -396,22 +328,136 @@ class MeleeTab(QWidget):
                   element_damage=element_damage, rarity_element=element_roll, selected_elements=selected_elements,
                   prefix=prefix, melee_art=art_filepath)
 
-        # Assign to card
-        self.melee_name.setText(melee.name)
-        self.melee_item_level.setText(melee.item_level)
-        self.melee_rarity.setText(melee.rarity.title())
-        self.melee_guild.setText(melee.guild.title())
-        self.melee_guild_effect.setText(melee.guild_mod)
+        # Clear current melee card
+        self.clear_layout(self.melee_card_layout)
 
-        # TODO: Change this to prefix name and info
-        self.melee_prefix.setText(melee.prefix_name)
-        self.melee_redtext_name.setText(self.redtext_line_edit.text())
-        self.melee_redtext_effect.setText(self.redtext_effect_line_edit.text())
+        # Index counter for gridlayout across all widgets
+        idx = 0
 
-        for element in self.melee_element_checkboxes.keys():
-            if element in melee.element:
-                self.melee_element_checkboxes[element].setChecked(True)
+        # Pixmap for the MeleeWeapon Image
+        melee_display = QLabel()
+        melee_pixmap = QPixmap("resources/images/slamminsalmon.png").scaled(300, 300, Qt.KeepAspectRatio)
+        melee_display.setAlignment(Qt.AlignCenter)
+        melee_display.setPixmap(melee_pixmap)
+        self.melee_card_layout.addWidget(melee_display, idx, 0, 1, -1)
+        idx += 1
+
+        # Add spacing between groups
+        self.melee_card_layout.addWidget(QLabel(""), idx, 0)
+        idx += 1
+
+        # Melee Weapon Name
+        melee_name = add_stat_to_layout(self.melee_card_layout, "Name: ", idx)
+        melee_name.setText(melee.name)
+        idx += 1
+
+        # Melee Weapon Item Level
+        melee_item_level = add_stat_to_layout(self.melee_card_layout, "Item Level: ", idx)
+        melee_item_level.setText(melee.item_level)
+        idx += 1
+
+        # Melee Weapon Item Level
+        melee_rarity = add_stat_to_layout(self.melee_card_layout, "Rarity: ", idx)
+        melee_rarity.setText(melee.rarity.title())
+        idx += 1
+
+        # Melee Weapon Guild
+        melee_guild = add_stat_to_layout(self.melee_card_layout, "Guild: ", idx)
+        melee_guild.setText(melee.guild.title())
+        idx += 1
+
+        # Melee Weapon Guild
+        melee_guild_effect = add_stat_to_layout(self.melee_card_layout, "Guild Effect: ", idx)
+        melee_guild_effect.setText(melee.guild_mod)
+        idx += 1
+
+        # Add spacing between groups
+        self.melee_card_layout.addWidget(QLabel(""), idx, 0)
+        idx += 1
+
+        # Melee Weapon Prefix
+        melee_prefix = add_stat_to_layout(self.melee_card_layout, "Prefix: ", idx)
+        melee_prefix.setText(melee.prefix_name)
+        idx += 1
+
+        # Melee Weapon Prefix Info
+        if melee.prefix_name != "":
+            # If the prefix has information, make it a multi-line TextEdit
+            melee_prefix_effect = QTextEdit()
+
+            cur_chars = 0
+            prefix_info = ""
+            for idx, word in enumerate(melee.prefix_info.split(" ")):
+                cur_chars += len(word)
+                if cur_chars > 25:
+                    prefix_info += "\n"
+                    cur_chars = 0
+
+                prefix_info += f"{word} "
+
+            numOfLinesInText = prefix_info.count("\n") + 2
+            melee_prefix_effect.setFixedHeight(numOfLinesInText * 15)
+            melee_prefix_effect.setFixedWidth(220)
+            melee_prefix_effect.setText(prefix_info)
+
+            self.melee_card_layout.addWidget(QLabel("Prefix Effect: "), idx, 0, numOfLinesInText, 1)
+            self.melee_card_layout.addWidget(melee_prefix_effect, idx, 1, numOfLinesInText, 1)
+            idx += numOfLinesInText
+        else:
+            # Otherwise just make it a blank TextEdit with fixed height and number of lienes
+            numOfLinesInText = 4
+
+            melee_prefix_effect = QTextEdit()
+            melee_prefix_effect.setText("")
+            melee_prefix_effect.setFixedHeight(numOfLinesInText * 15)
+            melee_prefix_effect.setFixedWidth(220)
+
+            self.melee_card_layout.addWidget(QLabel("Prefix Effect: "), idx, 0, numOfLinesInText, 1)
+            self.melee_card_layout.addWidget(melee_prefix_effect, idx, 1, numOfLinesInText, 1)
+            idx += numOfLinesInText
+
+        # Add spacing between groups
+        self.melee_card_layout.addWidget(QLabel(""), idx, 0)
+        idx += 1
+
+        # Melee Weapon RedText
+        melee_redtext_name = add_stat_to_layout(self.melee_card_layout, "RedText Name: ", idx)
+        melee_redtext_name.setText(melee.redtext_name)
+        idx += 1
+
+        # Melee Weapon Guild
+        melee_redtext_effect = add_stat_to_layout(self.melee_card_layout, "RedText Effect: ", idx)
+        melee_redtext_effect.setText(melee.redtext_info)
+        idx += 1
+
+        # Add spacing between groups
+        self.melee_card_layout.addWidget(QLabel(""), idx, 0)
+        idx += 1
+
+        # Build a dictionary of button object IDs
+        melee_element_checkboxes = dict()
+        melee_elements = QGridLayout()
+        melee_elements.setAlignment(Qt.AlignCenter)
+        for i, icon in enumerate(self.element_icon_paths.keys()):
+            element_checkbox = QCheckBox()
+            element_checkbox.setIcon(QIcon(f"resources/images/element_icons/{self.element_icon_paths[icon]}"))
+
+            if i < len(self.element_icon_paths.keys()) // 2:
+                melee_elements.addWidget(element_checkbox, 0, i)
             else:
-                self.melee_element_checkboxes[element].setChecked(False)
+                melee_elements.addWidget(element_checkbox, 1, i % 3)
+            melee_element_checkboxes[icon] = element_checkbox
 
-        self.melee_element_damage.setText(melee.element_bonus)
+        self.melee_card_layout.addWidget(QLabel("Elements:"), idx, 0, QtCore.Qt.AlignTop)
+        self.melee_card_layout.addLayout(melee_elements, idx, 1, QtCore.Qt.AlignTop)
+        idx += 2
+
+        # Set elements to checked
+        for element in melee_element_checkboxes.keys():
+            if element in melee.element:
+                melee_element_checkboxes[element].setChecked(True)
+
+        # Melee Weapon Guild
+        melee_element_damage = add_stat_to_layout(self.melee_card_layout, "Element Die: ", idx)
+        melee_element_damage.setText(melee.element_bonus)
+        idx += 1
