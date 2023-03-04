@@ -6,7 +6,9 @@ Handles the logic and state for the PyQT tab related to melee generation
 """
 import os
 from pathlib import Path
+import requests
 
+from classes.GunImage import GunImage
 from classes.MeleeWeapon import MeleeWeapon
 # from classes.MeleeImage import MeleeImage
 
@@ -15,6 +17,7 @@ from classes.json_reader import get_file_data
 
 from api.foundryVTT.FoundryTranslator import FoundryTranslator
 
+from PIL import Image
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon, QFont, QPixmap
 from PyQt5 import QAxContainer, QtCore
@@ -31,8 +34,7 @@ class MeleeTab(QWidget):
         self.statusbar = statusbar
 
         # PDF and Image Classes
-        # self.melee_images = MeleeImage(self.basedir)
-        # self.melee_pdf = MeleePDF(self.basedir, self.statusbar, self.melee_images)
+        self.melee_images = GunImage(self.basedir)
 
         # API Classes
         self.foundry_translator = foundry_translator
@@ -297,6 +299,18 @@ class MeleeTab(QWidget):
                 elif child.layout() is not None:
                     self.clear_layout(child.layout())
 
+    def split_effect_text(self, initial_string, line_length=32):
+        cur_chars = 0
+        info = ""
+        for idx, word in enumerate(initial_string.split(" ")):
+            cur_chars += len(word)
+            if cur_chars > line_length:
+                info += "\n"
+                cur_chars = len(word)
+
+            info += f"{word} "
+        return info
+
     def generate_melee(self):
         """ Handles performing the call to generate a melee given the parameters and updating the melee Card image """
         # Load in properties that are currently set in the program
@@ -312,6 +326,9 @@ class MeleeTab(QWidget):
         if ']' in prefix:
             prefix = prefix[1:prefix.index("]")]
 
+        redtext_name = self.redtext_line_edit.text()
+        redtext_info = self.redtext_effect_line_edit.text()
+
         color_check = self.rarity_border_check.isChecked()
         art_filepath = self.art_filepath.text()
 
@@ -322,11 +339,10 @@ class MeleeTab(QWidget):
                 selected_elements.append(element_key)
 
         # Generate the melee object
-        self.melee_images = None
         melee = MeleeWeapon(self.basedir, self.melee_images,
                   name=name, item_level=item_level, melee_guild=guild, melee_rarity=rarity,
                   element_damage=element_damage, rarity_element=element_roll, selected_elements=selected_elements,
-                  prefix=prefix, melee_art=art_filepath)
+                  prefix=prefix, redtext_name=redtext_name, redtext_info=redtext_info, melee_art=art_filepath)
 
         # Clear current melee card
         self.clear_layout(self.melee_card_layout)
@@ -334,9 +350,20 @@ class MeleeTab(QWidget):
         # Index counter for gridlayout across all widgets
         idx = 0
 
+        # Get the image, either URL or local
+        # TODO: check if this is functioning
+        try:
+            # Get image and then save locally temporarily
+            response = requests.get(melee.melee_art_path, stream=True)
+            img = Image.open(response.raw)
+            img.save(self.base_dir + 'output/melees/temporary_melee_image.png')
+        except:
+            self.statusbar.clearMessage()
+            self.statusbar.showMessage("Invalid URL or filepath when trying to open, defaulting to normal image!", 5000)
+
         # Pixmap for the MeleeWeapon Image
         melee_display = QLabel()
-        melee_pixmap = QPixmap("resources/images/slamminsalmon.png").scaled(300, 300, Qt.KeepAspectRatio)
+        melee_pixmap = QPixmap("output/melees/temporary_melee_image.png").scaled(300, 300, Qt.KeepAspectRatio)
         melee_display.setAlignment(Qt.AlignCenter)
         melee_display.setPixmap(melee_pixmap)
         self.melee_card_layout.addWidget(melee_display, idx, 0, 1, -1)
@@ -361,15 +388,22 @@ class MeleeTab(QWidget):
         melee_rarity.setText(melee.rarity.title())
         idx += 1
 
-        # Melee Weapon Guild
+        # Melee Weapon Guild Name
         melee_guild = add_stat_to_layout(self.melee_card_layout, "Guild: ", idx)
         melee_guild.setText(melee.guild.title())
         idx += 1
 
-        # Melee Weapon Guild
-        melee_guild_effect = add_stat_to_layout(self.melee_card_layout, "Guild Effect: ", idx)
-        melee_guild_effect.setText(melee.guild_mod)
-        idx += 1
+        # Melee Guild effect, dynamically expanded
+        melee_guild_effect = QTextEdit()
+        prefix_info = self.split_effect_text(melee.guild_mod)
+        numOfLinesInText = prefix_info.count("\n") + 2
+        melee_guild_effect.setFixedHeight(numOfLinesInText * 15)
+        melee_guild_effect.setFixedWidth(220)
+        melee_guild_effect.setText(prefix_info)
+
+        self.melee_card_layout.addWidget(QLabel("Guild Effect: "), idx, 0, numOfLinesInText, 1)
+        self.melee_card_layout.addWidget(melee_guild_effect, idx, 1, numOfLinesInText, 1)
+        idx += numOfLinesInText
 
         # Add spacing between groups
         self.melee_card_layout.addWidget(QLabel(""), idx, 0)
@@ -384,17 +418,7 @@ class MeleeTab(QWidget):
         if melee.prefix_name != "":
             # If the prefix has information, make it a multi-line TextEdit
             melee_prefix_effect = QTextEdit()
-
-            cur_chars = 0
-            prefix_info = ""
-            for idx, word in enumerate(melee.prefix_info.split(" ")):
-                cur_chars += len(word)
-                if cur_chars > 25:
-                    prefix_info += "\n"
-                    cur_chars = 0
-
-                prefix_info += f"{word} "
-
+            prefix_info = self.split_effect_text(melee.prefix_info)
             numOfLinesInText = prefix_info.count("\n") + 2
             melee_prefix_effect.setFixedHeight(numOfLinesInText * 15)
             melee_prefix_effect.setFixedWidth(220)
@@ -425,10 +449,31 @@ class MeleeTab(QWidget):
         melee_redtext_name.setText(melee.redtext_name)
         idx += 1
 
-        # Melee Weapon Guild
-        melee_redtext_effect = add_stat_to_layout(self.melee_card_layout, "RedText Effect: ", idx)
-        melee_redtext_effect.setText(melee.redtext_info)
-        idx += 1
+        # Melee Weapon RedText Information
+        if melee.redtext_name != "":
+            # If the redtext has information, make it a multi-line TextEdit
+            melee_redtext_effect = QTextEdit()
+            prefix_info = self.split_effect_text(melee.redtext_info)
+            numOfLinesInText = prefix_info.count("\n") + 2
+            melee_redtext_effect.setFixedHeight(numOfLinesInText * 15)
+            melee_redtext_effect.setFixedWidth(220)
+            melee_redtext_effect.setText(prefix_info)
+
+            self.melee_card_layout.addWidget(QLabel("RedText Effect: "), idx, 0, numOfLinesInText, 1)
+            self.melee_card_layout.addWidget(melee_redtext_effect, idx, 1, numOfLinesInText, 1)
+            idx += numOfLinesInText
+        else:
+            # Otherwise just make it a blank TextEdit with fixed height and number of lines
+            numOfLinesInText = 4
+
+            melee_redtext_effect = QTextEdit()
+            melee_redtext_effect.setText("")
+            melee_redtext_effect.setFixedHeight(numOfLinesInText * 15)
+            melee_redtext_effect.setFixedWidth(220)
+
+            self.melee_card_layout.addWidget(QLabel("RedText Effect: "), idx, 0, numOfLinesInText, 1)
+            self.melee_card_layout.addWidget(melee_redtext_effect, idx, 1, numOfLinesInText, 1)
+            idx += numOfLinesInText
 
         # Add spacing between groups
         self.melee_card_layout.addWidget(QLabel(""), idx, 0)

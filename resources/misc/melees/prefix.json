@@ -17,11 +17,11 @@
     },
     "13-14": {
         "name": "Caustic",
-        "info": "When you deal Melee Damage, gain +2d4 Elemental Damage until the start of your next Turn"
+        "info": "When you deal Melee Damage, gain +2d4 Elemental Damage until the start of your next Turn."
     },
     "15-16": {
         "name": "Echoing",
-        "info": "Your Melee Attacks gain +1d4 Damage for each Gun Attack you made on the previous Turn.\n"
+        "info": "Your Melee Attacks gain +1d4 Damage for each Gun Attack you made on the previous Turn."
     },
     "17-18": {
         "name": "Vampiric",

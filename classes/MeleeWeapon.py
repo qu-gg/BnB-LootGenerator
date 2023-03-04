@@ -15,7 +15,8 @@ class MeleeWeapon:
     def __init__(self, base_dir, melee_images,
                  name=None, item_level=None, melee_guild=None, melee_rarity=None,
                  element_damage=None, rarity_element=False, selected_elements=None,
-                 prefix=True, melee_art=None):
+                 prefix=True, redtext_name="", redtext_info="",
+                 melee_art=None):
         """ Handles generating a melee completely from scratch, modified to specifics by user info """
         # If item level is to be generated
         self.item_level = item_level
@@ -114,23 +115,24 @@ class MeleeWeapon:
         else:
             prefix = prefix_table.get(prefix)
 
+        # Append to the Prefix onto the weapon name
         if prefix != "None":
             self.prefix_name = prefix['name']
             self.prefix_info = prefix['info']
             self.name = self.prefix_name + ' ' + self.name
+        else:
+            self.name = self.name[1:]
 
-        # Red Text parsing, depending on the desired tier of randomness
-        # TODO: assign this as input
-        self.redtext_name = ""
-        self.redtext_info = ""
+        # Red Text assignment
+        self.redtext_name = redtext_name
+        self.redtext_info = redtext_info
 
         # Set file art path; sample if not given
-        # TODO: Scrape melee images
-        self.melee_art_path = ""
-        # if melee_art not in ["", None]:
-        #     self.melee_art_path = melee_art
-        # else:
-        #     self.melee_art_path = melee_images.sample_melee_image(self.type, self.guild)
+        self.gun_art_path = ""
+        if melee_art not in ["", None]:
+            self.melee_art_path = melee_art
+        else:
+            self.melee_art_path = melee_images.sample_melee_image(self.guild)
 
     def get_random_ilevel(self, base_dir):
         """ Handles rolling for a random item level and giving back the tier key for it """
