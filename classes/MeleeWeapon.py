@@ -7,6 +7,10 @@ Takes in user-input on melee type, melee guild, and item level - if provided.
 
 Unless a melee type is input, then the melee table is only rolled through Melee Weapons Table 1-6 on Pg. 81.
 """
+import shutil
+import requests
+
+from PIL import Image
 from random import randint, choice
 from classes.json_reader import get_file_data
 
@@ -18,6 +22,8 @@ class MeleeWeapon:
                  prefix=True, redtext_name="", redtext_info="",
                  melee_art=None):
         """ Handles generating a melee completely from scratch, modified to specifics by user info """
+        self.base_dir = base_dir
+
         # If item level is to be generated
         self.item_level = item_level
         if item_level in ["random", None]:
@@ -77,6 +83,8 @@ class MeleeWeapon:
         # Roll for element iff it has an appropriate guild and rarity
         if len(selected_elements) > 0:
             self.element = selected_elements
+        elif self.guild == "torgue":
+            self.element = ["explosive"]
         elif self.guild_element_roll is True and self.rarity_element_roll is True:
             roll_element = str(randint(1, 100))
             element_table = get_file_data(base_dir + "resources/elements/elemental_table.json")
@@ -85,6 +93,12 @@ class MeleeWeapon:
         # Check for passed in element, overwrites any rolled damage die
         if element_damage != "":
             self.element_bonus = f"(+{element_damage})"
+        # The Torgue guild gets explosive bonuses depending on rarity
+        elif self.guild == "torgue":
+            if self.rarity in ['rare', 'epic']:
+                self.element_bonus = f"+1d6"
+            elif self.rarity in ['legendary']:
+                self.element_bonus = f"+2d6"
         # Check all element entries for a bonus die
         elif self.element is not None:
             for ele_idx, ele in enumerate(self.element):
@@ -128,11 +142,21 @@ class MeleeWeapon:
         self.redtext_info = redtext_info
 
         # Set file art path; sample if not given
-        self.gun_art_path = ""
+        # TODO: not satisfied with the URL implementation here yet
+        self.melee_art_path = self.base_dir + 'output/melees/temporary_melee_image.png'
         if melee_art not in ["", None]:
-            self.melee_art_path = melee_art
+            try:
+                try:
+                    # Test URL
+                    response = requests.get(melee_art, stream=True)
+                    img = Image.open(response.raw)
+                    img.save(self.melee_art_path)
+                except:
+                    shutil.copy(melee_art, self.melee_art_path)
+            except:
+                melee_images.sample_melee_image(self.guild)
         else:
-            self.melee_art_path = melee_images.sample_melee_image(self.guild)
+            melee_images.sample_melee_image(self.guild)
 
     def get_random_ilevel(self, base_dir):
         """ Handles rolling for a random item level and giving back the tier key for it """
@@ -197,8 +221,16 @@ class MeleeWeapon:
 
         tier = None
         for key in prefix_table.keys():
-            lower, upper = [int(i) for i in key.split('-')]
-            if lower <= roll <= upper:
-                tier = key
+            split = key.split('-')
+
+            # For single prefix keys, just check if roll equals it
+            if len(split) == 1:
+                if int(key) == roll:
+                    tier = key
+            # Otherwise check tiers
+            else:
+                lower, upper = int(split[0]), int(split[1])
+                if lower <= roll <= upper:
+                    tier = key
 
         return tier

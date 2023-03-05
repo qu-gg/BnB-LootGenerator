@@ -4,23 +4,15 @@
 
 Handles the logic and state for the PyQT tab related to melee generation
 """
-import os
-from pathlib import Path
-import requests
-
 from classes.GunImage import GunImage
 from classes.MeleeWeapon import MeleeWeapon
-# from classes.MeleeImage import MeleeImage
 
 from app.tab_utils import add_stat_to_layout
 from classes.json_reader import get_file_data
 
-from api.foundryVTT.FoundryTranslator import FoundryTranslator
-
-from PIL import Image
-from PyQt5.QtCore import Qt
+from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtGui import QIcon, QFont, QPixmap
-from PyQt5 import QAxContainer, QtCore
 from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton,
                              QCheckBox, QFileDialog, QLineEdit, QTextEdit)
 
@@ -74,12 +66,11 @@ class MeleeTab(QWidget):
         idx += 1
 
         # Guild
-        # TODO: swap this out for real guilds
         base_stats_layout.addWidget(QLabel("Guild: "), idx, 0)
         self.guild_type_box = QComboBox()
         self.guild_type_box.addItem("Random")
         for item in get_file_data(basedir + "resources/misc/melees/guild_table.json").keys():
-            self.guild_type_box.addItem(item.capitalize())
+            self.guild_type_box.addItem(item.title())
         base_stats_layout.addWidget(self.guild_type_box, idx, 1)
         idx += 1
 
@@ -202,16 +193,6 @@ class MeleeTab(QWidget):
         base_stats_layout.addLayout(art_gridlayout, idx, 1)
         idx += 1
 
-        # Whether to show rarity-based color splashes behind the melee
-        rarity_border_label = QLabel("Use Color Splashes: ")
-        rarity_border_label.setStatusTip("Choose whether to outline the melee art in a colored-outline based on rarity.")
-        base_stats_layout.addWidget(rarity_border_label, idx, 0)
-        self.rarity_border_check = QCheckBox()
-        self.rarity_border_check.setStatusTip("Choose whether to outline the melee art in a colored-outline based on rarity.")
-        self.rarity_border_check.setChecked(True)
-        base_stats_layout.addWidget(self.rarity_border_check, idx, 1)
-        idx += 1
-
         # Add spacing between groups
         base_stats_layout.addWidget(QLabel(""), idx, 0)
         idx += 1
@@ -254,7 +235,7 @@ class MeleeTab(QWidget):
 
         self.melee_card_group.setLayout(self.melee_card_layout)
         ###################################
-        ###  END: melee Display           ###
+        ###  END: Melee Display         ###
         ###################################
 
         # Setting appropriate column widths
@@ -291,6 +272,11 @@ class MeleeTab(QWidget):
             self.art_filepath.setText(filename)
 
     def clear_layout(self, layout):
+        """
+        Wipe the current melee card. Technically has a memory leak on the 'wiped' components, but
+        really a non-issue with how much memory it would accumulate.
+        :param layout: QtLayout of the Melee Card
+        """
         if layout is not None:
             while layout.count():
                 child = layout.takeAt(0)
@@ -300,6 +286,13 @@ class MeleeTab(QWidget):
                     self.clear_layout(child.layout())
 
     def split_effect_text(self, initial_string, line_length=32):
+        """
+        Handles splitting an effect string into multiple lines depending on the length of words.
+        Cleaner for visualizing in the cards
+        :param initial_string: effect string to split
+        :param line_length: length of line to split
+        :return: line with newlines put in
+        """
         cur_chars = 0
         info = ""
         for idx, word in enumerate(initial_string.split(" ")):
@@ -311,8 +304,21 @@ class MeleeTab(QWidget):
             info += f"{word} "
         return info
 
+    def save_screenshot(self):
+        """ Screenshots the Melee Card layout and saves to a local file """
+        # Save as local image
+        screen = QtWidgets.QApplication.primaryScreen()
+        screenshot = screen.grabWindow(self.melee_card_group.winId(), height=750)
+        screenshot.save(f"output/melees/{self.output_name}.png", "png")
+
+        # Set label text for output
+        self.output_pdf_label.setText(f"Saved to output/melees/{self.output_name}.png")
+
     def generate_melee(self):
-        """ Handles performing the call to generate a melee given the parameters and updating the melee Card image """
+        """
+        Handles performing the call to generate a Melee Weapon given the
+        parameters and updating the Melee Card image
+        """
         # Load in properties that are currently set in the program
         name = None if self.name_line_edit.text() == "" else self.name_line_edit.text()
         item_level = self.item_level_box.currentText().lower()
@@ -329,7 +335,6 @@ class MeleeTab(QWidget):
         redtext_name = self.redtext_line_edit.text()
         redtext_info = self.redtext_effect_line_edit.text()
 
-        color_check = self.rarity_border_check.isChecked()
         art_filepath = self.art_filepath.text()
 
         # Build list of elements that are manually selected
@@ -350,20 +355,9 @@ class MeleeTab(QWidget):
         # Index counter for gridlayout across all widgets
         idx = 0
 
-        # Get the image, either URL or local
-        # TODO: check if this is functioning
-        try:
-            # Get image and then save locally temporarily
-            response = requests.get(melee.melee_art_path, stream=True)
-            img = Image.open(response.raw)
-            img.save(self.base_dir + 'output/melees/temporary_melee_image.png')
-        except:
-            self.statusbar.clearMessage()
-            self.statusbar.showMessage("Invalid URL or filepath when trying to open, defaulting to normal image!", 5000)
-
         # Pixmap for the MeleeWeapon Image
         melee_display = QLabel()
-        melee_pixmap = QPixmap("output/melees/temporary_melee_image.png").scaled(300, 300, Qt.KeepAspectRatio)
+        melee_pixmap = QPixmap(melee.melee_art_path).scaled(300, 300, Qt.KeepAspectRatio)
         melee_display.setAlignment(Qt.AlignCenter)
         melee_display.setPixmap(melee_pixmap)
         self.melee_card_layout.addWidget(melee_display, idx, 0, 1, -1)
@@ -506,3 +500,8 @@ class MeleeTab(QWidget):
         melee_element_damage = add_stat_to_layout(self.melee_card_layout, "Element Die: ", idx)
         melee_element_damage.setText(melee.element_bonus)
         idx += 1
+
+        # Save as output
+        self.output_name = f"{melee.guild.title()}_Level{int(melee.item_level.split('-')[0])}_" \
+                           f"{melee.rarity.title()}_{melee.name}".replace(' ', '')
+        QTimer.singleShot(1000, self.save_screenshot)
