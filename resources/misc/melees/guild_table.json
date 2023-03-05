@@ -38,5 +38,45 @@
             "legendary": "+7 Melee Damage, all Melee Crits are 1d8."
         },
         "element_roll": true
+    },
+    "blayd": {
+        "tiers": {
+            "common": "-4 Melee Damage. +1 Throw Range. Weapon returns after Thrown.",
+            "uncommon": "-3 Melee Damage. +2 Throw Range. Weapon returns after Thrown.",
+            "rare": "-2 Melee Damage. +3 Throw Range. Weapon returns after Thrown.",
+            "epic": "-1 Melee Damage. +4 Throw Range. Weapon returns after Thrown.",
+            "legendary": "+5 Throw Range. Weapon returns after Thrown."
+        },
+        "element_roll": true
+    },
+    "spike": {
+        "tiers": {
+            "common": "+1 Melee Range. +1 SPD.",
+            "uncommon": "+1 Melee Range. +2 SPD.",
+            "rare": "+1 Melee Range. +3 SPD.",
+            "epic": "+1 Melee Range. +4 SPD.",
+            "legendary": "+1 Melee Range. +4 SPD. Extra Movement."
+        },
+        "element_roll": true
+    },
+    "s&s armaments": {
+        "tiers": {
+            "common": "+10 Armor. Repair 5. +1 Melee Damage.",
+            "uncommon": "+15 Armor. Repair 5. +1 Melee Damage.",
+            "rare": "+20 Armor. Repair 5. +1 Melee Damage.",
+            "epic": "+25 Armor. Repair 5. +1 Melee Damage.",
+            "legendary": "+30 Armor. Repair 5. +1 Melee Damage."
+        },
+        "element_roll": true
+    },
+    "torgue": {
+        "tiers": {
+            "common": "Melee gains Explosive. +10% Explosive Knockback Chance.",
+            "uncommon": "Melee gains Explosive. +15% Explosive Knockback Chance.",
+            "rare": "Melee gains Explosive +1d6. +20% Explosive Knockback Chance.",
+            "epic": "Melee gains Explosive +1d6. +25% Explosive Knockback Chance.",
+            "legendary": "Melee gains Explosive +2d6. +30% Explosive Knockback Chance."
+        },
+        "element_roll": false
     }
 }

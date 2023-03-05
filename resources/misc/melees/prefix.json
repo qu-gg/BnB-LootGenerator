@@ -3,32 +3,60 @@
         "name": "",
         "info": ""
     },
-    "7-8": {
+    "7": {
         "name": "Ancient",
         "info": "When you deal Melee Damage, roll a d20. On a 20, recover one daily use of your Action Skill."
     },
-    "9-10": {
+    "8": {
         "name": "Amp'd",
         "info": "When you deal Melee Damage, your Gun Attacks get +2d4 Damage until the end of your next turn."
     },
-    "11-12": {
+    "9": {
         "name": "Archmage's",
         "info": "When you deal Melee Damage, roll a d20, on 20, gain a grenade."
     },
-    "13-14": {
+    "10": {
         "name": "Caustic",
         "info": "When you deal Melee Damage, gain +2d4 Elemental Damage until the start of your next Turn."
     },
-    "15-16": {
+    "11": {
         "name": "Echoing",
         "info": "Your Melee Attacks gain +1d4 Damage for each Gun Attack you made on the previous Turn."
     },
-    "17-18": {
+    "12": {
         "name": "Vampiric",
         "info": "When you deal Melee Damage, gain 1d4 Health, or 1d4 Shield Capacity, whichever is lower."
     },
-    "19-20": {
+    "13": {
         "name": "Warrior's",
         "info": "When you deal Melee Damage, gain +1d4 Damage Reduction and +1d4 Melee Damage until the start of your next turn."
+    },
+    "14": {
+        "name": "Rapid",
+        "info": "Add your ACC Mod to your Initiative."
+    },
+    "15": {
+        "name": "Raging",
+        "info": "Add your DMG Mod to your Movement."
+    },
+    "16": {
+        "name": "Ranged",
+        "info": "Add your SPD Mod to your Throw Range."
+    },
+    "17": {
+        "name": "Refined",
+        "info": "Add your MST Mod to your Melee Damage."
+    },
+    "18": {
+        "name": "Skilled",
+        "info": "You get +2 on all Skill Checks."
+    },
+    "19": {
+        "name": "Keen",
+        "info": "Your Melee Attacks now get +1 Crit Die on an 8+."
+    },
+    "20": {
+        "name": "Mighty",
+        "info": "+1 Melee Die."
     }
 }
