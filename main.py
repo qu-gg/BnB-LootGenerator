@@ -59,15 +59,15 @@ class Window(QMainWindow):
         self.tabMenu.addTab(self.relic_tab.get_tab(), "Relic")
         self.tabMenu.setTabText(3, "Relics")
 
-        # Potion Tab
-        self.potion_tab = PotionTab(basedir, self.statusbar, self.foundry_translator)
-        self.tabMenu.addTab(self.potion_tab.get_tab(), "Potion")
-        self.tabMenu.setTabText(4, "Potions")
-
         # Grenade Tab
         self.grenade_tab = GrenadeTab(basedir, self.statusbar, self.foundry_translator)
         self.tabMenu.addTab(self.grenade_tab.get_tab(), "Grenade")
-        self.tabMenu.setTabText(5, "Grenades")
+        self.tabMenu.setTabText(4, "Grenades")
+
+        # Potion Tab
+        self.potion_tab = PotionTab(basedir, self.statusbar, self.foundry_translator)
+        self.tabMenu.addTab(self.potion_tab.get_tab(), "Potion")
+        self.tabMenu.setTabText(5, "Potions")
 
         # Setting layout to be the central widget of main window
         self.setCentralWidget(self.tabMenu)

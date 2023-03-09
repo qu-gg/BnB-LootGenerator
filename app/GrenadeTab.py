@@ -301,7 +301,7 @@ class GrenadeTab(QWidget):
         prefix_info = split_effect_text(grenade.effect)
         numOfLinesInText = prefix_info.count("\n") + 2
         grenade_effect.setFixedHeight(numOfLinesInText * 15)
-        grenade_effect.setFixedWidth(220)
+        grenade_effect.setFixedWidth(249)
         grenade_effect.setText(prefix_info)
 
         self.grenade_card_layout.addWidget(QLabel("Effect: "), idx, 0, numOfLinesInText, 1)

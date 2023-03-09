@@ -32,7 +32,6 @@ class ShieldTab(QWidget):
 
         # PDF and Image Classes
         self.shield_images = ShieldImage(self.basedir)
-        self.shield_pdf = ShieldPDF(self.basedir, self.statusbar, self.shield_images)
 
         # API Classes
         self.foundry_translator = foundry_translator
@@ -302,7 +301,7 @@ class ShieldTab(QWidget):
         prefix_info = split_effect_text(shield.effect)
         numOfLinesInText = prefix_info.count("\n") + 2
         shield_effect.setFixedHeight(numOfLinesInText * 15)
-        shield_effect.setFixedWidth(220)
+        shield_effect.setFixedWidth(245)
         shield_effect.setText(prefix_info)
 
         self.shield_card_layout.addWidget(QLabel("Effect: "), idx, 0, numOfLinesInText, 1)

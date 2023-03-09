@@ -244,8 +244,8 @@ class MeleeTab(QWidget):
         self.melee_card_group.setFixedWidth(325)
 
         # Setting appropriate layout heights
-        base_stats_group.setFixedHeight(550)
-        generation_group.setFixedHeight(300)
+        base_stats_group.setFixedHeight(450)
+        generation_group.setFixedHeight(400)
         self.melee_card_group.setFixedHeight(850)
 
         # melee Generation Layout

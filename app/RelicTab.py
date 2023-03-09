@@ -304,7 +304,7 @@ class RelicTab(QWidget):
         prefix_info = split_effect_text(relic.effect)
         numOfLinesInText = prefix_info.count("\n") + 2
         relic_effect.setFixedHeight(numOfLinesInText * 15)
-        relic_effect.setFixedWidth(220)
+        relic_effect.setFixedWidth(235)
         relic_effect.setText(prefix_info)
 
         self.relic_card_layout.addWidget(QLabel("Effect: "), idx, 0, numOfLinesInText, 1)
@@ -316,7 +316,7 @@ class RelicTab(QWidget):
         prefix_info = split_effect_text(f"({relic.class_id.title()}): {relic.class_effect}")
         numOfLinesInText = prefix_info.count("\n") + 2
         relic_effect.setFixedHeight(numOfLinesInText * 15)
-        relic_effect.setFixedWidth(220)
+        relic_effect.setFixedWidth(235)
         relic_effect.setText(prefix_info)
 
         self.relic_card_layout.addWidget(QLabel("Class Effect: "), idx, 0, numOfLinesInText, 1)
