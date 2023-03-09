@@ -245,7 +245,7 @@ class FoundryTranslator:
 
         """ Foundry display information """
         template["name"] = grenade.name
-        template["img"] = grenade.art_path
+        template["img"] = grenade.grenade_art_path
 
         """ Item Level """
         template["system"]["level"] = int(grenade.tier)

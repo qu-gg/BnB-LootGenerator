@@ -173,10 +173,6 @@ class RelicTab(QWidget):
         relic_generation_layout = QGridLayout()
         relic_generation_layout.setAlignment(Qt.AlignTop)
 
-        # PDF Output Name
-        self.relic_pdf_line_edit = add_stat_to_layout(relic_generation_layout, "PDF Filename:", 0)
-        self.relic_pdf_line_edit.setToolTip("Specify the filename that Generate Relic saves the next gun under.")
-
         # Generate button
         button = QPushButton("Generate Relic")
         button.setToolTip("Handles generating the relic card and locally saving the PDF in \"outputs/relics/\".")

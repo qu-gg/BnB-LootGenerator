@@ -357,7 +357,8 @@ class MeleeTab(QWidget):
 
         # Pixmap for the MeleeWeapon Image
         melee_display = QLabel()
-        melee_pixmap = QPixmap(melee.melee_art_path).scaled(300, 300, Qt.KeepAspectRatio)
+        melee_pixmap = QPixmap(melee.melee_art_path).scaled(300, 300, Qt.KeepAspectRatio,
+                                                            transformMode=QtCore.Qt.SmoothTransformation)
         melee_display.setAlignment(Qt.AlignCenter)
         melee_display.setPixmap(melee_pixmap)
         self.melee_card_layout.addWidget(melee_display, idx, 0, 1, -1)

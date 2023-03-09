@@ -5,14 +5,19 @@
 Class that handles generating and holding the state of a Grenade.
 Takes in user-input on Grenade Type, Rarity, etc - if provided.
 """
+import shutil
 from random import choice, randint
+
+import requests
+from PIL import Image
+
 from classes.json_reader import get_file_data
 
 
 class Grenade:
     def __init__(self, base_dir, grenade_images,
                  name='', guild="Random", tier="Random",
-                 grenade_type="", damage="", effect="", art_path=None):
+                 grenade_type="", damage="", effect="", grenade_art=None):
         """ Handles generating a grenade, modified to specifics by user info """
         # Load in grenade data
         grenade_data = get_file_data(base_dir + 'resources/misc/grenades/grenade.json')
@@ -63,8 +68,17 @@ class Grenade:
             self.effect = self.effect.replace("xx", self.element.title())
 
         # Set file art path; sample if not given
-        self.art_path = ""
-        if art_path not in ["", None]:
-            self.art_path = art_path
+        self.grenade_art_path = base_dir + 'output/grenades/temporary_grenade_image.png'
+        if grenade_art not in ["", None]:
+            try:
+                try:
+                    # Test URL
+                    response = requests.get(grenade_art, stream=True)
+                    img = Image.open(response.raw)
+                    img.save(self.grenade_art_path)
+                except:
+                    shutil.copy(grenade_art, self.grenade_art_path)
+            except:
+                grenade_images.sample_grenade_image()
         else:
-            self.art_path = grenade_images.sample_grenade_image()
+            grenade_images.sample_grenade_image()
