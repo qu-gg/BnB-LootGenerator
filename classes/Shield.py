@@ -5,6 +5,10 @@
 Class that handles generating and holding the state of a Shield.
 Takes in user-input on Shield Type, Rarity, etc - if provided.
 """
+import shutil
+import requests
+
+from PIL import Image
 from random import choice, randint
 from classes.json_reader import get_file_data
 
@@ -57,8 +61,17 @@ class Shield:
         self.cost = shield_costs.get(self.tier)
 
         # Set file art path; sample if not given
-        self.shield_art_path = ""
+        self.shield_art_path = base_dir + 'output/shields/temporary_shield_image.png'
         if shield_art not in ["", None]:
-            self.shield_art_path = shield_art
+            try:
+                try:
+                    # Test URL
+                    response = requests.get(shield_art, stream=True)
+                    img = Image.open(response.raw)
+                    img.save(self.shield_art_path)
+                except:
+                    shutil.copy(shield_art, self.shield_art_path)
+            except:
+                shield_images.sample_shield_image()
         else:
-            self.shield_art_path = shield_images.sample_shield_image()
+            shield_images.sample_shield_image()

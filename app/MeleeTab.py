@@ -502,6 +502,6 @@ class MeleeTab(QWidget):
         idx += 1
 
         # Save as output
-        self.output_name = f"{melee.guild.title()}_Level{int(melee.item_level.split('-')[0])}_" \
+        self.output_name = f"Level{int(melee.item_level.split('-')[0])}_{melee.guild.title()}_" \
                            f"{melee.rarity.title()}_{melee.name}".replace(' ', '')
         QTimer.singleShot(1000, self.save_screenshot)

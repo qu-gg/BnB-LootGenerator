@@ -30,3 +30,38 @@ def add_stat_to_layout(layout, label, row, force_int=False, placeholder=None, re
     layout.addWidget(new_label, row, 0)
     layout.addWidget(new_line_edit, row, 1)
     return new_line_edit
+
+
+def clear_layout(layout):
+    """
+    Wipe the current melee card. Technically has a memory leak on the 'wiped' components, but
+    really a non-issue with how much memory it would accumulate.
+    :param layout: QtLayout of the Melee Card
+    """
+    if layout is not None:
+        while layout.count():
+            child = layout.takeAt(0)
+            if child.widget() is not None:
+                child.widget().deleteLater()
+            elif child.layout() is not None:
+                clear_layout(child.layout())
+
+
+def split_effect_text(initial_string, line_length=32):
+    """
+    Handles splitting an effect string into multiple lines depending on the length of words.
+    Cleaner for visualizing in the cards
+    :param initial_string: effect string to split
+    :param line_length: length of line to split
+    :return: line with newlines put in
+    """
+    cur_chars = 0
+    info = ""
+    for idx, word in enumerate(initial_string.split(" ")):
+        cur_chars += len(word)
+        if cur_chars > line_length:
+            info += "\n"
+            cur_chars = len(word)
+
+        info += f"{word} "
+    return info
