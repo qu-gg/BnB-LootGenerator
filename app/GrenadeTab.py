@@ -4,13 +4,9 @@
 
 Handles the logic and state for the PyQT tab related to grenade generation
 """
-import os
-from pathlib import Path
-
 from PyQt5.QtGui import QFont, QPixmap
 
 from classes.Grenade import Grenade
-from classes.GrenadePDF import GrenadePDF
 from classes.GrenadeImage import GrenadeImage
 
 from app.tab_utils import add_stat_to_layout, split_effect_text, clear_layout
@@ -32,7 +28,6 @@ class GrenadeTab(QWidget):
 
         # PDF and Image Classes
         self.grenade_images = GrenadeImage(self.basedir)
-        self.grenade_pdf = GrenadePDF(self.basedir, self.statusbar, self.grenade_images)
 
         # API Classes
         self.foundry_translator = foundry_translator

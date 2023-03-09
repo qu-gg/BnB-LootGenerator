@@ -4,22 +4,18 @@
 
 Handles the logic and state for the PyQT tab related to relic generation
 """
-import os
-from pathlib import Path
-
 from PyQt5.QtGui import QFont, QPixmap
 
 from classes.Relic import Relic
-from classes.RelicPDF import RelicPDF
 from classes.RelicImage import RelicImage
 
 from app.tab_utils import add_stat_to_layout, clear_layout, split_effect_text
 from classes.json_reader import get_file_data
 
 from PyQt5.QtCore import Qt, QTimer
-from PyQt5 import QAxContainer, QtCore, QtWidgets
-from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton, QCheckBox, QLineEdit,
-                             QFileDialog, QTextEdit)
+from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton,
+                             QCheckBox, QLineEdit, QFileDialog, QTextEdit)
 
 
 class RelicTab(QWidget):
@@ -32,7 +28,6 @@ class RelicTab(QWidget):
 
         # PDF and Image Classes
         self.relic_images = RelicImage(self.basedir)
-        self.relic_pdf = RelicPDF(self.basedir, self.statusbar, self.relic_images)
 
         # API Classes
         self.foundry_translator = foundry_translator

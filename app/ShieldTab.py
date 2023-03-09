@@ -4,22 +4,18 @@
 
 Handles the logic and state for the PyQT tab related to shield generation
 """
-import os
-from pathlib import Path
-
 from PyQt5.QtGui import QFont, QPixmap
 
 from classes.Shield import Shield
-from classes.ShieldPDF import ShieldPDF
 from classes.ShieldImage import ShieldImage
 
 from app.tab_utils import add_stat_to_layout, clear_layout, split_effect_text
 from classes.json_reader import get_file_data
 
 from PyQt5.QtCore import Qt, QTimer
-from PyQt5 import QAxContainer, QtCore, QtWidgets
-from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton, QCheckBox, QLineEdit,
-                             QFileDialog, QTextEdit)
+from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton,
+                             QCheckBox, QLineEdit, QFileDialog, QTextEdit)
 
 
 class ShieldTab(QWidget):
