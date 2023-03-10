@@ -233,7 +233,7 @@ class RelicTab(QWidget):
         """ Screenshots the Relic Card layout and saves to a local file """
         # Save as local image
         screen = QtWidgets.QApplication.primaryScreen()
-        screenshot = screen.grabWindow(self.relic_card_group.winId(), height=750)
+        screenshot = screen.grabWindow(self.relic_card_group.winId(), height=550)
         screenshot.save(f"output/relics/{self.output_name}.png", "png")
 
         # Set label text for output

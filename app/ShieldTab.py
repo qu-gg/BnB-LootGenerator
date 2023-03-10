@@ -8,9 +8,8 @@ from PyQt5.QtGui import QFont, QPixmap
 
 from classes.Shield import Shield
 from classes.ShieldImage import ShieldImage
-
-from app.tab_utils import add_stat_to_layout, clear_layout, split_effect_text
 from classes.json_reader import get_file_data
+from app.tab_utils import add_stat_to_layout, clear_layout, split_effect_text
 
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5 import QtCore, QtWidgets
@@ -222,7 +221,7 @@ class ShieldTab(QWidget):
         """ Screenshots the Shield Card layout and saves to a local file """
         # Save as local image
         screen = QtWidgets.QApplication.primaryScreen()
-        screenshot = screen.grabWindow(self.shield_card_group.winId(), height=750)
+        screenshot = screen.grabWindow(self.shield_card_group.winId(), height=600)
         screenshot.save(f"output/shields/{self.output_name}.png", "png")
 
         # Set label text for output

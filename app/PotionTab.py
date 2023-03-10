@@ -194,7 +194,7 @@ class PotionTab(QWidget):
         """ Screenshots the Potion Card layout and saves to a local file """
         # Save as local image
         screen = QtWidgets.QApplication.primaryScreen()
-        screenshot = screen.grabWindow(self.potion_card_group.winId(), height=750)
+        screenshot = screen.grabWindow(self.potion_card_group.winId(), height=500)
         screenshot.save(f"output/potions/{self.output_name}.png", "png")
 
         # Set label text for output

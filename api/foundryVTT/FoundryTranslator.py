@@ -304,7 +304,7 @@ class FoundryTranslator:
 
         """ Foundry display information """
         template["name"] = potion.name
-        template["img"] = potion.art_path
+        template["img"] = potion.potion_art_path
 
         """ Potion Effect + Description """
         template["system"]["effect"] = potion.effect

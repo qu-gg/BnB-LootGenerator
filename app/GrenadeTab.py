@@ -222,7 +222,7 @@ class GrenadeTab(QWidget):
         """ Screenshots the Grenade Card layout and saves to a local file """
         # Save as local image
         screen = QtWidgets.QApplication.primaryScreen()
-        screenshot = screen.grabWindow(self.grenade_card_group.winId(), height=750)
+        screenshot = screen.grabWindow(self.grenade_card_group.winId(), height=600)
         screenshot.save(f"output/grenades/{self.output_name}.png", "png")
 
         # Set label text for output
