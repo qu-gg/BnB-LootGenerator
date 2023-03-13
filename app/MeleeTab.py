@@ -7,14 +7,14 @@ Handles the logic and state for the PyQT tab related to melee generation
 from classes.GunImage import GunImage
 from classes.MeleeWeapon import MeleeWeapon
 
-from app.tab_utils import add_stat_to_layout
+from app.tab_utils import add_stat_to_layout, copy_image_action
 from classes.json_reader import get_file_data
 
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtCore import Qt, QTimer
-from PyQt5.QtGui import QIcon, QFont, QPixmap
+from PyQt5.QtGui import QIcon, QFont, QPixmap, QKeySequence, QClipboard, QGuiApplication
 from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton,
-                             QCheckBox, QFileDialog, QLineEdit, QTextEdit)
+                             QCheckBox, QFileDialog, QLineEdit, QTextEdit, QShortcut, QAction)
 
 
 class MeleeTab(QWidget):
@@ -232,6 +232,9 @@ class MeleeTab(QWidget):
         self.melee_card_group = QGroupBox("Melee Card")
         self.melee_card_layout = QGridLayout()
         self.melee_card_layout.setAlignment(Qt.AlignTop)
+
+        # Enable copy-pasting image cards
+        self.melee_card_group.addAction(copy_image_action(self, self.melee_card_group.winId(), height=750))
 
         self.melee_card_group.setLayout(self.melee_card_layout)
         ###################################

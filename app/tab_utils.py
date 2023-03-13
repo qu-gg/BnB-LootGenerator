@@ -4,8 +4,9 @@
 
 Holds shared functions across the PyQT tabs
 """
-from PyQt5.QtGui import QIntValidator
-from PyQt5.QtWidgets import QLabel, QLineEdit
+from PyQt5 import QtWidgets
+from PyQt5.QtGui import QIntValidator, QGuiApplication, QClipboard
+from PyQt5.QtWidgets import QLabel, QLineEdit, QAction
 
 
 def add_stat_to_layout(layout, label, row, force_int=False, placeholder=None, read_only=False):
@@ -65,3 +66,20 @@ def split_effect_text(initial_string, line_length=32):
 
         info += f"{word} "
     return info
+
+
+def copy_image_action(self, winID, height=750):
+    """ Build a QAction for copying a generated card to a clipped Image"""
+    # Enable copy-pasting image cards
+    copy_action = QAction("Copy Image", self)
+    copy_action.setShortcut("Ctrl+C")
+    copy_action.triggered.connect(lambda: copy_card(winID, height))
+    return copy_action
+
+
+def copy_card(winID, height):
+    """ Converts the Card layout into an Image in the Clipboard """
+    # Save as local image
+    screen = QtWidgets.QApplication.primaryScreen()
+    screenshot = screen.grabWindow(winID, height=height)
+    QGuiApplication.clipboard().setImage(screenshot.toImage(), QClipboard.Clipboard)

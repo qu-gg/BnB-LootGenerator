@@ -9,13 +9,13 @@ from PyQt5.QtGui import QFont, QPixmap
 from classes.Potion import Potion
 from classes.PotionImage import PotionImage
 
-from app.tab_utils import add_stat_to_layout, split_effect_text, clear_layout
+from app.tab_utils import add_stat_to_layout, split_effect_text, clear_layout, copy_image_action
 from classes.json_reader import get_file_data
 
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton,
-                             QCheckBox, QLineEdit, QFileDialog, QTextEdit)
+                             QCheckBox, QLineEdit, QFileDialog, QTextEdit, QAction)
 
 
 class PotionTab(QWidget):
@@ -151,6 +151,9 @@ class PotionTab(QWidget):
         self.potion_card_group = QGroupBox("Potion Card")
         self.potion_card_layout = QGridLayout()
         self.potion_card_layout.setAlignment(Qt.AlignTop)
+
+        # Enable copy-pasting image cards
+        self.potion_card_group.addAction(copy_image_action(self, self.potion_card_group.winId(), height=500))
 
         self.potion_card_group.setLayout(self.potion_card_layout)
         ###################################
