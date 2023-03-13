@@ -68,24 +68,24 @@ def split_effect_text(initial_string, line_length=32):
     return info
 
 
-def card_option_menu(self, winID, height=750):
+def card_option_menu(self, winID, height=750, y=0):
     """ Wrapper for the copy action to put it into a context menu"""
     menu = QMenu()
-    menu.addAction(copy_image_action(self, winID, height=height))
+    menu.addAction(copy_image_action(self, winID, height=height, y=y))
 
 
-def copy_image_action(self, winID, height=750):
+def copy_image_action(self, winID, height=750, y=0):
     """ Build a QAction for copying a generated card to a clipped Image"""
     # Enable copy-pasting image cards
     copy_action = QAction("Copy Image", self)
     copy_action.setShortcut("Ctrl+C")
-    copy_action.triggered.connect(lambda: copy_card(winID, height))
+    copy_action.triggered.connect(lambda: copy_card(winID, height, y))
     return copy_action
 
 
-def copy_card(winID, height):
+def copy_card(winID, height, y=0):
     """ Converts the Card layout into an Image in the Clipboard """
     # Save as local image
     screen = QtWidgets.QApplication.primaryScreen()
-    screenshot = screen.grabWindow(winID, height=height)
+    screenshot = screen.grabWindow(winID, y=y, height=height)
     QGuiApplication.clipboard().setImage(screenshot.toImage(), QClipboard.Clipboard)
