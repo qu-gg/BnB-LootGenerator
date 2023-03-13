@@ -5,13 +5,18 @@
 Class that handles generating and holding the state of a Potion.
 Takes in user-input on potion ID - if provided.
 """
+import shutil
 from random import randint, choice
+
+import requests
+from PIL import Image
+
 from classes.json_reader import get_file_data
 
 
 class Potion:
     def __init__(self, base_dir, potion_images,
-                 potion_id=None, art_path=None):
+                 potion_id=None, potion_art=None):
         """ Handles generating a potion, modified to specifics by user info """
         # Load in potion data
         potion_data = get_file_data(base_dir + 'resources/misc/potions/potion.json')
@@ -96,11 +101,20 @@ class Potion:
             self.rarity = "legendary"
 
         # Set file art path; sample if not given
-        self.art_path = ""
-        if art_path not in ["", None]:
-            self.art_path = art_path
+        self.potion_art_path = base_dir + 'output/potions/temporary_potion_image.png'
+        if potion_art not in ["", None]:
+            try:
+                try:
+                    # Test URL
+                    response = requests.get(potion_art, stream=True)
+                    img = Image.open(response.raw)
+                    img.save(self.potion_art_path)
+                except:
+                    shutil.copy(potion_art, self.potion_art_path)
+            except:
+                potion_images.sample_potion_image()
         else:
-            self.art_path = potion_images.sample_potion_image()
+            potion_images.sample_potion_image()
 
     def check_tina_range(self, potion_id):
         """

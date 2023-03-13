@@ -4,22 +4,18 @@
 
 Handles the logic and state for the PyQT tab related to relic generation
 """
-import os
-from pathlib import Path
-
-from PyQt5.QtGui import QFont
+from PyQt5.QtGui import QFont, QPixmap
 
 from classes.Relic import Relic
-from classes.RelicPDF import RelicPDF
 from classes.RelicImage import RelicImage
 
-from app.tab_utils import add_stat_to_layout
+from app.tab_utils import add_stat_to_layout, clear_layout, split_effect_text, copy_image_action, card_option_menu
 from classes.json_reader import get_file_data
 
-from PyQt5.QtCore import Qt
-from PyQt5 import QAxContainer, QtCore
-from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton, QCheckBox, QLineEdit,
-                             QFileDialog)
+from PyQt5.QtCore import Qt, QTimer
+from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton,
+                             QCheckBox, QLineEdit, QFileDialog, QTextEdit, QAction)
 
 
 class RelicTab(QWidget):
@@ -32,7 +28,6 @@ class RelicTab(QWidget):
 
         # PDF and Image Classes
         self.relic_images = RelicImage(self.basedir)
-        self.relic_pdf = RelicPDF(self.basedir, self.statusbar, self.relic_images)
 
         # API Classes
         self.foundry_translator = foundry_translator
@@ -85,6 +80,11 @@ class RelicTab(QWidget):
         relic_stats_layout.addWidget(self.rarity_relic_type_box, idx, 1)
         idx += 1
 
+        # Relic Effect
+        self.relic_effect_edit = add_stat_to_layout(relic_stats_layout, "Effect:", idx)
+        self.relic_effect_edit.setToolTip("Either manually enter a relic effect or let it be rolled.")
+        idx += 1
+
         # Relic Class
         rarities = ["Random", "Assassin", "Berserker", "Commando", "Gunzerker", "Hunter", "Mecromancer",
                     "Psycho", "Siren", "Soldier", "Any"]
@@ -95,10 +95,6 @@ class RelicTab(QWidget):
         relic_stats_layout.addWidget(self.rarity_class_type_box, idx, 1)
         idx += 1
 
-        # Relic Effect
-        self.relic_effect_edit = add_stat_to_layout(relic_stats_layout, "Effect:", idx)
-        self.relic_effect_edit.setToolTip("Either manually enter a relic effect or let it be rolled.")
-        idx += 1
 
         # Relic Class Effect
         self.relic_class_effect_edit = add_stat_to_layout(relic_stats_layout, "Class Effect:", idx)
@@ -140,26 +136,6 @@ class RelicTab(QWidget):
         relic_stats_layout.addWidget(QLabel(""), idx, 0)
         idx += 1
 
-        ##### Rules/Misc Separator
-        rules_separator = QLabel("Rules/Settings")
-        rules_separator.setFont(font)
-        rules_separator.setAlignment(QtCore.Qt.AlignCenter)
-        relic_stats_layout.addWidget(rules_separator, idx, 0, 1, -1)
-        idx += 1
-
-        # Whether to save the PDF as form-fillable still
-        form_fill_label = QLabel("Keep PDF Form-Fillable:")
-        form_fill_label.setStatusTip("Choose whether to keep the PDF unflattened so filled forms can be modified in a PDF editor.")
-        relic_stats_layout.addWidget(form_fill_label, idx, 0)
-        self.form_fill_check = QCheckBox()
-        self.form_fill_check.setStatusTip("Choose whether to keep the PDF unflattened so filled forms can be modified in a PDF editor.")
-        relic_stats_layout.addWidget(self.form_fill_check, idx, 1)
-        idx += 1
-
-        # Add spacing between groups
-        relic_stats_layout.addWidget(QLabel(""), idx, 0)
-        idx += 1
-
         ##### External Tools Separator
         api_separator = QLabel("External Tools")
         api_separator.setFont(font)
@@ -192,10 +168,6 @@ class RelicTab(QWidget):
         relic_generation_layout = QGridLayout()
         relic_generation_layout.setAlignment(Qt.AlignTop)
 
-        # PDF Output Name
-        self.relic_pdf_line_edit = add_stat_to_layout(relic_generation_layout, "PDF Filename:", 0)
-        self.relic_pdf_line_edit.setToolTip("Specify the filename that Generate Relic saves the next gun under.")
-
         # Generate button
         button = QPushButton("Generate Relic")
         button.setToolTip("Handles generating the relic card and locally saving the PDF in \"outputs/relics/\".")
@@ -213,55 +185,23 @@ class RelicTab(QWidget):
         ###################################
 
         ###################################
-        ###  START: Multi Generation    ###
-        ###################################
-        relic_multi_group = QGroupBox("Multi-Relic Generation")
-        relic_multi_layout = QGridLayout()
-        relic_multi_layout.setAlignment(Qt.AlignTop)
-
-        # PDF Output Name
-        self.numrelic_line_edit = add_stat_to_layout(relic_multi_layout, "# Relics to Generate:", 0, force_int=True)
-        self.numrelic_line_edit.setToolTip("Choose how many relics to automatically generate and save.")
-
-        # Generate button
-        button = QPushButton("Generate Multiple Relics")
-        button.setToolTip("Handles generating the relics and locally saving their PDFs in \"outputs/relics/\".")
-        button.clicked.connect(lambda: self.generate_multiple_relics())
-        relic_multi_layout.addWidget(button, 1, 0, 1, -1)
-
-        # Label for savefile output
-        self.relic_multi_output_label = QLabel()
-        relic_multi_layout.addWidget(self.relic_multi_output_label, 2, 0, 1, -1)
-
-        # Grid layout
-        relic_multi_group.setLayout(relic_multi_layout)
-        ###################################
-        ###  END: Multi Generation      ###
-        ###################################
-
-        ###################################
         ###  START: Relic Display       ###
         ###################################
-        relic_card_group = QGroupBox("Relic Card")
-        relic_card_layout = QGridLayout()
-        relic_card_layout.setAlignment(Qt.AlignVCenter)
+        self.relic_card_group = QGroupBox("Relic Card")
+        self.relic_card_layout = QGridLayout()
+        self.relic_card_layout.setAlignment(Qt.AlignTop)
 
-        self.RelicWebBrowser = QAxContainer.QAxWidget(self)
-        self.RelicWebBrowser.setFixedHeight(800)
-        self.RelicWebBrowser.setControl("{8856F961-340A-11D0-A96B-00C04FD705A2}")
-        self.RelicWebBrowser.setToolTip("If nothing is displaying or the text is not displaying, then either "
-                                        "1.) you do not have a local PDF Viewer or 2.) the OS you are on doesn't support annotation rendering.")
-        relic_card_layout.addWidget(self.RelicWebBrowser, 0, 1, -1, 1)
+        # Give a right-click menu for copying image cards
+        self.display_height = 550
+        self.relic_card_group.setContextMenuPolicy(Qt.ActionsContextMenu)
+        self.relic_card_group.customContextMenuRequested.connect(
+            lambda: card_option_menu(self, self.relic_card_group.winId(), height=self.display_height))
 
-        # Need to check if attempting to re-save when the PDF name is already taken
-        self.current_relic_pdf = "EXAMPLE_RELIC.pdf"
+        # Enable copy-pasting image cards
+        self.relic_card_group.addAction(
+            copy_image_action(self, self.relic_card_group.winId(), height=self.display_height))
 
-        # Load in Gun Card Template
-        f = Path(os.path.abspath(self.basedir + "output/examples/EXAMPLE_RELIC.pdf")).as_uri()
-        self.RelicWebBrowser.dynamicCall('Navigate(const QString&)', f)
-
-        # Grid layout
-        relic_card_group.setLayout(relic_card_layout)
+        self.relic_card_group.setLayout(self.relic_card_layout)
         ###################################
         ###  END: Potion Display        ###
         ###################################
@@ -269,21 +209,19 @@ class RelicTab(QWidget):
         # Setting appropriate column widths
         relic_stats_group.setFixedWidth(300)
         relic_generation_group.setFixedWidth(300)
-        relic_multi_group.setFixedWidth(300)
-        relic_card_group.setFixedWidth(1000)
+        self.relic_card_group.setFixedWidth(325)
 
         # Setting appropriate layout heights
         relic_stats_group.setFixedHeight(400)
-        relic_generation_group.setFixedHeight(150)
-        relic_multi_group.setFixedHeight(300)
-        relic_card_group.setFixedHeight(850)
+        relic_generation_group.setFixedHeight(450)
+        self.relic_card_group.setFixedHeight(850)
 
         # Potion Generation Layout
         self.relic_generation_layout = QGridLayout()
+        self.relic_generation_layout.setAlignment(Qt.AlignLeft)
         self.relic_generation_layout.addWidget(relic_stats_group, 0, 0)
         self.relic_generation_layout.addWidget(relic_generation_group, 1, 0)
-        self.relic_generation_layout.addWidget(relic_multi_group, 2, 0)
-        self.relic_generation_layout.addWidget(relic_card_group, 0, 1, -1, 1)
+        self.relic_generation_layout.addWidget(self.relic_card_group, 0, 1, -1, 1)
 
         self.relic_tab = QWidget()
         self.relic_tab.setLayout(self.relic_generation_layout)
@@ -301,6 +239,16 @@ class RelicTab(QWidget):
         else:
             self.art_filepath.setText(filename)
 
+    def save_screenshot(self):
+        """ Screenshots the Relic Card layout and saves to a local file """
+        # Save as local image
+        screen = QtWidgets.QApplication.primaryScreen()
+        screenshot = screen.grabWindow(self.relic_card_group.winId(), height=self.display_height)
+        screenshot.save(f"output/relics/{self.output_name}.png", "png")
+
+        # Set label text for output
+        self.output_relic_pdf_label.setText(f"Saved to output/relics/{self.output_name}.png")
+
     def generate_relic(self):
         """ Handles performing the call to generate a relic given the parameters and updating the Potion Card image """
         # Load in properties that are currently set in the program
@@ -311,7 +259,6 @@ class RelicTab(QWidget):
         relic_effect = self.relic_effect_edit.text()
         relic_class_id = self.rarity_class_type_box.currentText()
         relic_class_effect = self.relic_class_effect_edit.text()
-        relic_form_check = self.form_fill_check.isChecked()
         relic_art_path = self.art_filepath.text()
 
         # Generate a relic
@@ -321,72 +268,73 @@ class RelicTab(QWidget):
                       relic_art_path)
 
         # Generate output name and check if it is already in use
-        output_name = f"{relic.class_id}_{relic.type}_{relic.name.replace(' ', '')}" \
-            if self.relic_pdf_line_edit.text() == "" else self.relic_pdf_line_edit.text()
-        if output_name == self.current_relic_pdf:
-            self.output_relic_pdf_label.setText("PDF Name already in use!".format(output_name))
-            return
+        self.output_name = f"{relic.class_id}_{relic.type}_{relic.name.replace(' ', '')}"
 
-        # Generate the PDF
-        self.relic_pdf.generate_relic_pdf(output_name, relic, relic_form_check)
+        # Clear current relic card
+        clear_layout(self.relic_card_layout)
 
-        # Update the label and pdf name
-        self.output_relic_pdf_label.setText("Saved to output/relics/{}.pdf!".format(output_name))
-        self.current_relic_pdf = output_name
+        # Index counter for gridlayout across all widgets
+        idx = 0
 
-        # Load in gun card PDF
-        f = Path(os.path.abspath("output/relics/{}.pdf".format(output_name))).as_uri()
-        self.RelicWebBrowser.dynamicCall('Navigate(const QString&)', f)
+        # Pixmap for the Relic Image
+        relic_display = QLabel()
+        relic_pixmap = QPixmap(relic.relic_art_path).scaled(300, 300, Qt.KeepAspectRatio,
+                                                            transformMode=QtCore.Qt.SmoothTransformation)
+        relic_display.setAlignment(Qt.AlignCenter)
+        relic_display.setPixmap(relic_pixmap)
+        self.relic_card_layout.addWidget(relic_display, idx, 0, 1, -1)
+        idx += 1
+
+        # Add spacing between groups
+        self.relic_card_layout.addWidget(QLabel(""), idx, 0)
+        idx += 1
+
+        # Relic Name
+        relic_name = add_stat_to_layout(self.relic_card_layout, "Name: ", idx)
+        relic_name.setText(relic.name)
+        idx += 1
+
+        # Relic Type
+        relic_type = add_stat_to_layout(self.relic_card_layout, "Type: ", idx)
+        relic_type.setText(relic.type)
+        idx += 1
+
+        # Relic Rarity
+        relic_tier = add_stat_to_layout(self.relic_card_layout, "Rarity: ", idx)
+        relic_tier.setText(relic.rarity.title())
+        idx += 1
+
+        # Relic Guild effect, dynamically expanded
+        relic_effect = QTextEdit()
+        prefix_info = split_effect_text(relic.effect)
+        numOfLinesInText = prefix_info.count("\n") + 2
+        relic_effect.setFixedHeight(numOfLinesInText * 15)
+        relic_effect.setFixedWidth(235)
+        relic_effect.setText(prefix_info)
+
+        self.relic_card_layout.addWidget(QLabel("Effect: "), idx, 0, numOfLinesInText, 1)
+        self.relic_card_layout.addWidget(relic_effect, idx, 1, numOfLinesInText, 1)
+        idx += numOfLinesInText
+
+        # Relic Guild effect, dynamically expanded
+        relic_effect = QTextEdit()
+        prefix_info = split_effect_text(f"({relic.class_id.title()}): {relic.class_effect}")
+        numOfLinesInText = prefix_info.count("\n") + 2
+        relic_effect.setFixedHeight(numOfLinesInText * 15)
+        relic_effect.setFixedWidth(235)
+        relic_effect.setText(prefix_info)
+
+        self.relic_card_layout.addWidget(QLabel("Class Effect: "), idx, 0, numOfLinesInText, 1)
+        self.relic_card_layout.addWidget(relic_effect, idx, 1, numOfLinesInText, 1)
+        idx += numOfLinesInText
+
+        # Add spacing between groups
+        self.relic_card_layout.addWidget(QLabel(""), idx, 0)
+        idx += 1
+
+        # Save as output
+        QTimer.singleShot(1000, self.save_screenshot)
 
         # FoundryVTT Check
         if self.foundry_export_check.isChecked() is True:
-            self.foundry_translator.export_relic(relic, output_name)
-
-    def generate_multiple_relics(self):
-        """ Handles generating multiple relics and saving them to outputs/relics/ """
-        # Error check for no number specified
-        if self.numrelic_line_edit.text() == "":
-            self.relic_multi_output_label.setText("No number set! Enter a number and resubmit!")
-            return
-
-        # Load in properties that are currently set in the program
-        relic_id = self.relic_id_box.currentText()
-        relic_name = self.relic_line_edit.text()
-        relic_type = self.relic_type_edit.text()
-        relic_rarity = self.rarity_relic_type_box.currentText()
-        relic_effect = self.relic_effect_edit.text()
-        relic_class_id = self.rarity_class_type_box.currentText()
-        relic_class_effect = self.relic_class_effect_edit.text()
-        relic_form_check = self.form_fill_check.isChecked()
-        relic_art_path = self.art_filepath.text()
-
-        # Get a base output name to display and the number to generate
-        output_name = self.current_relic_pdf
-        number_gen = int(self.numrelic_line_edit.text())
-        for _ in range(number_gen):
-            # Generate a relic
-            relic = Relic(self.basedir, self.relic_images,
-                          relic_name, relic_id, relic_type, relic_rarity,
-                          relic_effect, relic_class_id, relic_class_effect,
-                          relic_art_path)
-
-            # Generate output name and check if it is already in use
-            output_name = f"{relic.class_id}_{relic.type}_{relic.name.replace(' ', '')}"
-            if output_name == self.current_relic_pdf:
-                self.relic_multi_output_label.setText("PDF Name already in use!".format(output_name))
-                continue
-
-            # Generate the PDF
-            self.relic_pdf.generate_relic_pdf(output_name, relic, relic_form_check)
-
-            # FoundryVTT Check
-            if self.foundry_export_check.isChecked() is True:
-                self.foundry_translator.export_relic(relic, output_name)
-
-        # Update the label and pdf name
-        self.relic_multi_output_label.setText("Saved {} potions to 'output/relics/'!".format(number_gen))
-        self.current_relic_pdf = output_name
-
-        # Load in gun card PDF
-        f = Path(os.path.abspath("output/relics/{}.pdf".format(output_name))).as_uri()
-        self.RelicWebBrowser.dynamicCall('Navigate(const QString&)', f)
+            self.foundry_translator.export_relic(relic, self.output_name)

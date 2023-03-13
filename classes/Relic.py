@@ -5,6 +5,10 @@
 Class that handles generating and holding the state of a Relic.
 Takes in user-input on Relic Type, Rarity, and Class - if provided.
 """
+import shutil
+import requests
+
+from PIL import Image
 from random import choice, randint
 from classes.json_reader import get_file_data
 
@@ -12,7 +16,7 @@ from classes.json_reader import get_file_data
 class Relic:
     def __init__(self, base_dir, relic_images,
                  name='', relic_id="Random", relic_type='', rarity="Random",
-                 effect='', class_id="Random", class_effect='', art_path=None):
+                 effect='', class_id="Random", class_effect='', relic_art_path=None):
         """ Handles generating a relic, modified to specifics by user info """
         # Load in relic data
         relic_data = get_file_data(base_dir + 'resources/misc/relics/relic.json')
@@ -80,11 +84,20 @@ class Relic:
         self.cost = relic_cost[self.rarity]
 
         # Set file art path; sample if not given
-        self.art_path = ""
-        if art_path not in ["", None]:
-            self.art_path = art_path
+        self.relic_art_path = base_dir + 'output/relics/temporary_relic_image.png'
+        if relic_art_path not in ["", None]:
+            try:
+                try:
+                    # Test URL
+                    response = requests.get(relic_art_path, stream=True)
+                    img = Image.open(response.raw)
+                    img.save(self.relic_art_path)
+                except:
+                    shutil.copy(relic_art_path, self.relic_art_path)
+            except:
+                relic_images.sample_relic_image()
         else:
-            self.art_path = relic_images.sample_relic_image()
+            relic_images.sample_relic_image()
 
     def get_relic_tier(self, roll, relic_data):
         """

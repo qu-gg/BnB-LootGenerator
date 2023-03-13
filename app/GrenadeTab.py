@@ -4,22 +4,18 @@
 
 Handles the logic and state for the PyQT tab related to grenade generation
 """
-import os
-from pathlib import Path
-
-from PyQt5.QtGui import QFont
+from PyQt5.QtGui import QFont, QPixmap
 
 from classes.Grenade import Grenade
-from classes.GrenadePDF import GrenadePDF
 from classes.GrenadeImage import GrenadeImage
 
-from app.tab_utils import add_stat_to_layout
+from app.tab_utils import add_stat_to_layout, split_effect_text, clear_layout, copy_image_action, card_option_menu
 from classes.json_reader import get_file_data
 
-from PyQt5.QtCore import Qt
-from PyQt5 import QAxContainer, QtCore
+from PyQt5.QtCore import Qt, QTimer
+from PyQt5 import QAxContainer, QtCore, QtWidgets
 from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton, QLineEdit, QFileDialog,
-                             QCheckBox)
+                             QCheckBox, QTextEdit)
 
 
 class GrenadeTab(QWidget):
@@ -32,7 +28,6 @@ class GrenadeTab(QWidget):
 
         # PDF and Image Classes
         self.grenade_images = GrenadeImage(self.basedir)
-        self.grenade_pdf = GrenadePDF(self.basedir, self.statusbar, self.grenade_images)
 
         # API Classes
         self.foundry_translator = foundry_translator
@@ -130,28 +125,6 @@ class GrenadeTab(QWidget):
         grenade_stats_layout.addWidget(QLabel(""), idx, 0)
         idx += 1
 
-        ##### Rules/Misc Separator
-        rules_separator = QLabel("Rules/Settings")
-        rules_separator.setFont(font)
-        rules_separator.setAlignment(QtCore.Qt.AlignCenter)
-        grenade_stats_layout.addWidget(rules_separator, idx, 0, 1, -1)
-        idx += 1
-
-        # Whether to save the PDF as form-fillable still
-        form_fill_label = QLabel("Keep PDF Form-Fillable:")
-        form_fill_label.setStatusTip(
-            "Choose whether to keep the PDF unflattened so filled forms can be modified in a PDF editor.")
-        grenade_stats_layout.addWidget(form_fill_label, idx, 0)
-        self.form_fill_check = QCheckBox()
-        self.form_fill_check.setStatusTip(
-            "Choose whether to keep the PDF unflattened so filled forms can be modified in a PDF editor.")
-        grenade_stats_layout.addWidget(self.form_fill_check, idx, 1)
-        idx += 1
-
-        # Add spacing between groups
-        grenade_stats_layout.addWidget(QLabel(""), idx, 0)
-        idx += 1
-
         ##### External Tools Separator
         api_separator = QLabel("External Tools")
         api_separator.setFont(font)
@@ -174,19 +147,15 @@ class GrenadeTab(QWidget):
         # Grid layout
         grenade_stats_group.setLayout(grenade_stats_layout)
         ###################################
-        ###  END: grenade Stats Grid      ###
+        ###  END: Grenade Stats Grid      ###
         ###################################
 
         ###################################
-        ###  START: grenade Generation    ###
+        ###  START: Grenade Generation    ###
         ###################################
         grenade_generation_group = QGroupBox("Single-Grenade Generation")
         grenade_generation_layout = QGridLayout()
         grenade_generation_layout.setAlignment(Qt.AlignTop)
-
-        # PDF Output Name
-        self.grenade_pdf_line_edit = add_stat_to_layout(grenade_generation_layout, "PDF Filename:", 0)
-        self.grenade_pdf_line_edit.setToolTip("Specify the filename that Generate grenade saves the next gun under.")
 
         # Generate button
         button = QPushButton("Generate Grenade")
@@ -205,56 +174,23 @@ class GrenadeTab(QWidget):
         ###################################
 
         ###################################
-        ###  START: Multi Generation    ###
-        ###################################
-        grenade_multi_group = QGroupBox("Multi-Grenade Generation")
-        grenade_multi_layout = QGridLayout()
-        grenade_multi_layout.setAlignment(Qt.AlignTop)
-
-        # PDF Output Name
-        self.numgrenade_line_edit = add_stat_to_layout(grenade_multi_layout, "# Grenades to Generate:", 0,
-                                                       force_int=True)
-        self.numgrenade_line_edit.setToolTip("Choose how many grenades to automatically generate and save.")
-
-        # Generate button
-        button = QPushButton("Generate Multiple Grenades")
-        button.setToolTip("Handles generating the grenades and locally saving their PDFs in \"outputs/grenades/\".")
-        button.clicked.connect(lambda: self.generate_multiple_grenades())
-        grenade_multi_layout.addWidget(button, 1, 0, 1, -1)
-
-        # Label for savefile output
-        self.grenade_multi_output_label = QLabel()
-        grenade_multi_layout.addWidget(self.grenade_multi_output_label, 2, 0, 1, -1)
-
-        # Grid layout
-        grenade_multi_group.setLayout(grenade_multi_layout)
-        ###################################
-        ###  END: Multi Generation      ###
-        ###################################
-
-        ###################################
         ###  START: Grenade Display       ###
         ###################################
-        grenade_card_group = QGroupBox("Grenade Card")
-        grenade_card_layout = QGridLayout()
-        grenade_card_layout.setAlignment(Qt.AlignVCenter)
+        self.grenade_card_group = QGroupBox("Grenade Card")
+        self.grenade_card_layout = QGridLayout()
+        self.grenade_card_layout.setAlignment(Qt.AlignTop)
 
-        self.grenadeWebBrowser = QAxContainer.QAxWidget(self)
-        self.grenadeWebBrowser.setFixedHeight(800)
-        self.grenadeWebBrowser.setControl("{8856F961-340A-11D0-A96B-00C04FD705A2}")
-        self.grenadeWebBrowser.setToolTip("If nothing is displaying or the text is not displaying, then either "
-                                          "1.) you do not have a local PDF Viewer or 2.) the OS you are on doesn't support annotation rendering.")
-        grenade_card_layout.addWidget(self.grenadeWebBrowser, 0, 1, -1, 1)
+        # Give a right-click menu for copying image cards
+        self.display_height = 600
+        self.grenade_card_group.setContextMenuPolicy(Qt.ActionsContextMenu)
+        self.grenade_card_group.customContextMenuRequested.connect(
+            lambda: card_option_menu(self, self.grenade_card_group.winId(), height=self.display_height))
 
-        # Need to check if attempting to re-save when the PDF name is already taken
-        self.current_grenade_pdf = "EXAMPLE_GRENADE.pdf"
+        # Enable copy-pasting image cards
+        self.grenade_card_group.addAction(
+            copy_image_action(self, self.grenade_card_group.winId(), height=self.display_height))
 
-        # Load in Gun Card Template
-        f = Path(os.path.abspath(self.basedir + "output/examples/EXAMPLE_GRENADE.pdf")).as_uri()
-        self.grenadeWebBrowser.dynamicCall('Navigate(const QString&)', f)
-
-        # Grid layout
-        grenade_card_group.setLayout(grenade_card_layout)
+        self.grenade_card_group.setLayout(self.grenade_card_layout)
         ###################################
         ###  END: Grenade Display       ###
         ###################################
@@ -262,21 +198,19 @@ class GrenadeTab(QWidget):
         # Setting appropriate column widths
         grenade_stats_group.setFixedWidth(300)
         grenade_generation_group.setFixedWidth(300)
-        grenade_multi_group.setFixedWidth(300)
-        grenade_card_group.setFixedWidth(1000)
+        self.grenade_card_group.setFixedWidth(325)
 
         # Setting appropriate layout heights
         grenade_stats_group.setFixedHeight(375)
-        grenade_generation_group.setFixedHeight(150)
-        grenade_multi_group.setFixedHeight(325)
-        grenade_card_group.setFixedHeight(850)
+        grenade_generation_group.setFixedHeight(475)
+        self.grenade_card_group.setFixedHeight(850)
 
         # Potion Generation Layout
         self.grenade_generation_layout = QGridLayout()
+        self.grenade_generation_layout.setAlignment(Qt.AlignLeft)
         self.grenade_generation_layout.addWidget(grenade_stats_group, 0, 0)
         self.grenade_generation_layout.addWidget(grenade_generation_group, 1, 0)
-        self.grenade_generation_layout.addWidget(grenade_multi_group, 2, 0)
-        self.grenade_generation_layout.addWidget(grenade_card_group, 0, 1, -1, 1)
+        self.grenade_generation_layout.addWidget(self.grenade_card_group, 0, 1, -1, 1)
 
         self.grenade_tab = QWidget()
         self.grenade_tab.setLayout(self.grenade_generation_layout)
@@ -294,6 +228,16 @@ class GrenadeTab(QWidget):
         else:
             self.art_filepath.setText(filename)
 
+    def save_screenshot(self):
+        """ Screenshots the Grenade Card layout and saves to a local file """
+        # Save as local image
+        screen = QtWidgets.QApplication.primaryScreen()
+        screenshot = screen.grabWindow(self.grenade_card_group.winId(), height=self.display_height)
+        screenshot.save(f"output/grenades/{self.output_name}.png", "png")
+
+        # Set label text for output
+        self.output_grenade_pdf_label.setText(f"Saved to output/grenades/{self.output_name}.png")
+
     def generate_grenade(self):
         """ Handles performing the call to generate a grenade given the parameters and updating the Grenade Card image """
         # Load in properties that are currently set in the program
@@ -303,79 +247,79 @@ class GrenadeTab(QWidget):
         grenade_type = self.grenade_type_edit.text()
         grenade_damage = self.grenade_damage_edit.text()
         grenade_effect = self.grenade_effect_edit.text()
-        grenade_form_check = self.form_fill_check.isChecked()
         grenade_art_path = self.art_filepath.text()
 
         # Generate a grenade
         grenade = Grenade(self.basedir, self.grenade_images,
                           name=grenade_name, guild=grenade_guild, grenade_type=grenade_type,
-                          tier=grenade_tier, damage=grenade_damage, effect=grenade_effect, art_path=grenade_art_path)
+                          tier=grenade_tier, damage=grenade_damage, effect=grenade_effect, grenade_art=grenade_art_path)
 
         # Generate output name and check if it is already in use
-        output_name = "{}_Tier{}_{}".format(grenade.guild, grenade.tier, grenade.name.replace(" ", "")) \
-            if self.grenade_pdf_line_edit.text() == "" else self.grenade_pdf_line_edit.text()
-        if output_name == self.current_grenade_pdf:
-            self.output_grenade_pdf_label.setText("PDF Name already in use!".format(output_name))
-            return
+        self.output_name = "{}_Tier{}_{}".format(grenade.guild, grenade.tier, grenade.name.replace(" ", ""))
 
-        # Generate the PDF
-        self.grenade_pdf.generate_grenade_pdf(output_name, grenade, grenade_form_check)
+        # Clear current grenade card
+        clear_layout(self.grenade_card_layout)
+
+        # Index counter for gridlayout across all widgets
+        idx = 0
+
+        # Pixmap for the Grenade Image
+        grenade_display = QLabel()
+        grenade_pixmap = QPixmap(grenade.grenade_art_path).scaled(300, 300, Qt.KeepAspectRatio,
+                                                               transformMode=QtCore.Qt.SmoothTransformation)
+        grenade_display.setAlignment(Qt.AlignCenter)
+        grenade_display.setPixmap(grenade_pixmap)
+        self.grenade_card_layout.addWidget(grenade_display, idx, 0, 1, -1)
+        idx += 1
+
+        # Add spacing between groups
+        self.grenade_card_layout.addWidget(QLabel(""), idx, 0)
+        idx += 1
+
+        # Grenade Name
+        grenade_name = add_stat_to_layout(self.grenade_card_layout, "Name: ", idx)
+        grenade_name.setText(grenade.name)
+        idx += 1
+
+        # Grenade Guild
+        grenade_guild = add_stat_to_layout(self.grenade_card_layout, "Guild: ", idx)
+        grenade_guild.setText(grenade.guild.title())
+        idx += 1
+
+        # Grenade Tier
+        grenade_tier = add_stat_to_layout(self.grenade_card_layout, "Item Tier: ", idx)
+        grenade_tier.setText(str(grenade.tier))
+        idx += 1
+
+        # Grenade Capacity
+        grenade_capacity = add_stat_to_layout(self.grenade_card_layout, "Type: ", idx)
+        grenade_capacity.setText(str(grenade.type))
+        idx += 1
+
+        # Grenade Recharge
+        grenade_recharge = add_stat_to_layout(self.grenade_card_layout, "Damage: ", idx)
+        grenade_recharge.setText(str(grenade.damage))
+        idx += 1
+
+        # Grenade Guild effect, dynamically expanded
+        grenade_effect = QTextEdit()
+        prefix_info = split_effect_text(grenade.effect)
+        numOfLinesInText = prefix_info.count("\n") + 2
+        grenade_effect.setFixedHeight(numOfLinesInText * 15)
+        grenade_effect.setFixedWidth(249)
+        grenade_effect.setText(prefix_info)
+
+        self.grenade_card_layout.addWidget(QLabel("Effect: "), idx, 0, numOfLinesInText, 1)
+        self.grenade_card_layout.addWidget(grenade_effect, idx, 1, numOfLinesInText, 1)
+        idx += numOfLinesInText
+
+        # Add spacing between groups
+        self.grenade_card_layout.addWidget(QLabel(""), idx, 0)
+        idx += 1
+
+        # Save as output
+        QTimer.singleShot(1000, self.save_screenshot)
 
         # FoundryVTT Check
         if self.foundry_export_check.isChecked() is True:
-            self.foundry_translator.export_grenade(grenade, output_name)
-
-        # Update the label and pdf name
-        self.output_grenade_pdf_label.setText("Saved to output/grenades/{}.pdf!".format(output_name))
-        self.current_grenade_pdf = output_name
-
-        # Load in gun card PDF
-        f = Path(os.path.abspath("output/grenades/{}.pdf".format(output_name))).as_uri()
-        self.grenadeWebBrowser.dynamicCall('Navigate(const QString&)', f)
-
-    def generate_multiple_grenades(self):
-        """ Handles generating and saving multiple grenade cards at once """
-        # Error check for no number specified
-        if self.numgrenade_line_edit.text() == "":
-            self.grenade_multi_output_label.setText("No number set! Enter a number and resubmit!")
-            return
-
-        # Load in properties that are currently set in the program
-        grenade_guild = self.guild_grenade_type_box.currentText()
-        grenade_tier = self.tier_grenade_type_box.currentText()
-        grenade_type = self.grenade_type_edit.text()
-        grenade_damage = self.grenade_damage_edit.text()
-        grenade_effect = self.grenade_effect_edit.text()
-        grenade_form_check = self.form_fill_check.isChecked()
-        grenade_art_path = self.art_filepath.text()
-
-        # Get a base output name to display and the number to generate
-        output_name = self.current_grenade_pdf
-        number_gen = int(self.numgrenade_line_edit.text())
-        for _ in range(number_gen):
-            # Generate a grenade
-            grenade = Grenade(self.basedir, self.grenade_images,
-                              guild=grenade_guild, grenade_type=grenade_type,
-                              tier=grenade_tier, damage=grenade_damage, effect=grenade_effect,
-                              art_path=grenade_art_path)
-
-            # Generate output name and check if it is already in use
-            output_name = "{}_Tier{}_{}".format(grenade.guild, grenade.tier, grenade.name.replace(" ", ""))
-            if output_name == self.current_grenade_pdf:
-                self.grenade_multi_output_label.setText("PDF Name already in use!".format(output_name))
-                return
-
-            # Generate the PDF
-            self.grenade_pdf.generate_grenade_pdf(output_name, grenade, grenade_form_check)
-
-            # FoundryVTT Check
-            if self.foundry_export_check.isChecked() is True:
-                self.foundry_translator.export_grenade(grenade, output_name)
-
-        # Update the label and pdf name
-        self.grenade_multi_output_label.setText("Saved {} potions to 'output/grenades/'!".format(number_gen))
-        self.current_grenade_pdf = output_name
-
-        # Load in gun card PDF
-        f = Path(os.path.abspath("output/grenades/{}.pdf".format(output_name))).as_uri()
-        self.grenadeWebBrowser.dynamicCall('Navigate(const QString&)', f)
+            self.foundry_translator.export_grenade(grenade, self.output_name)

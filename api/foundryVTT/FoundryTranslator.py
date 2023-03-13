@@ -42,7 +42,7 @@ class FoundryTranslator:
     def export_gun(self, gun, output_name, redtext_check):
         """
         Handles exporting the generated gun in the FoundryVTT JSON format, saving both the JSON and gun art image
-        in a folder output under api/foundryVTT/outputs/guns/
+        in a folder output under api/foundryVTT/output/guns/
         :param gun: Gun object
         :param output_name: output filename assigned to the object
         :param redtext_check: whether to show or hide the redtext effect for the player
@@ -144,13 +144,13 @@ class FoundryTranslator:
             template["system"]["statMods"]["mst"] += 1
 
         # Saving gun json and image to folder
-        with open(f"{self.basedir}api/foundryVTT/outputs/guns/{output_name}.json", 'w') as f:
+        with open(f"{self.basedir}api/foundryVTT/output/guns/{output_name}.json", 'w') as f:
             json.dump(template, f)
 
     def export_shield(self, shield, output_name):
         """
         Handles exporting the generated shield in the FoundryVTT JSON format, saving both the JSON and gun art image
-        in a folder output under api/foundryVTT/outputs/shields/
+        in a folder output under api/foundryVTT/output/shields/
         :param shield: Shield object
         :param output_name: output filename assigned to the object
         """
@@ -194,13 +194,13 @@ class FoundryTranslator:
             template["system"]["elements"][resistance_element]["damage"] = resistance_die
 
         # Saving shield json and image to folder
-        with open(f"{self.basedir}api/foundryVTT/outputs/shields/{output_name}.json", 'w') as f:
+        with open(f"{self.basedir}api/foundryVTT/output/shields/{output_name}.json", 'w') as f:
             json.dump(template, f)
 
     def export_relic(self, relic, output_name):
         """
         Handles exporting the generated Relic in the FoundryVTT JSON format, saving both the JSON and gun art image
-        in a folder output under api/foundryVTT/outputs/relics/
+        in a folder output under api/foundryVTT/output/relics/
         :param relic: Relic object
         :param output_name: output filename assigned to the object
         """
@@ -210,7 +210,7 @@ class FoundryTranslator:
 
         """ Foundry display information """
         template["name"] = relic.name
-        template["img"] = relic.art_path
+        template["img"] = relic.relic_art_path
 
         """ Relic Effect + Description """
         template["system"]["effect"] = relic.effect
@@ -229,13 +229,13 @@ class FoundryTranslator:
         template["system"]["classEffect"] = relic.class_effect
 
         # Saving relic json and image to folder
-        with open(f"{self.basedir}api/foundryVTT/outputs/relics/{output_name}.json", 'w') as f:
+        with open(f"{self.basedir}api/foundryVTT/output/relics/{output_name}.json", 'w') as f:
             json.dump(template, f)
 
     def export_grenade(self, grenade, output_name):
         """
         Handles exporting the generated Grenade in the FoundryVTT JSON format, saving both the JSON and gun art image
-        in a folder output under api/foundryVTT/outputs/grenades/
+        in a folder output under api/foundryVTT/output/grenades/
         :param grenade: grenade object
         :param output_name: output filename assigned to the object
         """
@@ -245,7 +245,7 @@ class FoundryTranslator:
 
         """ Foundry display information """
         template["name"] = grenade.name
-        template["img"] = grenade.art_path
+        template["img"] = grenade.grenade_art_path
 
         """ Item Level """
         template["system"]["level"] = int(grenade.tier)
@@ -288,13 +288,13 @@ class FoundryTranslator:
             template["system"]["gainShield"] = True
 
         # Saving grenade json and image to folder
-        with open(f"{self.basedir}api/foundryVTT/outputs/grenades/{output_name}.json", 'w') as f:
+        with open(f"{self.basedir}api/foundryVTT/output/grenades/{output_name}.json", 'w') as f:
             json.dump(template, f)
 
     def export_potion(self, potion, output_name):
         """
         Handles exporting the generated potion in the FoundryVTT JSON format, saving both the JSON and gun art image
-        in a folder output under api/foundryVTT/outputs/potions/
+        in a folder output under api/foundryVTT/output/potions/
         :param potion: potion object
         :param output_name: output filename assigned to the object
         """
@@ -304,7 +304,7 @@ class FoundryTranslator:
 
         """ Foundry display information """
         template["name"] = potion.name
-        template["img"] = potion.art_path
+        template["img"] = potion.potion_art_path
 
         """ Potion Effect + Description """
         template["system"]["effect"] = potion.effect
@@ -319,5 +319,5 @@ class FoundryTranslator:
         template["system"]["cost"] = potion.cost
 
         # Saving potion json and image to folder
-        with open(f"{self.basedir}api/foundryVTT/outputs/potions/{output_name}.json", 'w') as f:
+        with open(f"{self.basedir}api/foundryVTT/output/potions/{output_name}.json", 'w') as f:
             json.dump(template, f)

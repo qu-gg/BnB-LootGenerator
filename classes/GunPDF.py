@@ -211,7 +211,7 @@ class GunPDF:
                 cur_chars += len(word)
                 if cur_chars > 100:
                     effect_str += "\n"
-                    cur_chars = 0
+                    cur_chars = len(word)
 
                 effect_str += f" {word}"
 
@@ -225,7 +225,7 @@ class GunPDF:
                 cur_chars += len(word)
                 if cur_chars > 100:
                     effect_str += "\n"
-                    cur_chars = 0
+                    cur_chars = len(word)
 
                 effect_str += f" {word}"
 

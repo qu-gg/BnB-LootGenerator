@@ -11,10 +11,8 @@ from classes.Gun import Gun
 from classes.GunPDF import GunPDF
 from classes.GunImage import GunImage
 
-from app.tab_utils import add_stat_to_layout
+from app.tab_utils import add_stat_to_layout, card_option_menu, copy_image_action
 from classes.json_reader import get_file_data
-
-from api.foundryVTT.FoundryTranslator import FoundryTranslator
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon, QFont
@@ -383,6 +381,16 @@ class GunTab(QWidget):
         # Load in Gun Card Template
         f = Path(os.path.abspath(self.basedir + "output/examples/EXAMPLE_GUN.pdf")).as_uri()
         self.WebBrowser.dynamicCall('Navigate(const QString&)', f)
+
+        # Give a right-click menu for copying image cards
+        self.display_height = 660
+        gun_card_group.setContextMenuPolicy(Qt.ActionsContextMenu)
+        gun_card_group.customContextMenuRequested.connect(
+            lambda: card_option_menu(self, gun_card_group.winId(), height=self.display_height, y=100))
+
+        # Enable copy-pasting image cards
+        gun_card_group.addAction(
+            copy_image_action(self, gun_card_group.winId(), height=self.display_height, y=100))
 
         # Grid layout
         gun_card_group.setLayout(gun_card_layout)

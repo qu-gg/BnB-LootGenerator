@@ -32,7 +32,11 @@ class GunImage:
             "blackpowder": "Jakobs",
             "malefactor": "Maliwan",
             "hyperius": "Hyperion",
-            "torgue": "Torgue"
+            "torgue": "Torgue",
+            "valora": "Valora",
+            "swifft": "Swifft",
+            "kleave": "Kleave",
+            "bonk!": "Bonk"
         }
 
         self.type_map = {
@@ -41,7 +45,8 @@ class GunImage:
             "shotgun": ['Shotgun'],
             "submachine_gun": ['SMG'],
             "sniper_rifle": ['Sniper'],
-            "rocket_launcher": ['Launcher']
+            "rocket_launcher": ['Launcher'],
+            "melee": ['Melee']
         }
 
         # Rarity color mapping
@@ -151,6 +156,31 @@ class GunImage:
         response = requests.get(url, stream=True)
         img = Image.open(response.raw)
         img.save(self.prefix + 'output/guns/temporary_gun_image.png')
+        return url
+
+    def sample_melee_image(self, manufacturer=None):
+        """
+        Handles sampling and downloading a relevant gun image from the games for gun card display use
+        :param gun_type: type to filter on
+        :param manufacturer: manu/guild
+        """
+        # Error catch if empty
+        if manufacturer is None:
+            raise FileNotFoundError("No type or manufacturer given!")
+
+        # Convert guild name
+        manufacturer = self.manu_conversion(manufacturer)
+
+        # For each given gun type, get its filtered data and concatenate
+        melee_data = self.filter_guns_data(self.guns_data, 'Melee', manufacturer)
+
+        # Get a sample and its url link
+        url = random.sample(melee_data, 1)[0]['image_link']
+
+        # Get image and then save locally temporarily
+        response = requests.get(url, stream=True)
+        img = Image.open(response.raw)
+        img.save(self.prefix + 'output/melees/temporary_melee_image.png')
         return url
 
     def manu_conversion(self, guild_name):
