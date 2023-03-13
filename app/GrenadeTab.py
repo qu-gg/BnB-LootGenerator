@@ -9,7 +9,7 @@ from PyQt5.QtGui import QFont, QPixmap
 from classes.Grenade import Grenade
 from classes.GrenadeImage import GrenadeImage
 
-from app.tab_utils import add_stat_to_layout, split_effect_text, clear_layout, copy_image_action
+from app.tab_utils import add_stat_to_layout, split_effect_text, clear_layout, copy_image_action, card_option_menu
 from classes.json_reader import get_file_data
 
 from PyQt5.QtCore import Qt, QTimer
@@ -180,8 +180,15 @@ class GrenadeTab(QWidget):
         self.grenade_card_layout = QGridLayout()
         self.grenade_card_layout.setAlignment(Qt.AlignTop)
 
+        # Give a right-click menu for copying image cards
+        self.display_height = 600
+        self.grenade_card_group.setContextMenuPolicy(Qt.ActionsContextMenu)
+        self.grenade_card_group.customContextMenuRequested.connect(
+            lambda: card_option_menu(self, self.grenade_card_group.winId(), height=self.display_height))
+
         # Enable copy-pasting image cards
-        self.grenade_card_group.addAction(copy_image_action(self, self.grenade_card_group.winId(), height=600))
+        self.grenade_card_group.addAction(
+            copy_image_action(self, self.grenade_card_group.winId(), height=self.display_height))
 
         self.grenade_card_group.setLayout(self.grenade_card_layout)
         ###################################
@@ -225,7 +232,7 @@ class GrenadeTab(QWidget):
         """ Screenshots the Grenade Card layout and saves to a local file """
         # Save as local image
         screen = QtWidgets.QApplication.primaryScreen()
-        screenshot = screen.grabWindow(self.grenade_card_group.winId(), height=600)
+        screenshot = screen.grabWindow(self.grenade_card_group.winId(), height=self.display_height)
         screenshot.save(f"output/grenades/{self.output_name}.png", "png")
 
         # Set label text for output

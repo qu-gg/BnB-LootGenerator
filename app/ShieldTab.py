@@ -9,12 +9,12 @@ from PyQt5.QtGui import QFont, QPixmap
 from classes.Shield import Shield
 from classes.ShieldImage import ShieldImage
 from classes.json_reader import get_file_data
-from app.tab_utils import add_stat_to_layout, clear_layout, split_effect_text, copy_image_action
+from app.tab_utils import add_stat_to_layout, clear_layout, split_effect_text, copy_image_action, card_option_menu
 
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton,
-                             QCheckBox, QLineEdit, QFileDialog, QTextEdit, QAction)
+                             QCheckBox, QLineEdit, QFileDialog, QTextEdit, QAction, QMenu)
 
 
 class ShieldTab(QWidget):
@@ -179,8 +179,15 @@ class ShieldTab(QWidget):
         self.shield_card_layout = QGridLayout()
         self.shield_card_layout.setAlignment(Qt.AlignTop)
 
+        # Give a right-click menu for copying image cards
+        self.display_height = 600
+        self.shield_card_group.setContextMenuPolicy(Qt.ActionsContextMenu)
+        self.shield_card_group.customContextMenuRequested.connect(
+            lambda: card_option_menu(self, self.shield_card_group.winId(), height=self.display_height))
+
         # Enable copy-pasting image cards
-        self.shield_card_group.addAction(copy_image_action(self, self.shield_card_group.winId(), height=600))
+        self.shield_card_group.addAction(
+            copy_image_action(self, self.shield_card_group.winId(), height=self.display_height))
 
         self.shield_card_group.setLayout(self.shield_card_layout)
         ###################################
@@ -224,7 +231,7 @@ class ShieldTab(QWidget):
         """ Screenshots the Shield Card layout and saves to a local file """
         # Save as local image
         screen = QtWidgets.QApplication.primaryScreen()
-        screenshot = screen.grabWindow(self.shield_card_group.winId(), height=600)
+        screenshot = screen.grabWindow(self.shield_card_group.winId(), height=self.display_height)
         screenshot.save(f"output/shields/{self.output_name}.png", "png")
 
         # Set label text for output

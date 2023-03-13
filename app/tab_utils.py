@@ -6,7 +6,7 @@ Holds shared functions across the PyQT tabs
 """
 from PyQt5 import QtWidgets
 from PyQt5.QtGui import QIntValidator, QGuiApplication, QClipboard
-from PyQt5.QtWidgets import QLabel, QLineEdit, QAction
+from PyQt5.QtWidgets import QLabel, QLineEdit, QAction, QMenu
 
 
 def add_stat_to_layout(layout, label, row, force_int=False, placeholder=None, read_only=False):
@@ -66,6 +66,12 @@ def split_effect_text(initial_string, line_length=32):
 
         info += f"{word} "
     return info
+
+
+def card_option_menu(self, winID, height=750):
+    """ Wrapper for the copy action to put it into a context menu"""
+    menu = QMenu()
+    menu.addAction(copy_image_action(self, winID, height=height))
 
 
 def copy_image_action(self, winID, height=750):
