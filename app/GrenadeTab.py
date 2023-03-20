@@ -169,6 +169,7 @@ class GrenadeTab(QWidget):
 
         # Label for save file output
         self.output_grenade_pdf_label = QLabel()
+        self.output_name = ""
         grenade_generation_layout.addWidget(self.output_grenade_pdf_label, 2, 0, 1, -1)
 
         # Grid layout

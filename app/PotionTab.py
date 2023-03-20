@@ -141,6 +141,7 @@ class PotionTab(QWidget):
 
         # Label for savefile output
         self.output_potion_pdf_label = QLabel()
+        self.output_name = ""
         potion_generation_layout.addWidget(self.output_potion_pdf_label, 2, 0, 1, -1)
 
         # Grid layout

@@ -168,6 +168,7 @@ class ShieldTab(QWidget):
 
         # Label for save file output
         self.output_shield_pdf_label = QLabel()
+        self.output_name = ""
         shield_generation_layout.addWidget(self.output_shield_pdf_label, 2, 0, 1, -1)
 
         # Grid layout

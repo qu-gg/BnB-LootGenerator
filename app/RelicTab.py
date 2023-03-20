@@ -180,6 +180,7 @@ class RelicTab(QWidget):
 
         # Label for save file output
         self.output_relic_pdf_label = QLabel()
+        self.output_name = ""
         relic_generation_layout.addWidget(self.output_relic_pdf_label, 2, 0, 1, -1)
 
         # Grid layout
