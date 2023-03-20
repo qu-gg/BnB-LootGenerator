@@ -6,6 +6,7 @@ Entrypoint for the Bunkers & Badasses loot generator program (https://github.com
 Handles the UI interaction and display for the PyQT frontend
 """
 import sys
+import json
 
 from app.GunTab import GunTab
 from app.MeleeTab import MeleeTab
@@ -36,11 +37,14 @@ class Window(QMainWindow):
         # TabWidget for the different generation menus
         self.tabMenu = QTabWidget()
 
+        # Load in the config file
+        self.config = json.load(open(f"{self.basedir}resources/CONFIG.json", 'r'))
+
         # FoundryVTT Translator
         self.foundry_translator = FoundryTranslator(self.basedir, self.statusbar)
 
         # Gun Tab
-        self.gun_tab = GunTab(basedir, self.statusbar, self.foundry_translator)
+        self.gun_tab = GunTab(basedir, self.statusbar, self.config, self.foundry_translator)
         self.tabMenu.addTab(self.gun_tab.get_tab(), "Gun")
         self.tabMenu.setTabText(0, "Guns")
 
@@ -50,22 +54,22 @@ class Window(QMainWindow):
         self.tabMenu.setTabText(1, "Melee Weapons")
 
         # Shield Tab
-        self.shield_tab = ShieldTab(basedir, self.statusbar, self.foundry_translator)
+        self.shield_tab = ShieldTab(basedir, self.statusbar, self.config, self.foundry_translator)
         self.tabMenu.addTab(self.shield_tab.get_tab(), "Shield")
         self.tabMenu.setTabText(2, "Shields")
 
         # Relic Tab
-        self.relic_tab = RelicTab(basedir, self.statusbar, self.foundry_translator)
+        self.relic_tab = RelicTab(basedir, self.statusbar, self.config, self.foundry_translator)
         self.tabMenu.addTab(self.relic_tab.get_tab(), "Relic")
         self.tabMenu.setTabText(3, "Relics")
 
         # Grenade Tab
-        self.grenade_tab = GrenadeTab(basedir, self.statusbar, self.foundry_translator)
+        self.grenade_tab = GrenadeTab(basedir, self.statusbar, self.config, self.foundry_translator)
         self.tabMenu.addTab(self.grenade_tab.get_tab(), "Grenade")
         self.tabMenu.setTabText(4, "Grenades")
 
         # Potion Tab
-        self.potion_tab = PotionTab(basedir, self.statusbar, self.foundry_translator)
+        self.potion_tab = PotionTab(basedir, self.statusbar, self.config, self.foundry_translator)
         self.tabMenu.addTab(self.potion_tab.get_tab(), "Potion")
         self.tabMenu.setTabText(5, "Potions")
 

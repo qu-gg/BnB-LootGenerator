@@ -9,17 +9,18 @@ from PyQt5.QtGui import QFont, QPixmap
 from classes.Relic import Relic
 from classes.RelicImage import RelicImage
 
-from app.tab_utils import add_stat_to_layout, clear_layout, split_effect_text, copy_image_action, card_option_menu
+from app.tab_utils import add_stat_to_layout, clear_layout, split_effect_text, copy_image_action, update_config, \
+    save_image_action
 from classes.json_reader import get_file_data
 
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton,
-                             QCheckBox, QLineEdit, QFileDialog, QTextEdit, QAction)
+                             QCheckBox, QLineEdit, QFileDialog, QTextEdit)
 
 
 class RelicTab(QWidget):
-    def __init__(self, basedir, statusbar, foundry_translator):
+    def __init__(self, basedir, statusbar, config, foundry_translator):
         super(RelicTab, self).__init__()
 
         # Load classes
@@ -28,6 +29,9 @@ class RelicTab(QWidget):
 
         # PDF and Image Classes
         self.relic_images = RelicImage(self.basedir)
+
+        # Config
+        self.config = config
 
         # API Classes
         self.foundry_translator = foundry_translator
@@ -176,6 +180,7 @@ class RelicTab(QWidget):
 
         # Label for save file output
         self.output_relic_pdf_label = QLabel()
+        self.output_name = ""
         relic_generation_layout.addWidget(self.output_relic_pdf_label, 2, 0, 1, -1)
 
         # Grid layout
@@ -194,16 +199,28 @@ class RelicTab(QWidget):
         # Give a right-click menu for copying image cards
         self.display_height = 550
         self.relic_card_group.setContextMenuPolicy(Qt.ActionsContextMenu)
-        self.relic_card_group.customContextMenuRequested.connect(
-            lambda: card_option_menu(self, self.relic_card_group.winId(), height=self.display_height))
 
         # Enable copy-pasting image cards
         self.relic_card_group.addAction(
             copy_image_action(self, self.relic_card_group.winId(), height=self.display_height))
 
+        # Enable saving image cards
+        self.relic_card_group.addAction(
+            save_image_action(self, self.relic_card_group.winId(), image_type="relics", height=self.display_height))
+
         self.relic_card_group.setLayout(self.relic_card_layout)
         ###################################
-        ###  END: Potion Display        ###
+        ###  END: Relic Display         ###
+        ###################################
+
+        ###################################
+        ###  START: Configuration       ###
+        ###################################
+        self.foundry_export_check.setChecked(self.config['relic_tab']['foundry_export'])
+        self.foundry_export_check.clicked.connect(
+            lambda: update_config(basedir, self.foundry_export_check, self.config, 'relic_tab', 'foundry_export'))
+        ###################################
+        ###  END: Configuration         ###
         ###################################
 
         # Setting appropriate column widths

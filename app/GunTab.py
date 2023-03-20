@@ -11,18 +11,18 @@ from classes.Gun import Gun
 from classes.GunPDF import GunPDF
 from classes.GunImage import GunImage
 
-from app.tab_utils import add_stat_to_layout, card_option_menu, copy_image_action
+from app.tab_utils import add_stat_to_layout, copy_image_action, save_image_action, update_config
 from classes.json_reader import get_file_data
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon, QFont
-from PyQt5 import QAxContainer, QtCore
+from PyQt5 import QAxContainer, QtCore, QtWidgets
 from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton,
                              QCheckBox, QFileDialog, QLineEdit)
 
 
 class GunTab(QWidget):
-    def __init__(self, basedir, statusbar, foundry_translator):
+    def __init__(self, basedir, statusbar, config, foundry_translator):
         super(GunTab, self).__init__()
 
         # Load classes
@@ -32,6 +32,9 @@ class GunTab(QWidget):
         # PDF and Image Classes
         self.gun_images = GunImage(self.basedir)
         self.gun_pdf = GunPDF(self.basedir, self.statusbar, self.gun_images)
+
+        # Config
+        self.config = config
 
         # API Classes
         self.foundry_translator = foundry_translator
@@ -228,7 +231,6 @@ class GunTab(QWidget):
         base_stats_layout.addWidget(rarity_border_label, idx, 0)
         self.rarity_border_check = QCheckBox()
         self.rarity_border_check.setStatusTip("Choose whether to outline the gun art in a colored-outline based on rarity.")
-        self.rarity_border_check.setChecked(True)
         base_stats_layout.addWidget(self.rarity_border_check, idx, 1)
         idx += 1
 
@@ -273,8 +275,8 @@ class GunTab(QWidget):
         form_design_label.setStatusTip("Chooses whether to use the single card or two page card designs for output.")
         base_stats_layout.addWidget(form_design_label, idx, 0)
         self.form_design_check = QCheckBox()
-        self.form_design_check.setChecked(True)
-        self.form_design_check.setStatusTip("Chooses whether to use the single card or two page card designs for output.")
+        self.form_design_check.setStatusTip(
+            "Chooses whether to use the single card or two page card designs for output.")
         base_stats_layout.addWidget(self.form_design_check, idx, 1)
         idx += 1
 
@@ -297,7 +299,6 @@ class GunTab(QWidget):
         self.foundry_export_check = QCheckBox()
         self.foundry_export_check.setStatusTip(
             "Choose whether to output a JSON file that can be imported by the B&B FoundryVTT System.")
-        self.foundry_export_check.setChecked(False)
         base_stats_layout.addWidget(self.foundry_export_check, idx, 1)
         idx += 1
 
@@ -351,10 +352,6 @@ class GunTab(QWidget):
         button.clicked.connect(lambda: self.generate_multiple_guns())
         multi_layout.addWidget(button, 1, 0, 1, -1)
 
-        # Label for savefile output
-        self.multi_output_label = QLabel()
-        multi_layout.addWidget(self.multi_output_label, 2, 0, 1, -1)
-
         # Grid layout
         multi_group.setLayout(multi_layout)
         ###################################
@@ -364,7 +361,7 @@ class GunTab(QWidget):
         ###################################
         ###  START: Gun Display         ###
         ###################################
-        gun_card_group = QGroupBox("Gun Card")
+        self.gun_card_group = QGroupBox("Gun Card")
         gun_card_layout = QGridLayout()
         gun_card_layout.setAlignment(Qt.AlignVCenter)
 
@@ -377,6 +374,7 @@ class GunTab(QWidget):
 
         # Need to check if attempting to re-save when the PDF name is already taken
         self.current_pdf = "EXAMPLE_GUN.pdf"
+        self.output_name = ""
 
         # Load in Gun Card Template
         f = Path(os.path.abspath(self.basedir + "output/examples/EXAMPLE_GUN.pdf")).as_uri()
@@ -384,38 +382,66 @@ class GunTab(QWidget):
 
         # Give a right-click menu for copying image cards
         self.display_height = 660
-        gun_card_group.setContextMenuPolicy(Qt.ActionsContextMenu)
-        gun_card_group.customContextMenuRequested.connect(
-            lambda: card_option_menu(self, gun_card_group.winId(), height=self.display_height, y=100))
+        self.gun_card_group.setContextMenuPolicy(Qt.ActionsContextMenu)
 
         # Enable copy-pasting image cards
-        gun_card_group.addAction(
-            copy_image_action(self, gun_card_group.winId(), height=self.display_height, y=100))
+        self.gun_card_group.addAction(
+            copy_image_action(self, self.gun_card_group.winId(), height=self.display_height, y=100))
+
+        # Enable copy-pasting image cards
+        self.gun_card_group.addAction(
+            save_image_action(self, self.gun_card_group.winId(), image_type="guns", height=self.display_height, y=100))
 
         # Grid layout
-        gun_card_group.setLayout(gun_card_layout)
+        self.gun_card_group.setLayout(gun_card_layout)
         ###################################
         ###  END: Gun Display           ###
+        ###################################
+
+        ###################################
+        ###  START: Configuration       ###
+        ###################################
+        self.hide_redtext_check.setChecked(self.config['gun_tab']['hide_red_text'])
+        self.hide_redtext_check.clicked.connect(
+            lambda: update_config(basedir, self.hide_redtext_check, self.config, 'gun_tab', 'hide_red_text'))
+
+        self.rarity_border_check.setChecked(self.config['gun_tab']['use_color_splashes'])
+        self.rarity_border_check.clicked.connect(
+            lambda: update_config(basedir, self.rarity_border_check, self.config, 'gun_tab', 'use_color_splashes'))
+
+        self.form_fill_check.setChecked(self.config['gun_tab']['pdf_form_fillable'])
+        self.form_fill_check.clicked.connect(
+            lambda: update_config(basedir, self.form_fill_check, self.config, 'gun_tab', 'pdf_form_fillable'))
+
+        self.form_design_check.setChecked(self.config['gun_tab']['pdf_two_page_design'])
+        self.form_design_check.clicked.connect(
+            lambda: update_config(basedir, self.form_design_check, self.config, 'gun_tab', 'pdf_two_page_design'))
+
+        self.foundry_export_check.setChecked(self.config['gun_tab']['foundry_export'])
+        self.foundry_export_check.clicked.connect(
+            lambda: update_config(basedir, self.foundry_export_check, self.config, 'gun_tab', 'foundry_export'))
+        ###################################
+        ###  END: Configuration         ###
         ###################################
 
         # Setting appropriate column widths
         base_stats_group.setFixedWidth(300)
         generation_group.setFixedWidth(300)
         multi_group.setFixedWidth(300)
-        gun_card_group.setFixedWidth(1000)
+        self.gun_card_group.setFixedWidth(1000)
 
         # Setting appropriate layout heights
         base_stats_group.setFixedHeight(630)
         generation_group.setFixedHeight(110)
         multi_group.setFixedHeight(110)
-        gun_card_group.setFixedHeight(850)
+        self.gun_card_group.setFixedHeight(850)
 
         # Gun Generation Layout
         self.gun_generation_layout = QGridLayout()
         self.gun_generation_layout.addWidget(base_stats_group, 0, 0)
         self.gun_generation_layout.addWidget(generation_group, 1, 0)
         self.gun_generation_layout.addWidget(multi_group, 2, 0)
-        self.gun_generation_layout.addWidget(gun_card_group, 0, 1, -1, 1)
+        self.gun_generation_layout.addWidget(self.gun_card_group, 0, 1, -1, 1)
 
         self.gun_tab = QWidget()
         self.gun_tab.setLayout(self.gun_generation_layout)
@@ -433,10 +459,15 @@ class GunTab(QWidget):
         else:
             self.art_filepath.setText(filename)
 
+    def save_screenshot(self):
+        """ Screenshots the Gun Card layout and saves to a local file """
+        # Save as local image
+        screen = QtWidgets.QApplication.primaryScreen()
+        screenshot = screen.grabWindow(self.gun_card_group.winId(), height=self.display_height, y=100)
+        screenshot.save(f"output/guns/{self.output_name}.png", "png")
+
     def generate_gun(self):
         """ Handles performing the call to generate a gun given the parameters and updating the Gun Card image """
-        # TODO - Clean and abstract these functions
-
         # Load in properties that are currently set in the program
         name = None if self.name_line_edit.text() == "" else self.name_line_edit.text()
         item_level = self.item_level_box.currentText().lower()
@@ -483,30 +514,30 @@ class GunTab(QWidget):
                   gun_art=art_filepath)
 
         # Generate the PDF output name as the gun name
-        output_name = f"{gun.type.title().replace('_', ' ')}_Level{int(gun.item_level.split('-')[0])}_{gun.rarity.title()}_{gun.guild.title()}_{gun.name}".replace(' ', '') \
+        self.output_name = f"{gun.type.title().replace('_', ' ')}_Level{int(gun.item_level.split('-')[0])}_{gun.rarity.title()}_{gun.guild.title()}_{gun.name}".replace(' ', '') \
             if self.pdf_line_edit.text() == "" else self.pdf_line_edit.text()
 
         # Check if it is already in use
-        if output_name == self.current_pdf:
-            self.output_pdf_label.setText("PDF Name already in use!".format(output_name))
+        if self.output_name == self.current_pdf:
+            self.output_pdf_label.setText("PDF Name already in use!".format(self.output_name))
             return
 
-        self.output_pdf_label.setText("Saved to output/guns/{}.pdf!".format(output_name))
-        self.current_pdf = output_name
+        self.output_pdf_label.setText("Saved to output/guns/{}.pdf!".format(self.output_name))
+        self.current_pdf = self.output_name
 
         # Generate the local gun card PDF depending on the form design chosen
         if self.form_design_check.isChecked():
-            self.gun_pdf.generate_split_gun_pdf(output_name, gun, color_check, form_check, redtext_check)
+            self.gun_pdf.generate_split_gun_pdf(self.output_name, gun, color_check, form_check, redtext_check)
         else:
-            self.gun_pdf.generate_gun_pdf(output_name, gun, color_check, form_check, redtext_check)
+            self.gun_pdf.generate_gun_pdf(self.output_name, gun, color_check, form_check, redtext_check)
 
         # Load in gun card PDF
-        f = Path(os.path.abspath("output/guns/{}.pdf".format(output_name))).as_uri()
+        f = Path(os.path.abspath("output/guns/{}.pdf".format(self.output_name))).as_uri()
         self.WebBrowser.dynamicCall('Navigate(const QString&)', f)
 
         # FoundryVTT Check
         if self.foundry_export_check.isChecked() is True:
-            self.foundry_translator.export_gun(gun, output_name, redtext_check)
+            self.foundry_translator.export_gun(gun, self.output_name, redtext_check)
 
     def generate_multiple_guns(self):
         """ Handles performing the call to automatically generate multiple guns and save them to outputs  """
@@ -547,7 +578,7 @@ class GunTab(QWidget):
         damage_balance_json = self.gun_balance_dict[self.gun_balance_box.currentText()]
 
         # Get a base output name to display and the number to generate
-        output_name = "EXAMPLE"
+        self.output_name = "EXAMPLE"
         number_gen = int(self.numgun_line_edit.text())
 
         # Build list of elements that are manually selected
@@ -567,27 +598,27 @@ class GunTab(QWidget):
                       gun_art=art_filepath)
 
             # Generate the PDF output name as the gun name
-            output_name = f"{gun.type.title().replace('_', ' ')}_Level{int(gun.item_level.split('-')[0])}_{gun.rarity.title()}_{gun.guild.title()}_{gun.name}".replace(' ', '')
+            self.output_name = f"{gun.type.title().replace('_', ' ')}_Level{int(gun.item_level.split('-')[0])}_{gun.rarity.title()}_{gun.guild.title()}_{gun.name}".replace(' ', '')
 
             # Check if it is already in use
-            if output_name == self.current_pdf:
-                self.multi_output_label.setText("PDF Name already in use!".format(output_name))
+            if self.output_name == self.current_pdf:
+                self.multi_output_label.setText("PDF Name already in use!".format(self.output_name))
                 continue
 
             # Generate the local gun card PDF
             if self.form_design_check.isChecked():
-                self.gun_pdf.generate_split_gun_pdf(output_name, gun, color_check, form_check, redtext_check)
+                self.gun_pdf.generate_split_gun_pdf(self.output_name, gun, color_check, form_check, redtext_check)
             else:
-                self.gun_pdf.generate_gun_pdf(output_name, gun, color_check, form_check, redtext_check)
+                self.gun_pdf.generate_gun_pdf(self.output_name, gun, color_check, form_check, redtext_check)
 
             # FoundryVTT Check
             if self.foundry_export_check.isChecked() is True:
-                self.foundry_translator.export_gun(gun, output_name, redtext_check)
+                self.foundry_translator.export_gun(gun, self.output_name, redtext_check)
 
         # Set text and current PDF name
         self.multi_output_label.setText("Saved {} guns to 'output/guns/'!".format(number_gen))
-        self.current_pdf = output_name
+        self.current_pdf = self.output_name
 
         # Load in last generated gun card PDF
-        f = Path(os.path.abspath("output/guns/{}.pdf".format(output_name))).as_uri()
+        f = Path(os.path.abspath("output/guns/{}.pdf".format(self.output_name))).as_uri()
         self.WebBrowser.dynamicCall('Navigate(const QString&)', f)
