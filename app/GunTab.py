@@ -14,7 +14,7 @@ from classes.GunImage import GunImage
 from app.tab_utils import add_stat_to_layout, copy_image_action, save_image_action, update_config
 from classes.json_reader import get_file_data
 
-from PyQt5.QtCore import Qt, QTimer
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon, QFont
 from PyQt5 import QAxContainer, QtCore, QtWidgets
 from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton,
@@ -231,7 +231,6 @@ class GunTab(QWidget):
         base_stats_layout.addWidget(rarity_border_label, idx, 0)
         self.rarity_border_check = QCheckBox()
         self.rarity_border_check.setStatusTip("Choose whether to outline the gun art in a colored-outline based on rarity.")
-        self.rarity_border_check.setChecked(True)
         base_stats_layout.addWidget(self.rarity_border_check, idx, 1)
         idx += 1
 
@@ -276,8 +275,8 @@ class GunTab(QWidget):
         form_design_label.setStatusTip("Chooses whether to use the single card or two page card designs for output.")
         base_stats_layout.addWidget(form_design_label, idx, 0)
         self.form_design_check = QCheckBox()
-        self.form_design_check.setChecked(True)
-        self.form_design_check.setStatusTip("Chooses whether to use the single card or two page card designs for output.")
+        self.form_design_check.setStatusTip(
+            "Chooses whether to use the single card or two page card designs for output.")
         base_stats_layout.addWidget(self.form_design_check, idx, 1)
         idx += 1
 
@@ -300,7 +299,6 @@ class GunTab(QWidget):
         self.foundry_export_check = QCheckBox()
         self.foundry_export_check.setStatusTip(
             "Choose whether to output a JSON file that can be imported by the B&B FoundryVTT System.")
-        self.foundry_export_check.setChecked(False)
         base_stats_layout.addWidget(self.foundry_export_check, idx, 1)
         idx += 1
 
@@ -400,8 +398,31 @@ class GunTab(QWidget):
         ###  END: Gun Display           ###
         ###################################
 
-        # Load in configuration
+        ###################################
+        ###  START: Configuration       ###
+        ###################################
+        self.hide_redtext_check.setChecked(self.config['gun_tab']['hide_red_text'])
+        self.hide_redtext_check.clicked.connect(
+            lambda: update_config(basedir, self.hide_redtext_check, self.config, 'gun_tab', 'hide_red_text'))
 
+        self.rarity_border_check.setChecked(self.config['gun_tab']['use_color_splashes'])
+        self.rarity_border_check.clicked.connect(
+            lambda: update_config(basedir, self.rarity_border_check, self.config, 'gun_tab', 'use_color_splashes'))
+
+        self.form_fill_check.setChecked(self.config['gun_tab']['pdf_form_fillable'])
+        self.form_fill_check.clicked.connect(
+            lambda: update_config(basedir, self.form_fill_check, self.config, 'gun_tab', 'pdf_form_fillable'))
+
+        self.form_design_check.setChecked(self.config['gun_tab']['pdf_two_page_design'])
+        self.form_design_check.clicked.connect(
+            lambda: update_config(basedir, self.form_design_check, self.config, 'gun_tab', 'pdf_two_page_design'))
+
+        self.foundry_export_check.setChecked(self.config['gun_tab']['foundry_export'])
+        self.foundry_export_check.clicked.connect(
+            lambda: update_config(basedir, self.foundry_export_check, self.config, 'gun_tab', 'foundry_export'))
+        ###################################
+        ###  END: Configuration         ###
+        ###################################
 
         # Setting appropriate column widths
         base_stats_group.setFixedWidth(300)

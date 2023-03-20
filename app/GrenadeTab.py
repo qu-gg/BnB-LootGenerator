@@ -9,17 +9,17 @@ from PyQt5.QtGui import QFont, QPixmap
 from classes.Grenade import Grenade
 from classes.GrenadeImage import GrenadeImage
 
-from app.tab_utils import add_stat_to_layout, split_effect_text, clear_layout, copy_image_action
+from app.tab_utils import add_stat_to_layout, split_effect_text, clear_layout, copy_image_action, update_config
 from classes.json_reader import get_file_data
 
 from PyQt5.QtCore import Qt, QTimer
-from PyQt5 import QAxContainer, QtCore, QtWidgets
-from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton, QLineEdit, QFileDialog,
-                             QCheckBox, QTextEdit)
+from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton,
+                             QLineEdit, QFileDialog, QCheckBox, QTextEdit)
 
 
 class GrenadeTab(QWidget):
-    def __init__(self, basedir, statusbar, foundry_translator):
+    def __init__(self, basedir, statusbar, config, foundry_translator):
         super(GrenadeTab, self).__init__()
 
         # Load classes
@@ -28,6 +28,9 @@ class GrenadeTab(QWidget):
 
         # PDF and Image Classes
         self.grenade_images = GrenadeImage(self.basedir)
+
+        # Config
+        self.config = config
 
         # API Classes
         self.foundry_translator = foundry_translator
@@ -191,6 +194,16 @@ class GrenadeTab(QWidget):
         self.grenade_card_group.setLayout(self.grenade_card_layout)
         ###################################
         ###  END: Grenade Display       ###
+        ###################################
+
+        ###################################
+        ###  START: Configuration       ###
+        ###################################
+        self.foundry_export_check.setChecked(self.config['grenade_tab']['foundry_export'])
+        self.foundry_export_check.clicked.connect(
+            lambda: update_config(basedir, self.foundry_export_check, self.config, 'grenade_tab', 'foundry_export'))
+        ###################################
+        ###  END: Configuration         ###
         ###################################
 
         # Setting appropriate column widths

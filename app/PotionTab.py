@@ -9,17 +9,17 @@ from PyQt5.QtGui import QFont, QPixmap
 from classes.Potion import Potion
 from classes.PotionImage import PotionImage
 
-from app.tab_utils import add_stat_to_layout, split_effect_text, clear_layout, copy_image_action
+from app.tab_utils import add_stat_to_layout, split_effect_text, clear_layout, copy_image_action, update_config
 from classes.json_reader import get_file_data
 
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton,
-                             QCheckBox, QLineEdit, QFileDialog, QTextEdit, QAction)
+                             QCheckBox, QLineEdit, QFileDialog, QTextEdit)
 
 
 class PotionTab(QWidget):
-    def __init__(self, basedir, statusbar, foundry_translator):
+    def __init__(self, basedir, statusbar, config, foundry_translator):
         super(PotionTab, self).__init__()
 
         # Load classes
@@ -28,6 +28,9 @@ class PotionTab(QWidget):
 
         # PDF and Image Classes
         self.potion_images = PotionImage(self.basedir)
+
+        # Config
+        self.config = config
 
         # API Classes
         self.foundry_translator = foundry_translator
@@ -163,6 +166,16 @@ class PotionTab(QWidget):
         self.potion_card_group.setLayout(self.potion_card_layout)
         ###################################
         ###  END: Potion Display        ###
+        ###################################
+
+        ###################################
+        ###  START: Configuration       ###
+        ###################################
+        self.foundry_export_check.setChecked(self.config['potion_tab']['foundry_export'])
+        self.foundry_export_check.clicked.connect(
+            lambda: update_config(basedir, self.foundry_export_check, self.config, 'potion_tab', 'foundry_export'))
+        ###################################
+        ###  END: Configuration         ###
         ###################################
 
         # Setting appropriate column widths

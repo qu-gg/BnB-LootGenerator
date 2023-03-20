@@ -9,16 +9,16 @@ from PyQt5.QtGui import QFont, QPixmap
 from classes.Shield import Shield
 from classes.ShieldImage import ShieldImage
 from classes.json_reader import get_file_data
-from app.tab_utils import add_stat_to_layout, clear_layout, split_effect_text, copy_image_action
+from app.tab_utils import add_stat_to_layout, clear_layout, split_effect_text, copy_image_action, update_config
 
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import (QComboBox, QGridLayout, QGroupBox, QLabel, QWidget, QPushButton,
-                             QCheckBox, QLineEdit, QFileDialog, QTextEdit, QAction, QMenu)
+                             QCheckBox, QLineEdit, QFileDialog, QTextEdit)
 
 
 class ShieldTab(QWidget):
-    def __init__(self, basedir, statusbar, foundry_translator):
+    def __init__(self, basedir, statusbar, config, foundry_translator):
         super(ShieldTab, self).__init__()
 
         # Load classes
@@ -27,6 +27,9 @@ class ShieldTab(QWidget):
 
         # PDF and Image Classes
         self.shield_images = ShieldImage(self.basedir)
+
+        # Config
+        self.config = config
 
         # API Classes
         self.foundry_translator = foundry_translator
@@ -189,7 +192,17 @@ class ShieldTab(QWidget):
 
         self.shield_card_group.setLayout(self.shield_card_layout)
         ###################################
-        ###  END: Potion Display        ###
+        ###  END: Shield Display        ###
+        ###################################
+
+        ###################################
+        ###  START: Configuration       ###
+        ###################################
+        self.foundry_export_check.setChecked(self.config['shield_tab']['foundry_export'])
+        self.foundry_export_check.clicked.connect(
+            lambda: update_config(basedir, self.foundry_export_check, self.config, 'shield_tab', 'foundry_export'))
+        ###################################
+        ###  END: Configuration         ###
         ###################################
 
         # Setting appropriate column widths

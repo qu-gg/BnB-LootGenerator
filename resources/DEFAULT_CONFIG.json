@@ -1,0 +1,23 @@
+{
+  "gun_tab": {
+    "hide_red_text": false,
+    "use_color_splashes": true,
+    "pdf_form_fillable": false,
+    "pdf_two_page_design": true,
+    "foundry_export": false
+  },
+  "melee_tab": {
+  },
+  "shield_tab": {
+    "foundry_export": false
+  },
+  "relic_tab": {
+    "foundry_export": false
+  },
+  "grenade_tab": {
+    "foundry_export": false
+  },
+  "potion_tab": {
+    "foundry_export": false
+  }
+}
