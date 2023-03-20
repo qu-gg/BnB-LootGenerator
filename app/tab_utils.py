@@ -4,9 +4,11 @@
 
 Holds shared functions across the PyQT tabs
 """
+import json
+
 from PyQt5 import QtWidgets
 from PyQt5.QtGui import QIntValidator, QGuiApplication, QClipboard
-from PyQt5.QtWidgets import QLabel, QLineEdit, QAction, QMenu
+from PyQt5.QtWidgets import QLabel, QLineEdit, QAction, QMenu, QFileDialog
 
 
 def add_stat_to_layout(layout, label, row, force_int=False, placeholder=None, read_only=False):
@@ -68,12 +70,6 @@ def split_effect_text(initial_string, line_length=32):
     return info
 
 
-def card_option_menu(self, winID, height=750, y=0):
-    """ Wrapper for the copy action to put it into a context menu"""
-    menu = QMenu()
-    menu.addAction(copy_image_action(self, winID, height=height, y=y))
-
-
 def copy_image_action(self, winID, height=750, y=0):
     """ Build a QAction for copying a generated card to a clipped Image"""
     # Enable copy-pasting image cards
@@ -89,3 +85,35 @@ def copy_card(winID, height, y=0):
     screen = QtWidgets.QApplication.primaryScreen()
     screenshot = screen.grabWindow(winID, y=y, height=height)
     QGuiApplication.clipboard().setImage(screenshot.toImage(), QClipboard.Clipboard)
+
+
+def save_image_action(self, winID, image_type, height=750, y=0):
+    """ Build a QAction for saving a generated card to a local Image"""
+    # Enable copy-pasting image cards
+    save_action = QAction("Save Image", self)
+    save_action.setShortcut("Ctrl+S")
+    save_action.triggered.connect(lambda: save_card(self, winID, image_type, height, y))
+    return save_action
+
+
+def save_card(self, winID, image_type, height, y=0):
+    """ Converts the Card layout into a local image """
+    # Get the filename to be saved
+    dlg = QFileDialog()
+    filename = dlg.getSaveFileName(
+        self, 'Save File', f'output/{image_type}/{self.output_name}', f'{image_type.title()} Card (*.png)')[0]
+
+    # Save as local image
+    screen = QtWidgets.QApplication.primaryScreen()
+    screenshot = screen.grabWindow(winID, y=y, height=height)
+    screenshot.save(filename, "png")
+
+
+def update_config(basedir, widget, config, config_tab, config_variable):
+    """ For a given widget that has a configuration associated with it, update the config when checked """
+    # Set config variable to current widget
+    config[config_tab][config_variable] = widget.isChecked()
+
+    # Update configuration file
+    with open(f"{basedir}resources/CONFIG.json", 'w') as f:
+        json.dump(config, f)

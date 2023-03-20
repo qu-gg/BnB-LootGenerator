@@ -9,7 +9,7 @@ from PyQt5.QtGui import QFont, QPixmap
 from classes.Relic import Relic
 from classes.RelicImage import RelicImage
 
-from app.tab_utils import add_stat_to_layout, clear_layout, split_effect_text, copy_image_action, card_option_menu
+from app.tab_utils import add_stat_to_layout, clear_layout, split_effect_text, copy_image_action
 from classes.json_reader import get_file_data
 
 from PyQt5.QtCore import Qt, QTimer
@@ -194,8 +194,6 @@ class RelicTab(QWidget):
         # Give a right-click menu for copying image cards
         self.display_height = 550
         self.relic_card_group.setContextMenuPolicy(Qt.ActionsContextMenu)
-        self.relic_card_group.customContextMenuRequested.connect(
-            lambda: card_option_menu(self, self.relic_card_group.winId(), height=self.display_height))
 
         # Enable copy-pasting image cards
         self.relic_card_group.addAction(

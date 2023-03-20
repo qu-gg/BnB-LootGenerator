@@ -6,6 +6,7 @@ Entrypoint for the Bunkers & Badasses loot generator program (https://github.com
 Handles the UI interaction and display for the PyQT frontend
 """
 import sys
+import json
 
 from app.GunTab import GunTab
 from app.MeleeTab import MeleeTab
@@ -36,11 +37,14 @@ class Window(QMainWindow):
         # TabWidget for the different generation menus
         self.tabMenu = QTabWidget()
 
+        # Load in the config file
+        self.config = json.load(open(f"{self.basedir}resources/CONFIG.json", 'r'))
+
         # FoundryVTT Translator
         self.foundry_translator = FoundryTranslator(self.basedir, self.statusbar)
 
         # Gun Tab
-        self.gun_tab = GunTab(basedir, self.statusbar, self.foundry_translator)
+        self.gun_tab = GunTab(basedir, self.statusbar, self.config, self.foundry_translator)
         self.tabMenu.addTab(self.gun_tab.get_tab(), "Gun")
         self.tabMenu.setTabText(0, "Guns")
 

@@ -9,7 +9,7 @@ from PyQt5.QtGui import QFont, QPixmap
 from classes.Grenade import Grenade
 from classes.GrenadeImage import GrenadeImage
 
-from app.tab_utils import add_stat_to_layout, split_effect_text, clear_layout, copy_image_action, card_option_menu
+from app.tab_utils import add_stat_to_layout, split_effect_text, clear_layout, copy_image_action
 from classes.json_reader import get_file_data
 
 from PyQt5.QtCore import Qt, QTimer
@@ -183,8 +183,6 @@ class GrenadeTab(QWidget):
         # Give a right-click menu for copying image cards
         self.display_height = 600
         self.grenade_card_group.setContextMenuPolicy(Qt.ActionsContextMenu)
-        self.grenade_card_group.customContextMenuRequested.connect(
-            lambda: card_option_menu(self, self.grenade_card_group.winId(), height=self.display_height))
 
         # Enable copy-pasting image cards
         self.grenade_card_group.addAction(
