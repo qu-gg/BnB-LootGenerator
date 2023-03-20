@@ -9,7 +9,8 @@ from PyQt5.QtGui import QFont, QPixmap
 from classes.Shield import Shield
 from classes.ShieldImage import ShieldImage
 from classes.json_reader import get_file_data
-from app.tab_utils import add_stat_to_layout, clear_layout, split_effect_text, copy_image_action, update_config
+from app.tab_utils import add_stat_to_layout, clear_layout, split_effect_text, copy_image_action, update_config, \
+    save_image_action
 
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5 import QtCore, QtWidgets
@@ -189,6 +190,10 @@ class ShieldTab(QWidget):
         # Enable copy-pasting image cards
         self.shield_card_group.addAction(
             copy_image_action(self, self.shield_card_group.winId(), height=self.display_height))
+
+        # Enable saving image cards
+        self.shield_card_group.addAction(
+            save_image_action(self, self.shield_card_group.winId(), image_type="shields", height=self.display_height))
 
         self.shield_card_group.setLayout(self.shield_card_layout)
         ###################################

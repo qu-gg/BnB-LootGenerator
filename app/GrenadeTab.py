@@ -9,7 +9,8 @@ from PyQt5.QtGui import QFont, QPixmap
 from classes.Grenade import Grenade
 from classes.GrenadeImage import GrenadeImage
 
-from app.tab_utils import add_stat_to_layout, split_effect_text, clear_layout, copy_image_action, update_config
+from app.tab_utils import add_stat_to_layout, split_effect_text, clear_layout, copy_image_action, update_config, \
+    save_image_action
 from classes.json_reader import get_file_data
 
 from PyQt5.QtCore import Qt, QTimer
@@ -190,6 +191,10 @@ class GrenadeTab(QWidget):
         # Enable copy-pasting image cards
         self.grenade_card_group.addAction(
             copy_image_action(self, self.grenade_card_group.winId(), height=self.display_height))
+
+        # Enable saving image cards
+        self.grenade_card_group.addAction(
+            save_image_action(self, self.grenade_card_group.winId(), image_type="grenades", height=self.display_height))
 
         self.grenade_card_group.setLayout(self.grenade_card_layout)
         ###################################

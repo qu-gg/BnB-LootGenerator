@@ -9,7 +9,8 @@ from PyQt5.QtGui import QFont, QPixmap
 from classes.Relic import Relic
 from classes.RelicImage import RelicImage
 
-from app.tab_utils import add_stat_to_layout, clear_layout, split_effect_text, copy_image_action, update_config
+from app.tab_utils import add_stat_to_layout, clear_layout, split_effect_text, copy_image_action, update_config, \
+    save_image_action
 from classes.json_reader import get_file_data
 
 from PyQt5.QtCore import Qt, QTimer
@@ -202,9 +203,13 @@ class RelicTab(QWidget):
         self.relic_card_group.addAction(
             copy_image_action(self, self.relic_card_group.winId(), height=self.display_height))
 
+        # Enable saving image cards
+        self.relic_card_group.addAction(
+            save_image_action(self, self.relic_card_group.winId(), image_type="relics", height=self.display_height))
+
         self.relic_card_group.setLayout(self.relic_card_layout)
         ###################################
-        ###  END: Potion Display        ###
+        ###  END: Relic Display         ###
         ###################################
 
         ###################################

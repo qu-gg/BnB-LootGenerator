@@ -9,7 +9,8 @@ from PyQt5.QtGui import QFont, QPixmap
 from classes.Potion import Potion
 from classes.PotionImage import PotionImage
 
-from app.tab_utils import add_stat_to_layout, split_effect_text, clear_layout, copy_image_action, update_config
+from app.tab_utils import add_stat_to_layout, split_effect_text, clear_layout, copy_image_action, update_config, \
+    save_image_action
 from classes.json_reader import get_file_data
 
 from PyQt5.QtCore import Qt, QTimer
@@ -162,6 +163,10 @@ class PotionTab(QWidget):
         # Enable copy-pasting image cards
         self.potion_card_group.addAction(
             copy_image_action(self, self.potion_card_group.winId(), height=self.display_height))
+
+        # Enable saving image cards
+        self.potion_card_group.addAction(
+            save_image_action(self, self.potion_card_group.winId(), image_type="potions", height=self.display_height))
 
         self.potion_card_group.setLayout(self.potion_card_layout)
         ###################################
