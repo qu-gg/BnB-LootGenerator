@@ -6,8 +6,8 @@ Handles filtering the scrapped game source dataset for specific properties, i.e.
 """
 import json
 import random
+import shutil
 import requests
-import cv2 as cv
 import numpy as np
 
 from PIL import Image
@@ -122,6 +122,12 @@ class GunImage:
 
         # Convert gun type
         gun_type = self.type_conversion(gun_type)
+
+        # For custom gun types, add a check to use a placeholder image
+        if gun_type is None:
+            shutil.copy(f"{self.prefix}resources/images/gun_icons/PLACEHOLDER.png",
+                        self.prefix + 'output/guns/temporary_gun_image.png')
+            return
 
         # For each given gun type, get its filtered data and concatenate
         temp_data = []

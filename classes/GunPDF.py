@@ -306,35 +306,35 @@ class GunPDF:
 
         # Apply gun icon to gun card
         position = {'page': 1, 'x0': 615, 'y0': 45, 'x1': 815, 'y1': 75}
-        self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/gun_icons/{self.gun_icon_paths.get(gun.type)}", position)
+        self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/gun_icons/{self.gun_icon_paths.get(gun.type, 'PLACEHOLDER.PNG')}", position)
 
         # Apply guild icon to gun card
         position = {'page': 1, 'x0': 20, 'y0': 45, 'x1': 200, 'y1': 75}
-        self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/guild_icons/{self.guild_icon_paths.get(gun.guild)}', position)
+        self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/guild_icons/{self.guild_icon_paths.get(gun.guild, 'PLACEHOLDER.PNG')}", position)
 
         # Apply damage die icon to gun card
         position = {'page': 1, 'x0': 75, 'y0': 280, 'x1': 115, 'y1': 330}
-        self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/die_icons/{self.die_icon_paths.get(die_type)}', position)
+        self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/die_icons/{self.die_icon_paths.get(die_type, 'PLACEHOLDER.PNG')}", position)
 
         # Apply element icon to gun card
         if gun.element is not None:
             # If there is only one element icon, then add it in the middle
             if len(gun.element) == 1:
                 position = {'page': 1, 'x0': 60, 'y0': 440, 'x1': 110, 'y1': 470}
-                self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(gun.element[0])}', position)
+                self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(gun.element[0], 'PLACEHOLDER.PNG')}", position)
 
             # In the event that there are 3 elements, add the third element as a separate icon below
             elif len(gun.element) >= 2:
                 position = {'page': 1, 'x0': 40, 'y0': 440, 'x1': 90, 'y1': 470}
-                self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(gun.element[0])}', position)
+                self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(gun.element[0], 'PLACEHOLDER.PNG')}", position)
 
                 position = {'page': 1, 'x0': 80, 'y0': 440, 'x1': 130, 'y1': 470}
-                self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(gun.element[1])}', position)
+                self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(gun.element[1], 'PLACEHOLDER.PNG')}", position)
 
             # In the event that there are 3 elements, add the third element as a separate icon below
             if len(gun.element) == 3:
                 position = {'page': 1, 'x0': 60, 'y0': 500, 'x1': 110, 'y1': 530}
-                self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(gun.element[2])}', position)
+                self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(gun.element[2], 'PLACEHOLDER.PNG')}", position)
 
         # Try PDF Compression via QPDF. Requires user install to function.
         if os.path.exists('C:/Program Files/qpdf 11.1.1/bin/qpdf.exe'):
@@ -457,36 +457,36 @@ class GunPDF:
 
         # Apply gun icon to gun card
         position = {'page': 1, 'x0': 480, 'y0': 25, 'x1': 580, 'y1': 55}
-        self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/gun_icons/{self.gun_icon_paths.get(gun.type)}", position)
+        self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/gun_icons/{self.gun_icon_paths.get(gun.type, 'PLACEHOLDER.PNG')}", position)
 
         position = {'page': 2, 'x0': 480, 'y0': 25, 'x1': 580, 'y1': 55}
-        self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/gun_icons/{self.gun_icon_paths.get(gun.type)}", position)
+        self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/gun_icons/{self.gun_icon_paths.get(gun.type, 'PLACEHOLDER.PNG')}", position)
 
         # Apply guild icon to gun card
         position = {'page': 1, 'x0': 25, 'y0': 25, 'x1': 125, 'y1': 55}
-        self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/guild_icons/{self.guild_icon_paths.get(gun.guild)}', position)
+        self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/guild_icons/{self.guild_icon_paths.get(gun.guild, 'PLACEHOLDER.PNG')}", position)
 
         position = {'page': 2, 'x0': 25, 'y0': 25, 'x1': 125, 'y1': 55}
-        self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/guild_icons/{self.guild_icon_paths.get(gun.guild)}', position)
+        self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/guild_icons/{self.guild_icon_paths.get(gun.guild, 'PLACEHOLDER.PNG')}", position)
 
         # Apply damage die icon to gun card
         position = {'page': 1, 'x0': 55, 'y0': 270, 'x1': 95, 'y1': 320}
-        self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/die_icons/{self.die_icon_paths.get(die_type)}', position)
+        self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/die_icons/{self.die_icon_paths.get(die_type, 'PLACEHOLDER.PNG')}", position)
 
         # Apply element icon to gun card
         if gun.element is not None:
             position = {'page': 1, 'x0': 375, 'y0': 360, 'x1': 425, 'y1': 390}
-            self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(gun.element[0])}', position)
+            self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(gun.element[0], 'PLACEHOLDER.PNG')}", position)
 
             # In the event that there are 3 elements, add the third element as a separate icon below
             if len(gun.element) >= 2:
                 position = {'page': 1, 'x0': 410, 'y0': 360, 'x1': 460, 'y1': 390}
-                self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(gun.element[1])}', position)
+                self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(gun.element[1], 'PLACEHOLDER.PNG')}", position)
 
             # In the event that there are 3 elements, add the third element as a separate icon below
             if len(gun.element) == 3:
                 position = {'page': 1, 'x0': 445, 'y0': 360, 'x1': 495, 'y1': 390}
-                self.add_image_to_pdf(output_path, f'{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(gun.element[2])}', position)
+                self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(gun.element[2], 'PLACEHOLDER.PNG')}", position)
 
         # Try PDF Compression via QPDF. Requires user install to function.
         if os.path.exists('C:/Program Files/qpdf 11.1.1/bin/qpdf.exe'):
