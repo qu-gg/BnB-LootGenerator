@@ -74,9 +74,7 @@ class GunTab(QWidget):
         idx += 1
 
         # Gun Type
-        self.gun_type_choices = ['pistol', 'submachine_gun', 'shotgun',
-                                 'combat_rifle', 'sniper_rifle', 'rocket_launcher']
-
+        self.gun_type_choices = list(get_file_data(basedir + "resources/guns/gun_types.json").keys())
         base_stats_layout.addWidget(QLabel("Gun Type: "), idx, 0)
         self.gun_type_box = QComboBox()
         self.gun_type_box.addItem("Random")
