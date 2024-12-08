@@ -8,6 +8,7 @@ import os
 import fitz
 import pdfrw
 import requests
+import pikepdf
 
 from PIL import Image
 
@@ -337,11 +338,12 @@ class GunPDF:
                 self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(gun.element[2], 'PLACEHOLDER.PNG')}", position)
 
         # Try PDF Compression via QPDF. Requires user install to function.
-        if os.path.exists('C:/Program Files/qpdf 11.1.1/bin/qpdf.exe'):
-            os.system(f'C:\\"Program Files"\\"qpdf 11.1.1"\\bin\\qpdf.exe --no-warn --flatten-annotations=all "{output_path}" "{output_path[:-4]}.compressed.pdf"')
-            if os.path.exists(f"{output_path[:-4]}.compressed.pdf"):
-                os.remove(f"{output_path}")
-                os.rename(f"{output_path[:-4]}.compressed.pdf", f"{output_path[:-4]}.pdf")
+        self.compressPDF(output_path)
+        # if os.path.exists('C:/Program Files/qpdf 11.1.1/bin/qpdf.exe'):
+        #     os.system(f'C:\\"Program Files"\\"qpdf 11.1.1"\\bin\\qpdf.exe --no-warn --flatten-annotations=all "{output_path}" "{output_path[:-4]}.compressed.pdf"')
+        #     if os.path.exists(f"{output_path[:-4]}.compressed.pdf"):
+        #         os.remove(f"{output_path}")
+        #         os.rename(f"{output_path[:-4]}.compressed.pdf", f"{output_path[:-4]}.pdf")
 
     def generate_split_gun_pdf(self, output_name, gun, rarity_border, form_check, redtext_check):
         """
@@ -489,8 +491,19 @@ class GunPDF:
                 self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(gun.element[2], 'PLACEHOLDER.PNG')}", position)
 
         # Try PDF Compression via QPDF. Requires user install to function.
-        if os.path.exists('C:/Program Files/qpdf 11.1.1/bin/qpdf.exe'):
-            os.system(f'C:\\"Program Files"\\"qpdf 11.1.1"\\bin\\qpdf.exe --no-warn --flatten-annotations=all "{output_path}" "{output_path[:-4]}.compressed.pdf"')
-            if os.path.exists(f"{output_path[:-4]}.compressed.pdf"):
+        self.compressPDF(output_path)
+        # if os.path.exists('C:/Program Files/qpdf 11.1.1/bin/qpdf.exe'):
+        #     os.system(f'C:\\"Program Files"\\"qpdf 11.1.1"\\bin\\qpdf.exe --no-warn --flatten-annotations=all "{output_path}" "{output_path[:-4]}.compressed.pdf"')
+        #     if os.path.exists(f"{output_path[:-4]}.compressed.pdf"):
+        #         os.remove(f"{output_path}")
+        #         os.rename(f"{output_path[:-4]}.compressed.pdf", f"{output_path[:-4]}.pdf")
+    
+    def compressPDF(self, output_path):
+        try:
+            with pikepdf.open(output_path) as pdf:
+                pdf.flatten_annotations('all')
+                pdf.save(f"{output_path[:-4]}.compressed.pdf")
                 os.remove(f"{output_path}")
-                os.rename(f"{output_path[:-4]}.compressed.pdf", f"{output_path[:-4]}.pdf")
+        except Exception:
+            self.statusbar.clearMessage()
+            self.statusbar.showMessage("Failed to compress the PDF!", 5000)
