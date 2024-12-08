@@ -490,14 +490,10 @@ class GunPDF:
                 position = {'page': 1, 'x0': 445, 'y0': 360, 'x1': 495, 'y1': 390}
                 self.add_image_to_pdf(output_path, f"{self.base_dir}resources/images/element_icons/{self.element_icon_paths.get(gun.element[2], 'PLACEHOLDER.PNG')}", position)
 
-        # Try PDF Compression via QPDF. Requires user install to function.
+        # Try PDF Compression via pikepdf
         self.compressPDF(output_path)
-        # if os.path.exists('C:/Program Files/qpdf 11.1.1/bin/qpdf.exe'):
-        #     os.system(f'C:\\"Program Files"\\"qpdf 11.1.1"\\bin\\qpdf.exe --no-warn --flatten-annotations=all "{output_path}" "{output_path[:-4]}.compressed.pdf"')
-        #     if os.path.exists(f"{output_path[:-4]}.compressed.pdf"):
-        #         os.remove(f"{output_path}")
-        #         os.rename(f"{output_path[:-4]}.compressed.pdf", f"{output_path[:-4]}.pdf")
     
+    #PDF compression method using pikepdf, a Python tool based on QPDF
     def compressPDF(self, output_path):
         try:
             with pikepdf.open(output_path) as pdf:
