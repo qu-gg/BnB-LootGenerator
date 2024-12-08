@@ -36,8 +36,7 @@ Here is a list of ones that work and don't work thus far from personal testing. 
 ~~is installed and in <code>C:/Program Files/</code>, the PDF files will be automatically compressed (40MB -> 250KB!). The standard~~
 ~~installer package to grab is <code>qpdf-11.1.1-mingw64.exe</code> for Windows 10 users.~~
 
-Resolved using pikepdf, a Python library based on QPDF. If compression succeeds, you should have a PDF document ending with ".compressed.pdf".
-If compression fails for any reason, you should still have your PDF file, but still with the large file size due to layer stacking.
+Resolved using pikepdf, a Python library based on QPDF. If compression fails for any reason, you should still have your PDF file, but still with the large file size due to layer stacking and get a message alerting you that it failed to compress.
 
 <p align='center'><img src="https://user-images.githubusercontent.com/32918812/197358506-e0b39fd4-befa-40a2-a122-022473fdabdb.png" alt="gunBack" /></p>
 <p align='center'>Fig 4. Compression gained by QPDF.</p>

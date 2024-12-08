@@ -495,6 +495,7 @@ class GunPDF:
                 pdf.flatten_annotations('all')
                 pdf.save(f"{output_path[:-4]}.compressed.pdf")
                 os.remove(f"{output_path}")
+                os.rename(f"{output_path[:-4]}.compressed.pdf", f"{output_path[:-4]}.pdf")
         except Exception:
             self.statusbar.clearMessage()
             self.statusbar.showMessage("Failed to compress the PDF!", 5000)
