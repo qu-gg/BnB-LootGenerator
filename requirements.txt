@@ -7,4 +7,4 @@ Pillow==9.1.0
 PyQt5==5.15.6
 requests==2.26.0
 tqdm==4.62.3
-pikepdf==9.4.2
+pikepdf==9.2.1
