@@ -4,7 +4,8 @@ numpy
 pandas
 pdfrw
 Pillow
-PyQt5==5.12.2
 requests
 tqdm
 pikepdf
+PyQt5==5.15.9
+pyinstaller
