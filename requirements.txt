@@ -4,7 +4,7 @@ numpy
 pandas
 pdfrw
 Pillow
-PyQt5
+PyQt5==5.12.2
 requests
 tqdm
 pikepdf
